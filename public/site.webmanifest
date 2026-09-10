@@ -1,12 +1,22 @@
 {
-  "name": "Plaza de Armas Piura",
+  "id": "/",
+  "name": "Plaza de Armas Piura — Guía del visitante",
   "short_name": "Plaza Piura",
-  "icons": [
-    {"src":"/favicon-32.png","sizes":"32x32","type":"image/png"},
-    {"src":"/apple-touch-icon.png","sizes":"180x180","type":"image/png"},
-    {"src":"/favicon.svg","sizes":"any","type":"image/svg+xml"}
-  ],
+  "description": "Guía independiente de la Plaza de Armas Piura: ubicación, mapa, historia de «La Pola», cómo llegar y qué ver en el centro histórico de Piura, Perú.",
+  "lang": "es-PE",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#244433",
   "background_color": "#f5ead9",
-  "display": "standalone"
+  "categories": ["travel", "navigation", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
 }

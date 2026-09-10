@@ -14,6 +14,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "pnpm build && wrangler deploy",
+    "icons": "node scripts/make-pwa-icons.mjs",
     "self-check": "node scripts/self-check.mjs"
   },
   "dependencies": {

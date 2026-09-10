@@ -1,39 +1,76 @@
 ---
 import '../styles/global.css';
 
-const title = 'Plaza de Armas de Piura | Guía para visitar el corazón histórico';
-const description = 'Guía independiente para conocer la Plaza de Armas de Piura: historia, acceso, mapa, transporte, comida cercana, estacionamiento y lugares para visitar a pie.';
+const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, '') : 'https://piuraplazadearmas.com';
 const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const stateProvince = 'Piura';
+const countryName = 'Perú';
+const countryCode = 'PE';
+const postalCode = '20001';
+const plusCode = 'R93F+58';
+const latitude = -5.1970998;
+const longitude = -80.62668;
 
 const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
 const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.6292602874832!3d-5.197099794758691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
 
+const govtTourismUrl = 'https://www.gob.pe/munipiura';
+const govtTourismPortalUrl = 'http://turismo.munipiura.gob.pe/';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const peruTravelUrl = 'https://www.peru.travel/es';
+const mucenUrl = 'https://mucen.bcrp.gob.pe/mucen/museos/mucen-piura';
+const casaMuseoUrl = 'https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura';
+
+const title = `${attractionFullName} (${cityName}, ${countryName}) - Guía y ubicación`;
+const description = `Guía de la ${attractionFullName} (${countryName}): mapa, acceso libre todo el año, historia de "La Pola", la Catedral de San Miguel Arcángel y qué ver alrededor.`;
+const ogImage = `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`;
+const ogImageAlt = `${attractionFullName} - vista principal en ${cityName}, ${countryName}`;
+const ogImageWidth = 1280;
+const ogImageHeight = 866;
+
+const dateModified = '2026-09-10';
+
 const photos = {
   hero: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg/1280px-PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
-    alt: 'Vista de la Plaza de Armas de Piura, sus árboles y edificios del centro histórico',
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
     credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
   },
   square: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Plaza_de_Armas_de_Piura.jpg/1280px-Plaza_de_Armas_de_Piura.jpg',
-    alt: 'Jardines, bancas y entorno urbano de la Plaza de Armas de Piura',
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
     credit: 'Pitxiquin · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
   },
   cathedral: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/CATEDRAL_DE_PIURA_-_PIURA.jpg/960px-CATEDRAL_DE_PIURA_-_PIURA.jpg',
-    alt: 'Catedral de San Miguel Arcángel junto a la Plaza de Armas de Piura',
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`,
     credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
   },
   monument: {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ALEGORIA_A_LA_LIBERTAD.jpg',
-    alt: 'Alegoría a la Libertad, monumento central de la Plaza de Armas de Piura',
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
     credit: 'Ccotlear · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
   },
 };
+
+const facts = [
+  { label: 'Nombre oficial', value: attractionShortName },
+  { label: 'Ubicación', value: `Ayacucho, ${cityName} ${postalCode}, ${countryName}` },
+  { label: 'Plus Code', value: `${plusCode}, ${cityName}` },
+  { label: 'Coordenadas', value: `${latitude.toFixed(5)}, ${longitude.toFixed(5)}` },
+  { label: 'Horario', value: 'Acceso libre las 24 horas' },
+  { label: 'Entrada', value: 'Libre' },
+  { label: 'Altitud', value: '22 m s. n. m.' },
+  { label: 'Calificación', value: '4,3 · 16.985 reseñas de Google' },
+];
 
 const visitCards = [
   {
@@ -83,23 +120,38 @@ const nearby = [
   {
     distance: 'frente a la plaza',
     name: 'Catedral de San Miguel Arcángel',
-    text: 'Templo principal del centro histórico y uno de los elementos que define la imagen urbana de la plaza.',
+    text: 'Templo principal del centro histórico —también conocido como Iglesia Matriz— y uno de los elementos que define la imagen urbana de la plaza.',
+  },
+  {
+    distance: 'frente a la plaza',
+    name: 'MUCEN Piura',
+    text: 'Museo del Banco Central de Reserva con colecciones que ayudan a leer la historia y cultura regional. Ingreso por la calle Huancavelica 346.',
   },
   {
     distance: 'a pasos',
-    name: 'MUCEN Piura',
-    text: 'Museo del Banco Central de Reserva con colecciones que ayudan a leer la historia y cultura regional.',
+    name: 'Municipalidad Provincial de Piura',
+    text: 'Edificio cívico que preside uno de los laterales de la plaza y que gestiona el centro de la ciudad.',
   },
   {
     distance: 'caminata corta',
     name: 'Casa Museo Gran Almirante Grau',
-    text: 'Casa vinculada a Miguel Grau, figura central de la historia peruana y uno de los puntos culturales de Piura.',
+    text: 'Casa vinculada a Miguel Grau, figura central de la historia peruana y uno de los puntos culturales de Piura. Ubicada en el Jirón Tacna 662.',
   },
   {
     distance: 'cerca del centro',
     name: 'Iglesia San Sebastián',
     text: 'Otra parada religiosa e histórica que se integra bien a un circuito peatonal por el casco antiguo.',
   },
+];
+
+const sources = [
+  { name: 'MINCETUR — Inventario Nacional de Recursos Turísticos', detail: 'Ficha N.º 3163: Plaza De Armas De Piura', url: minceturFicha },
+  { name: 'Gob.pe — Municipalidad Provincial de Piura', detail: 'Información institucional y datos del turismo local', url: govtTourismUrl },
+  { name: 'Portal Turístico de Piura', detail: 'Promoción oficial del departamento de Piura', url: govtTourismPortalUrl },
+  { name: 'Perú Travel', detail: 'Portal Oficial de Turismo del Perú (PROMPERÚ)', url: peruTravelUrl },
+  { name: 'Ministerio de Cultura', detail: 'Casa Museo Gran Almirante Grau de Piura', url: casaMuseoUrl },
+  { name: 'Banco Central de Reserva del Perú', detail: 'MUCEN Piura', url: mucenUrl },
+  { name: 'Google Maps', detail: 'Plaza de Armas Piura', url: mapShortUrl },
 ];
 
 const faqs = [
@@ -127,30 +179,65 @@ const faqs = [
     q: '¿Dónde conviene estacionar?',
     a: 'En el centro hay cocheras privadas y espacios regulados o limitados en calle. Como disponibilidad y tarifas pueden cambiar, lo más seguro es confirmar al llegar y no dejar objetos visibles dentro del vehículo.',
   },
+  {
+    q: '¿Dónde se ubica la Plaza de Armas Piura?',
+    a: 'Se ubica en el centro histórico de Piura, región Piura, Perú. La referencia de dirección es Ayacucho, Piura 20001, y su Plus Code es R93F+58. Puedes abrir su ubicación en Google Maps.',
+  },
+  {
+    q: '¿Es gratis visitar la Plaza de Armas de Piura?',
+    a: 'Sí. Es un espacio público de acceso libre y gratuito. El registro oficial del MINCETUR (ficha N.º 3163) señala acceso libre durante todo el año.',
+  },
+  {
+    q: '¿Qué puntos de interés hay alrededor de la plaza?',
+    a: 'Al caminar desde la plaza puedes visitar la Catedral de San Miguel Arcángel (Iglesia Matriz), el MUCEN Piura (calle Huancavelica 346), la Casa Museo Gran Almirante Grau (Jirón Tacna 662) y la Iglesia San Sebastián.',
+  },
+  {
+    q: '¿Cómo llegar a la Plaza de Armas de Piura?',
+    a: 'Desde el Óvalo Grau son unos 800 metros de caminata (unos 6 minutos). Desde la Plazuela Merino, aproximadamente 1 kilómetro en taxi o movilidad urbana. Desde la Iglesia San Sebastián se conecta por un circuito histórico de unos 200 metros.',
+  },
 ];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 
 const attractionJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'Park'],
-  name: 'Plaza de Armas Piura',
-  alternateName: 'Plaza de Armas de Piura',
+  '@id': `${siteUrl}/#attraction`,
+  name: attractionFullName,
+  alternateName: [attractionShortName, 'Piura Plaza de Armas', 'Plaza Mayor de Piura', `${attractionShortName}, ${countryName}`],
   description,
-  ...(canonical ? { url: canonical } : {}),
-  image: [photos.hero.src, photos.square.src, photos.monument.src],
+  url: canonical,
+  image: [
+    `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`,
+    `${siteUrl}/images/plaza-de-armas-piura-vista.jpg`,
+    `${siteUrl}/images/alegoria-a-la-libertad.jpg`,
+    `${siteUrl}/images/catedral-de-piura.jpg`,
+  ],
   isAccessibleForFree: true,
+  publicAccess: true,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Ayacucho',
-    addressLocality: 'Piura',
-    postalCode: '20001',
-    addressRegion: 'Piura',
-    addressCountry: 'PE',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: stateProvince,
+    postalCode,
+    addressCountry: countryCode,
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: -5.1970998,
-    longitude: -80.62668,
+    latitude,
+    longitude,
   },
+  hasMap: mapShortUrl,
+  sameAs: [mapShortUrl, minceturFicha, govtTourismUrl, peruTravelUrl, mucenUrl],
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: 4.3,
@@ -165,16 +252,66 @@ const attractionJsonLd = {
       closes: '23:59',
     },
   ],
+  touristType: ['Plaza histórica', 'Centro histórico', 'Parque urbano'],
+  containedInPlace: {
+    '@type': 'City',
+    name: cityName,
+    address: { '@type': 'PostalAddress', addressLocality: cityName, addressRegion: stateProvince, addressCountry: countryCode },
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Elevación', value: '22 m s. n. m.', unitCode: 'MTR' },
+    { '@type': 'PropertyValue', name: 'Plus Code', value: plusCode },
+  ],
 };
 
-const faqJsonLd = {
+const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: `${attractionFullName} — Guía del visitante`,
+  url: siteUrl,
+  logo: { '@type': 'ImageObject', url: `${siteUrl}/icons/icon-512.png` },
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: attractionFullName,
+  url: siteUrl,
+  publisher: { '@id': `${siteUrl}/#organization` },
+};
+
+const webpageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/#webpage`,
+  url: canonical,
+  name: title,
+  description,
+  inLanguage: 'es-PE',
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#attraction` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+  datePublished: dateModified,
+  dateModified,
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${siteUrl}/#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: countryName, item: `${siteUrl}/#sobre` },
+    { '@type': 'ListItem', position: 3, name: `${cityName}, Región ${stateProvince}`, item: `${siteUrl}/#ubicacion` },
+    { '@type': 'ListItem', position: 4, name: attractionFullName, item: `${siteUrl}/#sobre` },
+  ],
+};
+
+const jsonLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationJsonLd, websiteJsonLd, webpageJsonLd, breadcrumbJsonLd, attractionJsonLd, faqJsonLd],
 };
 ---
 
@@ -186,54 +323,84 @@ const faqJsonLd = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#244433" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="geo.position" content={`${latitude};${longitude}`} />
+    <meta name="geo.placename" content={`${attractionFullName}, ${cityName}, ${countryName}`} />
+    <meta name="geo.region" content={`${countryCode}-${stateProvince}`} />
+    <meta name="ICBM" content={`${latitude}, ${longitude}`} />
     <title>{title}</title>
     {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <link rel="alternate" hreflang="es-PE" href={canonical} />}
+    {canonical && <link rel="alternate" hreflang="x-default" href={canonical} />}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content={attractionFullName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content={attractionFullName} />
+    <meta name="msapplication-TileColor" content="#244433" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script type="application/ld+json" set:html={JSON.stringify(attractionJsonLd)}></script>
-    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)}></script>
   </head>
   <body>
     <header class="absolute inset-x-0 top-0 z-30 border-b border-white/15 bg-[#14241d]/25 text-white backdrop-blur-md">
       <div class="shell flex h-20 items-center justify-between gap-6">
-        <a href="#inicio" aria-label="Plaza de Armas Piura, inicio" class="block rounded-md bg-[#fffaf1] px-3 py-2 shadow-sm">
-          <img src="/logo.svg" alt="Plaza de Armas Piura" width="210" height="54" class="h-11 w-auto" />
+        <a href="#inicio" aria-label={`${attractionFullName}, inicio`} class="block rounded-md bg-[#fffaf1] px-3 py-2 shadow-sm">
+          <img src="/logo.svg" alt={attractionFullName} width="210" height="54" class="h-11 w-auto" />
         </a>
-        <nav aria-label="Navegación principal" class="hidden items-center gap-7 text-sm font-bold md:flex">
+        <nav aria-label="Navegación principal" class="hidden items-center gap-5 text-sm font-bold lg:flex xl:gap-7">
+          <a href="#sobre" class="hover:text-[#f4c38d]">Sobre</a>
           <a href="#historia" class="hover:text-[#f4c38d]">Historia</a>
           <a href="#visita" class="hover:text-[#f4c38d]">Visita</a>
           <a href="#alrededores" class="hover:text-[#f4c38d]">Alrededores</a>
           <a href="#mapa" class="hover:text-[#f4c38d]">Mapa</a>
           <a href="#faq" class="hover:text-[#f4c38d]">FAQ</a>
+          <a href="#fuentes" class="hover:text-[#f4c38d]">Fuentes</a>
         </nav>
         <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 bg-white/10 text-sm text-white hover:bg-white hover:text-[#1d2a24]">Cómo llegar ↗</a>
       </div>
     </header>
 
     <main id="inicio">
-      <section class="relative min-h-[780px] overflow-hidden bg-[#172a20] text-white md:min-h-[860px]">
+      <section class="relative min-h-[840px] overflow-hidden bg-[#172a20] text-white md:min-h-[900px]">
         <img src={photos.hero.src} alt={photos.hero.alt} width="1280" height="866" fetchpriority="high" class="hero-photo absolute inset-0 h-full w-full object-cover" />
         <div class="hero-mask absolute inset-0"></div>
         <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#172a20] to-transparent"></div>
-        <div class="shell relative z-10 flex min-h-[780px] items-end pb-20 pt-36 md:min-h-[860px] md:pb-28">
+        <div class="shell relative z-10 flex min-h-[840px] items-end pb-20 pt-36 md:min-h-[900px] md:pb-28">
           <div class="max-w-4xl">
             <div class="mb-6 flex flex-wrap gap-2">
-              <span class="pill">★ 4.3 · 16,985 reseñas</span>
+              <span class="pill">★ 4,3 · 16.985 reseñas</span>
               <span class="pill">Entrada libre</span>
-              <span class="pill">Piura · Perú</span>
+              <span class="pill">{cityName} · {countryName}</span>
             </div>
-            <p class="mb-4 text-sm font-black uppercase tracking-[.22em] text-[#f2c38f]">El corazón cívico de Piura</p>
-            <h1 class="serif max-w-[10ch] text-[clamp(4rem,10vw,8.8rem)] leading-[.78] tracking-[-.065em]">Plaza de Armas <em class="font-normal text-[#efb26c]">Piura</em></h1>
-            <p class="mt-8 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">Un cuadrado de sombra, memoria y vida cotidiana en pleno centro histórico: tamarindos, arquitectura republicana y la antigua <strong class="text-white">Alegoría a la Libertad</strong> como punto de encuentro.</p>
+            <p class="mb-4 text-sm font-black uppercase tracking-[.22em] text-[#f2c38f]">El corazón cívico de {cityName}</p>
+            <h1 class="serif max-w-[13ch] text-[clamp(3.2rem,8.4vw,7.2rem)] leading-[.82] tracking-[-.05em]">
+              Plaza de Armas <em class="font-normal text-[#efb26c]">Piura</em>
+              <span class="h1-city">({cityName}, {countryName})</span>
+            </h1>
+            <p class="mb-4 mt-6 max-w-2xl text-base font-medium leading-7 text-white/85 md:text-lg">
+              Bienvenido a la <strong class="text-white">Plaza de Armas Piura</strong>, reconocida también como la <strong class="text-white">Plaza de Armas de Piura</strong> —el <em class="not-italic text-[#f2c38f]">Piura Plaza de Armas</em> del centro histórico—. Es el principal espacio cívico de <strong class="text-white">Piura</strong>, en la región <strong class="text-white">Piura</strong>, <strong class="text-white">Perú</strong>.
+            </p>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
+              Un cuadrado de sombra, memoria y vida cotidiana en pleno centro histórico: tamarindos, arquitectura republicana y la antigua <strong class="text-white">Alegoría a la Libertad</strong> como punto de encuentro.
+            </p>
             <div class="mt-9 flex flex-wrap gap-3">
               <a href="#visita" class="btn btn-light">Planear la visita ↓</a>
               <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 text-white hover:bg-white/10">Abrir en Google Maps ↗</a>
@@ -243,25 +410,71 @@ const faqJsonLd = {
         <a href={photos.hero.page} target="_blank" rel="noopener noreferrer" class="absolute bottom-5 right-5 z-10 rounded-full bg-black/45 px-3 py-1.5 text-[11px] text-white/80 backdrop-blur-sm">Foto: {photos.hero.credit}</a>
       </section>
 
+      <section id="sobre" class="bg-[#fffaf1] py-24 md:py-32">
+        <div class="shell">
+          <nav aria-label="Breadcrumb" class="breadcrumb mb-8">
+            <a href="/">Inicio</a>
+            <span aria-hidden="true">›</span>
+            <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer">{countryName}</a>
+            <span aria-hidden="true">›</span>
+            <a href={govtTourismPortalUrl} target="_blank" rel="noopener noreferrer">Región {stateProvince}</a>
+            <span aria-hidden="true">›</span>
+            <span>{cityName}</span>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{attractionFullName}</span>
+          </nav>
+          <div class="grid gap-14 lg:grid-cols-[.9fr_1.1fr]">
+            <div>
+              <span class="eyebrow">Sobre el lugar</span>
+              <h2 class="section-title">Sobre la {attractionFullName}</h2>
+              <p class="section-lead">Centro histórico, espacio público y referencia obligada para entender Piura.</p>
+            </div>
+            <div class="space-y-6 text-lg leading-8 text-[#6e655b]">
+              <p>
+                <strong class="text-[#1d2a24]">{attractionFullName}</strong>, también llamada <strong class="text-[#1d2a24]">{attractionShortName}</strong> y entendida como el <em class="not-italic text-[#1d2a24]">Piura Plaza de Armas</em>, es el principal espacio cívico de <strong class="text-[#1d2a24]">{cityName}</strong>, en la región <strong class="text-[#1d2a24]">{stateProvince}</strong>, <strong class="text-[#1d2a24]">{countryName}</strong>. Funciona como punto de encuentro, referencia peatonal y puerta de entrada al casco antiguo de la ciudad.
+              </p>
+              <p>
+                Al visitar <strong class="text-[#1d2a24]">{attractionFullName}</strong>, los viajeros pueden explorar a pie otros puntos de interés del centro histórico, como la <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">Catedral de San Miguel Arcángel</a>, el <a href={mucenUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">MUCEN Piura</a> y la <a href={casaMuseoUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">Casa Museo Gran Almirante Grau</a>.
+              </p>
+              <p class="text-base">
+                Jerarquía oficial: <a href={minceturFicha} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">espacio público / plaza</a>, Arquitectura y Espacios Urbanos, acceso libre y gratuito, a 22 m s. n. m. La plaza fue declarada Patrimonio Cultural de la Nación mediante R.M. N.º 303-1987-ED.
+              </p>
+            </div>
+          </div>
+          <div class="mt-16">
+            <h3 class="mb-6 text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Datos verificados</h3>
+            <dl class="fact-list">
+              {facts.map((fact) => (
+                <div class="fact">
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
       <section id="historia" class="pattern bg-[#172a20] py-24 text-[#f8f0e4] md:py-36">
         <div class="shell grid gap-14 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
           <div class="lg:sticky lg:top-28">
             <span class="eyebrow text-[#eaa464]">Plaza mayor</span>
-            <h2 class="section-title text-[#fff7e8]">Una plaza que todavía funciona como sala de estar de la ciudad.</h2>
+            <h2 class="section-title text-[#fff7e8]">Historia e importancia de la {attractionFullName} en {cityName}, {countryName}</h2>
+            <p class="section-lead text-[#ddd8cd]">Una plaza que todavía funciona como sala de estar de la ciudad.</p>
           </div>
           <div class="grid gap-12">
             <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
               <div class="number text-[#eaa464]">01</div>
               <div>
                 <h3 class="serif text-3xl">Trazado de tradición española</h3>
-                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">La plaza forma parte del núcleo histórico de Piura y conserva la lectura clásica de plaza mayor: un centro abierto, arbolado y rodeado por instituciones, comercios y edificios emblemáticos.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">La plaza forma parte del núcleo histórico de {cityName} y conserva la lectura clásica de plaza mayor: un centro abierto, arbolado y rodeado por instituciones, comercios y edificios emblemáticos.</p>
               </div>
             </div>
             <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
               <div class="number text-[#eaa464]">02</div>
               <div>
                 <h3 class="serif text-3xl">“La Pola”, memoria en mármol</h3>
-                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En el centro se levanta la <strong class="text-white">Alegoría a la Libertad</strong>, conocida como “La Pola”. La ficha turística oficial la señala como el monumento más antiguo de Piura y sitúa su instalación hacia 1870.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En el centro se levanta la <strong class="text-white">Alegoría a la Libertad</strong>, conocida como “La Pola”. La ficha turística oficial la señala como el monumento más antiguo de {cityName} y sitúa su instalación hacia 1870, durante el gobierno de José Balta.</p>
               </div>
             </div>
             <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
@@ -269,6 +482,27 @@ const faqJsonLd = {
               <div>
                 <h3 class="serif text-3xl">Ritual cívico y vida cotidiana</h3>
                 <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">Los domingos, la plaza es escenario de izamiento de bandera y actividades cívicas. El resto de la semana sigue siendo un lugar de paso, descanso bajo los árboles y encuentro en el centro.</p>
+              </div>
+            </div>
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">04</div>
+              <div>
+                <h3 class="serif text-3xl">Tamarindos centenarios y una leyenda</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">Los árboles de la plaza, algunos de más de un siglo, incluyen tamarindos que, según la tradición oral, fueron donados por el ciudadano alemán Fernando Reuche. La leyenda local cuenta que Manuel Saldarriaga los regaba con sangre de toro para que no se marchitaran.</p>
+              </div>
+            </div>
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">05</div>
+              <div>
+                <h3 class="serif text-3xl">Reconocimiento como patrimonio</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">El espacio fue declarado Patrimonio Cultural de la Nación mediante la Resolución Ministerial N.º 303-1987-ED, lo que subraya su valor histórico y urbano para {cityName} y para {countryName}.</p>
+              </div>
+            </div>
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">06</div>
+              <div>
+                <h3 class="serif text-3xl">Una plaza que sigue sumando memoria</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En agosto de 2025, durante las celebraciones por el 493.º aniversario de la fundación de San Miguel de {cityName}, la Municipalidad Provincial de {cityName} develó una escultura en homenaje al escritor Enrique López Albújar, obra del artista Hugo Chanta Guevara.</p>
               </div>
             </div>
           </div>
@@ -299,7 +533,8 @@ const faqJsonLd = {
           <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
             <div>
               <span class="eyebrow">Antes de ir</span>
-              <h2 class="section-title">Una visita sencilla, mejor si la haces sin prisa.</h2>
+              <h2 class="section-title">Ubicación y cómo visitar la {attractionFullName} en {cityName}</h2>
+              <p class="section-lead">Una visita sencilla, mejor si la haces sin prisa.</p>
             </div>
             <p class="section-copy max-w-2xl text-lg">La plaza está en el corazón del centro, así que funciona mejor como inicio de un recorrido a pie. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
           </div>
@@ -315,22 +550,23 @@ const faqJsonLd = {
           </div>
 
           <div class="mt-14 grid gap-5 lg:grid-cols-2">
-            <article class="rounded-[2rem] bg-[#244433] p-8 text-white md:p-10">
+            <article id="ubicacion" class="scroll-mt-28 rounded-[2rem] bg-[#244433] p-8 text-white md:p-10">
               <p class="text-xs font-black uppercase tracking-[.18em] text-[#f0b06e]">Cómo llegar</p>
               <h3 class="serif mt-3 text-4xl">A pie y en taxi desde el centro</h3>
               <div class="mt-7 space-y-5 text-white/78">
                 <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Óvalo Grau:</strong> la referencia turística oficial sitúa la plaza a unos 800 m; es una caminata céntrica y directa.</div>
                 <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Plazuela Merino:</strong> alrededor de 1 km; taxi o movilidad urbana si prefieres evitar el calor.</div>
                 <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde San Sebastián:</strong> el circuito histórico es corto y se presta para continuar caminando hacia la plaza.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Accesibilidad:</strong> el registro oficial del MINCETUR señala rampas de acceso para personas con movilidad reducida.</div>
               </div>
               <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn mt-8 bg-[#f6ead6] text-[#244433]">Ver ruta en Google Maps ↗</a>
             </article>
             <article class="rounded-[2rem] border border-[#d8c4ad] bg-[#f5ead9] p-8 md:p-10">
               <p class="text-xs font-black uppercase tracking-[.18em] text-[#a85737]">Dirección</p>
-              <h3 class="serif mt-3 text-4xl">Ayacucho, Piura 20001</h3>
+              <h3 class="serif mt-3 text-4xl">Ayacucho, {cityName} {postalCode}</h3>
               <dl class="mt-7 grid gap-5 sm:grid-cols-2">
-                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Plus code</dt><dd class="mt-2 font-bold">R93F+58, Piura</dd></div>
-                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Coordenadas</dt><dd class="mt-2 font-bold">-5.19710, -80.62668</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Plus code</dt><dd class="mt-2 font-bold">{plusCode}, {cityName}</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Coordenadas</dt><dd class="mt-2 font-bold">{latitude.toFixed(5)}, {longitude.toFixed(5)}</dd></div>
                 <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Acceso</dt><dd class="mt-2 font-bold">Espacio público · libre</dd></div>
                 <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Movilidad</dt><dd class="mt-2 font-bold">A pie, taxi o transporte urbano</dd></div>
               </dl>
@@ -364,7 +600,8 @@ const faqJsonLd = {
 
             <div>
               <span class="eyebrow">Circuito a pie</span>
-              <h2 class="section-title">Cuatro paradas para entender mejor Piura.</h2>
+              <h2 class="section-title">Lugares y atractivos alrededor de la {attractionFullName}</h2>
+              <p class="section-lead">Cinco paradas para entender mejor {cityName}.</p>
               <div class="mt-10 divide-y divide-[#c9ae8f] border-y border-[#c9ae8f]">
                 {nearby.map((place, i) => (
                   <article class="grid gap-4 py-6 sm:grid-cols-[56px_1fr]">
@@ -389,13 +626,31 @@ const faqJsonLd = {
           <div class="mb-10 flex flex-wrap items-end justify-between gap-8">
             <div>
               <span class="eyebrow">Ubicación</span>
-              <h2 class="section-title">En el centro, todo empieza aquí.</h2>
+              <h2 class="section-title">Mapa y ubicación exacta de la {attractionShortName} en {cityName}, {countryName}</h2>
+              <p class="section-lead">En el centro, todo empieza aquí.</p>
             </div>
             <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir mapa completo ↗</a>
           </div>
           <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
-            <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Mapa de Plaza de Armas Piura en Google Maps"></iframe>
+            <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title={`Mapa de ${attractionFullName} en Google Maps`}></iframe>
           </div>
+          <div class="mt-8 grid gap-6 rounded-[2rem] border border-[#d8c4ad] bg-[#f5ead9] p-7 md:grid-cols-3 md:p-9">
+            <div>
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Dirección</p>
+              <p class="mt-2 font-bold text-[#1d2a24]">Ayacucho, {cityName} {postalCode}, {countryName}</p>
+            </div>
+            <div>
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Plus Code</p>
+              <p class="mt-2 font-bold text-[#1d2a24]">{plusCode}, {cityName}</p>
+            </div>
+            <div>
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Coordenadas</p>
+              <p class="mt-2 font-bold text-[#1d2a24]">{latitude.toFixed(5)}, {longitude.toFixed(5)}</p>
+            </div>
+          </div>
+          <p class="mt-6 text-sm leading-6 text-[#6e655b]">
+            Para información oficial y actualizaciones regionales, consulta el <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">Gob.pe de la Municipalidad Provincial de {cityName}</a> y la <a href={minceturFicha} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">ficha oficial de recursos turísticos del MINCETUR</a>.
+          </p>
         </div>
       </section>
 
@@ -403,7 +658,8 @@ const faqJsonLd = {
         <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
           <div>
             <span class="eyebrow">Preguntas frecuentes</span>
-            <h2 class="section-title">Lo esencial antes de llegar.</h2>
+            <h2 class="section-title">Preguntas frecuentes sobre la {attractionFullName}</h2>
+            <p class="section-lead">Lo esencial antes de llegar.</p>
           </div>
           <div class="faq">
             {faqs.map((item) => (
@@ -416,10 +672,38 @@ const faqJsonLd = {
         </div>
       </section>
 
+      <section id="fuentes" class="sources bg-[#fffaf1] py-24 md:py-32">
+        <div class="shell">
+          <div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]">
+            <div>
+              <span class="eyebrow">Fuentes oficiales</span>
+              <h2 class="section-title">Fuentes y verificación</h2>
+              <p class="section-lead">Información validada con fuentes oficiales y referencias de {cityName}.</p>
+              <p class="mt-6 text-sm font-bold text-[#6e655b]">Última actualización: {new Date(dateModified).toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            </div>
+            <div>
+              <ol class="sources-list">
+                {sources.map((source, i) => (
+                  <li>
+                    <span class="text-xs font-black text-[#a85737]">{String(i + 1).padStart(2, '0')}</span>
+                    <p class="mt-1 font-bold text-[#1d2a24]">{source.name}</p>
+                    <p class="text-sm text-[#6e655b]">{source.detail}</p>
+                    <a href={source.url} target="_blank" rel="noopener noreferrer">{source.url}</a>
+                  </li>
+                ))}
+              </ol>
+              <p class="photo-credit">
+                <strong>Créditos de imágenes:</strong> todas las fotografías mostradas en este sitio web son propiedad de sus respectivos fotógrafos y están protegidas por las licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Consulta el <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">archivo original en Wikimedia Commons ↗</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="bg-[#b9633e] py-20 text-[#fff8ec] md:py-24">
         <div class="shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <p class="text-sm font-black uppercase tracking-[.2em] text-[#ffd6ad]">Piura se camina desde su plaza</p>
+            <p class="text-sm font-black uppercase tracking-[.2em] text-[#ffd6ad]">{cityName} se camina desde su plaza</p>
             <h2 class="serif mt-4 max-w-4xl text-[clamp(2.8rem,7vw,6.4rem)] leading-[.9] tracking-[-.05em]">Sombra, historia y ciudad en un mismo punto.</h2>
           </div>
           <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
@@ -428,15 +712,25 @@ const faqJsonLd = {
     </main>
 
     <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">
-      <div class="shell grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+      <div class="shell grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <img src="/logo.svg" alt="Plaza de Armas Piura" width="210" height="54" class="h-12 w-auto rounded bg-[#fffaf1] p-1" />
-          <p class="mt-5 max-w-2xl text-sm leading-6 text-white/60">Guía independiente para orientar una visita al centro histórico de Piura. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.</p>
-          <p class="mt-3 text-xs leading-5 text-white/45">Este sitio no es oficial y no representa a la Municipalidad Provincial de Piura, al Ministerio de Cultura del Perú ni a Google.</p>
+          <img src="/logo.svg" alt={attractionFullName} width="210" height="54" class="h-12 w-auto rounded bg-[#fffaf1] p-1" />
+          <p class="mt-5 max-w-2xl text-sm leading-6 text-white/60">
+            Guía independiente para orientar una visita al centro histórico de {cityName}. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.
+          </p>
+          <address class="mt-4 not-italic text-sm leading-6 text-white/70">
+            <strong class="text-white">{attractionFullName}</strong><br />
+            Ayacucho, {cityName} {postalCode}, {countryName} · Plus Code {plusCode}<br />
+            <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">Ver en Google Maps ↗</a>
+          </address>
+          <p class="mt-4 text-xs leading-5 text-white/45">Este sitio no es oficial y no representa a la Municipalidad Provincial de {cityName}, al Ministerio de Cultura del {countryName} ni a Google.</p>
+          <p class="mt-3 text-xs leading-5 text-white/45">
+            <strong>Imágenes:</strong> todas las fotografías mostradas en este sitio web son propiedad de sus respectivos fotógrafos y están protegidas por las licencias originales.
+          </p>
         </div>
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
           <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
-          <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos de fotos</a>
+          <a href="#fuentes" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos y fuentes</a>
           <a href="#inicio" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver arriba ↑</a>
         </div>
       </div>
@@ -491,6 +785,14 @@ const faqJsonLd = {
       acceptButton?.addEventListener('click', () => setChoice('analytics'));
       rejectButton?.addEventListener('click', () => setChoice('essential'));
       settingsButton?.addEventListener('click', () => banner?.classList.remove('hidden'));
+    </script>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
     </script>
   </body>
 </html>

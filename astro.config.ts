@@ -4,15 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 
 /**
  * ÚNICO lugar para configurar el dominio público del sitio.
- * Cuando se compre el dominio, rellena únicamente la constante `site` de abajo.
- * Déjalo vacío durante desarrollo; el build seguirá funcionando sin URLs ficticias.
+ * Astro reutiliza este valor para el canonical, Open Graph, JSON-LD y el sitemap.
  */
-const site = '';
+const site = 'https://piuraplazadearmas.com';
 
 export default defineConfig({
-  site: site || undefined,
+  site,
   output: 'static',
-  integrations: site ? [sitemap()] : [],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
