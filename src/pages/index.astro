@@ -1,0 +1,496 @@
+---
+import '../styles/global.css';
+
+const title = 'Plaza de Armas de Piura | Guía para visitar el corazón histórico';
+const description = 'Guía independiente para conocer la Plaza de Armas de Piura: historia, acceso, mapa, transporte, comida cercana, estacionamiento y lugares para visitar a pie.';
+const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.6292602874832!3d-5.197099794758691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
+
+const photos = {
+  hero: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg/1280px-PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+    alt: 'Vista de la Plaza de Armas de Piura, sus árboles y edificios del centro histórico',
+    credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  },
+  square: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Plaza_de_Armas_de_Piura.jpg/1280px-Plaza_de_Armas_de_Piura.jpg',
+    alt: 'Jardines, bancas y entorno urbano de la Plaza de Armas de Piura',
+    credit: 'Pitxiquin · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  },
+  cathedral: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/CATEDRAL_DE_PIURA_-_PIURA.jpg/960px-CATEDRAL_DE_PIURA_-_PIURA.jpg',
+    alt: 'Catedral de San Miguel Arcángel junto a la Plaza de Armas de Piura',
+    credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  },
+  monument: {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ALEGORIA_A_LA_LIBERTAD.jpg',
+    alt: 'Alegoría a la Libertad, monumento central de la Plaza de Armas de Piura',
+    credit: 'Ccotlear · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  },
+};
+
+const visitCards = [
+  {
+    icon: 'S/',
+    title: 'Entrada y costo',
+    text: 'El acceso a la plaza es libre. No hay boleto de ingreso para recorrer este espacio público.',
+  },
+  {
+    icon: '◴',
+    title: 'Mejor momento',
+    text: 'La mañana temprana y el final de la tarde suelen dar una caminata más amable por el calor piurano y mejor luz para fotografías.',
+  },
+  {
+    icon: '↻',
+    title: 'Tiempo sugerido',
+    text: 'Reserva 30–60 minutos para la plaza; calcula 2–3 horas si la combinas con la catedral, MUCEN y calles del centro histórico.',
+  },
+  {
+    icon: 'P',
+    title: 'Estacionamiento',
+    text: 'El centro tiene cocheras privadas y estacionamiento limitado en calle. Conviene llegar con margen y confirmar tarifa y disponibilidad en el momento.',
+  },
+];
+
+const foods = [
+  {
+    name: 'El Chalán · Plaza de Armas',
+    type: 'Café, helados y pausa rápida',
+    text: 'En la misma zona de la plaza; práctico para refrescarse antes de seguir caminando por el centro.',
+    address: 'Calle Tacna 520–526',
+  },
+  {
+    name: 'La Tomasita',
+    type: 'Cocina norteña tradicional',
+    text: 'Una opción conocida para probar sabores de Piura a pocas cuadras del núcleo histórico.',
+    address: 'Centro de Piura',
+  },
+  {
+    name: 'Restaurante La Blanca',
+    type: 'Cocina piurana',
+    text: 'Alternativa de comida local dentro del centro para completar la visita con platos regionales.',
+    address: 'Jr. Arequipa 1240',
+  },
+];
+
+const nearby = [
+  {
+    distance: 'frente a la plaza',
+    name: 'Catedral de San Miguel Arcángel',
+    text: 'Templo principal del centro histórico y uno de los elementos que define la imagen urbana de la plaza.',
+  },
+  {
+    distance: 'a pasos',
+    name: 'MUCEN Piura',
+    text: 'Museo del Banco Central de Reserva con colecciones que ayudan a leer la historia y cultura regional.',
+  },
+  {
+    distance: 'caminata corta',
+    name: 'Casa Museo Gran Almirante Grau',
+    text: 'Casa vinculada a Miguel Grau, figura central de la historia peruana y uno de los puntos culturales de Piura.',
+  },
+  {
+    distance: 'cerca del centro',
+    name: 'Iglesia San Sebastián',
+    text: 'Otra parada religiosa e histórica que se integra bien a un circuito peatonal por el casco antiguo.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿La Plaza de Armas de Piura cobra entrada?',
+    a: 'No. Es un espacio público de acceso libre. Los museos, templos o servicios cercanos pueden manejar sus propias condiciones y horarios.',
+  },
+  {
+    q: '¿La plaza está abierta todo el día?',
+    a: 'La ficha pública del lugar la muestra con acceso las 24 horas. Para una visita turística cómoda, es preferible ir con luz de día y revisar por separado los horarios de museos y comercios cercanos.',
+  },
+  {
+    q: '¿Cuánto tiempo necesito para visitarla?',
+    a: 'Para recorrer la plaza y observar el monumento central suelen bastar entre 30 y 60 minutos. Si sumas la catedral, museos y una comida en el centro, reserva de 2 a 3 horas.',
+  },
+  {
+    q: '¿Qué hay en el centro de la plaza?',
+    a: 'Se encuentra la Alegoría a la Libertad, conocida localmente como “La Pola”, un monumento histórico de mármol asociado a la identidad del espacio cívico piurano.',
+  },
+  {
+    q: '¿Qué puedo visitar caminando desde la plaza?',
+    a: 'La Catedral de San Miguel Arcángel, MUCEN Piura y varias calles del centro histórico están inmediatamente alrededor o a pocos minutos a pie; la Casa Museo Gran Almirante Grau también queda dentro de un circuito céntrico razonable.',
+  },
+  {
+    q: '¿Dónde conviene estacionar?',
+    a: 'En el centro hay cocheras privadas y espacios regulados o limitados en calle. Como disponibilidad y tarifas pueden cambiar, lo más seguro es confirmar al llegar y no dejar objetos visibles dentro del vehículo.',
+  },
+];
+
+const attractionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'Park'],
+  name: 'Plaza de Armas Piura',
+  alternateName: 'Plaza de Armas de Piura',
+  description,
+  ...(canonical ? { url: canonical } : {}),
+  image: [photos.hero.src, photos.square.src, photos.monument.src],
+  isAccessibleForFree: true,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Ayacucho',
+    addressLocality: 'Piura',
+    postalCode: '20001',
+    addressRegion: 'Piura',
+    addressCountry: 'PE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -5.1970998,
+    longitude: -80.62668,
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 4.3,
+    ratingCount: 16985,
+    bestRating: 5,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#244433" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json" set:html={JSON.stringify(attractionJsonLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)}></script>
+  </head>
+  <body>
+    <header class="absolute inset-x-0 top-0 z-30 border-b border-white/15 bg-[#14241d]/25 text-white backdrop-blur-md">
+      <div class="shell flex h-20 items-center justify-between gap-6">
+        <a href="#inicio" aria-label="Plaza de Armas Piura, inicio" class="block rounded-md bg-[#fffaf1] px-3 py-2 shadow-sm">
+          <img src="/logo.svg" alt="Plaza de Armas Piura" width="210" height="54" class="h-11 w-auto" />
+        </a>
+        <nav aria-label="Navegación principal" class="hidden items-center gap-7 text-sm font-bold md:flex">
+          <a href="#historia" class="hover:text-[#f4c38d]">Historia</a>
+          <a href="#visita" class="hover:text-[#f4c38d]">Visita</a>
+          <a href="#alrededores" class="hover:text-[#f4c38d]">Alrededores</a>
+          <a href="#mapa" class="hover:text-[#f4c38d]">Mapa</a>
+          <a href="#faq" class="hover:text-[#f4c38d]">FAQ</a>
+        </nav>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 bg-white/10 text-sm text-white hover:bg-white hover:text-[#1d2a24]">Cómo llegar ↗</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="relative min-h-[780px] overflow-hidden bg-[#172a20] text-white md:min-h-[860px]">
+        <img src={photos.hero.src} alt={photos.hero.alt} width="1280" height="866" fetchpriority="high" class="hero-photo absolute inset-0 h-full w-full object-cover" />
+        <div class="hero-mask absolute inset-0"></div>
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#172a20] to-transparent"></div>
+        <div class="shell relative z-10 flex min-h-[780px] items-end pb-20 pt-36 md:min-h-[860px] md:pb-28">
+          <div class="max-w-4xl">
+            <div class="mb-6 flex flex-wrap gap-2">
+              <span class="pill">★ 4.3 · 16,985 reseñas</span>
+              <span class="pill">Entrada libre</span>
+              <span class="pill">Piura · Perú</span>
+            </div>
+            <p class="mb-4 text-sm font-black uppercase tracking-[.22em] text-[#f2c38f]">El corazón cívico de Piura</p>
+            <h1 class="serif max-w-[10ch] text-[clamp(4rem,10vw,8.8rem)] leading-[.78] tracking-[-.065em]">Plaza de Armas <em class="font-normal text-[#efb26c]">Piura</em></h1>
+            <p class="mt-8 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">Un cuadrado de sombra, memoria y vida cotidiana en pleno centro histórico: tamarindos, arquitectura republicana y la antigua <strong class="text-white">Alegoría a la Libertad</strong> como punto de encuentro.</p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#visita" class="btn btn-light">Planear la visita ↓</a>
+              <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 text-white hover:bg-white/10">Abrir en Google Maps ↗</a>
+            </div>
+          </div>
+        </div>
+        <a href={photos.hero.page} target="_blank" rel="noopener noreferrer" class="absolute bottom-5 right-5 z-10 rounded-full bg-black/45 px-3 py-1.5 text-[11px] text-white/80 backdrop-blur-sm">Foto: {photos.hero.credit}</a>
+      </section>
+
+      <section id="historia" class="pattern bg-[#172a20] py-24 text-[#f8f0e4] md:py-36">
+        <div class="shell grid gap-14 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
+          <div class="lg:sticky lg:top-28">
+            <span class="eyebrow text-[#eaa464]">Plaza mayor</span>
+            <h2 class="section-title text-[#fff7e8]">Una plaza que todavía funciona como sala de estar de la ciudad.</h2>
+          </div>
+          <div class="grid gap-12">
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">01</div>
+              <div>
+                <h3 class="serif text-3xl">Trazado de tradición española</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">La plaza forma parte del núcleo histórico de Piura y conserva la lectura clásica de plaza mayor: un centro abierto, arbolado y rodeado por instituciones, comercios y edificios emblemáticos.</p>
+              </div>
+            </div>
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">02</div>
+              <div>
+                <h3 class="serif text-3xl">“La Pola”, memoria en mármol</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En el centro se levanta la <strong class="text-white">Alegoría a la Libertad</strong>, conocida como “La Pola”. La ficha turística oficial la señala como el monumento más antiguo de Piura y sitúa su instalación hacia 1870.</p>
+              </div>
+            </div>
+            <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
+              <div class="number text-[#eaa464]">03</div>
+              <div>
+                <h3 class="serif text-3xl">Ritual cívico y vida cotidiana</h3>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">Los domingos, la plaza es escenario de izamiento de bandera y actividades cívicas. El resto de la semana sigue siendo un lugar de paso, descanso bajo los árboles y encuentro en el centro.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-[#f5ead9] py-16 md:py-24">
+        <div class="shell">
+          <div class="grid auto-rows-[220px] gap-4 md:grid-cols-12 md:auto-rows-[260px]">
+            <figure class="group relative overflow-hidden rounded-[2rem] md:col-span-7 md:row-span-2">
+              <img src={photos.square.src} alt={photos.square.alt} width="1280" height="960" loading="lazy" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 pt-20 text-xs text-white/85"><a href={photos.square.page} target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4">{photos.square.credit}</a></figcaption>
+            </figure>
+            <figure class="group relative overflow-hidden rounded-[2rem] md:col-span-5">
+              <img src={photos.monument.src} alt={photos.monument.alt} width="780" height="1040" loading="lazy" class="h-full w-full object-cover object-[50%_43%] transition duration-700 group-hover:scale-[1.025]" />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 pt-20 text-xs text-white/85"><a href={photos.monument.page} target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4">{photos.monument.credit}</a></figcaption>
+            </figure>
+            <figure class="group relative overflow-hidden rounded-[2rem] md:col-span-5">
+              <img src={photos.cathedral.src} alt={photos.cathedral.alt} width="960" height="1280" loading="lazy" class="h-full w-full object-cover object-[50%_46%] transition duration-700 group-hover:scale-[1.025]" />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 pt-20 text-xs text-white/85"><a href={photos.cathedral.page} target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4">{photos.cathedral.credit}</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="visita" class="bg-[#fffaf1] py-24 md:py-32">
+        <div class="shell">
+          <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+            <div>
+              <span class="eyebrow">Antes de ir</span>
+              <h2 class="section-title">Una visita sencilla, mejor si la haces sin prisa.</h2>
+            </div>
+            <p class="section-copy max-w-2xl text-lg">La plaza está en el corazón del centro, así que funciona mejor como inicio de un recorrido a pie. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
+          </div>
+
+          <div class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {visitCards.map((card) => (
+              <article class="card rounded-[1.6rem] p-7">
+                <div class="mb-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#244433] text-sm font-black text-white">{card.icon}</div>
+                <h3 class="serif text-2xl">{card.title}</h3>
+                <p class="mt-3 leading-7 text-[#6e655b]">{card.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="mt-14 grid gap-5 lg:grid-cols-2">
+            <article class="rounded-[2rem] bg-[#244433] p-8 text-white md:p-10">
+              <p class="text-xs font-black uppercase tracking-[.18em] text-[#f0b06e]">Cómo llegar</p>
+              <h3 class="serif mt-3 text-4xl">A pie y en taxi desde el centro</h3>
+              <div class="mt-7 space-y-5 text-white/78">
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Óvalo Grau:</strong> la referencia turística oficial sitúa la plaza a unos 800 m; es una caminata céntrica y directa.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Plazuela Merino:</strong> alrededor de 1 km; taxi o movilidad urbana si prefieres evitar el calor.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde San Sebastián:</strong> el circuito histórico es corto y se presta para continuar caminando hacia la plaza.</div>
+              </div>
+              <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn mt-8 bg-[#f6ead6] text-[#244433]">Ver ruta en Google Maps ↗</a>
+            </article>
+            <article class="rounded-[2rem] border border-[#d8c4ad] bg-[#f5ead9] p-8 md:p-10">
+              <p class="text-xs font-black uppercase tracking-[.18em] text-[#a85737]">Dirección</p>
+              <h3 class="serif mt-3 text-4xl">Ayacucho, Piura 20001</h3>
+              <dl class="mt-7 grid gap-5 sm:grid-cols-2">
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Plus code</dt><dd class="mt-2 font-bold">R93F+58, Piura</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Coordenadas</dt><dd class="mt-2 font-bold">-5.19710, -80.62668</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Acceso</dt><dd class="mt-2 font-bold">Espacio público · libre</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Movilidad</dt><dd class="mt-2 font-bold">A pie, taxi o transporte urbano</dd></div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="alrededores" class="bg-[#f1dfc8] py-24 md:py-32">
+        <div class="shell">
+          <div class="grid gap-14 lg:grid-cols-2">
+            <div>
+              <span class="eyebrow">Sabores cerca</span>
+              <h2 class="section-title">Comer algo y seguir caminando.</h2>
+              <div class="mt-10 space-y-3">
+                {foods.map((food) => (
+                  <article class="rounded-[1.4rem] border border-[#d5bfa5] bg-[#fff8ec]/70 p-6">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <h3 class="serif text-2xl">{food.name}</h3>
+                        <p class="mt-1 text-sm font-bold text-[#a85737]">{food.type}</p>
+                      </div>
+                      <span class="rounded-full bg-[#244433] px-3 py-1 text-xs font-bold text-white">{food.address}</span>
+                    </div>
+                    <p class="mt-4 leading-7 text-[#6e655b]">{food.text}</p>
+                  </article>
+                ))}
+              </div>
+              <p class="mt-4 text-xs leading-5 text-[#746b60]">Los horarios y cartas de negocios pueden cambiar. Confirma antes de desplazarte.</p>
+            </div>
+
+            <div>
+              <span class="eyebrow">Circuito a pie</span>
+              <h2 class="section-title">Cuatro paradas para entender mejor Piura.</h2>
+              <div class="mt-10 divide-y divide-[#c9ae8f] border-y border-[#c9ae8f]">
+                {nearby.map((place, i) => (
+                  <article class="grid gap-4 py-6 sm:grid-cols-[56px_1fr]">
+                    <span class="serif text-2xl text-[#b9633e]">0{i + 1}</span>
+                    <div>
+                      <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <h3 class="serif text-2xl">{place.name}</h3>
+                        <span class="text-xs font-black uppercase tracking-widest text-[#6e655b]">{place.distance}</span>
+                      </div>
+                      <p class="mt-2 leading-7 text-[#6e655b]">{place.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="mapa" class="bg-[#fffaf1] py-24 md:py-32">
+        <div class="shell">
+          <div class="mb-10 flex flex-wrap items-end justify-between gap-8">
+            <div>
+              <span class="eyebrow">Ubicación</span>
+              <h2 class="section-title">En el centro, todo empieza aquí.</h2>
+            </div>
+            <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir mapa completo ↗</a>
+          </div>
+          <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
+            <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Mapa de Plaza de Armas Piura en Google Maps"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="bg-[#f5ead9] py-24 md:py-32">
+        <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <span class="eyebrow">Preguntas frecuentes</span>
+            <h2 class="section-title">Lo esencial antes de llegar.</h2>
+          </div>
+          <div class="faq">
+            {faqs.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-[#b9633e] py-20 text-[#fff8ec] md:py-24">
+        <div class="shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-[.2em] text-[#ffd6ad]">Piura se camina desde su plaza</p>
+            <h2 class="serif mt-4 max-w-4xl text-[clamp(2.8rem,7vw,6.4rem)] leading-[.9] tracking-[-.05em]">Sombra, historia y ciudad en un mismo punto.</h2>
+          </div>
+          <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">
+      <div class="shell grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <img src="/logo.svg" alt="Plaza de Armas Piura" width="210" height="54" class="h-12 w-auto rounded bg-[#fffaf1] p-1" />
+          <p class="mt-5 max-w-2xl text-sm leading-6 text-white/60">Guía independiente para orientar una visita al centro histórico de Piura. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.</p>
+          <p class="mt-3 text-xs leading-5 text-white/45">Este sitio no es oficial y no representa a la Municipalidad Provincial de Piura, al Ministerio de Cultura del Perú ni a Google.</p>
+        </div>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+          <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
+          <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos de fotos</a>
+          <a href="#inicio" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver arriba ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <aside id="cookie-banner" aria-live="polite" class="cookie-banner fixed bottom-4 left-1/2 z-50 hidden w-[min(720px,calc(100%_-_1rem))] -translate-x-1/2 rounded-[1.5rem] border border-[#d8c4ad] bg-[#fffaf1] p-6">
+      <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Privacidad y medición</p>
+          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Usamos Google Analytics 4 solo si aceptas cookies de analítica. Las cookies esenciales no requieren consentimiento y no cargamos GA4 antes de tu elección.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Solo esenciales</button>
+          <button id="accept-cookies" type="button" class="btn btn-primary text-sm">Aceptar analítica</button>
+        </div>
+      </div>
+    </aside>
+
+    <script>
+      const GA_ID = 'G-HXM22WWPKP';
+      const STORAGE_KEY = 'plaza-piura-cookie-consent';
+      const banner = document.getElementById('cookie-banner');
+      const acceptButton = document.getElementById('accept-cookies');
+      const rejectButton = document.getElementById('reject-cookies');
+      const settingsButton = document.getElementById('open-cookie-settings');
+
+      const loadAnalytics = () => {
+        const w = window as typeof window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void; __gaLoaded?: boolean };
+        if (w.__gaLoaded) return;
+        w.__gaLoaded = true;
+        w.dataLayer = w.dataLayer || [];
+        const gtag = (...args: unknown[]) => { w.dataLayer?.push(args); };
+        w.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(script);
+      };
+
+      const setChoice = (choice: 'analytics' | 'essential') => {
+        localStorage.setItem(STORAGE_KEY, choice);
+        banner?.classList.add('hidden');
+        if (choice === 'analytics') loadAnalytics();
+      };
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'analytics') loadAnalytics();
+      if (!saved) banner?.classList.remove('hidden');
+
+      acceptButton?.addEventListener('click', () => setChoice('analytics'));
+      rejectButton?.addEventListener('click', () => setChoice('essential'));
+      settingsButton?.addEventListener('click', () => banner?.classList.remove('hidden'));
+    </script>
+  </body>
+</html>
