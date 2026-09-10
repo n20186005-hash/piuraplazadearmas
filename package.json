@@ -1,0 +1,30 @@
+{
+  "name": "plaza-de-armas-piura",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": "24.21.0",
+    "pnpm": "12.3.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "pnpm build && wrangler deploy",
+    "self-check": "node scripts/self-check.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@tailwindcss/vite": "4.3.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "wrangler": "4.129.1"
+  }
+}
