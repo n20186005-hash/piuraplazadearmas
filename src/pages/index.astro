@@ -63,6 +63,7 @@ const photos = {
 
 const facts = [
   { label: 'Nombre oficial', value: attractionShortName },
+  { label: 'Categoría', value: 'Parque urbano (city park)' },
   { label: 'Ubicación', value: `Ayacucho, ${cityName} ${postalCode}, ${countryName}` },
   { label: 'Plus Code', value: `${plusCode}, ${cityName}` },
   { label: 'Coordenadas', value: `${latitude.toFixed(5)}, ${longitude.toFixed(5)}` },
@@ -258,7 +259,9 @@ const attractionJsonLd = {
     name: cityName,
     address: { '@type': 'PostalAddress', addressLocality: cityName, addressRegion: stateProvince, addressCountry: countryCode },
   },
+  mainEntityOfPage: { '@id': `${siteUrl}/#webpage` },
   additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Categoría', value: 'Parque urbano (city park)' },
     { '@type': 'PropertyValue', name: 'Elevación', value: '22 m s. n. m.', unitCode: 'MTR' },
     { '@type': 'PropertyValue', name: 'Plus Code', value: plusCode },
   ],
@@ -292,7 +295,18 @@ const webpageJsonLd = {
   inLanguage: 'es-PE',
   isPartOf: { '@id': `${siteUrl}/#website` },
   about: { '@id': `${siteUrl}/#attraction` },
-  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+  mainEntity: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: ogImage,
+    caption: ogImageAlt,
+    creditText: 'Edward Josué Quevedo Macalupú',
+    creator: { '@type': 'Person', name: 'Edward Josué Quevedo Macalupú' },
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    copyrightNotice: '© Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+  },
   datePublished: dateModified,
   dateModified,
 };
@@ -580,7 +594,7 @@ const jsonLdGraph = {
           <div class="grid gap-14 lg:grid-cols-2">
             <div>
               <span class="eyebrow">Sabores cerca</span>
-              <h2 class="section-title">Comer algo y seguir caminando.</h2>
+              <h2 class="section-title">Comer algo cerca de la Plaza de Armas Piura</h2>
               <div class="mt-10 space-y-3">
                 {foods.map((food) => (
                   <article class="rounded-[1.4rem] border border-[#d5bfa5] bg-[#fff8ec]/70 p-6">
@@ -677,7 +691,7 @@ const jsonLdGraph = {
           <div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]">
             <div>
               <span class="eyebrow">Fuentes oficiales</span>
-              <h2 class="section-title">Fuentes y verificación</h2>
+              <h2 class="section-title">Fuentes y verificación sobre la Plaza de Armas Piura</h2>
               <p class="section-lead">Información validada con fuentes oficiales y referencias de {cityName}.</p>
               <p class="mt-6 text-sm font-bold text-[#6e655b]">Última actualización: {new Date(dateModified).toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
@@ -693,7 +707,7 @@ const jsonLdGraph = {
                 ))}
               </ol>
               <p class="photo-credit">
-                <strong>Créditos de imágenes:</strong> todas las fotografías mostradas en este sitio web son propiedad de sus respectivos fotógrafos y están protegidas por las licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Consulta el <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">archivo original en Wikimedia Commons ↗</a>.
+                <strong>Créditos de imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a las licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Consulta el <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">archivo original en Wikimedia Commons ↗</a>.
               </p>
             </div>
           </div>
@@ -704,7 +718,7 @@ const jsonLdGraph = {
         <div class="shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p class="text-sm font-black uppercase tracking-[.2em] text-[#ffd6ad]">{cityName} se camina desde su plaza</p>
-            <h2 class="serif mt-4 max-w-4xl text-[clamp(2.8rem,7vw,6.4rem)] leading-[.9] tracking-[-.05em]">Sombra, historia y ciudad en un mismo punto.</h2>
+            <h2 class="serif mt-4 max-w-4xl text-[clamp(2.8rem,7vw,6.4rem)] leading-[.9] tracking-[-.05em]">Sombra, historia y ciudad: la Plaza de Armas Piura</h2>
           </div>
           <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
         </div>
@@ -725,7 +739,7 @@ const jsonLdGraph = {
           </address>
           <p class="mt-4 text-xs leading-5 text-white/45">Este sitio no es oficial y no representa a la Municipalidad Provincial de {cityName}, al Ministerio de Cultura del {countryName} ni a Google.</p>
           <p class="mt-3 text-xs leading-5 text-white/45">
-            <strong>Imágenes:</strong> todas las fotografías mostradas en este sitio web son propiedad de sus respectivos fotógrafos y están protegidas por las licencias originales.
+            <strong>Imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a sus licencias originales.
           </p>
         </div>
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">

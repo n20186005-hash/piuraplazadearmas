@@ -2,7 +2,7 @@
 
 El sitio usa cuatro fotografías reales de Wikimedia Commons, servidas localmente desde `public/images/`. La atribución y la licencia son visibles junto a cada imagen y en la sección «Fuentes» de la página.
 
-> Todas las imágenes mostradas en este sitio web son propiedad de sus respectivos fotógrafos y están protegidas por sus licencias originales.
+> Los derechos de propiedad y los derechos de autor (copyright) de todas las imágenes mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a sus licencias originales.
 
 1. `plaza-de-armas-piura-hero.jpg` — imagen principal (Hero)
    - Autor: Edward Josué Quevedo Macalupú

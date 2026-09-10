@@ -11,15 +11,15 @@
 
 1. Cadenas prohibidas: `example.com`, `localhost`, `chrome-extension://`, `ca-pub-`, `adsbygoogle`, `TODO:`, `XXXXXXXX` (0 coincidencias en `dist/`).
 2. TDK, `canonical` absoluto, `hreflang` `es-PE` + `x-default`, metadatos geográficos, Open Graph y Twitter Card completos con `og:image` absoluta y dimensiones reales.
-3. Estructura de encabezados: un único `H1` con nombre completo + ciudad + país y los cinco `H2` con entidad (Sobre / Historia / Ubicación y cómo visitar / Alrededores / FAQ).
+3. Estructura de encabezados: un único `H1` con nombre completo + ciudad + país; además, **todos** los `H2` contienen la entidad «Plaza de Armas» (Sobre / Historia / Ubicación y cómo visitar / Alrededores / Mapa / FAQ / Fuentes).
 4. Vinculación semántica: presencia de «Plaza de Armas Piura», «Plaza de Armas de Piura», «Piura Plaza de Armas», Plus Code `R93F+58` y las direcciones del centro histórico.
 5. Imágenes: todas con `alt`, hero con el patrón de entidad y los cuatro JPG locales presentes en `dist/images/`.
-6. JSON-LD válido y consolidado: `Organization`, `WebSite`, `WebPage` (`dateModified`, `inLanguage`), `BreadcrumbList`, `TouristAttraction` (`@id` ancla, imágenes absolutas, `address` PE/20001, `geo` -5.1970998/-80.62668, `hasMap`, `sameAs` con `maps.app.goo.gl` y `.gob.pe`, `aggregateRating` 4,3/16.985) y `FAQPage` con un número de preguntas idéntico a los `<details>` visibles.
+6. JSON-LD válido y consolidado: `Organization`, `WebSite`, `WebPage` (`dateModified`, `inLanguage`, `author`/`publisher` y `primaryImageOfPage` con `copyrightNotice`), `BreadcrumbList`, `TouristAttraction` (`@id` ancla, `mainEntityOfPage`, imágenes absolutas, `address` PE/20001, `geo` -5.1970998/-80.62668, `hasMap`, `sameAs` con `maps.app.goo.gl` y `.gob.pe`, `additionalProperty` con la categoría verificada, `aggregateRating` 4,3/16.985) y `FAQPage` con un número de preguntas idéntico a los `<details>` visibles.
 7. Mapa: `iframe` con `loading="lazy"`, `referrerpolicy` estricta, `title` accesible y las coordenadas del embed solicitado; enlaces externos con `target="_blank"` y `rel="noopener noreferrer"`.
 8. PWA: manifest con `start_url` `/` e iconos existentes, service worker con los eventos `install`/`activate`/`fetch` y respaldo offline, registro del SW y metadatos para iOS.
 9. GA4 `G-HXM22WWPKP` presente pero **no** inyectado estáticamente: solo se carga tras el consentimiento y con `anonymize_ip`.
 10. Sitemap sin `lastmod` inventado, URLs absolutas del dominio real y `robots.txt` con `Allow: /` y referencia al sitemap.
-11. Contenido verificado presente: «Alegoría a la Libertad», «tamarindos», «R.M. N.º 303-1987-ED», «MINCETUR» y la nota de propiedad de las imágenes.
+11. Contenido verificado presente: «Alegoría a la Libertad», «tamarindos», «R.M. N.º 303-1987-ED», «MINCETUR», la categoría «Parque urbano (city park)» y la nota de propiedad y derechos de autor de las imágenes.
 
 ## Cambios respecto a la entrega anterior
 
@@ -29,6 +29,14 @@
 - JSON-LD ampliado de dos bloques a un grafo con seis nodos; FAQ ampliado de 6 a 10 preguntas.
 - PWA completada (iconos PNG reales, manifest, service worker, metadatos iOS).
 - `scripts/self-check.mjs` reescrito como auditoría de 11 grupos con corrección de rutas en Windows.
+
+## Cambios de esta revisión
+
+- Todos los `H2` incorporan la entidad «Plaza de Armas»: se reformularon «Comer algo y seguir caminando», «Fuentes y verificación» y el cierre de portada.
+- Nueva categoría verificada «Parque urbano (city park)» visible en los datos y en `additionalProperty` del `TouristAttraction`.
+- `TouristAttraction.mainEntityOfPage`; `WebPage` con `author`, `publisher` y `primaryImageOfPage` con crédito, licencia y `copyrightNotice`.
+- La nota de imágenes declara explícitamente la propiedad y los derechos de autor (copyright) de los fotógrafos originales, tanto en el pie como en «Fuentes».
+- `scripts/self-check.mjs` añade las comprobaciones correspondientes (H2 con entidad, `mainEntityOfPage`, categoría y copyright de imágenes).
 
 ## Pendientes / notas
 

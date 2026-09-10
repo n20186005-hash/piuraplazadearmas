@@ -27,6 +27,7 @@ El dominio vive únicamente en `const site` dentro de `astro.config.ts`. Astro l
 | --- | --- |
 | Nombre oficial | Plaza de Armas de Piura |
 | Nombre común / dominio | Plaza de Armas Piura (Piura Plaza de Armas) |
+| Categoría (Google) | Parque urbano (city park) |
 | Ciudad / Región / País | Piura / Piura / Perú (PE) |
 | Dirección | Ayacucho, Piura 20001 |
 | Plus Code | R93F+58, Piura |
@@ -44,8 +45,8 @@ Fuentes oficiales usadas: ficha de inventario N.º 3163 del MINCETUR, Gob.pe (Mu
 - `title` + `description` con nombre completo, ciudad y país; `canonical`; `hreflang` `es-PE` + `x-default`.
 - Open Graph y Twitter Card completos (`og:image` absoluta 1280×866, `og:image:alt`, `og:image:width/height`, `og:locale`).
 - Metadatos geográficos (`geo.position`, `geo.placename`, `geo.region`, `ICBM`).
-- Un único bloque JSON-LD consolidado en `@graph` con `Organization`, `WebSite`, `WebPage` (con `dateModified`), `BreadcrumbList`, `TouristAttraction` (con `@id` ancla, `image`, `alternateName`, dirección, `geo`, `hasMap`, `sameAs`, horario, `aggregateRating`) y `FAQPage` con 10 preguntas idénticas a los `<details>` visibles.
-- Jerarquía `H1` única con nombre completo + ciudad + país y `H2` con entidad en Sobre / Historia / Ubicación / Alrededores / FAQ.
+- Un único bloque JSON-LD consolidado en `@graph` con `Organization`, `WebSite`, `WebPage` (con `dateModified`, `author`, `publisher` y `primaryImageOfPage` con crédito, licencia y `copyrightNotice`), `BreadcrumbList`, `TouristAttraction` (con `@id` ancla, `mainEntityOfPage`, `image`, `alternateName`, categoría verificada, dirección, `geo`, `hasMap`, `sameAs`, horario, `aggregateRating`) y `FAQPage` con 10 preguntas idénticas a los `<details>` visibles.
+- Jerarquía `H1` única con nombre completo + ciudad + país y **todos** los `H2` con la entidad «Plaza de Armas» (Sobre / Historia / Ubicación / Alrededores / Mapa / FAQ / Fuentes).
 - Enlaces de salida a dominios oficiales `.gob.pe` desde el mapa y la sección de fuentes.
 - `sitemap-index.xml` (sin `lastmod` inventado) y `robots.txt` con `Allow: /` y la referencia al sitemap.
 

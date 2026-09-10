@@ -89,6 +89,9 @@ const requiredH2 = [/Sobre la Plaza de Armas Piura/i, /Historia e importancia/i,
 for (const pattern of requiredH2) {
   if (!h2s.some((value) => pattern.test(value))) fail(`Falta el H2 obligatorio que coincide con ${pattern}.`);
 }
+for (const value of h2s) {
+  if (!/Plaza de Armas/i.test(value)) fail(`El H2 "${value}" no contiene la entidad "Plaza de Armas".`);
+}
 
 /* ---------- 4. Vinculación semántica de la entidad ---------- */
 for (const needle of ['Plaza de Armas Piura', 'Plaza de Armas de Piura', 'Piura Plaza de Armas', 'R93F+58', 'Ayacucho']) {
@@ -139,6 +142,8 @@ else {
   if (attraction.geo.latitude !== -5.1970998 || attraction.geo.longitude !== -80.62668) fail('Coordenadas del schema distintas de las oficiales.');
   if (!attraction.sameAs.some((url) => url.includes('maps.app.goo.gl'))) fail('sameAs sin enlace de Google Maps.');
   if (!attraction.sameAs.some((url) => url.includes('.gob.pe'))) fail('sameAs sin dominio oficial .gob.pe.');
+  if (!attraction.mainEntityOfPage || attraction.mainEntityOfPage['@id'] !== `${SITE}/#webpage`) fail('TouristAttraction sin mainEntityOfPage hacia #webpage.');
+  if (![].concat(attraction.additionalProperty || []).some((prop) => prop.name === 'Categoría')) fail('TouristAttraction sin la categoría verificada.');
   if (attraction.aggregateRating.ratingValue !== 4.3 || attraction.aggregateRating.ratingCount !== 16985) fail('aggregateRating no coincide con 4,3 / 16.985.');
 }
 for (const type of ['Organization', 'WebSite', 'WebPage', 'BreadcrumbList', 'FAQPage']) {
@@ -152,6 +157,9 @@ if (faqItems < 8) fail(`Se esperaban al menos 8 preguntas frecuentes; hay ${faqI
 const webpage = byType('WebPage');
 if (!webpage || !webpage.dateModified) fail('WebPage sin dateModified.');
 if (!webpage.inLanguage || webpage.inLanguage !== 'es-PE') fail('WebPage.inLanguage incorrecto.');
+if (!webpage.author || webpage.author['@id'] !== `${SITE}/#organization`) fail('WebPage sin author.');
+if (!webpage.publisher || webpage.publisher['@id'] !== `${SITE}/#organization`) fail('WebPage sin publisher.');
+if (!webpage.primaryImageOfPage || !webpage.primaryImageOfPage.copyrightNotice) fail('WebPage sin copyrightNotice en la imagen principal.');
 
 /* ---------- 7. Mapa y enlaces autoritativos ---------- */
 const iframe = (html.match(/<iframe [^>]*>/) || [''])[0];
@@ -217,7 +225,9 @@ if (!robots.includes('Sitemap: https://piuraplazadearmas.com/sitemap-index.xml')
 for (const needle of ['Alegoría a la Libertad', 'tamarindos', 'R.M. N.º 303-1987-ED', 'MINCETUR']) {
   if (!html.includes(needle)) fail(`Falta contenido verificado esperado: "${needle}"`);
 }
-if (!html.includes('propiedad de sus respectivos fotógrafos')) fail('Falta la nota de propiedad de las imágenes.');
+if (!html.includes('pertenecen a sus respectivos fotógrafos originales')) fail('Falta la nota de propiedad de las imágenes.');
+if (!/derechos de autor \(copyright\)/.test(html)) fail('La nota de imágenes no declara los derechos de autor (copyright).');
+if (!/Parque urbano \(city park\)/.test(html)) fail('No se muestra la categoría verificada "Parque urbano (city park)".');
 
 /* ---------- Resultado ---------- */
 if (notes.length) notes.forEach((note) => console.log(`Nota: ${note}`));
