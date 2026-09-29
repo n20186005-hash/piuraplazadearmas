@@ -25,8 +25,8 @@ const peruTravelUrl = 'https://www.peru.travel/es';
 const mucenUrl = 'https://mucen.bcrp.gob.pe/mucen/museos/mucen-piura';
 const casaMuseoUrl = 'https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura';
 
-const title = `${attractionFullName} (${cityName}, ${countryName}) - Guía y ubicación`;
-const description = `Guía de la ${attractionFullName} (${countryName}): mapa, acceso libre todo el año, historia de "La Pola", la Catedral de San Miguel Arcángel y qué ver alrededor.`;
+const title = `${attractionFullName}, ${countryName}: ubicación, dirección y cómo llegar`;
+const description = `${attractionFullName} (Ayacucho, ${cityName} ${postalCode}, ${countryName}): ubicación exacta, cómo llegar, historia de "La Pola" y qué ver gratis en el centro histórico. Guía actualizada.`;
 const ogImage = `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`;
 const ogImageAlt = `${attractionFullName} - vista principal en ${cityName}, ${countryName}`;
 const ogImageWidth = 1280;
@@ -70,7 +70,7 @@ const facts = [
   { label: 'Horario', value: 'Acceso libre las 24 horas' },
   { label: 'Entrada', value: 'Libre' },
   { label: 'Altitud', value: '22 m s. n. m.' },
-  { label: 'Calificación', value: '4,3 · 16.985 reseñas de Google' },
+  { label: 'Calificación', value: '4,3 · 16.990 reseñas de Google' },
 ];
 
 const visitCards = [
@@ -196,6 +196,14 @@ const faqs = [
     q: '¿Cómo llegar a la Plaza de Armas de Piura?',
     a: 'Desde el Óvalo Grau son unos 800 metros de caminata (unos 6 minutos). Desde la Plazuela Merino, aproximadamente 1 kilómetro en taxi o movilidad urbana. Desde la Iglesia San Sebastián se conecta por un circuito histórico de unos 200 metros.',
   },
+  {
+    q: '¿Hay un plano o croquis de la Plaza de Armas de Piura?',
+    a: 'La plaza sigue el trazado clásico de plaza mayor: un cuadrado arbolado rodeado por la Catedral de San Miguel Arcángel, la Municipalidad Provincial de Piura y comercios del centro. Puedes ver su disposición exacta en el mapa de Google Maps que aparece más abajo, o abrir la vista completa para planificar el recorrido a pie.',
+  },
+  {
+    q: '¿Qué es el centro histórico de Piura y qué relación tiene con la plaza?',
+    a: 'El centro histórico de Piura gira en torno a la Plaza de Armas: ahí convergen la Catedral, el MUCEN Piura, la Casa Museo Gran Almirante Grau y las calles republicanas del casco antiguo. La plaza es el punto de partida ideal para recorrer a pie el centro histórico de Piura.',
+  },
 ];
 
 const faqJsonLd = {
@@ -242,7 +250,7 @@ const attractionJsonLd = {
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: 4.3,
-    ratingCount: 16985,
+    ratingCount: 16990,
     bestRating: 5,
   },
   openingHoursSpecification: [
@@ -400,7 +408,7 @@ const jsonLdGraph = {
         <div class="shell relative z-10 flex min-h-[840px] items-end pb-20 pt-36 md:min-h-[900px] md:pb-28">
           <div class="max-w-4xl">
             <div class="mb-6 flex flex-wrap gap-2">
-              <span class="pill">★ 4,3 · 16.985 reseñas</span>
+              <span class="pill">★ 4,3 · 16.990 reseñas</span>
               <span class="pill">Entrada libre</span>
               <span class="pill">{cityName} · {countryName}</span>
             </div>
@@ -550,7 +558,7 @@ const jsonLdGraph = {
               <h2 class="section-title">Ubicación y cómo visitar la {attractionFullName} en {cityName}</h2>
               <p class="section-lead">Una visita sencilla, mejor si la haces sin prisa.</p>
             </div>
-            <p class="section-copy max-w-2xl text-lg">La plaza está en el corazón del centro, así que funciona mejor como inicio de un recorrido a pie. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
+            <p class="section-copy max-w-2xl text-lg">La plaza está en el corazón del centro histórico de Piura, así que funciona mejor como inicio de un recorrido a pie por el casco antiguo. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
           </div>
 
           <div class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

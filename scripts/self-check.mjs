@@ -144,7 +144,7 @@ else {
   if (!attraction.sameAs.some((url) => url.includes('.gob.pe'))) fail('sameAs sin dominio oficial .gob.pe.');
   if (!attraction.mainEntityOfPage || attraction.mainEntityOfPage['@id'] !== `${SITE}/#webpage`) fail('TouristAttraction sin mainEntityOfPage hacia #webpage.');
   if (![].concat(attraction.additionalProperty || []).some((prop) => prop.name === 'Categoría')) fail('TouristAttraction sin la categoría verificada.');
-  if (attraction.aggregateRating.ratingValue !== 4.3 || attraction.aggregateRating.ratingCount !== 16985) fail('aggregateRating no coincide con 4,3 / 16.985.');
+  if (attraction.aggregateRating.ratingValue !== 4.3 || attraction.aggregateRating.ratingCount !== 16990) fail('aggregateRating no coincide con 4,3 / 16.990.');
 }
 for (const type of ['Organization', 'WebSite', 'WebPage', 'BreadcrumbList', 'FAQPage']) {
   if (!byType(type)) fail(`Falta el nodo ${type} en el grafo JSON-LD.`);

@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, '') : 'https://piuraplazadearmas.com';
+const attractionFullName = 'Plaza de Armas Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const title = 'Página no encontrada · Plaza de Armas Piura';
+const description = `La página que buscas no existe. Vuelve a la guía de la ${attractionFullName} en ${cityName}, ${countryName}.`;
+---
+
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex,follow" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={siteUrl} />
+  </head>
+  <body class="min-h-screen">
+    <main class="shell flex min-h-screen flex-col items-center justify-center py-20 text-center">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="serif mt-4 max-w-[16ch] text-[clamp(2.4rem,7vw,5rem)] leading-[.9] tracking-[-.04em]">
+        Página no encontrada
+      </h1>
+      <p class="section-copy mt-6 max-w-xl">
+        La dirección que intentaste abrir no existe o fue movida. Vuelve a la guía de la <strong>{attractionFullName}</strong> en {cityName}, {countryName}.
+      </p>
+      <a href="/" class="btn btn-primary mt-9">Volver al inicio ↑</a>
+    </main>
+  </body>
+</html>

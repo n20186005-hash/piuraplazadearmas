@@ -1,0 +1,13 @@
+# Refuerzo de la canonicidad https:// (parte del arreglo http→https en GSC).
+# La redirección 301 http→https se activa en el panel de Cloudflare (Always Use HTTPS);
+# estas cabeceras consolidan el uso exclusivo de HTTPS en el navegador.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# El service worker no debe cachearse de forma agresiva.
+/sw.js
+  Cache-Control: no-cache
