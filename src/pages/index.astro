@@ -16,157 +16,109 @@ const latitude = -5.1970998;
 const longitude = -80.62668;
 
 const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
-const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.6292602874832!3d-5.197099794758691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.62668!3d-5.1970998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
 
 const govtTourismUrl = 'https://www.gob.pe/munipiura';
-const govtTourismPortalUrl = 'http://turismo.munipiura.gob.pe/';
 const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
-const peruTravelUrl = 'https://www.peru.travel/es';
 const mucenUrl = 'https://mucen.bcrp.gob.pe/mucen/museos/mucen-piura';
 const casaMuseoUrl = 'https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura';
 
-const title = `${attractionFullName}, ${countryName}: ubicación, dirección y cómo llegar`;
-const description = `${attractionFullName} (Ayacucho, ${cityName} ${postalCode}, ${countryName}): ubicación exacta, cómo llegar, historia de "La Pola" y qué ver gratis en el centro histórico. Guía actualizada.`;
+const title = 'Plaza de Armas Piura: ubicación, historia y visita';
+const description = 'Ubica la Plaza de Armas Piura en Ayacucho: mapa, historia de La Pola, acceso según fuentes y visitas separadas a la catedral y museos.';
 const ogImage = `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`;
 const ogImageAlt = `${attractionFullName} - vista principal en ${cityName}, ${countryName}`;
 const ogImageWidth = 1280;
 const ogImageHeight = 866;
 
-const dateModified = '2026-09-10';
+const dateModified = '2026-10-26';
 
 const photos = {
   hero: {
     src: '/images/plaza-de-armas-piura-hero.jpg',
     alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
-    credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
   },
   square: {
     src: '/images/plaza-de-armas-piura-vista.jpg',
     alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
-    credit: 'Pitxiquin · CC BY-SA 4.0',
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
   },
   cathedral: {
     src: '/images/catedral-de-piura.jpg',
     alt: `Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`,
-    credit: 'Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
   },
   monument: {
     src: '/images/alegoria-a-la-libertad.jpg',
     alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
-    credit: 'Ccotlear · CC BY-SA 4.0',
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
     page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
   },
 };
 
 const facts = [
-  { label: 'Nombre oficial', value: attractionShortName },
-  { label: 'Categoría', value: 'Parque urbano (city park)' },
+  { label: 'Lugar', value: attractionShortName },
+  { label: 'Categoría', value: 'Plaza urbana · Arquitectura y Espacios Urbanos' },
   { label: 'Ubicación', value: `Ayacucho, ${cityName} ${postalCode}, ${countryName}` },
   { label: 'Plus Code', value: `${plusCode}, ${cityName}` },
   { label: 'Coordenadas', value: `${latitude.toFixed(5)}, ${longitude.toFixed(5)}` },
-  { label: 'Horario', value: 'Acceso libre las 24 horas' },
-  { label: 'Entrada', value: 'Libre' },
+  { label: 'Horario en Maps', value: '24 horas · consulta del 26/10/2026' },
+  { label: 'Entrada en inventario', value: 'Libre, según MINCETUR' },
   { label: 'Altitud', value: '22 m s. n. m.' },
-  { label: 'Calificación', value: '4,3 · 16.990 reseñas de Google' },
+  { label: 'Google Maps', value: '4,3 / 5 · 17.011 valoraciones · 26/10/2026' },
 ];
 
 const visitCards = [
   {
     icon: 'S/',
     title: 'Entrada y costo',
-    text: 'El acceso a la plaza es libre. No hay boleto de ingreso para recorrer este espacio público.',
+    text: 'MINCETUR registra ingreso libre a la plaza. Esa referencia no incluye entradas a museos, templos o servicios, ni sustituye una restricción municipal temporal.',
   },
   {
     icon: '◴',
     title: 'Mejor momento',
-    text: 'La mañana temprana y el final de la tarde suelen dar una caminata más amable por el calor piurano y mejor luz para fotografías.',
+    text: 'Para elegir tu hora, revisa la temperatura y las condiciones del día. Lleva agua y protección solar; la sombra de los árboles no cubre necesariamente todo el recorrido.',
   },
   {
     icon: '↻',
-    title: 'Tiempo sugerido',
-    text: 'Reserva 30–60 minutos para la plaza; calcula 2–3 horas si la combinas con la catedral, MUCEN y calles del centro histórico.',
+    title: 'Arma tu recorrido',
+    text: 'Distingue una pausa en la plaza de una visita a las salas del MUCEN o a la Casa Grau. Elige una visita cultural y comprueba su horario antes de añadir otra; no hay una duración que sirva para todos.',
   },
   {
     icon: 'P',
     title: 'Estacionamiento',
-    text: 'El centro tiene cocheras privadas y estacionamiento limitado en calle. Conviene llegar con margen y confirmar tarifa y disponibilidad en el momento.',
-  },
-];
-
-const foods = [
-  {
-    name: 'El Chalán · Plaza de Armas',
-    type: 'Café, helados y pausa rápida',
-    text: 'En la misma zona de la plaza; práctico para refrescarse antes de seguir caminando por el centro.',
-    address: 'Calle Tacna 520–526',
-  },
-  {
-    name: 'La Tomasita',
-    type: 'Cocina norteña tradicional',
-    text: 'Una opción conocida para probar sabores de Piura a pocas cuadras del núcleo histórico.',
-    address: 'Centro de Piura',
-  },
-  {
-    name: 'Restaurante La Blanca',
-    type: 'Cocina piurana',
-    text: 'Alternativa de comida local dentro del centro para completar la visita con platos regionales.',
-    address: 'Jr. Arequipa 1240',
+    text: 'No hemos comprobado plazas, tarifas ni un estacionamiento turístico específico. Busca un lugar permitido para tu vehículo y acuerda un punto de bajada que no bloquee cruces ni accesos.',
   },
 ];
 
 const nearby = [
-  {
-    distance: 'frente a la plaza',
-    name: 'Catedral de San Miguel Arcángel',
-    text: 'Templo principal del centro histórico —también conocido como Iglesia Matriz— y uno de los elementos que define la imagen urbana de la plaza.',
-  },
-  {
-    distance: 'frente a la plaza',
-    name: 'MUCEN Piura',
-    text: 'Museo del Banco Central de Reserva con colecciones que ayudan a leer la historia y cultura regional. Ingreso por la calle Huancavelica 346.',
-  },
-  {
-    distance: 'a pasos',
-    name: 'Municipalidad Provincial de Piura',
-    text: 'Edificio cívico que preside uno de los laterales de la plaza y que gestiona el centro de la ciudad.',
-  },
-  {
-    distance: 'caminata corta',
-    name: 'Casa Museo Gran Almirante Grau',
-    text: 'Casa vinculada a Miguel Grau, figura central de la historia peruana y uno de los puntos culturales de Piura. Ubicada en el Jirón Tacna 662.',
-  },
-  {
-    distance: 'cerca del centro',
-    name: 'Iglesia San Sebastián',
-    text: 'Otra parada religiosa e histórica que se integra bien a un circuito peatonal por el casco antiguo.',
-  },
+  { distance: 'entorno de la plaza', name: 'Catedral de Piura · Iglesia Matriz', text: 'El inventario turístico sitúa la Iglesia Matriz en el entorno de la plaza. La fachada aparece en nuestra foto de 2019; el acceso al templo, sus celebraciones y la fotografía interior se consultan por separado.', url: minceturFicha },
+  { distance: 'visita cultural independiente', name: 'MUCEN Piura', text: 'El museo del Banco Central de Reserva presenta piezas vicús, numismática y arte regional. Su página describe las salas y las opciones para grupos; revisa allí la visita al museo, sin aplicar el horario de la plaza.', url: mucenUrl },
+  { distance: 'Jr. Tacna 662', name: 'Casa Museo Gran Almirante Grau', text: 'El directorio del Ministerio de Cultura identifica la casa museo en Jr. Tacna 662, administrada por la Marina de Guerra del Perú. Publica un horario propio con jornadas partidas; compruébalo para la fecha elegida.', url: casaMuseoUrl },
 ];
 
 const sources = [
-  { name: 'MINCETUR — Inventario Nacional de Recursos Turísticos', detail: 'Ficha N.º 3163: Plaza De Armas De Piura', url: minceturFicha },
-  { name: 'Gob.pe — Municipalidad Provincial de Piura', detail: 'Información institucional y datos del turismo local', url: govtTourismUrl },
-  { name: 'Portal Turístico de Piura', detail: 'Promoción oficial del departamento de Piura', url: govtTourismPortalUrl },
-  { name: 'Perú Travel', detail: 'Portal Oficial de Turismo del Perú (PROMPERÚ)', url: peruTravelUrl },
-  { name: 'Ministerio de Cultura', detail: 'Casa Museo Gran Almirante Grau de Piura', url: casaMuseoUrl },
-  { name: 'Banco Central de Reserva del Perú', detail: 'MUCEN Piura', url: mucenUrl },
-  { name: 'Google Maps', detail: 'Plaza de Armas Piura', url: mapShortUrl },
+  { name: 'MINCETUR — Inventario Nacional de Recursos Turísticos', detail: 'Ficha 3163: identidad, historia, ingreso libre y referencias de acceso. No publica horas de apertura.', url: minceturFicha },
+  { name: 'Banco Central de Reserva del Perú', detail: 'MUCEN Piura: colecciones y organización de una visita propia del museo.', url: mucenUrl },
+  { name: 'Ministerio de Cultura', detail: 'Casa Museo Gran Almirante Grau: dirección, administración y horario independiente.', url: casaMuseoUrl },
+  { name: 'Google Maps', detail: 'Lugar exacto, dirección, valoraciones y horario de la lista observada el 26 de octubre de 2026. Fuente de terceros.', url: mapShortUrl },
 ];
 
 const faqs = [
   {
     q: '¿La Plaza de Armas de Piura cobra entrada?',
-    a: 'No. Es un espacio público de acceso libre. Los museos, templos o servicios cercanos pueden manejar sus propias condiciones y horarios.',
+    a: 'La ficha 3163 de MINCETUR registra ingreso libre a la plaza. Museos, templos y servicios cercanos tienen condiciones propias; una visita a la plaza no da acceso automático a esos lugares.',
   },
   {
     q: '¿La plaza está abierta todo el día?',
-    a: 'La ficha pública del lugar la muestra con acceso las 24 horas. Para una visita turística cómoda, es preferible ir con luz de día y revisar por separado los horarios de museos y comercios cercanos.',
+    a: 'Google Maps mostraba siete días de 24 horas el 26 de octubre de 2026, con advertencias de posibles diferencias por los feriados del 31 de octubre y 1 de noviembre. Es una lista de terceros, no una garantía municipal de acceso, seguridad o servicios. MINCETUR indica visita durante todo el año, pero no horas de apertura.',
   },
   {
     q: '¿Cuánto tiempo necesito para visitarla?',
-    a: 'Para recorrer la plaza y observar el monumento central suelen bastar entre 30 y 60 minutos. Si sumas la catedral, museos y una comida en el centro, reserva de 2 a 3 horas.',
+    a: 'Depende de si buscas una pausa en la plaza, fotografías o entrar a un museo. Comprueba primero el horario de la visita cultural elegida y calcula el desplazamiento desde tu punto real de partida. No se garantiza un circuito completo en un tiempo fijo.',
   },
   {
     q: '¿Qué hay en el centro de la plaza?',
@@ -174,35 +126,27 @@ const faqs = [
   },
   {
     q: '¿Qué puedo visitar caminando desde la plaza?',
-    a: 'La Catedral de San Miguel Arcángel, MUCEN Piura y varias calles del centro histórico están inmediatamente alrededor o a pocos minutos a pie; la Casa Museo Gran Almirante Grau también queda dentro de un circuito céntrico razonable.',
+    a: 'La Iglesia Matriz forma parte del entorno de la plaza. MUCEN Piura y la Casa Museo Gran Almirante Grau son opciones culturales distintas, con sus propias páginas de visita. Elige según tus intereses, horario y necesidades de movilidad; no suponemos un circuito peatonal continuo ya verificado.',
   },
   {
     q: '¿Dónde conviene estacionar?',
-    a: 'En el centro hay cocheras privadas y espacios regulados o limitados en calle. Como disponibilidad y tarifas pueden cambiar, lo más seguro es confirmar al llegar y no dejar objetos visibles dentro del vehículo.',
+    a: 'Esta guía no ha verificado la disponibilidad actual de un estacionamiento específico. Revisa las señales y los lugares permitidos, consulta las condiciones antes de pagar y acuerda una bajada que no obstaculice el paso.',
   },
   {
     q: '¿Dónde se ubica la Plaza de Armas Piura?',
     a: 'Se ubica en el centro histórico de Piura, región Piura, Perú. La referencia de dirección es Ayacucho, Piura 20001, y su Plus Code es R93F+58. Puedes abrir su ubicación en Google Maps.',
   },
   {
-    q: '¿Es gratis visitar la Plaza de Armas de Piura?',
-    a: 'Sí. Es un espacio público de acceso libre y gratuito. El registro oficial del MINCETUR (ficha N.º 3163) señala acceso libre durante todo el año.',
-  },
-  {
-    q: '¿Qué puntos de interés hay alrededor de la plaza?',
-    a: 'Al caminar desde la plaza puedes visitar la Catedral de San Miguel Arcángel (Iglesia Matriz), el MUCEN Piura (calle Huancavelica 346), la Casa Museo Gran Almirante Grau (Jirón Tacna 662) y la Iglesia San Sebastián.',
-  },
-  {
     q: '¿Cómo llegar a la Plaza de Armas de Piura?',
-    a: 'Desde el Óvalo Grau son unos 800 metros de caminata (unos 6 minutos). Desde la Plazuela Merino, aproximadamente 1 kilómetro en taxi o movilidad urbana. Desde la Iglesia San Sebastián se conecta por un circuito histórico de unos 200 metros.',
+    a: 'El inventario MINCETUR incluye rutas de referencia desde Óvalo Grau, Plazuela Merino y San Sebastián. Son estimaciones de una ficha turística: abre el mapa con tu origen, comprueba cruces y estado de las calles, y ajusta la ruta al calor y a tu movilidad; no prometemos sus minutos de viaje.',
   },
   {
     q: '¿Hay un plano o croquis de la Plaza de Armas de Piura?',
-    a: 'La plaza sigue el trazado clásico de plaza mayor: un cuadrado arbolado rodeado por la Catedral de San Miguel Arcángel, la Municipalidad Provincial de Piura y comercios del centro. Puedes ver su disposición exacta en el mapa de Google Maps que aparece más abajo, o abrir la vista completa para planificar el recorrido a pie.',
+    a: 'La plaza sigue el trazado clásico de plaza mayor: un cuadrado arbolado rodeado por la Catedral de San Miguel Arcángel, la Municipalidad Provincial de Piura y comercios del centro. El mapa de Google de esta página sirve para orientarse; no es un plano técnico, de accesibilidad ni una certificación de cada cruce. Abre la ruta desde tu origen y revisa las condiciones actuales.',
   },
   {
     q: '¿Qué es el centro histórico de Piura y qué relación tiene con la plaza?',
-    a: 'El centro histórico de Piura gira en torno a la Plaza de Armas: ahí convergen la Catedral, el MUCEN Piura, la Casa Museo Gran Almirante Grau y las calles republicanas del casco antiguo. La plaza es el punto de partida ideal para recorrer a pie el centro histórico de Piura.',
+    a: 'La plaza permite orientarse por su monumento central y la Iglesia Matriz del entorno. MUCEN Piura y Casa Grau aportan otros contenidos históricos, pero son destinos separados. Usa sus fuentes propias para decidir qué visitar, sin asumir que todos estarán abiertos o serán adecuados para la misma caminata.',
   },
 ];
 
@@ -218,7 +162,7 @@ const faqJsonLd = {
 
 const attractionJsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['TouristAttraction', 'Park'],
+  '@type': 'TouristAttraction',
   '@id': `${siteUrl}/#attraction`,
   name: attractionFullName,
   alternateName: [attractionShortName, 'Piura Plaza de Armas', 'Plaza Mayor de Piura', `${attractionShortName}, ${countryName}`],
@@ -230,8 +174,6 @@ const attractionJsonLd = {
     `${siteUrl}/images/alegoria-a-la-libertad.jpg`,
     `${siteUrl}/images/catedral-de-piura.jpg`,
   ],
-  isAccessibleForFree: true,
-  publicAccess: true,
   address: {
     '@type': 'PostalAddress',
     streetAddress: `Ayacucho, ${attractionShortName}`,
@@ -246,21 +188,7 @@ const attractionJsonLd = {
     longitude,
   },
   hasMap: mapShortUrl,
-  sameAs: [mapShortUrl, minceturFicha, govtTourismUrl, peruTravelUrl, mucenUrl],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 4.3,
-    ratingCount: 16990,
-    bestRating: 5,
-  },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '00:00',
-      closes: '23:59',
-    },
-  ],
+  sameAs: [mapShortUrl, minceturFicha],
   touristType: ['Plaza histórica', 'Centro histórico', 'Parque urbano'],
   containedInPlace: {
     '@type': 'City',
@@ -269,7 +197,7 @@ const attractionJsonLd = {
   },
   mainEntityOfPage: { '@id': `${siteUrl}/#webpage` },
   additionalProperty: [
-    { '@type': 'PropertyValue', name: 'Categoría', value: 'Parque urbano (city park)' },
+    { '@type': 'PropertyValue', name: 'Categoría', value: 'Plaza urbana · Arquitectura y Espacios Urbanos' },
     { '@type': 'PropertyValue', name: 'Elevación', value: '22 m s. n. m.', unitCode: 'MTR' },
     { '@type': 'PropertyValue', name: 'Plus Code', value: plusCode },
   ],
@@ -280,6 +208,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   '@id': `${siteUrl}/#organization`,
   name: `${attractionFullName} — Guía del visitante`,
+  description: 'Guía turística educativa independiente, no oficial y sin fines de lucro.',
   url: siteUrl,
   logo: { '@type': 'ImageObject', url: `${siteUrl}/icons/icon-512.png` },
 };
@@ -313,9 +242,9 @@ const webpageJsonLd = {
     creditText: 'Edward Josué Quevedo Macalupú',
     creator: { '@type': 'Person', name: 'Edward Josué Quevedo Macalupú' },
     license: 'https://creativecommons.org/licenses/by-sa/4.0/',
-    copyrightNotice: '© Edward Josué Quevedo Macalupú · CC BY-SA 4.0',
+    copyrightNotice: '© Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
   },
-  datePublished: dateModified,
+  datePublished: '2026-09-10',
   dateModified,
 };
 
@@ -341,13 +270,12 @@ const jsonLdGraph = {
 <html lang="es-PE">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#244433" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="geo.position" content={`${latitude};${longitude}`} />
     <meta name="geo.placename" content={`${attractionFullName}, ${cityName}, ${countryName}`} />
-    <meta name="geo.region" content={`${countryCode}-${stateProvince}`} />
     <meta name="ICBM" content={`${latitude}, ${longitude}`} />
     <title>{title}</title>
     {canonical && <link rel="canonical" href={canonical} />}
@@ -408,8 +336,8 @@ const jsonLdGraph = {
         <div class="shell relative z-10 flex min-h-[840px] items-end pb-20 pt-36 md:min-h-[900px] md:pb-28">
           <div class="max-w-4xl">
             <div class="mb-6 flex flex-wrap gap-2">
-              <span class="pill">★ 4,3 · 16.990 reseñas</span>
-              <span class="pill">Entrada libre</span>
+              <span class="pill">Google Maps · 4,3 / 5 · 17.011 · 26/10/2026</span>
+              <span class="pill">Ingreso libre · ficha MINCETUR</span>
               <span class="pill">{cityName} · {countryName}</span>
             </div>
             <p class="mb-4 text-sm font-black uppercase tracking-[.22em] text-[#f2c38f]">El corazón cívico de {cityName}</p>
@@ -418,7 +346,7 @@ const jsonLdGraph = {
               <span class="h1-city">({cityName}, {countryName})</span>
             </h1>
             <p class="mb-4 mt-6 max-w-2xl text-base font-medium leading-7 text-white/85 md:text-lg">
-              Bienvenido a la <strong class="text-white">Plaza de Armas Piura</strong>, reconocida también como la <strong class="text-white">Plaza de Armas de Piura</strong> —el <em class="not-italic text-[#f2c38f]">Piura Plaza de Armas</em> del centro histórico—. Es el principal espacio cívico de <strong class="text-white">Piura</strong>, en la región <strong class="text-white">Piura</strong>, <strong class="text-white">Perú</strong>.
+              La <strong class="text-white">Plaza de Armas Piura</strong> está en el centro histórico de <strong class="text-white">Piura, Perú</strong>. Ubica la plaza en Ayacucho, conoce el monumento de “La Pola” y decide qué visita cultural añadir sin confundir sus horarios con los de este espacio público.
             </p>
             <p class="mt-4 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
               Un cuadrado de sombra, memoria y vida cotidiana en pleno centro histórico: tamarindos, arquitectura republicana y la antigua <strong class="text-white">Alegoría a la Libertad</strong> como punto de encuentro.
@@ -439,7 +367,7 @@ const jsonLdGraph = {
             <span aria-hidden="true">›</span>
             <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer">{countryName}</a>
             <span aria-hidden="true">›</span>
-            <a href={govtTourismPortalUrl} target="_blank" rel="noopener noreferrer">Región {stateProvince}</a>
+            <a href={minceturFicha} target="_blank" rel="noopener noreferrer">Región {stateProvince}</a>
             <span aria-hidden="true">›</span>
             <span>{cityName}</span>
             <span aria-hidden="true">›</span>
@@ -449,22 +377,22 @@ const jsonLdGraph = {
             <div>
               <span class="eyebrow">Sobre el lugar</span>
               <h2 class="section-title">Sobre la {attractionFullName}</h2>
-              <p class="section-lead">Centro histórico, espacio público y referencia obligada para entender Piura.</p>
+              <p class="section-lead">Una plaza arbolada para orientarse y observar la memoria cívica de Piura.</p>
             </div>
             <div class="space-y-6 text-lg leading-8 text-[#6e655b]">
               <p>
-                <strong class="text-[#1d2a24]">{attractionFullName}</strong>, también llamada <strong class="text-[#1d2a24]">{attractionShortName}</strong> y entendida como el <em class="not-italic text-[#1d2a24]">Piura Plaza de Armas</em>, es el principal espacio cívico de <strong class="text-[#1d2a24]">{cityName}</strong>, en la región <strong class="text-[#1d2a24]">{stateProvince}</strong>, <strong class="text-[#1d2a24]">{countryName}</strong>. Funciona como punto de encuentro, referencia peatonal y puerta de entrada al casco antiguo de la ciudad.
+                La <strong class="text-[#1d2a24]">{attractionShortName}</strong> es una plaza del centro de Piura descrita en el inventario turístico como un espacio arbolado de tradición española. El monumento central y la Iglesia Matriz ayudan a reconocer su entorno; el mapa ubica el lugar en Ayacucho, Piura 20001.
               </p>
               <p>
-                Al visitar <strong class="text-[#1d2a24]">{attractionFullName}</strong>, los viajeros pueden explorar a pie otros puntos de interés del centro histórico, como la <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">Catedral de San Miguel Arcángel</a>, el <a href={mucenUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">MUCEN Piura</a> y la <a href={casaMuseoUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline decoration-[#b9633e]/30 underline-offset-4">Casa Museo Gran Almirante Grau</a>.
+                Para añadir contenido cultural, consulta las salas del <a href={mucenUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline">MUCEN Piura</a> o la <a href={casaMuseoUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline">Casa Museo Gran Almirante Grau</a>. Cada institución organiza su propia visita. La foto histórica de la catedral muestra su fachada, no un horario de entrada al templo.
               </p>
               <p class="text-base">
-                Jerarquía oficial: <a href={minceturFicha} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">espacio público / plaza</a>, Arquitectura y Espacios Urbanos, acceso libre y gratuito, a 22 m s. n. m. La plaza fue declarada Patrimonio Cultural de la Nación mediante R.M. N.º 303-1987-ED.
+                Ficha oficial: <a href={minceturFicha} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">espacio público / plaza</a>, Arquitectura y Espacios Urbanos, ingreso clasificado como libre, a 22 m s. n. m. según el inventario. La plaza fue declarada Patrimonio Cultural de la Nación mediante R.M. N.º 303-1987-ED.
               </p>
             </div>
           </div>
           <div class="mt-16">
-            <h3 class="mb-6 text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Datos verificados</h3>
+            <h3 class="mb-6 text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Ficha y mapa, con fechas</h3>
             <dl class="fact-list">
               {facts.map((fact) => (
                 <div class="fact">
@@ -496,14 +424,14 @@ const jsonLdGraph = {
               <div class="number text-[#eaa464]">02</div>
               <div>
                 <h3 class="serif text-3xl">“La Pola”, memoria en mármol</h3>
-                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En el centro se levanta la <strong class="text-white">Alegoría a la Libertad</strong>, conocida como “La Pola”. La ficha turística oficial la señala como el monumento más antiguo de {cityName} y sitúa su instalación hacia 1870, durante el gobierno de José Balta.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En el centro se levanta la <strong class="text-white">Alegoría a la Libertad</strong>, conocida como “La Pola”. La ficha turística oficial la señala como el monumento más antiguo de {cityName} y sitúa su instalación en 1870, durante el gobierno de Balta. La descripción del archivo fotográfico de Ccotlear indica 1871; se conservan las atribuciones sin presentar ambos años como una única fecha confirmada.</p>
               </div>
             </div>
             <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
               <div class="number text-[#eaa464]">03</div>
               <div>
                 <h3 class="serif text-3xl">Ritual cívico y vida cotidiana</h3>
-                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">Los domingos, la plaza es escenario de izamiento de bandera y actividades cívicas. El resto de la semana sigue siendo un lugar de paso, descanso bajo los árboles y encuentro en el centro.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">El inventario turístico describe la tradición dominical de izamiento de bandera y actividades cívicas. Es una referencia cultural, no una agenda confirmada para cada domingo: consulta los avisos municipales si quieres asistir a una ceremonia.</p>
               </div>
             </div>
             <div class="grid gap-7 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[120px_1fr] sm:pl-10">
@@ -524,7 +452,7 @@ const jsonLdGraph = {
               <div class="number text-[#eaa464]">06</div>
               <div>
                 <h3 class="serif text-3xl">Una plaza que sigue sumando memoria</h3>
-                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">En agosto de 2025, durante las celebraciones por el 493.º aniversario de la fundación de San Miguel de {cityName}, la Municipalidad Provincial de {cityName} develó una escultura en homenaje al escritor Enrique López Albújar, obra del artista Hugo Chanta Guevara.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-[#ddd8cd]">Según la ficha de MINCETUR, en agosto de 2025, durante las celebraciones por el 493.º aniversario de la fundación de San Miguel de {cityName}, la Municipalidad Provincial de {cityName} develó una escultura en homenaje al escritor Enrique López Albújar, obra del artista Hugo Chanta Guevara.</p>
               </div>
             </div>
           </div>
@@ -556,9 +484,9 @@ const jsonLdGraph = {
             <div>
               <span class="eyebrow">Antes de ir</span>
               <h2 class="section-title">Ubicación y cómo visitar la {attractionFullName} en {cityName}</h2>
-              <p class="section-lead">Una visita sencilla, mejor si la haces sin prisa.</p>
+              <p class="section-lead">Decide qué mirar en la plaza y qué visitar por separado.</p>
             </div>
-            <p class="section-copy max-w-2xl text-lg">La plaza está en el corazón del centro histórico de Piura, así que funciona mejor como inicio de un recorrido a pie por el casco antiguo. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
+            <p class="section-copy max-w-2xl text-lg">La plaza está en el centro histórico de Piura y puede servir como referencia para orientarte, sin que esto implique una caminata apta para todos. Lleva agua, protección solar y calzado cómodo; los horarios de museos, templos y restaurantes pueden cambiar independientemente del acceso a la plaza.</p>
           </div>
 
           <div class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -576,10 +504,10 @@ const jsonLdGraph = {
               <p class="text-xs font-black uppercase tracking-[.18em] text-[#f0b06e]">Cómo llegar</p>
               <h3 class="serif mt-3 text-4xl">A pie y en taxi desde el centro</h3>
               <div class="mt-7 space-y-5 text-white/78">
-                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Óvalo Grau:</strong> la referencia turística oficial sitúa la plaza a unos 800 m; es una caminata céntrica y directa.</div>
-                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Plazuela Merino:</strong> alrededor de 1 km; taxi o movilidad urbana si prefieres evitar el calor.</div>
-                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde San Sebastián:</strong> el circuito histórico es corto y se presta para continuar caminando hacia la plaza.</div>
-                <div class="border-t border-white/15 pt-5"><strong class="text-white">Accesibilidad:</strong> el registro oficial del MINCETUR señala rampas de acceso para personas con movilidad reducida.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Óvalo Grau:</strong> la referencia turística oficial sitúa la plaza a unos 800 m; es una referencia del inventario, no una ruta accesible inspeccionada ni un tiempo garantizado.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde Plazuela Merino:</strong> la ficha menciona alrededor de 1 km. Verifica el punto de partida y la ruta vigente antes de elegir caminar o contratar un traslado.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Desde San Sebastián:</strong> aparece como otra referencia en el inventario. Elige el trayecto con el mapa actual; no damos por comprobados todos sus cruces o condiciones.</div>
+                <div class="border-t border-white/15 pt-5"><strong class="text-white">Accesibilidad:</strong> MINCETUR enumera rampas en la plaza. Esto no acredita una ruta continua desde tu alojamiento ni el estado actual de cada cruce; confirma lo que necesite tu grupo.</div>
               </div>
               <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn mt-8 bg-[#f6ead6] text-[#244433]">Ver ruta en Google Maps ↗</a>
             </article>
@@ -589,8 +517,8 @@ const jsonLdGraph = {
               <dl class="mt-7 grid gap-5 sm:grid-cols-2">
                 <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Plus code</dt><dd class="mt-2 font-bold">{plusCode}, {cityName}</dd></div>
                 <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Coordenadas</dt><dd class="mt-2 font-bold">{latitude.toFixed(5)}, {longitude.toFixed(5)}</dd></div>
-                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Acceso</dt><dd class="mt-2 font-bold">Espacio público · libre</dd></div>
-                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Movilidad</dt><dd class="mt-2 font-bold">A pie, taxi o transporte urbano</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Acceso</dt><dd class="mt-2 font-bold">Ingreso libre en ficha MINCETUR</dd></div>
+                <div class="border-t border-[#ccb69d] pt-5"><dt class="text-xs font-bold uppercase tracking-widest text-[#817363]">Movilidad</dt><dd class="mt-2 font-bold">Elige según tu origen y necesidades</dd></div>
               </dl>
             </article>
           </div>
@@ -601,36 +529,23 @@ const jsonLdGraph = {
         <div class="shell">
           <div class="grid gap-14 lg:grid-cols-2">
             <div>
-              <span class="eyebrow">Sabores cerca</span>
+              <span class="eyebrow">Planifica tu pausa</span>
               <h2 class="section-title">Comer algo cerca de la Plaza de Armas Piura</h2>
-              <div class="mt-10 space-y-3">
-                {foods.map((food) => (
-                  <article class="rounded-[1.4rem] border border-[#d5bfa5] bg-[#fff8ec]/70 p-6">
-                    <div class="flex flex-wrap items-start justify-between gap-4">
-                      <div>
-                        <h3 class="serif text-2xl">{food.name}</h3>
-                        <p class="mt-1 text-sm font-bold text-[#a85737]">{food.type}</p>
-                      </div>
-                      <span class="rounded-full bg-[#244433] px-3 py-1 text-xs font-bold text-white">{food.address}</span>
-                    </div>
-                    <p class="mt-4 leading-7 text-[#6e655b]">{food.text}</p>
-                  </article>
-                ))}
-              </div>
-              <p class="mt-4 text-xs leading-5 text-[#746b60]">Los horarios y cartas de negocios pueden cambiar. Confirma antes de desplazarte.</p>
+              <p class="section-copy mt-8">La ficha turística menciona servicios de alimentación en Piura sin identificar un restaurante actual junto a la plaza. Las opciones y sus condiciones se revisan en cada local, no se deducen del horario de este espacio público.</p>
+              <p class="section-copy mt-4">Para una pausa, revisa el local que encuentres abierto: precio visible, carta, ingredientes y condiciones que necesite tu grupo. Si tu visita cultural tiene una hora fija, organiza la comida fuera de esa reserva de tiempo.</p>
             </div>
 
             <div>
-              <span class="eyebrow">Circuito a pie</span>
+              <span class="eyebrow">Visitas separadas</span>
               <h2 class="section-title">Lugares y atractivos alrededor de la {attractionFullName}</h2>
-              <p class="section-lead">Cinco paradas para entender mejor {cityName}.</p>
+              <p class="section-lead">Tres opciones con fuentes propias; revisa cada acceso y horario.</p>
               <div class="mt-10 divide-y divide-[#c9ae8f] border-y border-[#c9ae8f]">
                 {nearby.map((place, i) => (
                   <article class="grid gap-4 py-6 sm:grid-cols-[56px_1fr]">
                     <span class="serif text-2xl text-[#b9633e]">0{i + 1}</span>
                     <div>
                       <div class="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 class="serif text-2xl">{place.name}</h3>
+                        <h3 class="serif text-2xl"><a href={place.url} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">{place.name}</a></h3>
                         <span class="text-xs font-black uppercase tracking-widest text-[#6e655b]">{place.distance}</span>
                       </div>
                       <p class="mt-2 leading-7 text-[#6e655b]">{place.text}</p>
@@ -649,13 +564,14 @@ const jsonLdGraph = {
             <div>
               <span class="eyebrow">Ubicación</span>
               <h2 class="section-title">Mapa y ubicación exacta de la {attractionShortName} en {cityName}, {countryName}</h2>
-              <p class="section-lead">En el centro, todo empieza aquí.</p>
+              <p class="section-lead">La ficha y el mapa identifican la misma plaza; elige tu origen real para la ruta.</p>
             </div>
             <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir mapa completo ↗</a>
           </div>
           <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
             <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title={`Mapa de ${attractionFullName} en Google Maps`}></iframe>
           </div>
+          <p class="mt-5 text-sm leading-7">Google Maps: <bdi dir="ltr">4,3 / 5 · 17.011 valoraciones</bdi>, observado el 26 de octubre de 2026. La lista mostraba 24 horas los siete días y advertencias de posibles diferencias por los feriados del 31 de octubre y 1 de noviembre. No es una valoración propia de este sitio ni garantiza acceso, seguridad o apertura de museos y comercios.</p>
           <div class="mt-8 grid gap-6 rounded-[2rem] border border-[#d8c4ad] bg-[#f5ead9] p-7 md:grid-cols-3 md:p-9">
             <div>
               <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Dirección</p>
@@ -700,8 +616,8 @@ const jsonLdGraph = {
             <div>
               <span class="eyebrow">Fuentes oficiales</span>
               <h2 class="section-title">Fuentes y verificación sobre la Plaza de Armas Piura</h2>
-              <p class="section-lead">Información validada con fuentes oficiales y referencias de {cityName}.</p>
-              <p class="mt-6 text-sm font-bold text-[#6e655b]">Última actualización: {new Date(dateModified).toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+              <p class="section-lead">Fuentes concretas y lo que cada una permite confirmar. La ficha turística no sustituye los avisos operativos actuales.</p>
+              <p class="mt-6 text-sm font-bold text-[#6e655b]">Última actualización: {new Date(dateModified + 'T12:00:00Z').toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</p>
             </div>
             <div>
               <ol class="sources-list">
@@ -715,7 +631,7 @@ const jsonLdGraph = {
                 ))}
               </ol>
               <p class="photo-credit">
-                <strong>Créditos de imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a las licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Consulta el <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">archivo original en Wikimedia Commons ↗</a>.
+                <strong>Créditos de imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a las licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Son imágenes históricas de 2017, 2019 y 2021, no una comprobación de las condiciones actuales. Se muestran redimensionadas y pueden recortarse en pantalla; consulta cada archivo enlazado y sus términos.
               </p>
             </div>
           </div>
@@ -731,6 +647,7 @@ const jsonLdGraph = {
           <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
         </div>
       </section>
+      <section id="privacidad" class="bg-[#fffaf1] py-20"><div class="shell max-w-3xl"><span class="eyebrow">Privacidad y uso</span><h2 class="section-title">Tu elección de analítica</h2><p class="section-copy mt-6">Este sitio conserva la elección de analítica en el almacenamiento local del navegador. Solo un permiso leído o guardado correctamente permite cargar Google Analytics. Al rechazar o retirar se desactiva la medición adicional de esta página antes de intentar guardar; si la escritura falla, se intenta retirar la clave y mantener un veto en la sesión de esta pestaña. El mensaje indica si no pudo confirmarse la persistencia y si una autorización de este intento o anterior puede seguir activa en otras pestañas o sesiones. No se puede recuperar lo ya enviado.</p><p class="section-copy mt-4">El iframe del mapa solicita contenido a Google, con independencia de la elección de Analytics. Google puede recibir datos de la solicitud según su propia política. Las fotos y los iconos se sirven desde este sitio, y los enlaces a fuentes o licencias llevan a otros proveedores. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Política de Google</a>.</p><p class="section-copy mt-4">Cloudflare aloja el sitio y puede mantener registros del servicio o incluir un beacon de rendimiento/RUM separado. El ajuste de Google Analytics no controla ese beacon; observar un script no acredita por sí solo una transmisión concreta. <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer" class="underline">Información del proveedor</a>. El modo PWA guarda páginas y recursos exitosos para uso sin conexión, por lo que puede conservar una versión anterior; vuelve a las fuentes actuales antes de viajar.</p><h3 class="serif mt-8 text-2xl">Alcance de esta guía</h3><p class="section-copy mt-4">Ofrecemos información educativa, sin representar al municipio, los museos ni los establecimientos. No vendemos entradas ni reservamos servicios. Los horarios y condiciones de cada lugar se consultan con su responsable. La finalidad sin fines de lucro no supone una declaración de registro como entidad benéfica. Las fotografías conservan las condiciones de sus autores y licencias enlazadas.</p><p class="section-copy mt-4">Revisión: 26 de octubre de 2026.</p></div></section>
     </main>
 
     <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">
@@ -738,7 +655,7 @@ const jsonLdGraph = {
         <div>
           <img src="/logo.svg" alt={attractionFullName} width="210" height="54" class="h-12 w-auto rounded bg-[#fffaf1] p-1" />
           <p class="mt-5 max-w-2xl text-sm leading-6 text-white/60">
-            Guía independiente para orientar una visita al centro histórico de {cityName}. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.
+            Guía turística educativa independiente, no oficial y sin fines de lucro para orientar una visita al centro histórico de {cityName}. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.
           </p>
           <address class="mt-4 not-italic text-sm leading-6 text-white/70">
             <strong class="text-white">{attractionFullName}</strong><br />
@@ -752,6 +669,7 @@ const jsonLdGraph = {
         </div>
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
           <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
+          <a href="#privacidad" class="underline decoration-white/30 underline-offset-4 hover:text-white">Privacidad y uso</a>
           <a href="#fuentes" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos y fuentes</a>
           <a href="#inicio" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver arriba ↑</a>
         </div>
@@ -762,59 +680,17 @@ const jsonLdGraph = {
       <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p class="text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Privacidad y medición</p>
-          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Usamos Google Analytics 4 solo si aceptas cookies de analítica. Las cookies esenciales no requieren consentimiento y no cargamos GA4 antes de tu elección.</p>
+          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Google Analytics puede cargarse inmediatamente después de guardar tu permiso. Rechazar o retirar detiene la medición adicional de esta página; no recupera información ya enviada. El mapa de Google funciona por separado. <a href="#privacidad" class="underline">Más información</a>.</p>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Solo esenciales</button>
+          <p id="consent-status" role="status" class="text-sm leading-6 basis-full"></p>
+          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Rechazar / retirar</button>
           <button id="accept-cookies" type="button" class="btn btn-primary text-sm">Aceptar analítica</button>
+          <button id="close-cookie-settings" type="button" class="btn border border-[#cab49a] text-sm">Cerrar</button>
         </div>
       </div>
     </aside>
 
-    <script>
-      const GA_ID = 'G-HXM22WWPKP';
-      const STORAGE_KEY = 'plaza-piura-cookie-consent';
-      const banner = document.getElementById('cookie-banner');
-      const acceptButton = document.getElementById('accept-cookies');
-      const rejectButton = document.getElementById('reject-cookies');
-      const settingsButton = document.getElementById('open-cookie-settings');
-
-      const loadAnalytics = () => {
-        const w = window as typeof window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void; __gaLoaded?: boolean };
-        if (w.__gaLoaded) return;
-        w.__gaLoaded = true;
-        w.dataLayer = w.dataLayer || [];
-        const gtag = (...args: unknown[]) => { w.dataLayer?.push(args); };
-        w.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', GA_ID, { anonymize_ip: true });
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-        document.head.appendChild(script);
-      };
-
-      const setChoice = (choice: 'analytics' | 'essential') => {
-        localStorage.setItem(STORAGE_KEY, choice);
-        banner?.classList.add('hidden');
-        if (choice === 'analytics') loadAnalytics();
-      };
-
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'analytics') loadAnalytics();
-      if (!saved) banner?.classList.remove('hidden');
-
-      acceptButton?.addEventListener('click', () => setChoice('analytics'));
-      rejectButton?.addEventListener('click', () => setChoice('essential'));
-      settingsButton?.addEventListener('click', () => banner?.classList.remove('hidden'));
-    </script>
-
-    <script is:inline>
-      if ('serviceWorker' in navigator && location.protocol === 'https:') {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js').catch(function () {});
-        });
-      }
-    </script>
+    <script is:inline src="/analytics.js" defer></script>
   </body>
 </html>

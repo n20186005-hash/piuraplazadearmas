@@ -89,15 +89,13 @@ const requiredH2 = [/Sobre la Plaza de Armas Piura/i, /Historia e importancia/i,
 for (const pattern of requiredH2) {
   if (!h2s.some((value) => pattern.test(value))) fail(`Falta el H2 obligatorio que coincide con ${pattern}.`);
 }
-for (const value of h2s) {
-  if (!/Plaza de Armas/i.test(value)) fail(`El H2 "${value}" no contiene la entidad "Plaza de Armas".`);
-}
+if (new Set(h2s).size !== h2s.length) fail('Hay encabezados H2 repetidos.');
 
 /* ---------- 4. Vinculación semántica de la entidad ---------- */
 for (const needle of ['Plaza de Armas Piura', 'Plaza de Armas de Piura', 'Piura Plaza de Armas', 'R93F+58', 'Ayacucho']) {
   if (!html.includes(needle)) fail(`Falta la cadena de entidad "${needle}" en el HTML.`);
 }
-if (!/Catedral de San Miguel Arcángel/.test(html)) fail('No se menciona el punto de interés 1 (Catedral).');
+if (!/Catedral de Piura/.test(html)) fail('No se menciona el punto de interés 1 (Catedral).');
 if (!/MUCEN Piura/.test(html)) fail('No se menciona el punto de interés 2 (MUCEN Piura).');
 
 /* ---------- 5. Imágenes ---------- */
@@ -128,7 +126,7 @@ const byType = (type) => graph.find((node) => [].concat(node['@type']).includes(
 const attraction = byType('TouristAttraction');
 if (!attraction) fail('Falta el nodo TouristAttraction.');
 else {
-  const required = ['@id', 'name', 'alternateName', 'description', 'url', 'image', 'isAccessibleForFree', 'address', 'geo', 'hasMap', 'sameAs', 'openingHoursSpecification'];
+  const required = ['@id', 'name', 'alternateName', 'description', 'url', 'image', 'address', 'geo', 'hasMap', 'sameAs'];
   for (const key of required) {
     if (!(key in attraction)) fail(`TouristAttraction sin la propiedad "${key}".`);
   }
@@ -144,7 +142,10 @@ else {
   if (!attraction.sameAs.some((url) => url.includes('.gob.pe'))) fail('sameAs sin dominio oficial .gob.pe.');
   if (!attraction.mainEntityOfPage || attraction.mainEntityOfPage['@id'] !== `${SITE}/#webpage`) fail('TouristAttraction sin mainEntityOfPage hacia #webpage.');
   if (![].concat(attraction.additionalProperty || []).some((prop) => prop.name === 'Categoría')) fail('TouristAttraction sin la categoría verificada.');
-  if (attraction.aggregateRating.ratingValue !== 4.3 || attraction.aggregateRating.ratingCount !== 16990) fail('aggregateRating no coincide con 4,3 / 16.990.');
+  for (const field of ['aggregateRating', 'openingHoursSpecification', 'isAccessibleForFree']) {
+    if (field in attraction) fail(`Alcance no atribuido en schema: ${field}`);
+  }
+  if (attraction.sameAs.some(url => /mucen|peru\.travel|gob\.pe\/munipiura/.test(url))) fail('sameAs mezcla otro museo o un portal con la plaza.');
 }
 for (const type of ['Organization', 'WebSite', 'WebPage', 'BreadcrumbList', 'FAQPage']) {
   if (!byType(type)) fail(`Falta el nodo ${type} en el grafo JSON-LD.`);
@@ -167,7 +168,7 @@ if (!iframe) fail('Falta el iframe del mapa.');
 if (!iframe.includes('loading="lazy"')) fail('El iframe del mapa no usa loading="lazy"');
 if (!iframe.includes('referrerpolicy="strict-origin-when-cross-origin"')) fail('El iframe del mapa no aplica referrerpolicy estricta.');
 if (!iframe.includes('title="')) fail('El iframe del mapa no tiene título accesible.');
-if (!iframe.includes('-5.197099794758691')) fail('El iframe no usa las coordenadas del embed indicado.');
+if (!iframe.includes('0x904a107ddd0efae7') || !iframe.includes('0xaeb976088d0ea599') || !iframe.includes('!2d-80.62668!3d-5.1970998')) fail('El iframe no identifica el lugar y punto comprobados.');
 const external = [...html.matchAll(/<a [^>]*href="(https?:[^"]+)"[^>]*>/g)]
   .map((m) => m[0])
   .filter((anchor) => !anchor.includes(`href="${SITE}`));
@@ -197,17 +198,24 @@ else {
   for (const event of ['install', 'activate', 'fetch']) {
     if (!sw.includes(`addEventListener('${event}'`)) fail(`El service worker no escucha "${event}".`);
   }
-  if (!sw.includes("caches.match(OFFLINE_URL)")) fail('El service worker no tiene respaldo offline.');
+  if (!sw.includes('caches.match(request)') || !sw.includes('status:503')) fail('El respaldo offline no distingue URL guardada de página desconocida.');
+  if (sw.includes('OFFLINE_URL')) fail('El service worker conserva el falso inicio para una URL desconocida.');
 }
 if (!html.includes('site.webmanifest')) fail('El HTML no enlaza el manifest.');
-if (!html.includes('navigator.serviceWorker.register')) fail('El HTML no registra el service worker.');
+if (!html.includes('src="/analytics.js"')) fail('Falta el inicializador local de ajustes/PWA.');
 if (!html.includes('apple-touch-icon')) fail('Faltan metadatos de icono para iOS.');
 
 /* ---------- 9. Privacidad / GA4 ---------- */
-if (!html.includes('G-HXM22WWPKP')) fail('Falta el identificador GA4 G-HXM22WWPKP.');
+const analyticsPath = join(dist, 'analytics.js');
+const analytics = existsSync(analyticsPath) ? readFileSync(analyticsPath, 'utf8') : '';
+if (!analytics.includes('G-HXM22WWPKP')) fail('Falta el identificador original GA4 en el inicializador.');
 if (/<script[^>]+googletagmanager\.com/.test(html)) fail('GA4 se carga de forma estática antes del consentimiento.');
-if (!html.includes('anonymize_ip')) fail('GA4 no anonimiza la IP.');
-if (!html.includes('localStorage')) fail('No hay control de consentimiento en el cliente.');
+if (!analytics.includes('anonymize_ip')) fail('Falta la configuración original de GA4.');
+if (!analytics.includes('localStorage') || !analytics.includes('ga-disable-')) fail('Falta la persistencia o desactivación del control existente.');
+if (!html.includes('id="consent-status"') || !html.includes('id="privacidad"')) fail('Falta información de privacidad o respuesta visible del control.');
+const errorHTML = existsSync(join(dist, '404.html')) ? readFileSync(join(dist, '404.html'), 'utf8') : '';
+if (!errorHTML.includes('noindex') || !errorHTML.includes('Página no encontrada')) fail('Falta el error localizado noindex.');
+if (/<link rel="canonical"/.test(errorHTML)) fail('El error no debe canonicalizar al inicio.');
 
 /* ---------- 10. Sitemap ---------- */
 const sitemapFiles = files.filter((file) => /sitemap.*\.xml$/i.test(file));
@@ -227,7 +235,8 @@ for (const needle of ['Alegoría a la Libertad', 'tamarindos', 'R.M. N.º 303-19
 }
 if (!html.includes('pertenecen a sus respectivos fotógrafos originales')) fail('Falta la nota de propiedad de las imágenes.');
 if (!/derechos de autor \(copyright\)/.test(html)) fail('La nota de imágenes no declara los derechos de autor (copyright).');
-if (!/Parque urbano \(city park\)/.test(html)) fail('No se muestra la categoría verificada "Parque urbano (city park)".');
+if (!html.includes('Plaza urbana')) fail('Falta la categoría del inventario.');
+if (!html.includes('17.011') || !html.includes('26 de octubre de 2026')) fail('Falta atribución visible de la lista consultada.');
 
 /* ---------- Resultado ---------- */
 if (notes.length) notes.forEach((note) => console.log(`Nota: ${note}`));

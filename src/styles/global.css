@@ -254,3 +254,12 @@ section[id] { scroll-margin-top: 5rem; }
   .section-title { max-width: 22ch; }
   .h1-city { margin-top: .6em; }
 }
+
+/* Long source links and factual cards must shrink inside mobile columns. */
+.shell, .card, .sources-list, .sources-list li, .map-frame, article, dl, dd { min-width:0; }
+.sources-list a, dd { overflow-wrap:anywhere; }
+.map-frame iframe { display:block; width:100%; max-width:100%; }
+.cookie-banner { max-height:calc(100svh - 2rem); overflow-y:auto; }
+:focus-visible { outline:3px solid #b9633e; outline-offset:4px; }
+
+@media(max-width:600px) { body > header > .shell { height:auto; min-height:5rem; flex-wrap:wrap; gap:.5rem; padding-block:.75rem; } body > header > .shell > a { max-width:100%; } }

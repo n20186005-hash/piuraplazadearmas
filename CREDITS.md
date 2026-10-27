@@ -28,3 +28,5 @@ El sitio usa cuatro fotografías reales de Wikimedia Commons, servidas localment
 
 - `public/logo.svg`, `public/favicon.svg`, `public/favicon-16.png`, `public/favicon-32.png`, `public/apple-touch-icon.png`
 - `public/icons/icon.svg`, `public/icons/icon-192.png`, `public/icons/icon-512.png`, `public/icons/icon-512-maskable.png` (generados por `scripts/make-pwa-icons.mjs`, sin dependencias externas)
+
+Revisión: 26 de octubre de 2026: fotos históricas de 2019-02-04 (hero/catedral),2017-01-24 (vista) y 2021-10-24 (monumento). Los JPEG locales son derivados redimensionados salvo el monumento (780×1040); se conservan sus bytes. El recorte de visualización no es prueba de condiciones actuales.
