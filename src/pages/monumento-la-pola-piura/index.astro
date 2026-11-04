@@ -38,6 +38,39 @@ const lectura = [
   },
 ];
 
+const visitPlan = [
+  {
+    label: 'Horario',
+    value: 'Espacio abierto',
+    detail: 'El monumento está en el centro de la plaza, así que depende del acceso general al espacio público, no de una taquilla propia.',
+  },
+  {
+    label: 'Entrada',
+    value: 'Sin boleto',
+    detail: 'No hay una visita cerrada ni un control específico para ver la pieza; se recorre como parte de la plaza.',
+  },
+  {
+    label: 'Acceso',
+    value: 'Centro de la plaza',
+    detail: 'Es el eje del conjunto, así que se ve al pasar por cualquiera de los paseos interiores.',
+  },
+];
+
+const routeSteps = [
+  {
+    title: 'Léela primero desde lejos',
+    text: 'Desde un borde de la plaza se entiende mejor cómo organiza el espacio y por qué funciona como centro visual del conjunto.',
+  },
+  {
+    title: 'Acércate para los detalles',
+    text: 'Una vez en el centro, mira el material, la postura y la relación entre la figura y el pedestal.',
+  },
+  {
+    title: 'Completa el contexto histórico',
+    text: 'Después, enlaza la observación física del mármol con la historia del nombre y con la historia general de la plaza.',
+  },
+];
+
 const faqs = [
   {
     q: '¿«La Pola» es una persona retratada en la plaza?',
@@ -216,6 +249,50 @@ const crumbs = [
           <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">La procedencia del mármol:</strong> la mención a Carrara es divulgativa, no está verificada.</li>
           <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">Inscripciones o placas:</strong> esta guía no ha verificado qué leyenda, si alguna, acompaña hoy al monumento.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Planifica la visita</span>
+      <h2 class="section-title">Cómo verla, fotografiarla y encajarla en el paseo</h2>
+      <p class="section-lead">Una capa práctica para leer el monumento como hito físico y no solo como dato histórico.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {visitPlan.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{item.label}</p>
+            <h3 class="serif mt-3 text-2xl">{item.value}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-12 grid gap-10 lg:grid-cols-[1.05fr_.95fr]">
+        <div>
+          <h3 class="serif text-2xl text-[#1d2a24]">Ruta sugerida</h3>
+          <div class="mt-6 grid gap-4">
+            {routeSteps.map((step, index) => (
+              <article class="card rounded-[1.6rem] p-6">
+                <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso {index + 1}</p>
+                <h4 class="serif mt-2 text-xl">{step.title}</h4>
+                <p class="mt-3 leading-7 text-[#6e655b]">{step.text}</p>
+              </article>
+            ))}
+          </div>
+          <h3 class="serif mt-10 text-2xl text-[#1d2a24]">Antes de ir</h3>
+          <ul class="mt-4 space-y-3 text-base leading-7 text-[#6e655b]">
+            <li>No apoyes objetos sobre el pedestal ni invadas los jardines para acercarte más a la pieza.</li>
+            <li>Si buscas información de autor o fecha exacta, recuerda que la propia documentación conserva discrepancias.</li>
+            <li>Para una lectura completa, combina este monumento con la historia del nombre de La Pola y de la plaza.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="serif text-2xl text-[#1d2a24]">Foto, descanso y acceso</h3>
+          <p class="section-copy mt-6">La mejor foto general suele salir desde uno de los lados de la plaza, para captar la figura y el arbolado. Si quieres detalle de mármol y gesto, acércate con luz lateral.</p>
+          <p class="section-copy mt-4">Si haces base en el centro, revisa la guía de <a href="/hoteles-cerca-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">hoteles cerca de la Plaza de Armas Piura</a> y decide por distancia real, no por promesas sin verificar.</p>
+          <p class="section-copy mt-4">Lo que más suele atraer aquí es el cruce entre símbolo cívico, material antiguo y posición central dentro de la plaza: se entiende rápido, pero pide contexto para apreciarse bien.</p>
+          <p class="section-copy mt-4"><strong class="text-[#1d2a24]">Dirección y mapa:</strong> centro de la Plaza de Armas de Piura. <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline">Abrir ubicación</a>.</p>
+        </div>
       </div>
     </div>
   </section>

@@ -38,6 +38,39 @@ const interior = [
   },
 ];
 
+const visitPlan = [
+  {
+    label: 'Horario',
+    value: '6:00 a 21:00 · por confirmar',
+    detail: 'Es la franja registrada en la ficha; conviene confirmarla con la propia iglesia antes de ir.',
+  },
+  {
+    label: 'Entrada',
+    value: 'Ingreso gratuito',
+    detail: 'No hemos verificado si existe alguna restricción puntual de acceso o de fotografía interior.',
+  },
+  {
+    label: 'Acceso',
+    value: 'Frente a la plaza',
+    detail: 'La ficha registra unos 20 m y 2 minutos a pie desde el espacio central de la plaza.',
+  },
+];
+
+const routeSteps = [
+  {
+    title: 'Empieza desde la Plaza de Armas',
+    text: 'Lee primero la fachada desde el borde de la plaza para entender la relación entre el templo y el espacio cívico.',
+  },
+  {
+    title: 'Entra solo si el templo está abierto',
+    text: 'Si no hay ceremonia en curso, entra con discreción para mirar el altar mayor y el retablo de la Virgen de Fátima.',
+  },
+  {
+    title: 'Sigue el recorrido religioso del centro',
+    text: 'Tras la catedral, enlaza la visita con la iglesia San Francisco o con la Casa Museo Miguel Grau, que quedan dentro del mismo casco central.',
+  },
+];
+
 const faqs = [
   {
     q: '¿La catedral está frente a la Plaza de Armas de Piura?',
@@ -207,6 +240,50 @@ const crumbs = [
       <p class="mt-8 text-base">
         Esta guía no publica horarios de misa ni de apertura porque no los ha verificado: consúltalos en la propia parroquia. La misma pauta vale para <a href="/iglesia-san-francisco-piura/" class="font-bold text-[#b9633e] underline">la iglesia San Francisco de Piura</a> y para los demás templos del <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
       </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Planifica la visita</span>
+      <h2 class="section-title">Horario, acceso, recorrido y consejos prácticos</h2>
+      <p class="section-lead">Una lectura de visita inspirada en la plantilla de referencia, sin reemplazar la información histórica de esta página.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {visitPlan.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{item.label}</p>
+            <h3 class="serif mt-3 text-2xl">{item.value}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-12 grid gap-10 lg:grid-cols-[1.05fr_.95fr]">
+        <div>
+          <h3 class="serif text-2xl text-[#1d2a24]">Ruta sugerida</h3>
+          <div class="mt-6 grid gap-4">
+            {routeSteps.map((step, index) => (
+              <article class="card rounded-[1.6rem] p-6">
+                <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso {index + 1}</p>
+                <h4 class="serif mt-2 text-xl">{step.title}</h4>
+                <p class="mt-3 leading-7 text-[#6e655b]">{step.text}</p>
+              </article>
+            ))}
+          </div>
+          <h3 class="serif mt-10 text-2xl text-[#1d2a24]">Antes de ir</h3>
+          <ul class="mt-4 space-y-3 text-base leading-7 text-[#6e655b]">
+            <li>Confirma si el templo está abierto y si coincide con una misa o celebración especial.</li>
+            <li>Pregunta antes de fotografiar el interior; la ficha sugiere coordinar las tomas con la sacristía.</li>
+            <li>Vístete con discreción y entra en silencio: sigue siendo la iglesia matriz de la ciudad.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="serif text-2xl text-[#1d2a24]">Foto, descanso y acceso</h3>
+          <p class="section-copy mt-6">La vista más clara del templo se obtiene desde la plaza, con la fachada completa en el encuadre. Para detalles del interior, la luz y el permiso mandan más que la cámara.</p>
+          <p class="section-copy mt-4">Si quieres dormir cerca del recorrido, no improvises con nombres sin verificar: usa la guía de <a href="/hoteles-cerca-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">hoteles cerca de la Plaza de Armas Piura</a> y elige por distancia real a pie.</p>
+          <p class="section-copy mt-4">Lo que más suele valorar quien entra aquí no es una experiencia larga, sino la combinación entre fachada, altar mayor y peso histórico del edificio dentro del centro.</p>
+          <p class="section-copy mt-4"><strong class="text-[#1d2a24]">Dirección y mapa:</strong> Huancavelica N.º 362, frente a la plaza. <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline">Abrir ubicación</a>.</p>
+        </div>
+      </div>
     </div>
   </section>
 

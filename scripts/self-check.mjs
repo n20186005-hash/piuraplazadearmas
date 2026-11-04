@@ -202,17 +202,21 @@ else {
   if (sw.includes('OFFLINE_URL')) fail('El service worker conserva el falso inicio para una URL desconocida.');
 }
 if (!html.includes('site.webmanifest')) fail('El HTML no enlaza el manifest.');
-if (!html.includes('src="/analytics.js"')) fail('Falta el inicializador local de ajustes/PWA.');
 if (!html.includes('apple-touch-icon')) fail('Faltan metadatos de icono para iOS.');
 
-/* ---------- 9. Privacidad / GA4 ---------- */
+/* ---------- 9. Privacidad / scripts locales ---------- */
 const analyticsPath = join(dist, 'analytics.js');
 const analytics = existsSync(analyticsPath) ? readFileSync(analyticsPath, 'utf8') : '';
-if (!analytics.includes('G-HXM22WWPKP')) fail('Falta el identificador original GA4 en el inicializador.');
 if (/<script[^>]+googletagmanager\.com/.test(html)) fail('GA4 se carga de forma estática antes del consentimiento.');
-if (!analytics.includes('anonymize_ip')) fail('Falta la configuración original de GA4.');
-if (!analytics.includes('localStorage') || !analytics.includes('ga-disable-')) fail('Falta la persistencia o desactivación del control existente.');
-if (!html.includes('id="consent-status"') || !html.includes('id="privacidad"')) fail('Falta información de privacidad o respuesta visible del control.');
+if (!existsSync(analyticsPath)) fail('Falta el script local de inicialización.');
+if (!analytics.includes('serviceWorker.register')) fail('El script local ya no registra el service worker.');
+if (/googletagmanager|gtag\(|G-HXM22WWPKP|ga-disable-|localStorage|cookie-banner|consent-status/.test(analytics)) {
+  fail('El script local aún conserva lógica de analítica o del banner.');
+}
+if (html.includes('id="cookie-banner"') || html.includes('id="accept-cookies"') || html.includes('id="reject-cookies"') || html.includes('id="open-cookie-settings"')) {
+  fail('La página principal aún conserva el popup de cookies/analítica.');
+}
+if (!html.includes('id="privacidad"')) fail('Falta la sección de privacidad y uso.');
 const errorHTML = existsSync(join(dist, '404.html')) ? readFileSync(join(dist, '404.html'), 'utf8') : '';
 if (!errorHTML.includes('noindex') || !errorHTML.includes('Página no encontrada')) fail('Falta el error localizado noindex.');
 if (/<link rel="canonical"/.test(errorHTML)) fail('El error no debe canonicalizar al inicio.');

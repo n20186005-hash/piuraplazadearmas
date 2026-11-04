@@ -742,7 +742,7 @@ const jsonLdGraph = {
           <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
         </div>
       </section>
-      <section id="privacidad" class="bg-[#fffaf1] py-20"><div class="shell max-w-3xl"><span class="eyebrow">Privacidad y uso</span><h2 class="section-title">Tu elección de analítica</h2><p class="section-copy mt-6">Este sitio conserva la elección de analítica en el almacenamiento local del navegador. Solo un permiso leído o guardado correctamente permite cargar Google Analytics. Al rechazar o retirar se desactiva la medición adicional de esta página antes de intentar guardar; si la escritura falla, se intenta retirar la clave y mantener un veto en la sesión de esta pestaña. El mensaje indica si no pudo confirmarse la persistencia y si una autorización de este intento o anterior puede seguir activa en otras pestañas o sesiones. No se puede recuperar lo ya enviado.</p><p class="section-copy mt-4">El iframe del mapa solicita contenido a Google, con independencia de la elección de Analytics. Google puede recibir datos de la solicitud según su propia política. Las fotos y los iconos se sirven desde este sitio, y los enlaces a fuentes o licencias llevan a otros proveedores. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Política de Google</a>.</p><p class="section-copy mt-4">Cloudflare aloja el sitio y puede mantener registros del servicio o incluir un beacon de rendimiento/RUM separado. El ajuste de Google Analytics no controla ese beacon; observar un script no acredita por sí solo una transmisión concreta. <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer" class="underline">Información del proveedor</a>. El modo PWA guarda páginas y recursos exitosos para uso sin conexión, por lo que puede conservar una versión anterior; vuelve a las fuentes actuales antes de viajar.</p><h3 class="serif mt-8 text-2xl">Alcance de esta guía</h3><p class="section-copy mt-4">Ofrecemos información educativa, sin representar al municipio, los museos ni los establecimientos. No vendemos entradas ni reservamos servicios. Los horarios y condiciones de cada lugar se consultan con su responsable. La finalidad sin fines de lucro no supone una declaración de registro como entidad benéfica. Las fotografías conservan las condiciones de sus autores y licencias enlazadas.</p><p class="section-copy mt-4">Revisión: 4 de noviembre de 2026.</p></div></section>
+      <section id="privacidad" class="bg-[#fffaf1] py-20"><div class="shell max-w-3xl"><span class="eyebrow">Privacidad y uso</span><h2 class="section-title">Cómo tratamos la privacidad en esta guía</h2><p class="section-copy mt-6">Este sitio ya no muestra una ventana emergente de cookies o analítica para navegar por la guía. El contenido principal, las fotos y la estructura informativa funcionan sin ese cuadro y sin depender de una acción del usuario para cerrarlo.</p><p class="section-copy mt-4">El iframe del mapa solicita contenido a Google de forma independiente. Google puede recibir datos técnicos de la solicitud según su propia política. Las fotos y los iconos se sirven desde este sitio, y los enlaces a fuentes o licencias llevan a otros proveedores. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Política de Google</a>.</p><p class="section-copy mt-4">Cloudflare aloja el sitio y puede mantener registros del servicio o incluir un beacon de rendimiento/RUM separado. El modo PWA guarda páginas y recursos exitosos para uso sin conexión, por lo que puede conservar una versión anterior; vuelve a las fuentes actuales antes de viajar. <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer" class="underline">Información del proveedor</a>.</p><h3 class="serif mt-8 text-2xl">Alcance de esta guía</h3><p class="section-copy mt-4">Ofrecemos información educativa, sin representar al municipio, los museos ni los establecimientos. No vendemos entradas ni reservamos servicios. Los horarios y condiciones de cada lugar se consultan con su responsable. La finalidad sin fines de lucro no supone una declaración de registro como entidad benéfica. Las fotografías conservan las condiciones de sus autores y licencias enlazadas.</p><p class="section-copy mt-4">Revisión: 4 de noviembre de 2026.</p></div></section>
     </main>
 
     <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">
@@ -763,29 +763,12 @@ const jsonLdGraph = {
           </p>
         </div>
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
-          <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
           <a href="#privacidad" class="underline decoration-white/30 underline-offset-4 hover:text-white">Privacidad y uso</a>
           <a href="#fuentes" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos y fuentes</a>
           <a href="#inicio" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver arriba ↑</a>
         </div>
       </div>
     </footer>
-
-    <aside id="cookie-banner" aria-live="polite" class="cookie-banner fixed bottom-4 left-1/2 z-50 hidden w-[min(720px,calc(100%_-_1rem))] -translate-x-1/2 rounded-[1.5rem] border border-[#d8c4ad] bg-[#fffaf1] p-6">
-      <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <p class="text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Privacidad y medición</p>
-          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Google Analytics puede cargarse inmediatamente después de guardar tu permiso. Rechazar o retirar detiene la medición adicional de esta página; no recupera información ya enviada. El mapa de Google funciona por separado. <a href="#privacidad" class="underline">Más información</a>.</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <p id="consent-status" role="status" class="text-sm leading-6 basis-full"></p>
-          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Rechazar / retirar</button>
-          <button id="accept-cookies" type="button" class="btn btn-primary text-sm">Aceptar analítica</button>
-          <button id="close-cookie-settings" type="button" class="btn border border-[#cab49a] text-sm">Cerrar</button>
-        </div>
-      </div>
-    </aside>
-
     <script is:inline src="/analytics.js" defer></script>
   </body>
 </html>

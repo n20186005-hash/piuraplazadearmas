@@ -235,29 +235,12 @@ const navItems = [
           </p>
         </div>
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
-          <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
           <a href="/#privacidad" class="underline decoration-white/30 underline-offset-4 hover:text-white">Privacidad y uso</a>
           <a href="/#fuentes" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos y fuentes</a>
           <a href="/" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver al inicio ↑</a>
         </div>
       </div>
     </footer>
-
-    <aside id="cookie-banner" aria-live="polite" class="cookie-banner fixed bottom-4 left-1/2 z-50 hidden w-[min(720px,calc(100%_-_1rem))] -translate-x-1/2 rounded-[1.5rem] border border-[#d8c4ad] bg-[#fffaf1] p-6">
-      <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <p class="text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Privacidad y medición</p>
-          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Google Analytics puede cargarse inmediatamente después de guardar tu permiso. Rechazar o retirar detiene la medición adicional de esta página; no recupera información ya enviada. <a href="/#privacidad" class="underline">Más información</a>.</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <p id="consent-status" role="status" class="text-sm leading-6 basis-full"></p>
-          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Rechazar / retirar</button>
-          <button id="accept-cookies" type="button" class="btn btn-primary text-sm">Aceptar analítica</button>
-          <button id="close-cookie-settings" type="button" class="btn border border-[#cab49a] text-sm">Cerrar</button>
-        </div>
-      </div>
-    </aside>
-
     <script is:inline src="/analytics.js" defer></script>
   </body>
 </html>
