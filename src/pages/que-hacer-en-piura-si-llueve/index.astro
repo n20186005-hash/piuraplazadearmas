@@ -1,0 +1,219 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Qué hacer en Piura si llueve: plan desde la Plaza de Armas Piura';
+const description = `Qué hacer en ${cityName} si llueve: criterios para un plan cubierto desde la ${attractionShortName}, qué no está verificado y cómo influye el clima de la ciudad.`;
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Busca cobertura cerca, no un plan perfecto',
+    text: 'Con lluvia, lo primero es acortar la distancia al punto cubierto más cercano. Un local a media cuadra vale más que uno ideal a diez, porque el tramo expuesto es el problema.',
+  },
+  {
+    title: 'Confirma por teléfono o en la puerta',
+    text: `No publicamos qué locales del centro abren o cierran con lluvia porque no lo hemos verificado. La forma fiable de saberlo es preguntar al establecimiento el mismo día, o acercarte y comprobar.`,
+  },
+  {
+    title: 'Prioriza actividades interiores',
+    text: 'La lluvia afecta sobre todo al espacio público. Los museos y templos con interior son candidatos naturales, pero tienen horarios propios: úsalos solo después de confirmar que están abiertos.',
+  },
+  {
+    title: 'Prepárate para cambiar de plan en el mismo día',
+    text: `En ${cityName} el clima puede dar sorpresas, sobre todo en ciertas épocas del año. Ten dos opciones pensadas por adelantado: una al aire libre y otra cubierta, en lugar de improvisar bajo el agua.`,
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Llueve mucho en Piura?',
+    a: `Piura es una ciudad costera habitualmente seca, pero su patrón climático incluye una temporada de lluvias y episodios intensos asociados a El Niño. Según las caracterizaciones climáticas de la región, las lluvias intensas se concentran entre diciembre y mayo. Consulta a SENAMHI para el día concreto.`,
+  },
+  {
+    q: '¿Qué hago en Piura si llueve y quiero visitar la plaza?',
+    a: 'La plaza es un espacio abierto: con lluvia pierde buena parte de su atractivo. Lo práctico es reducirla a una pasada corta si escampa y centrar el día en actividades interiores confirmadas.',
+  },
+  {
+    q: '¿Esta guía sabe qué locales abren con lluvia?',
+    a: 'No. No hemos verificado qué locales o recintos permanecen abiertos los días de lluvia. Por eso damos un criterio para improvisar en lugar de una lista que podría estar equivocada.',
+  },
+  {
+    q: '¿Cuál es el mejor criterio para improvisar?',
+    a: 'Minimizar el tramo expuesto, confirmar la apertura con el propio establecimiento y elegir una actividad que no dependa del exterior. Si una opción no se puede confirmar, ten otra a mano.',
+  },
+  {
+    q: '¿La lluvia es frecuente en verano?',
+    a: 'En el norte peruano el verano puede coincidir con episodios de lluvia, más intensos en años de El Niño. No es un valor fijo: revisa el pronóstico y prepara la alternativa cubierta.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/que-hacer-en-piura-si-llueve/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Si llueve' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Plan de lluvia"
+  h1={`Qué hacer en ${cityName} si llueve`}
+  lead="La plaza es un espacio abierto y con lluvia deja de ser cómoda. Aquí no hay una lista de locales «a prueba de lluvia»: hay un criterio para cambiar el plan sin depender de datos que no hemos verificado."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Vista de la ${attractionShortName} y su entorno en el centro de ${cityName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Contexto</span>
+      <h2 class="section-title">El clima de Piura no es el de una ciudad húmeda</h2>
+      <p class="section-copy mt-6">
+        {cityName} es una ciudad costera habitualmente seca y cálida, no una ciudad de lluvias constantes. Pero su patrón climático sí incluye una <strong>temporada de lluvias</strong> y episodios intensos ligados a El Niño. Las caracterizaciones climáticas de la región sitúan las lluvias intensas entre diciembre y mayo, y SENAMHI ha documentado episodios excepcionales en la costa norte.
+      </p>
+      <p class="section-copy mt-4">
+        La conclusión práctica es doble: un día de lluvia no es lo habitual, pero cuando llega puede alterar por completo la visita a un espacio abierto como la {attractionShortName}. Conviene tener preparada una alternativa cubierta antes de salir, no improvisarla cuando ya está cayendo agua.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo improvisar un plan cubierto</h2>
+      <p class="section-lead">No es una lista de lugares: es la lógica para elegir bien con poca información.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Lo que no está verificado</span>
+      <h2 class="section-title">Sin promesas sobre locales abiertos</h2>
+      <p class="section-copy mt-6">
+        Sería fácil publicar una lista de cafeterías, museos o locales «ideales para un día de lluvia». No lo hacemos porque no hemos verificado cuáles permanecen abiertos con mal tiempo, ni con qué horario. Un dato así cambia con frecuencia y engaña más que ayuda.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí puedes usar: nuestra guía de <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías del centro</a> y la de <a href="/restaurantes-cerca-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">restaurantes cerca de la plaza</a> sirven para identificar zonas, no para confirmar apertura. Confirma siempre el mismo día.
+      </p>
+      <p class="section-copy mt-4">
+        Si el plan de lluvia te deja con tiempo, aprovecha para la guía de <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a> y decide qué recinto interior quieres confirmar. Y si estás en época de calor, revisa también <a href="/visitar-piura-en-verano/" class="font-bold text-[#b9633e] underline">visitar Piura en verano</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir el mapa del centro ↗</a>
+        <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Niveles</span>
+      <h2 class="section-title">Plan A / B / C según la intensidad de la lluvia</h2>
+      <p class="section-lead">Tres respuestas graduadas. Todas dependen de confirmar la apertura el mismo día, porque esta guía no verifica qué abre con mal tiempo.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        <article class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Plan A · Llovizna</p>
+          <h3 class="serif mt-3 text-2xl">Aguantar y acortar</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Con lluvia ligera, reduce la plaza a una pasada corta y busca cobertura a media cuadra. Confirma en la puerta si el recinto en el que querías entrar está abierto.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Plan B · Lluvia moderada</p>
+          <h3 class="serif mt-3 text-2xl">Cambiar a cubierto</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Deja la plaza para otro día y prioriza un interior confirmado por teléfono. Reducir la distancia expuesta importa más que elegir el lugar «ideal».</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Plan C · Lluvia intensa</p>
+          <h3 class="serif mt-3 text-2xl">Suspender el paseo</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Con lluvia fuerte, el espacio público deja de ser viable. Reorganiza el día en interiores y, si el desplazamiento no es seguro, pospón la visita.</p>
+        </article>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        En los tres casos hay algo que <strong>debes confirmar en el sitio o por teléfono</strong>: si el local está abierto, con qué horario y si el tramo hasta él es transitable. Esta guía no publica esa lista porque cambia cada día. Para orientar la búsqueda de la zona, parte de la guía de <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías del centro</a> y del <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la lluvia</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">SENAMHI — avisos y pronóstico para Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente oficial sobre temporada de lluvias y episodios excepcionales en la costa norte; base del patrón climático descrito.</p>
+        <a href="https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003" target="_blank" rel="noopener noreferrer">https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Gobierno Regional Piura — Caracterización climática de la región</p>
+        <p class="text-sm text-[#6e655b]">Documento regional que sitúa las lluvias intensas entre diciembre y mayo y las asocia a El Niño.</p>
+        <a href="https://siar.regionpiura.gob.pe/documentos/repositorio/2585.pdf" target="_blank" rel="noopener noreferrer">https://siar.regionpiura.gob.pe/documentos/repositorio/2585.pdf</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Confirma que la plaza es un espacio público de acceso libre, sin cubierta, por lo que la lluvia afecta directamente a la visita.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,256 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3153';
+
+const title = 'Iglesia San Francisco de Piura, cerca de la Plaza de Armas Piura';
+const description = 'La iglesia San Francisco de Piura, a pocos metros de la Plaza de Armas: su origen franciscano, el grito de libertad de 1821, su declaratoria y qué mirar al visitarla.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Origen', value: 'Siglos XVII-XVIII, construida por los franciscanos' },
+  { label: 'Calle original', value: 'Antigua calle Florida, hoy jirón Lima' },
+  { label: 'Hecho histórico', value: 'Escenario del grito de libertad del 4 de enero de 1821' },
+  { label: 'Declaratoria', value: 'Monumento Histórico Nacional · Decreto Ley N.º 17673 (27-05-1969)' },
+  { label: 'Campana', value: 'Torre única con campana de bronce de unos 200 años, inscrita «San Francisco»' },
+  { label: 'Distancia desde la plaza', value: 'Unos 300 m · 3 min a pie o 2 min en auto (ficha 3153)' },
+  { label: 'Restauración', value: 'Restaurada en 2004' },
+];
+
+const mirar = [
+  {
+    title: 'La torre y la campana',
+    text: 'El templo tiene una torre única, con una campana de bronce de unos 200 años que lleva inscrito «San Francisco». Es uno de los elementos más reconocibles del conjunto.',
+  },
+  {
+    title: 'El altar mayor',
+    text: 'La ficha describe un altar mayor con San Francisco de Asís, la Inmaculada Concepción y el Cristo de la Agonía. El interior del templo es sobrio, en línea con su origen franciscano.',
+  },
+  {
+    title: 'El atrio de la historia',
+    text: 'El templo fue escenario del grito de libertad del 4 de enero de 1821, cuando la ciudad se pronunció por la causa emancipadora. Esa fecha se conmemora cada año en Piura.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está la iglesia San Francisco de Piura?',
+    a: 'La ficha la ubica en la calle Lima, cuadra 5 (antigua calle Florida), a pocos metros de la Plaza de Armas: unos 300 metros, 3 minutos a pie o 2 minutos en auto.',
+  },
+  {
+    q: '¿Qué hecho histórico ocurrió en esta iglesia?',
+    a: 'El 4 de enero de 1821, el templo fue escenario del grito de libertad con el que Piura se sumó a la causa independentista, un mes después de la proclamación de Trujillo. La Municipalidad conmemora la fecha cada año.',
+  },
+  {
+    q: '¿Está declarada monumento histórico?',
+    a: 'Sí. Está declarada Monumento Histórico Nacional por el Decreto Ley N.º 17673 del 27 de mayo de 1969, según el registro de la ficha 3153.',
+  },
+  {
+    q: '¿Qué conviene mirar dentro?',
+    a: 'La torre única con su campana centenaria y el altar mayor, con San Francisco de Asís, la Inmaculada Concepción y el Cristo de la Agonía. El templo fue restaurado en 2004.',
+  },
+  {
+    q: '¿Cobra entrada y en qué horario?',
+    a: 'La información registrada indica ingreso gratuito todo el año. Esta guía no ha verificado el horario vigente de apertura: conviene comprobarlo con la propia parroquia antes de la visita y evitar entrar durante las ceremonias.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/iglesia-san-francisco-piura/#place`,
+  name: 'Iglesia San Francisco de Piura',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jirón Lima, cuadra 5',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Iglesia San Francisco' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Templo franciscano"
+  h1="La iglesia San Francisco de Piura"
+  lead={`El templo franciscano a pocos metros de la ${attractionShortName}: su origen de los siglos XVII-XVIII, el grito de libertad de 1821 y los detalles que conviene mirar.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La iglesia, en datos</h2>
+      <p class="section-lead">Lo que registra la ficha 3153, con su distancia desde la plaza.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        Es una de las paradas naturales de un recorrido por el centro: la {attractionShortName} queda a unos 300 metros y la iglesia aparece como una de las estaciones que la Municipalidad incorporó a su ruta «Piura Ciudad con Historia».
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué mirar</span>
+      <h2 class="section-title">Tres elementos del templo</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {mirar.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/ruta-a-pie-centro-historico-piura/" class="btn btn-primary">Armar la ruta a pie</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">Tono de la visita</span>
+        <h2 class="section-title">Un templo en uso, no un museo</h2>
+        <p class="section-copy mt-6">
+          La iglesia sigue siendo un lugar de culto. Si la visitas, hazlo en silencio y evita interrumpir las ceremonias; la ficha registra su uso religioso por encima de su interés turístico.
+        </p>
+        <p class="section-copy mt-4">
+          Esta guía no ha verificado si existe una visita guiada con horarios fijos ni qué zonas del templo están abiertas al público. Pregunta en la propia parroquia antes de planear una visita detallada.
+        </p>
+        <p class="mt-8 text-base">
+          Complementa este templo con <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la {attractionShortName}</a>, con <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a> y con la vecina <a href="/iglesia-san-sebastian-piura/" class="font-bold text-[#b9633e] underline">iglesia San Sebastián</a>. Para el mapa general, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Contexto</span>
+        <h2 class="section-title">Del grito de 1821 a la declaratoria de 1969</h2>
+        <p class="section-copy mt-6">
+          El templo se levantó entre los siglos XVII y XVIII sobre la antigua calle Florida, hoy jirón Lima. Fue la casa de los franciscanos en la ciudad y, con el tiempo, escenario de uno de los episodios cívicos más recordados de Piura.
+        </p>
+        <p class="section-copy mt-4">
+          Ese valor histórico está reconocido desde 1969 como Monumento Histórico Nacional, y el edificio fue restaurado en 2004.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">1821</span>
+      <h2 class="section-title">El grito de 1821 y lo que significó</h2>
+      <p class="section-copy mt-6">
+        El 4 de enero de 1821 este templo fue el escenario del grito de libertad con el que {cityName} se sumó a la causa independentista. El episodio ocurrió un mes después de la proclamación de Trujillo, y la ciudad lo conmemora cada año.
+      </p>
+      <p class="section-copy mt-4">
+        El valor del hecho está en su carácter colectivo: fue un pronunciamiento cívico en un espacio religioso, no un acto militar. Por eso el templo se lee a la vez como iglesia y como lugar de memoria.
+      </p>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        <li class="card rounded-[1.6rem] p-6">
+          <h3 class="serif text-xl">Una fecha viva</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La Municipalidad conmemora el 4 de enero, de modo que algunos días el entorno puede tener actos cívicos y más gente.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-6">
+          <h3 class="serif text-xl">Un templo, dos lecturas</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Sigue siendo parroquia en uso: al mirarlo como monumento cívico, no olvides que para los fieles es, antes que nada, su iglesia.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-6">
+          <h3 class="serif text-xl">Cómo visitarlo con respeto</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Entra en silencio, no interrumpas ceremonias y pregunta antes de fotografiar. Es norma común de cualquier templo en uso.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-6">
+          <h3 class="serif text-xl">Qué comprobar</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Esta guía no ha verificado el horario vigente ni si hay actos anunciados: consúltalos con la parroquia o con la Municipalidad.</p>
+        </li>
+      </ul>
+      <p class="mt-8 text-base">
+        Contexto más amplio en <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la Plaza de Armas de Piura</a> y en <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre San Francisco</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3153</p>
+        <p class="text-sm text-[#6e655b]">Siglos de construcción, origen franciscano, calle original, grito de 1821, declaratoria de 1969, torre y campana, altar mayor, restauración y ruta de acceso.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — Nota de prensa sobre el 204.º aniversario del Grito Libertario</p>
+        <p class="text-sm text-[#6e655b]">Confirma que el grito de libertad se proclamó el 4 de enero de 1821 en esta iglesia y su relación con la proclamación de Trujillo.</p>
+        <a href="https://www.gob.pe/institucion/munipiura/noticias/1082647-municipalidad-provincial-de-piura-anuncia-restriccion-del-transito-por-el-204-aniversario-del-grito-libertario" target="_blank" rel="noopener noreferrer">gob.pe/institucion/munipiura</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo de la Plaza de Armas de Piura</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que abre la página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

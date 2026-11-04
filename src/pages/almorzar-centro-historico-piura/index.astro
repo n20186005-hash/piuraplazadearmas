@@ -1,0 +1,211 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Almorzar en el centro histórico de Piura: Plaza de Armas Piura';
+const description = 'Dónde almorzar en el centro histórico de Piura, cerca de la Plaza de Armas: criterios útiles y el ritmo del mediodía, sin listas de locales sin verificar.';
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Aprovecha la franja del mediodía',
+    text: 'En Perú el almuerzo es la comida principal del día y suele servirse al mediodía. Si organizas el recorrido alrededor de esa franja, comes cuando el servicio está en marcha y no cuando ya está cerrando.',
+  },
+  {
+    title: 'Cuenta con el calor',
+    text: `${cityName} es una ciudad cálida y el mediodía es la franja de mayor radiación. Buscar un local con sombra o interior fresco es parte de la decisión, no un detalle: compruébalo al llegar.`,
+  },
+  {
+    title: 'Pregunta por el menú del día',
+    text: 'El menú del día es una fórmula habitual y rápida. Pregunta qué incluye y su precio antes de sentarte: entrada, segundo y refresco varían según el local.',
+  },
+  {
+    title: 'Reserva tiempo, no lo improvises',
+    text: 'A la hora punta el servicio puede demorar. Si tienes una visita con horario fijo después, almorzando antes o después del pico reduces el riesgo de llegar tarde.',
+  },
+  {
+    title: 'No des por hecho el cierre de mediodía',
+    text: 'No afirmamos que los comercios del centro cierren al mediodía como norma: el horario de cada local se confirma en su puerta. Comprueba si está abierto en lugar de suponerlo.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Hay un restaurante recomendado para almorzar en el centro?',
+    a: 'No. Esta guía no publica una lista de restaurantes que no ha verificado. Damos el criterio para elegir al llegar: revisar la carta, preguntar qué incluye el menú y ajustar la parada a tu siguiente visita.',
+  },
+  {
+    q: '¿A qué hora se almuerza en Piura?',
+    a: 'En Perú el almuerzo es la comida principal y suele servirse al mediodía. No fijamos una hora exacta porque depende de cada local y de la temporada; llegar durante esa franja suele ser mejor que al final.',
+  },
+  {
+    q: '¿Los locales cierran al mediodía?',
+    a: 'No lo damos por hecho. Algunos negocios del centro tienen horario partido y otros atienden de corrido; el horario cambia según el local. Compruébalo en la puerta o pregúntalo antes de contar con él.',
+  },
+  {
+    q: '¿Se puede almorzar platos típicos piuranos en el centro?',
+    a: 'La cocina piurana está documentada en platos como el seco de chabelo, el ceviche, la malarrabia y los chifles. Qué ofrece cada carta es cosa de cada local, así que reconócelos por su nombre y pregúntalo en el establecimiento.',
+  },
+  {
+    q: '¿Cómo encajo el almuerzo con la visita a un templo o museo?',
+    a: 'Primero mira el horario del templo o museo que quieres ver y coloca el almuerzo alrededor de esa visita, no al revés. Si visitas antes de comer, almorzar al salir te ahorra volver sobre tus pasos. No publicamos los horarios vigentes porque cambian; confírmalos en cada lugar.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/almorzar-centro-historico-piura/#place`,
+  name: `${attractionShortName} — almuerzo en el centro`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Almuerzo' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Mediodía"
+  h1="Almorzar en el centro histórico de Piura"
+  lead="No publicamos una lista de restaurantes que no hemos verificado. Explicamos cómo encajar el almuerzo en el ritmo del mediodía del centro, entre el calor y tu recorrido."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Monumento a la libertad (La Pola) en la ${attractionFullName}, ${cityName}, ${countryName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de restaurantes</h2>
+      <p class="section-copy mt-6">
+        Esta guía no publica una lista de restaurantes que no ha verificado. Los locales del centro cambian de carta, de horario y de propietario, y una recomendación sin fecha puede llevarte a una puerta cerrada o a un menú distinto. El inventario turístico de MINCETUR describe el entorno de la plaza con bancos, hoteles, restaurantes y boutiques, pero no publica nombres, precios ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para resolver el almuerzo al llegar, teniendo en cuenta el calor y el ritmo del mediodía. Antes de salir, sitúate con <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo encajar el almuerzo</h2>
+      <p class="section-lead">Cinco puntos para resolver la comida principal del día.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si quieres reconocer la cocina local más allá de los nombres, revisa <a href="/comida-tipica-piurana-centro/" class="font-bold text-[#b9633e] underline">los platos piuranos documentados</a>. Y si buscas una pausa más ligera antes o después de comer, mira <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías en el centro</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/centro-historico-de-piura/" class="btn btn-primary">Recorrer el centro histórico</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Con las visitas</span>
+      <h2 class="section-title">Cómo encajar el almuerzo con los horarios de templos y museos</h2>
+      <p class="section-copy mt-6">
+        Si tu día incluye un templo o un museo del entorno, el almuerzo funciona mejor como parte del recorrido que como una parada aparte. La clave es ordenar las visitas alrededor del mediodía, no improvisar después.
+      </p>
+      <ul class="mt-8 list-disc space-y-3 pl-6 text-lg leading-8 text-[#6e655b]">
+        <li>Mira primero el horario del templo o museo que quieres ver y coloca el almuerzo alrededor de esa visita, no al revés.</li>
+        <li>Si visitas antes de comer, almorzar al salir de la visita evita volver sobre tus pasos con el calor del mediodía.</li>
+        <li>Cuenta con que el servicio se demora más en la hora punta: si tienes una entrada con horario fijo después, come fuera del pico.</li>
+        <li>Los templos y museos del centro pueden tener horario partido. Como no publicamos sus horarios vigentes, confírmalos en cada lugar antes de organizar el almuerzo.</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Para preparar la visita que ancla tu mediodía, consulta primero <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la casa museo Miguel Grau</a> y los templos del entorno.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el almuerzo</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Ciudad cálida y entorno con restaurantes, bancos, hoteles y boutiques. No publica nombres, precios ni horarios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa, licencias y avisos municipales sobre el comercio en el centro.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para calcular distancias a pie entre la plaza y las cuadras del entorno.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

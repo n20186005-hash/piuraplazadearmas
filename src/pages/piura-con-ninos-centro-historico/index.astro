@@ -1,0 +1,221 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Piura con niños: el centro histórico desde la Plaza de Armas Piura';
+const description = `Visitar el centro de ${cityName} con niños: la ${attractionShortName} como base, calor, descansos, hidratación y un recorrido corto sin prometer juegos infantiles.`;
+const dateModified = '2026-11-04';
+
+const plan = [
+  {
+    title: 'Empieza en la plaza, no en las calles',
+    text: 'La plaza es un espacio libre, llano y con sombra: el punto natural para empezar con niños. Da una vuelta y deja que se orienten antes de meterlos en calles estrechas.',
+  },
+  {
+    title: 'Una sola parada corta de edificio',
+    text: 'La catedral está a unos 20 m y la Casa Museo Grau a unos 50 m según el inventario. Elige una y no más: la capacidad de atención de un niño rara vez aguanta dos visitas interiores seguidas.',
+  },
+  {
+    title: 'Descanso en las bancas',
+    text: 'Las bancas de la plaza entre los jardines son el mejor aliado de una salida con niños. Programa pausas frecuentes en vez de caminar de un tirón.',
+  },
+  {
+    title: 'Agua y sombra antes que ruta',
+    text: `El calor de ${cityName} pesa más que la distancia. Lleva agua, gorra y protector solar, y prioriza los tramos a la sombra de los tamarindos y demás árboles.`,
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Hay juegos infantiles o zonas de recreo en la plaza?',
+    a: 'No confirmamos la existencia de juegos infantiles ni de instalaciones de recreo concretas, porque no las hemos verificado. Lo que sí registra el inventario es un espacio llano con jardines y bancas, apto como base de la visita.',
+  },
+  {
+    q: '¿Cuánto aguanta un niño en esta visita?',
+    a: 'Menos que un adulto. Con niños conviene una hora corta: una vuelta a la plaza, una única parada y una pausa. Amplía solo si el grupo se mantiene cómodo.',
+  },
+  {
+    q: '¿Qué es lo que más pesa con niños en Piura?',
+    a: 'El calor. La distancia entre las paradas es corta, pero la radiación y la falta de sombra continua cansan rápido. Agua, gorra y pausas resuelven más que acortar el recorrido.',
+  },
+  {
+    q: '¿Es apta para carrito de bebé?',
+    a: 'La plaza es un espacio público llano, con lo que su perímetro suele ser lo más sencillo. No acreditamos que todo el centro histórico tenga rampas continuas: revisa la guía de accesibilidad antes de asumirlo.',
+  },
+  {
+    q: '¿Y si el día viene con lluvia?',
+    a: 'Entonces cambia el plan: la plaza deja de ser cómoda y conviene un espacio cubierto. Tienes el criterio para improvisarlo en la guía de qué hacer si llueve.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/piura-con-ninos-centro-historico/#trip`,
+  name: `${cityName} con niños: la ${attractionShortName} y su entorno`,
+  description,
+  touristType: ['Viaje en familia', 'Con niños', 'Centro histórico'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Catedral (Iglesia Matriz) de Piura' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Con niños' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="En familia"
+  h1={`${cityName} con niños desde la ${attractionShortName}`}
+  lead="Una visita corta, con sombra, agua y pausas frecuentes. La plaza como base segura y una sola parada interior: el resto es previsión, no kilómetros."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Espacio abierto, jardines y bancas de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">La idea</span>
+      <h2 class="section-title">Con niños, el calor manda</h2>
+      <p class="section-copy mt-6">
+        El error habitual al visitar el centro de {cityName} con niños es tratar la salida como la de un adulto: encadenar iglesias y calles. Con menores, el factor que decide no es la distancia, sino el calor y la capacidad de atención. La {attractionShortName} es un buen punto de partida porque es un espacio abierto, llano y con sombra.
+      </p>
+      <p class="section-copy mt-4">
+        Arranca en el Plus Code {plusCode} y no salgas del núcleo de la plaza hasta que el grupo esté cómodo. Si algo falla, retroceder a las bancas es siempre una opción.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/consejos-visitar-plaza-de-armas/" class="btn border border-[#cab49a]">Ver consejos prácticos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Plan familiar</span>
+      <h2 class="section-title">Cuatro decisiones simples</h2>
+      <p class="section-lead">Menos recorrido, más pausas y la plaza como base.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {plan.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Lo que no afirmamos</span>
+      <h2 class="section-title">Sin promesas de instalaciones infantiles</h2>
+      <p class="section-copy mt-6">
+        No hemos verificado que la plaza tenga juegos infantiles, áreas de recreo ni servicios específicos para niños. El inventario turístico describe jardines, bancas y arbolado, no equipamiento de juego. Por eso no los anunciamos como parte del plan.
+      </p>
+      <p class="section-copy mt-4">
+        Si necesitas un baño, una farmacia o un local, comprueba lo que hay en el entorno con la guía de servicios cercanos y con el propio establecimiento. No inventamos locales ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Para preparar la salida, revisa la guía de <a href="/servicios-cerca-plaza-de-armas/" class="font-bold text-[#b9633e] underline">servicios cerca de la plaza</a>, los <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#b9633e] underline">consejos de visita</a> y, si el grupo incluye a alguien con movilidad reducida, la guía de <a href="/accesibilidad-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">accesibilidad</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/plaza-de-armas-piura-adultos-mayores/" class="btn border border-[#cab49a]">Versión para adultos mayores</a>
+        <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Descansos</span>
+      <h2 class="section-title">Plan de descansos y puntos de sombra</h2>
+      <p class="section-copy mt-6">
+        Con niños, planificar las pausas importa más que planificar el recorrido. El inventario describe jardines, bancas y arbolado —tamarindos centenarios entre ellos— como fuente de frescura, pero <strong>no confirma instalaciones de juego ni sombra continua</strong>. El plan se arma, por tanto, sobre lo que sí hay: bancas para parar y arbolado para resguardarse.
+      </p>
+      <ul class="mt-8 space-y-4 text-lg leading-8 text-[#6e655b]">
+        <li><strong class="text-[#1d2a24]">Arranque a la sombra:</strong> empieza la visita bajo el arbolado de la plaza, no en las calles de alrededor, para que la primera impresión no sea de sol directo.</li>
+        <li><strong class="text-[#1d2a24]">Regla de la banca:</strong> usa las bancas entre los jardines como pausa fija cada pocos minutos, antes de que el niño pida parar.</li>
+        <li><strong class="text-[#1d2a24]">Una parada interior y vuelta a la sombra:</strong> tras la catedral (20 m) o la Casa Museo Grau (50 m), regresa a la plaza en lugar de seguir encadenando calles.</li>
+        <li><strong class="text-[#1d2a24]">Agua y cierre corto:</strong> hidratación en cada pausa y salida antes de que se agote la atención; aquí no hay juegos que sostengan una espera larga.</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Tras cada pausa, la parada interior más sencilla sigue siendo la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral</a>, a unos 20 m. Para preparar la salida, consulta también los <a href="/servicios-cerca-plaza-de-armas/" class="font-bold text-[#b9633e] underline">servicios cerca de la plaza</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas de familias</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Describe jardines, bancas, arbolado y el carácter cálido de la ciudad; no registra juegos ni instalaciones infantiles.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto y Plus Code {plusCode} para fijar la base de la salida familiar.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">SENAMHI — pronóstico y valores normales de Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente oficial para revisar el calor previsto antes de salir con niños.</p>
+        <a href="https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003" target="_blank" rel="noopener noreferrer">https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

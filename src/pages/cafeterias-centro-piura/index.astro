@@ -1,0 +1,238 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Cafeterías cerca de la Plaza de Armas Piura: dónde parar';
+const description = 'Cafeterías y pausas de café cerca de la Plaza de Armas de Piura: por qué no damos nombres sin verificar, cómo elegir una parada fresca y qué comprobar.';
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Busca una pausa fresca, y confírmala',
+    text: `${cityName} es una ciudad cálida y la sombra de la plaza no cubre todo el recorrido. Un local con interior fresco o con sombra es un buen descanso, pero no des por hecho la refrigeración: compruébalo al entrar.`,
+  },
+  {
+    title: 'Comprueba el tipo de servicio',
+    text: 'No todos los locales atienden igual: algunos funcionan sobre todo para llevar y otros tienen mesas. Mira si hay asientos y si el servicio es en mesa antes de sentarte a descansar.',
+  },
+  {
+    title: 'Pregunta por el agua y el baño',
+    text: 'Si buscas una parada larga, pregunta si tienen agua y si el baño es de uso para clientes. Es la información que una carta no suele mostrar y conviene resolverla al entrar.',
+  },
+  {
+    title: 'Ajusta la pausa a tu hora',
+    text: 'A media mañana y a media tarde el centro se mueve distinto. Si vas con poco tiempo, elige una parada cerca del punto que quieres visitar para no perder el recorrido en el trayecto.',
+  },
+  {
+    title: 'No te fíes solo del cartel',
+    text: 'Un rótulo grande no garantiza la calidad ni el precio. Mira el producto, la limpieza y el movimiento de clientes, y confirma el precio de lo que pidas antes de consumirlo.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Recomiendan alguna cafetería concreta en el centro?',
+    a: 'No. Esta guía no publica una lista de cafeterías que no ha verificado. Los locales cambian de carta, de horario y de propietario; por eso damos criterios para elegir y no nombres que podrían estar desactualizados.',
+  },
+  {
+    q: '¿Hay cafeterías con aire acondicionado cerca de la plaza?',
+    a: 'No lo hemos confirmado, así que no lo afirmamos. Que un local tenga aire acondicionado depende de cada negocio y puede cambiar. Si el frescor es importante para ti, compruébalo al entrar o pregunta antes de sentarte.',
+  },
+  {
+    q: '¿Puedo quedarme a trabajar o estudiar en una cafetería?',
+    a: 'Depende del local y no lo hemos verificado. Algunos toleran estancias largas y otros priorizan la rotación de mesas. Pregunta si hay conexión a internet y si eso condiciona el consumo mínimo.',
+  },
+  {
+    q: '¿Son caras las cafeterías del centro?',
+    a: 'No publicamos precios porque no los hemos confirmado. El costo depende del local y del tipo de consumo. Antes de pedir, mira la carta o pregunta el precio para no llevarte una sorpresa.',
+  },
+  {
+    q: '¿Cómo elijo una cafetería si solo tengo unos minutos?',
+    a: 'Para una parada corta prioriza la cercanía a tu siguiente punto y comprueba si el pedido es para llevar y cuánto tarda. No publicamos una lista de locales: son criterios que puedes aplicar al pasar por la puerta.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/cafeterias-centro-piura/#place`,
+  name: `${attractionShortName} — cafeterías y pausas`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Cafeterías' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Pausa y descanso"
+  h1="Cafeterías en el centro de Piura"
+  lead="No publicamos una lista de cafeterías que no hemos verificado. Publicamos cómo elegir una pausa fresca junto a la plaza y qué comprobar antes de sentarte."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de cafeterías</h2>
+      <p class="section-copy mt-6">
+        Esta guía no publica una lista de cafeterías que no ha verificado. En el centro de {cityName} los locales cambian de carta, de horario y de propietario, y una lista desactualizada te lleva a caminar hasta una puerta cerrada. El inventario turístico de MINCETUR describe el entorno de la plaza con bancos, hoteles, restaurantes y boutiques, pero no publica nombres, precios ni horarios de ningún local.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para resolver una pausa al llegar, en una ciudad cálida donde el frescor importa. Puedes empezar por <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a> para situarte antes de salir.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo elegir una pausa</h2>
+      <p class="section-lead">Cinco cosas que puedes comprobar en la puerta, antes de sentarte.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si tu pausa es por la mañana, mira la guía de <a href="/desayunar-cerca-plaza-de-armas/" class="font-bold text-[#b9633e] underline">desayuno cerca de la plaza</a>. Y si lo que buscas es una comida completa y no solo una bebida, revisa <a href="/restaurantes-cerca-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo elegir un restaurante al llegar</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/centro-historico-de-piura/" class="btn btn-primary">Ver el centro histórico</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Según la pausa</span>
+      <h2 class="section-title">Cómo elegir según el tipo de pausa</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        No es lo mismo una parada de paso que sentarse a trabajar un rato con la computadora. Esta tabla separa el tipo de pausa y lo que conviene comprobar en cada caso, sin nombres de locales.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Tipo de pausa</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué buscar</th>
+              <th class="py-3 font-black text-[#a85737]">Qué preguntar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Parada corta</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Un local cerca de tu siguiente punto, con servicio rápido o para llevar.</td>
+              <td class="py-4 text-[#6e655b]">Si el pedido es para llevar y cuánto tarda.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Trabajar o estudiar con la computadora</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Mesas y un ritmo que tolere estancias largas.</td>
+              <td class="py-4 text-[#6e655b]">Si hay conexión a internet, enchufes y consumo mínimo por tiempo.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Refugiarse del calor</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Un interior fresco o con sombra donde descansar de la radiación.</td>
+              <td class="py-4 text-[#6e655b]">Si el interior es fresco y si puedes quedarte un rato.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Pausa en grupo</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Espacio para varias personas sin apretarse.</td>
+              <td class="py-4 text-[#6e655b]">Si hay mesa para el grupo y si el baño es de uso para clientes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si la pausa forma parte de un recorrido más largo, mírala como una parada dentro de <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la pausa</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Carácter cálido de la ciudad, arbolado como fuente de frescura y comercios del entorno. No publica nombres, precios ni horarios de locales.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa, licencias y avisos municipales sobre el comercio en el centro.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para orientar la búsqueda de una parada cercana.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

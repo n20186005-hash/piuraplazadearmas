@@ -1,0 +1,229 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Qué ver en la Plaza de Armas Piura: 5 puntos clave';
+const description = `Qué ver en la ${attractionShortName}: el monumento a la libertad «La Pola», el arbolado centenario, la iglesia matriz, la municipalidad y la escultura de 2025.`;
+const dateModified = '2026-11-04';
+
+const highlights = [
+  {
+    number: '01',
+    name: 'El monumento a la libertad, «La Pola»',
+    text: 'Preside el centro de la plaza. Es una estatua de mármol colocada en 1870, durante el gobierno de Balta, y la ficha turística la considera el monumento más antiguo de la ciudad. Es el punto de referencia de cualquier recorrido.',
+    source: 'MINCETUR, ficha 3163',
+  },
+  {
+    number: '02',
+    name: 'El arbolado centenario',
+    text: 'La plaza está rodeada de árboles plantados hace más de un siglo. La ficha menciona tamarindos, ficus, crotos, cucardas, poncianas y papelillos, que dan frescura al espacio en una ciudad cálida.',
+    source: 'MINCETUR, ficha 3163',
+  },
+  {
+    number: '03',
+    name: 'La iglesia matriz',
+    text: 'La ficha turística la señala como el elemento más destacado del entorno de la plaza. Las condiciones de acceso al templo y sus celebraciones se consultan por separado: no comparten el régimen del espacio público.',
+    source: 'MINCETUR, ficha 3163',
+  },
+  {
+    number: '04',
+    name: 'Los edificios institucionales del borde',
+    text: 'En los alrededores la ficha menciona la municipalidad de Piura, bancos, hoteles, restaurantes y boutiques. Son parte de la lectura urbana de la plaza, no una lista verificada de locales abiertos hoy.',
+    source: 'MINCETUR, ficha 3163',
+  },
+  {
+    number: '05',
+    name: 'La escultura a Enrique López Albújar',
+    text: 'El 21 de agosto de 2025, por el 493.º aniversario de la fundación de San Miguel de Piura, la Municipalidad Provincial de Piura develó una escultura en homenaje al escritor y poeta, obra de Hugo Chanta Guevara.',
+    source: 'MINCETUR, ficha 3163',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuánto se tarda en ver la plaza?',
+    a: 'Depende de si buscas una pausa, fotografías o sumar una visita cultural. La plaza se recorre rápido, pero no publicamos un tiempo fijo: calcula primero el horario de la visita cultural que quieras añadir y el desplazamiento desde tu punto de partida.',
+  },
+  {
+    q: '¿Qué hay en el centro de la plaza?',
+    a: 'El monumento a la libertad, conocido popularmente como «La Pola»: una estatua de mármol instalada en 1870 y considerada el monumento más antiguo de Piura.',
+  },
+  {
+    q: '¿En qué orden conviene mirar?',
+    a: 'Una secuencia razonable es empezar por el monumento central, recorrer después el arbolado y las bancas, y terminar con el borde institucional y la iglesia matriz. Es una sugerencia de lectura, no un circuito oficial señalizado.',
+  },
+  {
+    q: '¿Se puede entrar a la iglesia matriz desde la plaza?',
+    a: 'El templo forma parte del entorno, pero tiene su propio horario y sus propias condiciones de visita. Confírmalas con la institución antes de contar con entrar.',
+  },
+  {
+    q: '¿Hay un recorrido oficial señalizado en la plaza?',
+    a: 'No. El orden que proponemos es una sugerencia de lectura para no repetir trayectos. El espacio no cuenta con un circuito oficial señalizado; si dispones de poco tiempo, prioriza el monumento central y el arbolado del entorno.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/que-ver-plaza-de-armas-piura/#webpage`,
+  url: `${siteUrl}/que-ver-plaza-de-armas-piura/`,
+  name: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Qué ver' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Puntos de interés"
+  h1={`Qué ver en la ${attractionShortName}`}
+  lead="Cinco puntos para leer la plaza: el monumento del centro, el arbolado centenario, la iglesia matriz, el borde institucional y la escultura de 2025."
+  {crumbs}
+  jsonLd={[pageJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Respuesta breve</span>
+      <h2 class="section-title">Lo esencial, primero</h2>
+      <p class="section-copy mt-6">
+        Lo más reconocible de la {attractionShortName} es su monumento central, el arbolado centenario que la rodea y la iglesia matriz del entorno. Todo lo demás —museos, comercios y servicios— pertenece a los alrededores y se consulta por separado.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-10">
+      {highlights.map((item) => (
+        <article class="card grid gap-6 rounded-[1.8rem] p-8 md:grid-cols-[100px_1fr] md:p-10">
+          <div class="number">{item.number}</div>
+          <div>
+            <h3 class="serif text-3xl">{item.name}</h3>
+            <p class="mt-4 max-w-3xl leading-8 text-[#6e655b]">{item.text}</p>
+            <p class="mt-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Fuente: {item.source}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Organiza la mirada</span>
+      <h2 class="section-title">Una secuencia, no un circuito oficial</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Empieza por el centro para orientarte, sigue con el arbolado y las bancas, y cierra con el borde de edificios institucionales y la iglesia matriz. Si sumas un museo o una iglesia, revisa su horario antes de encajarlo, porque el ritmo de la plaza no marca el de las instituciones.</p>
+        <p>Con calor, conviene repartir la visita y buscar sombra. Consulta los <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#b9633e] underline">consejos prácticos</a> y el <a href="/horarios-visita-plaza-de-armas/" class="font-bold text-[#b9633e] underline">horario de visita</a> para decidir el mejor momento.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/historia-plaza-de-armas-piura/" class="btn btn-primary">Leer la historia de la plaza</a>
+        <a href="/mapa-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver el mapa y orientarte</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Paso a paso</span>
+      <h2 class="section-title">Orden sugerido para recorrerla</h2>
+      <p class="section-lead">Una ruta de lectura pensada para no repetir trayectos y cerrar con el borde institucional. Es una sugerencia, no un recorrido oficial señalizado.</p>
+      <ol class="mt-10 space-y-6">
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso 1</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Empieza por el monumento central</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">«La Pola» te da el punto de referencia desde el que sitúas el resto de la plaza.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso 2</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Rodea el arbolado y las bancas</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">El jardín perimetral aporta sombra y frescura; es la parte que mejor se recorre sin prisa.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso 3</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Lee el borde institucional</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La municipalidad y los edificios del contorno enmarcan la plaza: son referencia urbana, no una lista verificada de locales.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso 4</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Cierra con la iglesia matriz</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Se visita con horario propio; encájala al final o al principio, según cuándo abra.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso 5</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Busca la escultura de 2025</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">El homenaje a Enrique López Albújar completa el recorrido y conecta la visita con la memoria reciente de la ciudad.</p>
+        </li>
+      </ol>
+      <p class="section-copy mt-8 max-w-3xl">
+        El monumento central y la iglesia matriz son los dos hitos que enmarcan esta ruta: para el primero, revisa el <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">monumento a La Pola</a>; para el segundo, la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre qué ver</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Monumento central, especies del arbolado, iglesia matriz, edificios del borde y la escultura de 2025 en homenaje a Enrique López Albújar.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Ubicación y referencias para situar cada punto en el mapa.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

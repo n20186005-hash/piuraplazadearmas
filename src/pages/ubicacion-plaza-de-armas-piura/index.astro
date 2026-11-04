@@ -1,0 +1,301 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const countryCode = 'PE';
+const postalCode = '20001';
+const plusCode = 'R93F+58';
+const latitude = -5.1970998;
+const longitude = -80.62668;
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.62668!3d-5.1970998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
+
+const title = 'Ubicación Plaza de Armas Piura: dirección y coordenadas';
+const description = `Dónde está la ${attractionShortName}: dirección Ayacucho, Piura 20001, Plus Code R93F+58, coordenadas y qué edificios marcan su entorno en el centro histórico.`;
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Dirección listada', value: `Ayacucho, ${cityName} ${postalCode}, ${countryName}` },
+  { label: 'Distrito / Provincia / Región', value: `${cityName} / ${cityName} / ${cityName}` },
+  { label: 'Plus Code', value: `${plusCode}, ${cityName}` },
+  { label: 'Coordenadas', value: `${latitude.toFixed(5)}, ${longitude.toFixed(5)}` },
+  { label: 'Altitud', value: '22 m s. n. m. (MINCETUR)' },
+  { label: 'Categoría del inventario', value: 'Plazas · Arquitectura y Espacios Urbanos' },
+];
+
+const faqs = [
+  {
+    q: '¿Cuál es la dirección exacta de la Plaza de Armas de Piura?',
+    a: 'La lista de Google Maps la ubica como Ayacucho, Piura 20001, Perú. «Ayacucho» es la vía de referencia del centro y 20001 el código postal de Piura; no es un número de puerta ni una oficina de atención.',
+  },
+  {
+    q: '¿En qué distrito, provincia y región se encuentra?',
+    a: 'El inventario nacional de recursos turísticos registra la ficha 3163 en Piura, provincia de Piura y distrito de Piura, a 22 metros sobre el nivel del mar.',
+  },
+  {
+    q: '¿Cómo uso el Plus Code R93F+58?',
+    a: 'Pega «R93F+58 Piura» en Google Maps y la aplicación abrirá la misma zona. El Plus Code complementa la dirección, no la reemplaza: úsalo junto con las coordenadas si tu aplicación no lo reconoce.',
+  },
+  {
+    q: '¿Qué edificios marcan el entorno de la plaza?',
+    a: 'La ficha turística menciona la municipalidad de Piura, bancos, hoteles, restaurantes, boutiques y, sobre todo, la iglesia matriz. Son referencias de orientación, no una lista verificada de locales abiertos hoy.',
+  },
+  {
+    q: '¿Qué calles y edificios bordean la Plaza de Armas de Piura?',
+    a: 'La dirección listada usa la calle Ayacucho como referencia del centro. La ficha 3163 menciona como entorno la municipalidad, bancos, hoteles, restaurantes, boutiques y la iglesia matriz; la catedral se registra frente a la plaza, en Huancavelica N.º 362. El listado calle por calle del perímetro no está publicado, así que el resto queda por confirmar.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const attractionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  '@id': `${siteUrl}/#attraction`,
+  name: attractionFullName,
+  alternateName: [attractionShortName, 'Piura Plaza de Armas', 'Plaza Mayor de Piura'],
+  url: siteUrl,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode,
+    addressCountry: countryCode,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude, longitude },
+  hasMap: mapShortUrl,
+  sameAs: [mapShortUrl, minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Ubicación' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Orientación"
+  h1="Ubicación de la Plaza de Armas de Piura"
+  lead={`Dónde está exactamente la plaza, cómo leer su dirección y su Plus Code, y qué edificios marcan el entorno inmediato del centro histórico de ${cityName}.`}
+  {crumbs}
+  jsonLd={[faqJsonLd, attractionJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">Dónde está la plaza, en datos</h2>
+      <p class="section-lead">Resumen verificable antes de abrir el mapa.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        Google Maps lista el lugar como <strong>Ayacucho, {cityName} {postalCode}</strong>. «Ayacucho» identifica la vía del centro donde se referencia la plaza y {postalCode} es el código postal de la ciudad; no es un número de puerta. Si tu navegador no encuentra la dirección escrita así, usa el Plus Code <strong>{plusCode}</strong> o las coordenadas del mapa.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Contexto urbano</span>
+        <h2 class="section-title">Qué rodea la {attractionShortName}</h2>
+        <p class="section-copy mt-6">
+          La ficha turística la describe como una de las plazas más antiguas de corte español, situada en el centro de {cityName}. En sus alrededores menciona edificaciones como la municipalidad de {cityName}, bancos, hoteles, restaurantes, boutiques y, sobre todo, la iglesia matriz.
+        </p>
+        <p class="section-copy mt-4">
+          Esa lista sirve para orientarte al llegar, no como inventario de locales confirmados hoy. Los horarios, las condiciones de acceso y los servicios de cada edificio se consultan con su responsable.
+        </p>
+        <p class="section-copy mt-4">
+          Dentro del espacio público, el centro está ocupado por el monumento a la libertad, conocido como «La Pola». La plaza está arbolada con tamarindos plantados hace más de un siglo, además de ficus, crotos, cucardas, poncianas y papelillos.
+        </p>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
+        <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title={`Mapa de ${attractionFullName} en Google Maps`}></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo usarlo</span>
+      <h2 class="section-title">Dirección, Plus Code y coordenadas</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p><strong class="text-[#1d2a24]">Dirección postal:</strong> útil para escribirla en un formulario o indicársela a un conductor. Es una referencia del centro, no un portal con número.</p>
+        <p><strong class="text-[#1d2a24]">Plus Code:</strong> el código corto {plusCode} divide el mundo en cuadrículas; añadido a «{cityName}» abre esta zona en Google Maps.</p>
+        <p><strong class="text-[#1d2a24]">Coordenadas:</strong> {latitude.toFixed(5)}, {longitude.toFixed(5)}. Son las más precisas para aplicaciones de mapas o para compartir una ubicación exacta.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir ubicación en Google Maps ↗</a>
+        <a href="/mapa-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver el mapa y la orientación</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Borde de la plaza</span>
+      <h2 class="section-title">El entorno inmediato: qué bordea la plaza</h2>
+      <p class="section-lead">La ficha turística describe un entorno de edificios y comercios. Aquí se separa lo registrado de lo que todavía queda por confirmar.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Borde</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué se registra</th>
+              <th class="py-3 font-black text-[#a85737]">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Religioso</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La iglesia matriz, señalada como el elemento más destacado del entorno.</td>
+              <td class="py-4 text-[#6e655b]">Documentada: la lista la registra en Huancavelica N.º 362, a unos 20 m del centro de la plaza.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Institucional</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La municipalidad de Piura, mencionada entre los edificios del borde.</td>
+              <td class="py-4 text-[#6e655b]">Registrada por la ficha; su acceso y horarios se consultan por separado.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Comercial y servicios</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Bancos, hoteles, restaurantes y boutiques mencionados en los alrededores.</td>
+              <td class="py-4 text-[#6e655b]">Referencias de orientación, no una lista verificada de locales abiertos hoy.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Verde</td>
+              <td class="py-4 pr-4 text-[#6e655b]">El arbolado que rodea el espacio: tamarindos, ficus, crotos, cucardas, poncianas y papelillos.</td>
+              <td class="py-4 text-[#6e655b]">Documentado por la ficha 3163.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Vial</td>
+              <td class="py-4 pr-4 text-[#6e655b]">«Ayacucho» como vía de referencia en la lista de Google Maps.</td>
+              <td class="py-4 text-[#6e655b]">Referencia de dirección, no un número de puerta ni un lado concreto de la plaza.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Calles limítrofes</td>
+              <td class="py-4 pr-4 text-[#6e655b]">No consta una lista de las vías que cierran cada lado.</td>
+              <td class="py-4 text-[#6e655b]">Por confirmar: compruébalo en el mapa al llegar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La plaza es un cuadrado abierto: al llegar verás los edificios ordenados en sus bordes y el arbolado por dentro. Para situar cada referencia en el plano, contrasta el borde con la iglesia matriz, que es el punto más reconocible: <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a>. Si tu plan es recorrer los alrededores, continúa con el <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Borde de la plaza</span>
+      <h2 class="section-title">El entorno inmediato: qué bordea la plaza</h2>
+      <p class="section-lead">Lo que las fichas del inventario y la dirección listada permiten afirmar, separado de lo que aún queda por confirmar.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Elemento</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué está establecido</th>
+              <th class="py-3 font-black text-[#a85737]">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Vía de referencia</td>
+              <td class="py-4 pr-4 text-[#6e655b]">«Ayacucho» es la calle con la que se referencia la plaza, junto al código postal {postalCode}. Es una referencia del centro, no un portal con número.</td>
+              <td class="py-4 text-[#6e655b]">Listado de terceros</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia matriz</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La catedral se registra «frente a la plaza», en Huancavelica N.º 362, a unos 20 m del centro del espacio cívico.</td>
+              <td class="py-4 text-[#6e655b]">Confirmado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Municipalidad provincial</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La ficha 3163 la menciona entre las edificaciones que rodean la plaza.</td>
+              <td class="py-4 text-[#6e655b]">Mención; dirección por confirmar</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Comercios del borde</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Bancos, hoteles, restaurantes y boutiques aparecen como referencias genéricas del entorno, sin nombres concretos.</td>
+              <td class="py-4 text-[#6e655b]">Mención; locales por confirmar</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Resto de calles perimetrales</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Las fuentes consultadas no publican el listado calle por calle del perímetro.</td>
+              <td class="py-4 text-[#6e655b]">Por confirmar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La ficha describe la plaza como un conjunto de corte español rodeado de edificios institucionales y comerciales, pero no detalla el perímetro completo. Para leer ese borde sobre el terreno, parte de la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral de Piura</a> y del <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la ubicación</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Distrito, provincia, altitud, descripción del entorno, arbolado y monumento central. No publica horarios ni disponibilidad de comercios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Dirección «Ayacucho, {cityName} {postalCode}», Plus Code {plusCode} y coordenadas. Fuente de terceros, revisada el 26 de octubre de 2026.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

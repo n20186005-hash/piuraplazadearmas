@@ -1,0 +1,223 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Consejos para visitar la Plaza de Armas Piura: qué llevar';
+const description = `Consejos prácticos para visitar la ${attractionShortName}: calor, hidratación, mejor momento del día, calzado, fotografías y qué separar de las visitas culturales.`;
+const dateModified = '2026-11-04';
+
+const tips = [
+  {
+    icon: '☀',
+    title: 'Calcula el calor',
+    text: `La ficha turística describe ${cityName} como una ciudad calurosa y señala el arbolado como fuente de frescura. La sombra no cubre necesariamente todo el recorrido: lleva agua y protección solar.`,
+  },
+  {
+    icon: '◴',
+    title: 'Elige la franja horaria',
+    text: 'Al amanecer o al final de la tarde el esfuerzo es menor. No publicamos una hora exacta recomendada porque depende de la estación y de tu tolerancia al calor: revisa las condiciones del día antes de salir.',
+  },
+  {
+    icon: '☐',
+    title: 'Lleva lo básico',
+    text: 'Agua, protector solar, gorra o sombrero y calzado cómodo. Si vas a caminar hasta la plaza desde Óvalo Grau o Plazuela Merino, añade tiempo y evita cargar peso innecesario.',
+  },
+  {
+    icon: 'S/',
+    title: 'El acceso a la plaza es libre',
+    text: 'La ficha oficial clasifica el ingreso como libre. Eso no incluye museos, templos ni servicios del entorno, ni sustituye una restricción municipal temporal.',
+  },
+  {
+    icon: '↻',
+    title: 'No mezcles horarios',
+    text: 'El espacio público y las instituciones del entorno funcionan con relojes distintos. Decide primero la visita cultural, confirma su horario y organiza la plaza alrededor de ella.',
+  },
+  {
+    icon: '◉',
+    title: 'Fotografía con criterio',
+    text: 'La ficha registra la toma de fotografías como actividad habitual. Evita interrumpir ceremonias cívicas o religiosas y pide permiso antes de fotografiar a personas identificables.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuánto tiempo conviene dedicarle a la plaza?',
+    a: 'No hay un tiempo único. Una pausa breve necesita menos de lo que imaginas; si sumas fotografías y un recorrido por el entorno, súmale más. Calcula primero cuánto ocupa la visita cultural que quieras añadir.',
+  },
+  {
+    q: '¿Qué debería llevar?',
+    a: 'Agua, protección solar, gorra o sombrero y calzado cómodo. Si viajas con niños o personas mayores, prevé paradas y busca sombra con frecuencia.',
+  },
+  {
+    q: '¿Hay que pagar entrada?',
+    a: 'La ficha turística oficial registra ingreso libre a la plaza. Museos, templos y servicios cercanos tienen condiciones propias y pueden cobrar, así que consúltalos por separado.',
+  },
+  {
+    q: '¿Es una visita adecuada para niños y personas mayores?',
+    a: 'Puede serlo, con previsión. El principal factor es el calor, no la distancia: reparte el recorrido, lleva agua y evita las horas de mayor radiación. No presupongas un circuito continuo adaptado sin comprobarlo.',
+  },
+  {
+    q: '¿Qué no debería olvidar antes de salir?',
+    a: 'Agua y protección solar, calzado cómodo y el punto exacto guardado en el teléfono. Si vas en taxi, acuerda la bajada y el precio; y si piensas entrar a un museo o al templo, confirma antes su horario, porque no comparte el de la plaza.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/consejos-visitar-plaza-de-armas/#webpage`,
+  url: `${siteUrl}/consejos-visitar-plaza-de-armas/`,
+  name: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Consejos' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Antes de ir"
+  h1={`Consejos para visitar la ${attractionShortName}`}
+  lead="Seis decisiones simples que evitan la mayoría de los contratiempos: calor, horario, calzado, presupuesto, horarios culturales y fotografías."
+  {crumbs}
+  jsonLd={[pageJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Resumen</span>
+      <h2 class="section-title">Lo que de verdad importa</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        La {attractionShortName} es un espacio público de acceso libre en una ciudad cálida. El mayor riesgo práctico no es la distancia, sino el calor y la tentación de mezclar el horario del espacio abierto con el de los museos y templos del entorno. Si resuelves esas dos cosas, la visita fluye.
+      </p>
+      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {tips.map((tip) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-[#244433] text-lg font-black text-white">{tip.icon}</div>
+            <h3 class="serif text-2xl">{tip.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{tip.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Móvil primero</span>
+      <h2 class="section-title">Todo lo esencial, a mano</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Antes de salir, guarda el punto exacto: Plus Code <strong>{plusCode}</strong> o las coordenadas del mapa. En el centro de {cityName} conviene tener el destino abierto y no depender de la memoria.</p>
+        <p>Si viajas en taxi o aplicación, define el punto de bajada y confirma el precio antes de subir. Si vas en auto propio, revisa <a href="/estacionamiento-centro-piura/" class="font-bold text-[#b9633e] underline">qué comprobar antes de estacionar</a>.</p>
+        <p>Y si hay lluvia o un cambio de plan, ten a mano alternativas cubiertas del centro en lugar de improvisar con el mapa abierto bajo el agua.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir el punto exacto ↗</a>
+        <a href="/horarios-visita-plaza-de-armas/" class="btn border border-[#cab49a]">Repasar los horarios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de salir</span>
+      <h2 class="section-title">Checklist antes de salir</h2>
+      <p class="section-lead">Una lista breve para repasar de un vistazo. Nada de esto sustituye la comprobación del horario de museos y templos, que llevan su propio reloj.</p>
+      <ul class="mt-10 space-y-4 text-lg leading-8 text-[#6e655b]">
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Agua y protección solar: la ciudad es cálida y la sombra no cubre necesariamente todo el recorrido.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Calzado cómodo y gorra o sombrero para caminar el tramo final desde donde aparques o te dejen.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Punto exacto guardado: Plus Code <strong>{plusCode}</strong> o las coordenadas del mapa, abiertos en el teléfono.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Punto de bajada acordado si vas en taxi o aplicación, con el precio confirmado antes de subir.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Horario de la visita cultural confirmado aparte, si piensas entrar a un museo o al templo.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-[#b9633e]">✓</span>
+          <span>Plan para la vuelta y, si hay lluvia o cambio de plan, una alternativa cubierta en el centro.</span>
+        </li>
+      </ul>
+      <p class="section-copy mt-8 max-w-3xl">
+        Con la lista resuelta, solo queda elegir el momento del día según el calor. Para organizar el desplazamiento, repasa las <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">rutas de acceso</a>; y si tu visita se alarga, ten en cuenta la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas prácticas</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Carácter cálido de la ciudad, arbolado, ingreso libre, actividades registradas y rutas de acceso de referencia.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto y coordenadas para guardar el destino antes de salir.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

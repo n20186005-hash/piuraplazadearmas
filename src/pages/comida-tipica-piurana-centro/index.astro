@@ -1,0 +1,246 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const title = 'Comida típica piurana en el centro: Plaza de Armas Piura';
+const description = 'Platos típicos piuranos documentados —seco de chabelo, ceviche, malarrabia y chifles— para orientar tu visita a la Plaza de Armas de Piura.';
+const dateModified = '2026-11-04';
+
+const dishes = [
+  {
+    name: 'Seco de chabelo',
+    alias: 'también escrito seco de chavelo',
+    text: 'Guiso piurano reconocido por el Indecopi como Especialidad Tradicional Garantizada (ETG) en 2026. Se elabora con plátano verde —el bellaco— como base y carne de res seca, la cecina, con un aderezo criollo de cebolla, tomate, ajíes y chicha de jora. Suele acompañarse con arroz y cancha serrana.',
+  },
+  {
+    name: 'Ceviche',
+    text: 'Preparación de pescado fresco marinado en limón, con ají y cebolla. En el norte y en Piura se sirve con pescados de carne firme y se acompaña a menudo con zarandaja y yuca, antes que con camote y choclo. El portal oficial de turismo lo lista entre los platos típicos de la ciudad.',
+  },
+  {
+    name: 'Malarrabia',
+    text: 'Guiso de plátano maduro con queso y aliño criollo, de sabor agridulce. El Indecopi reconoció la «Malarrabia de Catacaos» como Especialidad Tradicional Garantizada: un puré de plátano maduro con queso y aliños que tradicionalmente acompaña al pescado.',
+  },
+  {
+    name: 'Chifles',
+    text: 'Láminas finas de plátano frito, crujientes y saladas, típicas de la región Piura. Funcionan como snack y como acompañamiento de platos como el ceviche o el seco, y forman parte de la identidad gastronómica piurana.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuál es el plato más representativo de la cocina piurana?',
+    a: 'El seco de chabelo es uno de los más emblemáticos: el Indecopi lo reconoció como Especialidad Tradicional Garantizada en 2026 por su receta y preparación ancestral. Se basa en plátano verde y carne de res seca, con un aderezo criollo.',
+  },
+  {
+    q: '¿Tienen una lista de restaurantes donde probar estos platos?',
+    a: 'No. Esta guía describe platos documentados, no locales. No recomendamos un establecimiento concreto porque no hemos verificado cartas ni horarios; para elegir dónde comer, usa el criterio de la guía de restaurantes del centro.',
+  },
+  {
+    q: '¿El ceviche de Piura es distinto del de Lima?',
+    a: 'Suele diferenciarse por el pescado y los acompañamientos: en el norte se usan piezas de carne firme y se sirve con zarandaja y yuca, frente al camote y el choclo más habituales en Lima. Es una tradición norteña con carácter propio.',
+  },
+  {
+    q: '¿Qué es la cecina del seco de chabelo?',
+    a: 'La cecina es carne de res seca y salada, uno de los componentes del seco de chabelo junto con el plátano verde y el aderezo de ajíes y chicha de jora. Es un ingrediente tradicional de la preparación, no una marca ni un local.',
+  },
+  {
+    q: '¿Cómo sé si un plato piurano de la carta lleva picante?',
+    a: 'No todos los locales preparan la misma receta. Platos como el seco de chabelo o el ceviche llevan ají en su aderezo o marinado, mientras que los chifles no lo llevan; en otros puede variar según el aliño. Pregunta cuánto picante tiene antes de pedir.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/comida-tipica-piurana-centro/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  author: { '@type': 'Organization', name: `Guía del visitante — ${attractionFullName}` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Comida típica' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Cocina piurana"
+  h1="Comida típica piurana en el centro de Piura"
+  lead="Los platos de la región que sí están documentados, descritos de forma general. Esta guía no recomienda un establecimiento concreto."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Entorno arbolado de la ${attractionFullName}, ${cityName}, ${countryName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de leer</span>
+      <h2 class="section-title">Platos documentados, sin nombres de locales</h2>
+      <p class="section-copy mt-6">
+        Esta página describe platos de la cocina piurana que están respaldados por fuentes, y lo hace de forma general. No recomendamos un establecimiento concreto ni publicamos cartas, precios u horarios, porque no los hemos verificado. El inventario turístico de MINCETUR describe el entorno de la plaza con restaurantes, pero no publica nombres ni precios.
+      </p>
+      <p class="section-copy mt-4">
+        Reconoce estos platos por su nombre en cualquier carta. Qué ofrece cada local y cómo los prepara es algo que se confirma en el propio establecimiento. Si buscas dónde comer, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Platos típicos</span>
+      <h2 class="section-title">Cuatro referencias de la cocina piurana</h2>
+      <p class="section-lead">Descripciones generales, sin atribuirlas a ningún local.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {dishes.map((dish) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{dish.name}</h3>
+            <p class="mt-1 text-sm font-bold text-[#a85737]">{dish.alias}</p>
+            <p class="mt-3 leading-7 text-[#6e655b]">{dish.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo reconocerlos</span>
+      <h2 class="section-title">Qué comprobar antes de pedir</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p><strong class="text-[#1d2a24]">Busca el nombre del plato en la carta.</strong> Los platos tradicionales suelen aparecer con su denominación piurana; si el nombre no coincide, pregunta en qué consiste antes de pedirlo.</p>
+        <p><strong class="text-[#1d2a24]">Pregunta por los ingredientes.</strong> No todos los locales preparan la misma receta. Confirmar si un plato se hace con plátano maduro, con plátano verde o con pescado te ayuda a saber qué vas a comer.</p>
+        <p><strong class="text-[#1d2a24]">No los des por hecho en cualquier carta.</strong> La oferta cambia de un local a otro y según el día. Si un plato específico es importante para tu visita, pregúntalo al llegar.</p>
+        <p>Para las preparaciones dulces y las bebidas tradicionales de la región, mira <a href="/postres-bebidas-tipicas-piura/" class="font-bold text-[#b9633e] underline">postres y bebidas típicas de Piura</a>.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/restaurantes-cerca-plaza-de-armas-piura/" class="btn btn-primary">Cómo elegir dónde comer</a>
+        <a href="/centro-historico-de-piura/" class="btn border border-[#cab49a]">Ver el centro histórico</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Glosario</span>
+      <h2 class="section-title">Glosario para leer una carta piurana</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        Un resumen para reconocer los platos por su nombre, sus ingredientes y si llevan picante. Son descripciones generales de platos documentados: la receta y el nivel de ají dependen de cada local.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[760px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Plato</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Composición principal</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Sabor</th>
+              <th class="py-3 font-black text-[#a85737]">Picante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Seco de chabelo</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Plátano verde (bellaco) y carne de res seca (cecina), con aderezo de cebolla, tomate, ajíes y chicha de jora; se acompaña con arroz y cancha serrana.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Salado y criollo</td>
+              <td class="py-4 text-[#6e655b]">Lleva ajíes en el aderezo</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Ceviche</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Pescado fresco marinado en limón con ají y cebolla; en el norte suele servirse con zarandaja y yuca.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ácido y fresco</td>
+              <td class="py-4 text-[#6e655b]">Lleva ají en el marinado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Malarrabia</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Plátano maduro con queso y aliño criollo.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Agridulce</td>
+              <td class="py-4 text-[#6e655b]">Puede llevar ají según el aliño</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Chifles</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Láminas finas de plátano frito, crujientes y saladas.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Salado</td>
+              <td class="py-4 text-[#6e655b]">No lleva ají</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Reconocer los platos por su nombre ayuda a leer la carta; para la visita completa, encaja la comida dentro de <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la cocina piurana</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">El Peruano — Indecopi reconoce al seco de chabelo como ETG</p>
+        <p class="text-sm text-[#6e655b]">Reconocimiento como Especialidad Tradicional Garantizada y descripción de la receta: plátano verde como base, aderezo con ajíes y chicha de jora, carne de res seca.</p>
+        <a href="https://elperuano.pe/noticia/296251-indecopi-reconoce-al-seco-de-chabelo-como-especialidad-tradicional-garantizada" target="_blank" rel="noopener noreferrer">elperuano.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Indecopi (gob.pe) — Malarrabia de Catacaos como ETG</p>
+        <p class="text-sm text-[#6e655b]">Describe la malarrabia como un puré a base de plátano maduro, queso y aliños, de sabor agridulce, protegido con el nombre «Malarrabia de Catacaos».</p>
+        <a href="https://www.gob.pe/institucion/indecopi/noticias/1371397-indecopi-reconoce-la-malarrabia-de-catacaos-como-especialidad-tradicional-garantizada-y-fortalece-identidad-gastronomica-de-piura" target="_blank" rel="noopener noreferrer">gob.pe/indecopi</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Agencia Andina — Seco de chabelo, plato tradicional</p>
+        <p class="text-sm text-[#6e655b]">Detalla que combina plátano machacado con un aderezo criollo de cebolla, tomate, ajíes y chicha de jora, y que se acompaña con arroz y cancha serrana.</p>
+        <a href="https://andina.pe/agencia/noticia-seco-chabelo-plato-tradicional-identifica-a-gastronomia-piura-video-1051702.aspx" target="_blank" rel="noopener noreferrer">andina.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">04</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Perú Travel — platos típicos de Piura</p>
+        <p class="text-sm text-[#6e655b]">Lista el ceviche entre los platos típicos de la ciudad y describe sus acompañamientos locales.</p>
+        <a href="https://www.peru.travel/es/inspirate/con-sabor-a-piura-descubre-seis-platos-tipicos-de-esta-soleada-ciudad-peruana" target="_blank" rel="noopener noreferrer">peru.travel</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

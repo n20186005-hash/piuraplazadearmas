@@ -1,0 +1,217 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const muniPiura = 'https://www.gob.pe/munipiura';
+const ministerioCultura = 'https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura';
+
+const title = 'Accesibilidad en la Plaza de Armas Piura: qué comprobar';
+const description = `Accesibilidad en la ${attractionShortName}: qué no está verificado, qué comprobar in situ y a qué canales oficiales acudir antes de tu visita.`;
+const dateModified = '2026-11-04';
+
+const checks = [
+  {
+    title: 'Pendientes y desniveles del entorno',
+    text: 'El centro histórico tiene calles y aceras de distintas épocas. No hemos medido pendientes ni desniveles del trayecto desde tu punto de llegada hasta la plaza.',
+  },
+  {
+    title: 'Bordillos y cruces peatonales',
+    text: 'No está confirmado que los cruces alrededor de la plaza tengan vados o rebajes en buen estado. Es lo primero que conviene mirar al llegar.',
+  },
+  {
+    title: 'Rampas y entradas reales de los edificios',
+    text: 'El inventario cita rampas, pero no describe el ancho, la pendiente ni si conectan con una ruta continua. Las entradas de templos y museos tienen condiciones propias que debes comprobar con cada uno.',
+  },
+  {
+    title: 'Estado del pavimento dentro de la plaza',
+    text: 'La plaza es un espacio público llano, con jardines y bancas. Aun así, no hemos verificado el estado del piso el día de tu visita ni posibles obras o vallas temporales.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿El centro histórico de Piura es accesible en silla de ruedas?',
+    a: 'No podemos afirmarlo. Esta guía no ha verificado pendientes, bordillos, rampas ni entradas reales, así que no certificamos que todo el centro histórico sea accesible. La plaza es un espacio llano, pero eso no basta para prometer una ruta sin obstáculos.',
+  },
+  {
+    q: '¿Qué sí se puede decir con la información disponible?',
+    a: 'Que la plaza es un espacio público de acceso libre, llano, con jardines y bancas, y que el inventario cita rampas entre sus servicios. Son referencias, no una certificación de accesibilidad ni una garantía de ruta continua.',
+  },
+  {
+    q: '¿Qué debería comprobar antes de ir?',
+    a: 'El estado de los cruces y bordillos del trayecto, la presencia de vados, el ancho de la entrada que piensas usar y si hay obras temporales. Si dependes de una ruta sin desniveles, conviene que alguien la recorra antes o que consultes directamente.',
+  },
+  {
+    q: '¿A qué canales oficiales puedo consultar?',
+    a: 'A la Municipalidad Provincial de Piura para el espacio público y su normativa, y al Ministerio de Cultura para los museos y edificios patrimoniales. Ellos gestionan las condiciones reales de cada recinto.',
+  },
+  {
+    q: '¿La entrada a la plaza tiene costo?',
+    a: 'El inventario registra ingreso libre a la plaza. Museos y templos del entorno tienen condiciones propias y pueden cobrar o limitar el acceso, así que consúltalos por separado.',
+  },
+  {
+    q: '¿Y si necesito apoyo específico para movilidad reducida?',
+    a: 'Esta guía no ofrece un servicio ni intermedia. Para necesidades concretas, plantea tu caso a la municipalidad y al recinto que quieras visitar, y verifica la información con ellos antes de desplazarte.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/accesibilidad-plaza-de-armas-piura/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Accesibilidad' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Accesibilidad"
+  h1={`Accesibilidad en la ${attractionShortName}`}
+  lead="No certificamos que todo el centro histórico sea accesible. Explicamos qué no hemos verificado, qué sí confirma el inventario como referencia y qué conviene comprobar antes de depender de una ruta."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Espacio llano con jardines de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Lo que esta guía no puede prometer</h2>
+      <p class="section-copy mt-6">
+        La accesibilidad es una de las afirmaciones más fáciles de copiar mal y de las más decepcionantes cuando fallan. Por eso aquí somos explícitos: <strong>no hemos verificado las pendientes, los bordillos, las rampas ni las entradas reales</strong> del centro histórico de {cityName} ni del trayecto hasta la plaza. No afirmamos que todo el centro sea accesible en silla de ruedas ni con movilidad reducida.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí describe el inventario turístico es que la {attractionShortName} es un espacio público de acceso libre, llano, con jardines y bancas, y que entre sus servicios se citan rampas. Eso funciona como <strong>referencia</strong>, no como certificación: un espacio llano no garantiza por sí solo una ruta sin obstáculos desde tu alojamiento ni el estado actual de cada cruce.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">A verificar</span>
+      <h2 class="section-title">Cuatro cosas que hay que comprobar</h2>
+      <p class="section-lead">Ninguna de ellas está confirmada por esta guía: son los puntos a revisar in situ.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {checks.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo resolverlo</span>
+      <h2 class="section-title">Comprobar en el sitio y consultar a la fuente</h2>
+      <p class="section-copy mt-6">
+        El criterio práctico es doble. En el sitio, entra por el lado que veas más despejado y observa el cruce y el bordillo antes de comprometerte, porque las condiciones cambian con obras y temporadas. Para lo que no se puede ver a simple vista, la consulta correcta es a quien gestiona el lugar.
+      </p>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p><strong class="text-[#1d2a24]">Espacio público y su normativa:</strong> la Municipalidad Provincial de {cityName} es el canal para el estado de calles, cruces y mobiliario urbano.</p>
+        <p><strong class="text-[#1d2a24]">Museos y edificios patrimoniales:</strong> el Ministerio de Cultura informa sobre las condiciones de acceso de los recintos que administra.</p>
+        <p><strong class="text-[#1d2a24]">Tu ruta concreta:</strong> si dependes de una ruta sin desniveles, pide a alguien de confianza que la recorra o usa el mapa para elegir el acceso más directo.</p>
+      </div>
+      <p class="section-copy mt-8">
+        Para planificar una visita de ritmo ligero, revisa la guía de la plaza <a href="/plaza-de-armas-piura-adultos-mayores/" class="font-bold text-[#b9633e] underline">para adultos mayores</a>, y para resolver el último tramo, la de <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo llegar</a> y la de <a href="/estacionamiento-centro-piura/" class="font-bold text-[#b9633e] underline">estacionamiento</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={muniPiura} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Consultar a la Municipalidad de Piura ↗</a>
+        <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de salir</span>
+      <h2 class="section-title">Qué preguntar antes de ir</h2>
+      <p class="section-copy mt-6">
+        Como esta guía no certifica el estado real de rampas ni cruces, la mejor herramienta es preguntar directamente antes de desplazarte. Estas son las preguntas útiles y a quién van dirigidas.
+      </p>
+      <ul class="mt-8 space-y-4 text-lg leading-8 text-[#6e655b]">
+        <li><strong class="text-[#1d2a24]">A la Municipalidad Provincial de Piura (espacio público):</strong> ¿los cruces que rodean la plaza tienen vados en buen estado? ¿hay obras o vallas previstas ese día?</li>
+        <li><strong class="text-[#1d2a24]">Al recinto patrimonial que quieras visitar:</strong> ¿cuál es la entrada sin escalones? ¿el ancho de paso admite silla de ruedas? ¿hay apoyo de personal?</li>
+        <li><strong class="text-[#1d2a24]">Sobre tu último tramo:</strong> ¿existe un punto de bajada cercano que no bloquee cruces ni accesos?</li>
+        <li><strong class="text-[#1d2a24]">Sobre el horario:</strong> ¿la franja de atención coincide con el momento de menos calor ese día?</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Guarda las respuestas por escrito y, si el recinto que te interesa es la <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Casa Museo Miguel Grau</a>, plantéale exactamente estas preguntas. Para resolver el último tramo hasta la plaza, consulta <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo llegar</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre accesibilidad</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Única referencia que usamos: espacio llano de acceso libre, con jardines, bancas y mención de rampas. No describe pendientes ni entradas, por eso no lo tratamos como certificación.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — gob.pe</p>
+        <p class="text-sm text-[#6e655b]">Canal oficial para consultar el estado del espacio público, cruces y normativa del centro.</p>
+        <a href={muniPiura} target="_blank" rel="noopener noreferrer">{muniPiura}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Ministerio de Cultura — Museos (Casa Museo Grau)</p>
+        <p class="text-sm text-[#6e655b]">Ejemplo de recinto patrimonial con condiciones de acceso propias que deben consultarse directamente.</p>
+        <a href={ministerioCultura} target="_blank" rel="noopener noreferrer">{ministerioCultura}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

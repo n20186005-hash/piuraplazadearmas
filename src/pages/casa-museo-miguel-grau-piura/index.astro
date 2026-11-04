@@ -1,0 +1,261 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=362';
+
+const title = 'Casa Museo Miguel Grau cerca de la Plaza de Armas Piura';
+const description = 'La Casa Museo Miguel Grau, a decenas de metros de la Plaza de Armas de Piura: la casona del siglo XVIII, sus piezas, su horario registrado y qué confirmar antes de ir.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Denominación', value: 'Casa Museo Gran Almirante Miguel Grau' },
+  { label: 'Dirección registrada', value: `Tacna N.º 662, a decenas de metros de la ${attractionShortName}` },
+  { label: 'Antigüedad del inmueble', value: 'Mediados del siglo XVIII' },
+  { label: 'Propiedad original', value: 'De Fernando Torcuato Seminario y Jayme, abuelo de Grau (según la ficha)' },
+  { label: 'Declaratoria', value: 'Monumento Nacional · Ley 10146 (26-12-1944)' },
+  { label: 'Distancia desde la plaza', value: 'Unos 50 m · 1 min a pie (ficha 362)' },
+  { label: 'Atención registrada', value: 'Martes a domingo, 9:00-13:00 y 14:00-16:00 (por confirmar)' },
+];
+
+const piezas = [
+  {
+    title: 'Objetos vinculados a la historia naval',
+    text: 'La ficha menciona una réplica del monitor Huáscar, sellos y una biblioteca marítima, además del cuarto natal y la cuna del héroe.',
+  },
+  {
+    title: 'Documentos y reliquias familiares',
+    text: 'Entre las piezas registradas figuran la carta de Carmen Carvajal y el sable de Miguel Jerónimo Seminario, usado en la proclamación de 1821.',
+  },
+  {
+    title: 'Una casona en escuadra',
+    text: 'El inmueble conserva muros de adobe y quincha, un balcón tallado en madera y un patio con el busto de Grau. El terremoto de 1912 derribó su segundo piso.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está la Casa Museo Miguel Grau?',
+    a: 'La ficha la registra en la calle Tacna N.º 662, a decenas de metros de la Plaza de Armas de Piura: unos 50 metros y 1 minuto a pie desde el espacio cívico.',
+  },
+  {
+    q: '¿Quién nació en esta casa?',
+    a: 'Según el Ministerio de Cultura, en este inmueble nació el 27 de julio de 1834 el Gran Almirante Miguel Grau Seminario. La ficha señala que la casona perteneció a su abuelo, Fernando Torcuato Seminario y Jayme.',
+  },
+  {
+    q: '¿Cuánto cuesta la entrada y en qué horario abre?',
+    a: 'La información registrada indica ingreso gratuito con registro y una atención todo el año, de martes a domingo, de 9:00 a 13:00 y de 14:00 a 16:00. Esta guía no ha verificado esos datos: conviene comprobarlos con la propia institución antes de la visita.',
+  },
+  {
+    q: '¿Qué se puede ver dentro?',
+    a: 'La ficha menciona la carta de Carmen Carvajal, el sable de Miguel Jerónimo Seminario usado en la proclamación de 1821, una réplica del monitor Huáscar, sellos, una biblioteca marítima, el cuarto natal y la cuna de Grau.',
+  },
+  {
+    q: '¿Cuándo se convirtió en museo?',
+    a: 'Las referencias no coinciden: la ficha turística registra la inauguración como museo en 1967, con una ampliación en julio de 1982, mientras que el Ministerio de Cultura indica que abrió sus puertas el 27 de julio de 1964. Se muestran ambas sin fusionarlas.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/casa-museo-miguel-grau-piura/#place`,
+  name: 'Casa Museo Gran Almirante Miguel Grau de Piura',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Tacna N.º 662',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Casa Museo Grau' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Casa del héroe"
+  h1="Casa Museo Miguel Grau, a pasos de la plaza"
+  lead={`La casona del siglo XVIII donde nació Miguel Grau, a decenas de metros de la ${attractionShortName}: qué conserva, qué dicen los registros y qué conviene comprobar antes de entrar.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La casa museo, en datos</h2>
+      <p class="section-lead">Resumen verificable antes de acercarte desde la plaza.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La casa queda a unos 50 metros de la {attractionShortName}, así que puede añadirse a un recorrido por el centro sin desviarse. La ficha turística la describe como una construcción colonial con influencias republicanas, de muros de adobe y quincha y unos 4 metros de altura.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.15fr_.85fr]">
+      <div>
+        <span class="eyebrow">La casona</span>
+        <h2 class="section-title">Una casa del siglo XVIII que sobrevive al sismo de 1912</h2>
+        <p class="section-copy mt-6">
+          La ficha registra que el inmueble es de mediados del siglo XVIII y que perteneció a Fernando Torcuato Seminario y Jayme, abuelo de Miguel Grau. Conserva muros de adobe y quincha, un balcón tallado en madera y un patio con el busto del héroe.
+        </p>
+        <p class="section-copy mt-4">
+          El terremoto de 1912 derribó el segundo piso de la casona. Años más tarde el edificio se recuperó como museo y fue ampliado en julio de 1982, según la ficha. Está declarado Monumento Nacional por la Ley 10146 del 26 de diciembre de 1944.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/ruta-cultural-miguel-grau-piura/" class="btn btn-primary">Seguir la ruta cultural de Grau</a>
+          <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Advertencia</span>
+        <h2 class="section-title">Lo que no está confirmado</h2>
+        <p class="section-copy mt-6">
+          Esta guía no ha verificado la existencia de visitas guiadas con horarios fijos, ni si la atención coincide hoy con la franja registrada. Tampoco confirma el costo o las condiciones del registro de ingreso.
+        </p>
+        <p class="section-copy mt-4">
+          Antes de ir, comprueba horarios y acceso con la propia institución. Si vas en grupo, pregunta con antelación: es una casa pequeña, con espacios de exhibición limitados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué conserva</span>
+      <h2 class="section-title">Tres bloques de la colección</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {piezas.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Combina la visita con <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la {attractionShortName}</a> y con <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>. Para situarte, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>, o repasa el conjunto en <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Durante la visita</span>
+      <h2 class="section-title">Qué buscar mientras recorres la casa</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        La casa museo es pequeña, así que conviene entrar con una idea de lo que se quiere ver. Estos son los conjuntos que registra la ficha, ordenados como se leería un recorrido por la vida del héroe y por la propia casona.
+      </p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">El nacimiento y la infancia</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">El cuarto natal y la cuna de Miguel Grau, nacido aquí el 27 de julio de 1834. La casona había pertenecido a su abuelo, Fernando Torcuato Seminario y Jayme.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">La vida naval</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">La réplica del monitor Huáscar, los sellos y la biblioteca marítima ilustran la trayectoria naval del almirante Grau.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Documentos y reliquias</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">La carta de Carmen Carvajal y el sable de Miguel Jerónimo Seminario, vinculado a la proclamación de 1821.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">La casa en sí</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Muros de adobe y quincha, balcón tallado en madera y patio con el busto de Grau. Su segundo piso se perdió en el terremoto de 1912.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">El vínculo con la catedral</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Grau fue bautizado en la iglesia matriz, hoy <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a>, de modo que leer antes el templo ayuda a completar el relato.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Qué comprobar</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Esta guía no confirma qué piezas están expuestas hoy ni si cambia el montaje: conviene preguntarlo en la propia casa museo.</p>
+        </article>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Para seguir el hilo biográfico por el centro, continúa con <a href="/ruta-cultural-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la ruta cultural de Grau</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la casa museo</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 362</p>
+        <p class="text-sm text-[#6e655b]">Antigüedad, propiedad original, materiales, terremoto de 1912, piezas de la colección, declaratoria, ruta de acceso y horario registrado.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Ministerio de Cultura — museos.cultura.pe, Casa Museo Gran Almirante Grau de Piura</p>
+        <p class="text-sm text-[#6e655b]">Lugar y fecha de nacimiento de Miguel Grau (27 de julio de 1834) y referencia de apertura al público en 1964, que se conserva junto a la fecha de la ficha.</p>
+        <a href="https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura" target="_blank" rel="noopener noreferrer">museos.cultura.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo de la Plaza de Armas de Piura</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que abre la página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

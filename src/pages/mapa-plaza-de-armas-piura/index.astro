@@ -1,0 +1,227 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+const latitude = -5.1970998;
+const longitude = -80.62668;
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.62668!3d-5.1970998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
+
+const title = 'Mapa de la Plaza de Armas Piura: orientación y entorno';
+const description = `Mapa de la ${attractionShortName} con coordenadas, Plus Code y los puntos de referencia del entorno para orientarte antes de caminar por el centro histórico de ${cityName}.`;
+const dateModified = '2026-11-04';
+
+const landmarks = [
+  { name: 'Catedral de Piura / Iglesia Matriz', role: 'Edificio del entorno inmediato según la ficha turística' },
+  { name: 'Municipalidad Provincial de Piura', role: 'Edificio institucional señalado en los alrededores' },
+  { name: 'Óvalo Grau', role: 'Punto de partida de la referencia de 800 m a pie' },
+  { name: 'Plazuela Merino', role: 'Punto de partida asociado a un tramo de 1 km' },
+  { name: 'Iglesia San Sebastián', role: 'Punto de partida del tramo más corto registrado, 200 m' },
+];
+
+const faqs = [
+  {
+    q: '¿Cuál es la diferencia entre esta página y la de ubicación?',
+    a: 'La página de ubicación responde «dónde está» con dirección, código postal y datos administrativos. Esta responde «cómo orientarme»: qué hay alrededor, desde dónde se llega caminando y cómo leer el mapa para empezar el recorrido.',
+  },
+  {
+    q: '¿El mapa muestra un plano del interior de la plaza?',
+    a: 'No. Es el mapa de Google del punto exacto, útil para orientarte y para ver las calles del entorno. No es un plano técnico, ni de accesibilidad, ni una certificación del estado de cada cruce.',
+  },
+  {
+    q: '¿Qué coordenadas uso para ubicarla con precisión?',
+    a: `Las coordenadas del lugar son ${latitude.toFixed(5)}, ${longitude.toFixed(5)}, a 22 metros sobre el nivel del mar según la ficha turística. También puedes usar el Plus Code ${plusCode} añadiendo «${cityName}».`,
+  },
+  {
+    q: '¿La plaza sigue el trazado de una plaza mayor clásica?',
+    a: 'Sí. La ficha la describe como una plaza de corte español: un cuadrado abierto y arbolado, rodeado por edificios institucionales, comercios y la iglesia matriz.',
+  },
+  {
+    q: '¿Qué referencia me conviene tomar al llegar?',
+    a: 'El monumento central y la iglesia matriz son los dos hitos más reconocibles: úsalos para situarte antes de caminar. El arbolado dibuja el contorno del cuadrado y el Plus Code te sirve para fijar el punto exacto en tu aplicación de mapas.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const mapJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/mapa-plaza-de-armas-piura/#webpage`,
+  url: `${siteUrl}/mapa-plaza-de-armas-piura/`,
+  name: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Mapa' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Orientación"
+  h1={`Mapa de la ${attractionShortName}`}
+  lead="El punto exacto, las coordenadas y los puntos de referencia del entorno para empezar a caminar el centro histórico sin dar vueltas."
+  {crumbs}
+  jsonLd={[mapJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <div class="mb-8 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <span class="eyebrow">Mapa interactivo</span>
+          <h2 class="section-title">El punto exacto de la plaza</h2>
+        </div>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir mapa completo ↗</a>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
+        <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title={`Mapa de ${attractionFullName} en Google Maps`}></iframe>
+      </div>
+      <p class="mt-5 text-sm leading-7">
+        Coordenadas <strong>{latitude.toFixed(5)}, {longitude.toFixed(5)}</strong> · Plus Code <strong>{plusCode}, {cityName}</strong>. La lista de Google Maps mostraba 24 horas los siete días al 26 de octubre de 2026; no es una garantía de acceso ni de servicios.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Alrededores</span>
+        <h2 class="section-title">Qué mirar al abrir el mapa</h2>
+        <p class="section-lead">Referencias para situarte, no un circuito señalizado.</p>
+        <div class="mt-10 divide-y divide-[#c9ae8f] border-y border-[#c9ae8f]">
+          {landmarks.map((item, index) => (
+            <article class="grid gap-4 py-6 sm:grid-cols-[56px_1fr]">
+              <span class="serif text-2xl text-[#b9633e]">0{index + 1}</span>
+              <div>
+                <h3 class="serif text-2xl">{item.name}</h3>
+                <p class="mt-2 leading-7 text-[#6e655b]">{item.role}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Cómo leerlo</span>
+        <h2 class="section-title">Del mapa a la caminata</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>La plaza es un cuadrado abierto y arbolado con el monumento a la libertad en el centro. Alrededor se ordenan los edificios institucionales, los comercios y la iglesia matriz, así que el mapa sirve para decidir desde qué lado entrar.</p>
+          <p>Marca tu origen y compara: llegar desde Óvalo Grau, Plazuela Merino o San Sebastián implica distancias distintas, que la ficha turística registra como referencias. Comprueba el estado actual de las calles y los cruces antes de caminar.</p>
+          <p>Si la movilidad es un factor importante, no deduzcas el recorrido completo desde el mapa: confirma rampas y accesos en el terreno.</p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/ubicacion-plaza-de-armas-piura/" class="btn btn-primary">Ver la ubicación exacta</a>
+          <a href="/como-llegar-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Rutas de acceso</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Referencias</span>
+      <h2 class="section-title">Puntos de referencia para orientarte</h2>
+      <p class="section-lead">Cuatro referencias que te ayudan a situar cada cosa en el plano. Ninguna certifica por sí sola el estado de calles o cruces: eso se comprueba en el terreno.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Punto de referencia</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Cómo te orienta</th>
+              <th class="py-3 font-black text-[#a85737]">Qué comprobar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">El monumento central</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ocupa el centro de la plaza: todo lo demás se ordena a su alrededor y sirve de hito visual desde cualquier lado.</td>
+              <td class="py-4 text-[#6e655b]">Su estado actual se observa al llegar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">La iglesia matriz</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Marca uno de los bordes y es el edificio más reconocible del entorno.</td>
+              <td class="py-4 text-[#6e655b]">Su acceso y horario se consultan aparte del espacio público.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">El arbolado perimetral</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Dibuja el contorno del cuadrado y ayuda a distinguir el interior del borde construido.</td>
+              <td class="py-4 text-[#6e655b]">La sombra no cubre necesariamente todo el recorrido.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Coordenadas y Plus Code</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Sitúan el punto exacto en cualquier aplicación de mapas desde tu origen.</td>
+              <td class="py-4 text-[#6e655b]">El mapa no certifica el estado de calles ni de cruces.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Con estas referencias puedes empezar a caminar sin depender del plano: la fachada de <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a> es el ancla más fácil de identificar desde el borde de la plaza.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el mapa</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Trazado de corte español, altitud 22 m, entorno urbano y rutas de acceso de referencia.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista y mapa embebido</p>
+        <p class="text-sm text-[#6e655b]">Coordenadas, Plus Code y vista del entorno. Fuente de terceros revisada el 26 de octubre de 2026.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

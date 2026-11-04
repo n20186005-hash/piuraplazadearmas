@@ -1,0 +1,241 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturPlaza = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const minceturMerino = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3165';
+
+const title = 'Plazas históricas de Piura: la Plaza de Armas Piura y Merino';
+const description = 'Comparación de las plazas históricas de Piura: la Plaza de Armas, núcleo fundacional, frente a la Plazuela Ignacio Merino, de 1903, y qué distingue a cada espacio.';
+const dateModified = '2026-11-04';
+
+const comparacion = [
+  {
+    title: 'Plaza de Armas: el núcleo fundacional',
+    text: 'Es el centro cívico y religioso de la ciudad, con el monumento a la libertad en el medio, la catedral enfrente y el arbolado centenario. Su escala es la de una plaza mayor: concentra usos oficiales, religiosos y turísticos.',
+  },
+  {
+    title: 'Plazuela Ignacio Merino: la plaza del pintor',
+    text: 'Inaugurada en agosto de 1903, rinde homenaje a Ignacio Merino Muñoz con una estatua de bronce de cuerpo entero. Tiene cuatro jardines y algarrobos de inicios del siglo XX; su carácter es más de barrio.',
+  },
+  {
+    title: 'La distancia entre ambas',
+    text: 'La ficha registra unos 600 metros desde la plaza principal hasta la plazuela: 6 minutos a pie o 3 minutos en auto. Ambas se pueden ver en una misma caminata por el centro.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuántas plazas históricas tiene el centro de Piura?',
+    a: 'Esta guía compara las dos que están documentadas con ficha propia: la Plaza de Armas y la Plazuela Ignacio Merino. No afirmamos que sean las únicas plazas del centro, porque no hemos verificado un inventario completo de espacios públicos.',
+  },
+  {
+    q: '¿Cuál es la plaza más antigua de Piura?',
+    a: 'La Plaza de Armas, núcleo de la ciudad desde su establecimiento en 1588, es la referencia más antigua. La Plazuela Ignacio Merino es posterior: se inauguró en agosto de 1903.',
+  },
+  {
+    q: '¿Qué distingue a la Plazuela Ignacio Merino?',
+    a: 'Su homenaje al pintor Ignacio Merino Muñoz, con una estatua de bronce en actitud de pintar, y su arbolado de algarrobos antiguos. La ficha atribuye la escultura al Sr. A. Marazzani.',
+  },
+  {
+    q: '¿Cómo se recorren las dos plazas?',
+    a: 'La plaza principal y la plazuela están a unos 600 metros, 6 minutos a pie. El recorrido es sencillo dentro del casco central; no hemos verificado un circuito señalizado con tiempos fijos.',
+  },
+  {
+    q: '¿Qué usos tiene cada espacio?',
+    a: 'La Plaza de Armas funciona como centro cívico, con ceremonias y el monumento central; la Plazuela Merino es un espacio más tranquilo, con jardines y sombra, frente a la iglesia Nuestra Señora del Carmen.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/plazas-historicas-de-piura/#article`,
+  headline: 'Plazas históricas de Piura: comparación',
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  datePublished: '2026-11-04',
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Plazas' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Comparar espacios"
+  h1="Las plazas históricas de Piura, comparadas"
+  lead={`La Plaza de Armas como núcleo fundacional frente a la Plazuela Ignacio Merino, de 1903: qué distingue a cada espacio, cómo se recorren y qué no está verificado.`}
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Punto de partida</span>
+      <h2 class="section-title">Dos plazas, dos escalas</h2>
+      <p class="section-copy mt-6">
+        {cityName} no se entiende mirando una sola plaza. La {attractionShortName} es el núcleo fundacional y cívico de la ciudad; la Plazuela Ignacio Merino, inaugurada en 1903, es un espacio de barrio con jardines y sombra. Compararlas ayuda a leer el centro como una red de espacios, no como un único punto.
+      </p>
+      <p class="section-copy mt-4">
+        Cada una tiene su propia ficha en el inventario turístico nacional, de modo que los datos que siguen se pueden contrastar por separado.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Comparación</span>
+      <h2 class="section-title">Tres miradas sobre el mismo centro</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {comparacion.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/plazuela-ignacio-merino/" class="btn btn-primary">Ver la Plazuela Merino</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Matices</span>
+      <h2 class="section-title">Qué no damos por seguro</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Esta guía no ha verificado un inventario completo de plazas y plazuelas del centro ni su estado de conservación actual. Por eso limitamos la comparación a los dos espacios documentados con ficha propia.</p>
+        <p>Tampoco confirmamos horarios, iluminación ni actividades programadas en ninguna de las dos. Si vas a planear una visita con un objetivo concreto, comprueba las condiciones con la Municipalidad o con la institución correspondiente.</p>
+      </div>
+      <p class="mt-8 text-base">
+        Sigue con <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la {attractionShortName}</a>, con <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a> o con <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>. Y vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Comparación directa</span>
+      <h2 class="section-title">Tabla comparativa de las plazas</h2>
+      <p class="section-lead">Los dos espacios, frente a frente, solo en lo que está documentado.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Aspecto</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Plaza de Armas</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Plazuela Ignacio Merino</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Qué es</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Núcleo fundacional y cívico de la ciudad.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Plaza de barrio inaugurada en agosto de 1903.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Uso principal</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Centro cívico y religioso, con ceremonias y usos oficiales.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Espacio tranquilo, con jardines y sombra.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Escala y carácter</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Escala de plaza mayor y arbolado centenario.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Escala menor: cuatro jardines y algarrobos de inicios del siglo XX.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Elemento central</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Monumento de la Alegoría a la Libertad, llamado «La Pola».</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Estatua de bronce de cuerpo entero de Ignacio Merino Muñoz.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Entorno inmediato</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Catedral y edificios institucionales.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Iglesia Nuestra Señora del Carmen.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Distancia entre ambas</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Unos 600 m: 6 min a pie o 3 min en auto.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La misma referencia, medida desde la plaza principal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Las dos fichas se pueden contrastar por separado. Si quieres profundizar, revisa <a href="/plazuela-ignacio-merino/" class="font-bold text-[#b9633e] underline">la Plazuela Ignacio Merino</a> y la <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">iglesia Nuestra Señora del Carmen</a> que la enmarca; en la plaza principal, el detalle está en <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">el monumento La Pola</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre las plazas</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163 (Plaza de Armas)</p>
+        <p class="text-sm text-[#6e655b]">Descripción del núcleo cívico, el monumento central, el arbolado y el entorno inmediato.</p>
+        <a href={minceturPlaza} target="_blank" rel="noopener noreferrer">{minceturPlaza}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3165 (Plazuela Ignacio Merino)</p>
+        <p class="text-sm text-[#6e655b]">Inauguración en agosto de 1903, estatua de bronce, autor atribuido, jardines, algarrobos y ruta de acceso de 600 metros.</p>
+        <a href={minceturMerino} target="_blank" rel="noopener noreferrer">{minceturMerino}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">UDEP Hoy — «¿Conoces el origen de las esculturas públicas de Piura?» (2012)</p>
+        <p class="text-sm text-[#6e655b]">Contexto sobre la escultura pública de la ciudad, útil para comparar los hitos de ambas plazas.</p>
+        <a href="https://www.udep.edu.pe/hoy/2012/10/conoces-origen-las-esculturas-publicas-piura/" target="_blank" rel="noopener noreferrer">udep.edu.pe</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,270 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const minceturSanFrancisco = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3153';
+const muniRoute = 'https://www.gob.pe/institucion/munipiura/noticias/883026';
+
+const title = 'Ruta a pie del centro histórico desde la Plaza de Armas Piura';
+const description = `Ruta a pie de referencia por el centro histórico de ${cityName}: enlaza la ${attractionShortName} con la catedral, la Casa Museo Grau y la iglesia San Francisco.`;
+const dateModified = '2026-11-04';
+
+const stops = [
+  {
+    order: '01',
+    name: 'Plaza de Armas de Piura',
+    ref: 'Punto de partida',
+    detail: `Espacio público de acceso libre con jardines, bancas y tamarindos centenarios; al centro, el monumento a la libertad conocido como «La Pola». Abre tu mapa en el Plus Code ${plusCode}.`,
+  },
+  {
+    order: '02',
+    name: 'Catedral (Iglesia Matriz)',
+    ref: '20 m · 2 min a pie (ficha 361)',
+    detail: 'El inventario la registra como el edificio que marca el entorno inmediato de la plaza. Va primero por cercanía, no porque confirmemos un horario de apertura.',
+  },
+  {
+    order: '03',
+    name: 'Casa Museo Miguel Grau',
+    ref: '50 m · 1 min a pie (ficha 362)',
+    detail: 'Casona en la calle Tacna N.º 662 donde nació Miguel Grau Seminario. Comprueba si está abierta ese día antes de contar con la visita interior.',
+  },
+  {
+    order: '04',
+    name: 'Iglesia San Francisco',
+    ref: '300 m · 3 min a pie (ficha 3153)',
+    detail: 'La ficha registra un tramo de 300 metros sobre vía asfaltada. El municipio recuerda que en ella se dio el grito libertario del 4 de enero de 1821.',
+  },
+  {
+    order: '05',
+    name: 'Plazuela Merino e Iglesia Nuestra Señora del Carmen',
+    ref: '600 m · 6 min a pie (ficha 3165)',
+    detail: 'Cierre del recorrido. La iglesia del Carmen, en la Plazuela Merino, alberga desde 1996 el Museo de Arte Religioso de Piura.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuánto se camina en esta ruta?',
+    a: 'Sumando las referencias del inventario, el recorrido completo ronda los 1,2 km desde la plaza hasta la Plazuela Merino. Son estimaciones de distancia de la ficha turística, no un cronómetro: el calor y las paradas alargan el tiempo real.',
+  },
+  {
+    q: '¿Los tiempos de las fichas son tiempos garantizados?',
+    a: 'No. Los minutos que citamos (2, 1, 3 y 6 minutos) son referencias del inventario MINCETUR para tramos sobre vía asfaltada. No incluyen tráfico, semáforos, calor ni la movilidad de cada persona.',
+  },
+  {
+    q: '¿Hay que entrar a todos los edificios?',
+    a: 'No es obligatorio. La ruta es un orden de referencia: puedes hacer solo las paradas que te interesen. Los templos y museos tienen horarios propios que debes confirmar por separado.',
+  },
+  {
+    q: '¿Qué orden conviene si tengo poco tiempo?',
+    a: 'Haz la plaza y el edificio más cercano, la catedral, y decide después. Si buscas una versión corta de este recorrido, revisa la guía de una hora; si tienes media jornada, la de medio día amplía las paradas.',
+  },
+  {
+    q: '¿La ruta es segura para caminar con el calor de Piura?',
+    a: 'El mayor obstáculo es el sol, no la distancia. Lleva agua, protección solar y gorra, y reparte el recorrido. Si vas con niños o personas mayores, revisa las guías específicas antes de salir.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/ruta-a-pie-centro-historico-piura/#trip`,
+  name: `Ruta a pie por el centro histórico desde la ${attractionShortName}`,
+  description,
+  touristType: ['Turismo cultural', 'Centro histórico', 'A pie'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Catedral (Iglesia Matriz) de Piura' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau' } },
+      { '@type': 'ListItem', position: 4, item: { '@type': 'Place', name: 'Iglesia San Francisco de Asís' } },
+      { '@type': 'ListItem', position: 5, item: { '@type': 'Place', name: 'Plazuela Ignacio Merino' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Ruta a pie' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Ruta a pie"
+  h1={`Ruta a pie por el centro histórico desde la ${attractionShortName}`}
+  lead="Un orden de referencia para caminar el centro histórico enlazando la plaza con la catedral, la Casa Museo Grau, San Francisco y la Plazuela Merino, con las distancias que sí registra el inventario."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo usar esta ruta</span>
+      <h2 class="section-title">Un orden, no un circuito cerrado</h2>
+      <p class="section-copy mt-6">
+        Esta es la ruta cultural general del centro de {cityName}: empieza en la {attractionShortName} y avanza hacia los edificios que el propio municipio y el inventario turístico señalan como principales. Está pensada como un <strong>orden de referencia</strong> que puedes cortar donde quieras, no como un recorrido que haya que completar entero.
+      </p>
+      <p class="section-copy mt-4">
+        Las distancias y los minutos que verás más abajo provienen del inventario nacional de recursos turísticos y de la nota municipal que anunció la ruta «Piura Ciudad con Historia». Son referencias de tramos, no un horario: no añaden tráfico, esperas ni el calor real de la ciudad.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/centro-historico-de-piura/" class="btn border border-[#cab49a]">Ver el centro histórico</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Paradas</span>
+      <h2 class="section-title">Cinco paradas en orden de cercanía</h2>
+      <p class="section-lead">Distancias del inventario turístico, no un itinerario cronometrado.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {stops.map((stop) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{stop.order}</p>
+            <h3 class="serif mt-3 text-2xl">{stop.name}</h3>
+            <p class="mt-2 font-black text-[#244433]">{stop.ref}</p>
+            <p class="mt-3 leading-7 text-[#6e655b]">{stop.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">En la práctica</span>
+        <h2 class="section-title">Antes de empezar a caminar</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Define primero si quieres entrar a algún museo o templo. Esos horarios mandan: si la Casa Museo Grau o la iglesia del Carmen están cerradas a tu paso, la ruta igual funciona como paseo urbano, pero no como visita cultural completa.</p>
+          <p>No des por hecho que todas las paradas están abiertas ni que un guía te espera. El municipio anunció la ruta «Piura Ciudad con Historia» como actividad, no como un servicio permanente con horarios fijos.</p>
+          <p>Puedes profundizar en cada parada por separado antes de armar tu versión del recorrido y, si te interesa el hilo temático de Miguel Grau, revisa la ruta cultural específica.</p>
+        </div>
+        <p class="mt-8 text-base">
+          Complementa esta ruta con la guía de <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>, el detalle de la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral de Piura</a> y la ficha de la <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Casa Museo Miguel Grau</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Por qué este orden</span>
+        <h2 class="section-title">De lo más cercano a lo más lejano</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Empezar en la plaza permite orientarte y decidir con calma; la catedral está a pasos y la Casa Museo Grau a menos de una cuadra, así que no exigen un tramo previo.</p>
+          <p>San Francisco y la Plazuela Merino ya suponen caminar varias cuadras. Dejarlas al final evita que el cansancio acumulado te obligue a abandonar las paradas cortas.</p>
+          <p>Si vienes desde fuera del centro, calcula el acceso con tu origen real antes de fijar el arranque de la ruta.</p>
+        </div>
+        <p class="mt-8 text-base">
+          Para el punto de partida y el acceso, consulta <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo llegar a la plaza</a> y el <a href="/mapa-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">mapa de la zona</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">A tu medida</span>
+      <h2 class="section-title">Cómo adaptar la ruta a tu tiempo</h2>
+      <p class="section-lead">La misma ruta, recortada según lo que tengas. Las distancias son referencias del inventario, no un cronómetro.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[44rem] border-collapse text-left text-[#6e655b]">
+          <thead>
+            <tr class="border-b border-[#d9c6ad]">
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Tiempo disponible</th>
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paradas que incluye</th>
+              <th class="py-3 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Cómo cortarla</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">30 minutos</td>
+              <td class="py-4 pr-4">Plaza y un solo edificio contiguo: la catedral (20 m) o la Casa Museo Grau (50 m).</td>
+              <td class="py-4">Una vuelta al perímetro y una única parada interior; omite los tramos largos.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">1 hora</td>
+              <td class="py-4 pr-4">Plaza, catedral (20 m) y Casa Museo Grau (50 m).</td>
+              <td class="py-4">Ambas paradas están a una cuadra o menos; renuncia a San Francisco (300 m) y a la Plazuela Merino (600 m).</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Medio día</td>
+              <td class="py-4 pr-4">La ruta completa: plaza, catedral, Casa Museo Grau, San Francisco y Plazuela Merino.</td>
+              <td class="py-4">Añade el tramo largo con calma y una pausa; el recorrido completo ronda los 1,2 km.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        El corte no cambia el orden: sigue yendo de lo más cercano a lo más lejano. Para una versión cronometrada de la hora, revisa la guía de <a href="/que-hacer-piura-en-una-hora/" class="font-bold text-[#b9633e] underline">qué hacer en Piura en una hora</a>; para el día con comida y museo, la de <a href="/medio-dia-en-centro-de-piura/" class="font-bold text-[#b9633e] underline">medio día en el centro</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la ruta</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Descripción de la plaza, ingreso libre, arbolado, monumento central y rutas de acceso de referencia dentro del centro histórico.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — ficha 3153 (Iglesia San Francisco)</p>
+        <p class="text-sm text-[#6e655b]">Distancia y tiempo de referencia entre la plaza y San Francisco sobre vía asfaltada.</p>
+        <a href={minceturSanFrancisco} target="_blank" rel="noopener noreferrer">{minceturSanFrancisco}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — «Piura Ciudad con Historia» (16-12-2023)</p>
+        <p class="text-sm text-[#6e655b]">Confirma las cuatro paradas de la ruta municipal: plaza de Armas, Iglesia San Francisco de Asís, Iglesia Nuestra Señora del Carmen y Casa Museo Miguel Grau. Se anunció como actividad, no como servicio con horario fijo.</p>
+        <a href={muniRoute} target="_blank" rel="noopener noreferrer">{muniRoute}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

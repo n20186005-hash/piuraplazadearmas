@@ -1,0 +1,271 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+
+const title = 'Postres y bebidas típicas de Piura y la Plaza de Armas Piura';
+const description = 'Dulces y bebidas tradicionales de Piura y del norte del Perú —natilla, angelitos, chicha de jora o clarito— y cómo ubicarlos al visitar la Plaza de Armas.';
+const dateModified = '2026-11-04';
+
+const dulces = [
+  {
+    name: 'Natilla piurana',
+    text: 'El postre más emblemático de la región según la ficha oficial de Piura. Se prepara tradicionalmente con leche de cabra y chancaca, cocida a fuego lento hasta espesar; el resultado es un dulce de textura cremosa y aroma característico.',
+  },
+  {
+    name: 'Angelitos piuranos',
+    text: 'Dulces típicos del Bajo Piura, asociados a la celebración del Día de los Muertos a comienzos de noviembre. Forman parte del Arca del Gusto, el catálogo de productos tradicionales de Slow Food.',
+  },
+  {
+    name: 'Algarrobina',
+    text: 'Jarabe dulce obtenido de la vaina del algarrobo, árbol de la costa norte. Es un producto tradicional de Piura que se usa en postres, jugos y bebidas, y la Municipalidad Provincial de Piura lo reconoce como símbolo de identidad gastronómica.',
+  },
+];
+
+const bebidas = [
+  {
+    name: 'Chicha de jora',
+    text: 'Bebida ancestral de maíz fermentado y una de las principales de la región Piura. Se elabora de forma artesanal, también se usa como insumo de otras preparaciones y forma parte de las costumbres del Bajo Piura y de toda la región.',
+  },
+  {
+    name: 'Clarito',
+    text: 'Bebida de maíz del norte del Perú, en las regiones de Piura y Lambayeque. Se obtiene de la parte superior de la chicha reposada, suele servirse frío y es más suave y dulce que la chicha de jora.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuál es el postre típico de Piura?',
+    a: 'La natilla piurana es el postre más emblemático de la región. La ficha oficial de la región Piura la describe como un dulce a base de leche de cabra y chancaca, cocido lentamente hasta espesar.',
+  },
+  {
+    q: '¿Qué bebida tradicional piurana conviene probar?',
+    a: 'La chicha de jora es una de las bebidas principales de la región, y de ella deriva el clarito, más suave y dulce, que suele servirse frío. Ambas se elaboran de forma artesanal; no recomendamos un establecimiento concreto porque no lo hemos verificado.',
+  },
+  {
+    q: '¿Dónde puedo probar estos dulces y bebidas en el centro?',
+    a: 'Esta guía no publica una lista de locales que no ha verificado. Qué ofrece cada establecimiento y a qué precio se confirma en el propio local. Para elegir dónde sentarte, usa los criterios de la guía de cafeterías del centro.',
+  },
+  {
+    q: '¿La chicha de jora tiene alcohol?',
+    a: 'La chicha de jora es una bebida fermentada. El clarito, obtenido del líquido de la chicha reposada, se describe como más suave y con menor grado alcohólico, y se sirve frío. Si evitas el alcohol, pregunta qué bebidas sin fermentar tienen disponibles.',
+  },
+  {
+    q: '¿Qué dulces y bebidas del norte aparecen en el glosario?',
+    a: 'El glosario reúne solo productos documentados: la natilla piurana, los angelitos, la algarrobina, la chicha de jora y el clarito. Las elaboraciones que aparezcan en una carta y no figuren aquí no las hemos verificado, así que se marcan como «por confirmar» y conviene preguntarlas en el local.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/postres-bebidas-tipicas-piura/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  author: { '@type': 'Organization', name: `Guía del visitante — ${attractionFullName}` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Dulces y bebidas' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Dulce y bebida"
+  h1="Postres y bebidas típicas de Piura"
+  lead="Los dulces y bebidas de la región que sí están documentados, descritos de forma general. Esta guía no recomienda un establecimiento concreto."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de leer</span>
+      <h2 class="section-title">Dulces y bebidas documentados, sin nombres de locales</h2>
+      <p class="section-copy mt-6">
+        Esta página reúne postres y bebidas tradicionales de {cityName} y del norte del Perú que están respaldados por fuentes, y los describe de forma general. No recomendamos un establecimiento concreto ni publicamos precios u horarios, porque no los hemos verificado. El inventario turístico de MINCETUR describe el entorno de la plaza con comercios, pero no publica nombres ni precios.
+      </p>
+      <p class="section-copy mt-4">
+        Reconoce estos productos por su nombre y pregunta por ellos en cualquier local. Si solo quieres una pausa con café, mira <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías en el centro</a>; y para el contexto general, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Dulces</span>
+      <h2 class="section-title">Postres tradicionales de la región</h2>
+      <p class="section-lead">Tres referencias documentadas, sin atribuirlas a ningún local.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {dulces.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.name}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Bebidas</span>
+      <h2 class="section-title">Bebidas tradicionales de Piura</h2>
+      <p class="section-lead">Dos bebidas del norte peruano con raíz tradicional.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {bebidas.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.name}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si quieres reconocer también los platos salados de la región, revisa <a href="/comida-tipica-piurana-centro/" class="font-bold text-[#b9633e] underline">la comida típica piurana documentada</a>. Y si buscas dónde comer, empieza por <a href="/restaurantes-cerca-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo elegir un restaurante al llegar</a>. Para completar la visita, recorre el <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/comida-tipica-piurana-centro/" class="btn btn-primary">Ver la comida típica piurana</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Glosario</span>
+      <h2 class="section-title">Glosario de dulces y bebidas del norte</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        Una tabla para reconocer cada producto por su nombre, qué es y cómo se toma. Solo recoge categorías documentadas; lo que no hemos podido verificar figura como «por confirmar».
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[760px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Producto</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué es</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Cómo se toma</th>
+              <th class="py-3 font-black text-[#a85737]">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Natilla piurana</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Dulce de leche de cabra y chancaca cocido a fuego lento hasta espesar.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Como postre, sola.</td>
+              <td class="py-4 text-[#6e655b]">Documentado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Angelitos piuranos</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Dulces típicos del Bajo Piura, asociados al Día de los Muertos.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Como dulce tradicional de comienzos de noviembre.</td>
+              <td class="py-4 text-[#6e655b]">Documentado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Algarrobina</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Jarabe dulce obtenido de la vaina del algarrobo.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">En postres, jugos y bebidas.</td>
+              <td class="py-4 text-[#6e655b]">Documentado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Chicha de jora</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Bebida ancestral de maíz fermentado, de elaboración artesanal.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Fría, sola o como insumo de otras preparaciones.</td>
+              <td class="py-4 text-[#6e655b]">Documentado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Clarito</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Bebida de maíz obtenida de la parte superior de la chicha reposada.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Frío; más suave y dulce que la chicha de jora.</td>
+              <td class="py-4 text-[#6e655b]">Documentado</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Dulces de fiestas locales</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Elaboraciones que aparecen en fiestas patronales o de temporada y que esta guía no ha verificado.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Según la fecha y el lugar.</td>
+              <td class="py-4 text-[#6e655b]">Por confirmar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si cierras el paseo con un dulce o una bebida, puedes enlazarlo con <a href="/ruta-cultural-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la ruta cultural de Miguel Grau</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre dulces y bebidas</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Ficha Región Piura — documento oficial (gob.pe)</p>
+        <p class="text-sm text-[#6e655b]">Señala la natilla como el postre piurano por excelencia, a base de leche de cabra, chancaca y harina de arroz, y menciona el Día de la Algarrobina.</p>
+        <a href="https://cdn.www.gob.pe/uploads/document/file/2059948/Ficha%20Regi%C3%B3n%20Piura.pdf" target="_blank" rel="noopener noreferrer">gob.pe — Ficha Región Piura (PDF)</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Slow Food — Arca del Gusto: Angelitos de Piura</p>
+        <p class="text-sm text-[#6e655b]">Confirma los angelitos como dulces típicos del Bajo Piura, ligados al Día de los Muertos de comienzos de noviembre.</p>
+        <a href="https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/piura-angelitos/" target="_blank" rel="noopener noreferrer">fondazioneslowfood.com</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Slow Food — Arca del Gusto: Clarito artesanal</p>
+        <p class="text-sm text-[#6e655b]">Describe el clarito como bebida de maíz del norte del Perú, en las regiones de Piura y Lambayeque.</p>
+        <a href="https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/artisanal-clarito/" target="_blank" rel="noopener noreferrer">fondazioneslowfood.com</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">04</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Diario Correo — Chicha de jora con esencia piurana</p>
+        <p class="text-sm text-[#6e655b]">Presenta la chicha de jora como bebida tradicional y parte de las costumbres del Bajo Piura y de toda la región.</p>
+        <a href="https://diariocorreo.pe/edicion/piura/chicha-de-jora-una-tradicional-bebida-con-esencia-piurana-noticia/" target="_blank" rel="noopener noreferrer">diariocorreo.pe</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,242 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const minceturGrau = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=362';
+const muniRoute = 'https://www.gob.pe/institucion/munipiura/noticias/883026';
+
+const title = 'Ruta cultural Miguel Grau en Piura desde la Plaza de Armas Piura';
+const description = `Ruta cultural sobre Miguel Grau en ${cityName}: la ${attractionShortName}, la Casa Museo Grau y las paradas de la ruta municipal «Piura Ciudad con Historia».`;
+const dateModified = '2026-11-04';
+
+const stops = [
+  {
+    order: '01',
+    name: 'Plaza de Armas de Piura',
+    text: `Punto de partida y contexto urbano de la figura de Grau. Es el primer punto de la ruta municipal «Piura Ciudad con Historia» y el origen natural del recorrido. Abre tu mapa en el Plus Code ${plusCode}.`,
+  },
+  {
+    order: '02',
+    name: 'Casa Museo Miguel Grau Seminario',
+    text: 'La parada central desde el punto de vista biográfico: la casona de la calle Tacna N.º 662 donde nació Miguel Grau Seminario, a unos 50 m de la plaza según el inventario. Aquí se concentra el hilo del personaje.',
+  },
+  {
+    order: '03',
+    name: 'Iglesia San Francisco de Asís',
+    text: 'Segundo punto de la ruta municipal, a unos 300 m de la plaza. El municipio recuerda que en ella se dio el grito libertario del 4 de enero de 1821, el contexto histórico en el que se formó la generación de Grau.',
+  },
+  {
+    order: '04',
+    name: 'Iglesia Nuestra Señora del Carmen',
+    text: 'Cierre de la ruta municipal, en la Plazuela Merino, a unos 600 m de la plaza. Alberga desde 1996 el Museo de Arte Religioso de Piura y aporta la dimensión religiosa y artística del recorrido.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Qué es la ruta «Piura Ciudad con Historia»?',
+    a: 'Es una ruta anunciada por la Municipalidad Provincial de Piura en diciembre de 2023, con cuatro puntos: plaza de Armas, Iglesia San Francisco de Asís, Iglesia Nuestra Señora del Carmen y Casa Museo Miguel Grau Seminario. Se presentó como actividad, no como servicio permanente con horario fijo.',
+  },
+  {
+    q: '¿Se puede hacer la ruta con guía?',
+    a: 'No confirmamos una visita guiada operando a horas fijas. El municipio anunció recorridos con guías en el marco de esa ruta, pero no verificamos que se ofrezcan de forma continua: consulta a la municipalidad antes de contar con ello.',
+  },
+  {
+    q: '¿Por qué Miguel Grau es el eje de esta ruta?',
+    a: 'Porque la Casa Museo de la calle Tacna N.º 662 es su casa natal y conserva piezas ligadas a su figura y a la historia de Piura. Es el ancla biográfica que da sentido a las demás paradas.',
+  },
+  {
+    q: '¿Qué conserva la Casa Museo Grau?',
+    a: 'El inventario turístico (ficha 362) describe la casa natal y piezas de valor histórico, como la carta de Carmen Carvajal, el sable de Miguel Jerónimo Seminario vinculado a la proclamación de la independencia de 1821 y una réplica del monitor Huáscar, entre otras. Verifica la visita con el propio museo.',
+  },
+  {
+    q: '¿La ruta coincide con el paseo a pie general?',
+    a: 'Se superpone en parte, pero el hilo es distinto: aquí el eje es la figura de Grau y la ruta municipal, no el listado general de atractivos del centro. Puedes empezar por una y continuar con la otra.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/ruta-cultural-miguel-grau-piura/#trip`,
+  name: `Ruta cultural Miguel Grau en el centro de ${cityName}`,
+  description,
+  touristType: ['Turismo cultural', 'Ruta temática', 'Centro histórico'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau Seminario' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Iglesia San Francisco de Asís' } },
+      { '@type': 'ListItem', position: 4, item: { '@type': 'Place', name: 'Iglesia Nuestra Señora del Carmen' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Ruta Miguel Grau' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Ruta temática"
+  h1={`Ruta cultural Miguel Grau desde la ${attractionShortName}`}
+  lead="Un recorrido con hilo propio: la figura de Miguel Grau y los cuatro puntos que el municipio reunió en la ruta «Piura Ciudad con Historia», presentados como recorrido anunciado, no como tour permanente."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/catedral-de-piura.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">El hilo</span>
+      <h2 class="section-title">Un recorrido con un personaje como eje</h2>
+      <p class="section-copy mt-6">
+        A diferencia de una ruta general por atractivos, esta sigue un hilo: <strong>Miguel Grau Seminario</strong> y su época. El ancla es la Casa Museo de la calle Tacna N.º 662, donde nació el héroe naval, a unos 50 m de la {attractionShortName} según el inventario turístico.
+      </p>
+      <p class="section-copy mt-4">
+        El eje institucional es la ruta <strong>«Piura Ciudad con Historia»</strong>, que la Municipalidad Provincial de {cityName} anunció en diciembre de 2023 con cuatro puntos: plaza de Armas, Iglesia San Francisco de Asís, Iglesia Nuestra Señora del Carmen y Casa Museo Miguel Grau Seminario. La presentamos como recorrido anunciado, no como un servicio que funcione hoy con horarios fijos.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/ruta-a-pie-centro-historico-piura/" class="btn border border-[#cab49a]">Ver la ruta a pie general</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Paradas</span>
+      <h2 class="section-title">Cuatro puntos, del más cercano al más lejano</h2>
+      <p class="section-lead">Distancias del inventario y de la ficha municipal, como referencia.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {stops.map((stop) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{stop.order}</p>
+            <h3 class="serif mt-3 text-2xl">{stop.name}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{stop.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">En la práctica</span>
+        <h2 class="section-title">Qué comprobar antes de seguirla</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>La ruta anunciada no equivale a un tour operando a horas fijas. Si quieres guía, consulta primero a la Municipalidad Provincial de {cityName}; no damos por hecho que se ofrezca de forma continua.</p>
+          <p>Los horarios de la Casa Museo y de los templos son independientes entre sí. Confirma cada uno el día de la visita y ajusta el orden en consecuencia.</p>
+          <p>El tramo largo es el que lleva a la iglesia del Carmen, en la Plazuela Merino: planea ese desplazamiento para la franja de menos calor.</p>
+        </div>
+        <p class="section-copy mt-8">
+          Profundiza en las paradas con la guía de la <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Casa Museo Miguel Grau</a>, la de la <a href="/iglesia-san-francisco-piura/" class="font-bold text-[#b9633e] underline">iglesia San Francisco</a> y la de la <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">iglesia Nuestra Señora del Carmen</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Para ampliar</span>
+        <h2 class="section-title">Cómo encadenar el recorrido</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Si solo quieres el núcleo temático, basta con la plaza y la Casa Museo Grau: están a menos de una cuadra y concentran el hilo biográfico.</p>
+          <p>Si quieres el recorrido completo del municipio, suma San Francisco y la iglesia del Carmen, y reserva tiempo para los tramos de 300 y 600 m.</p>
+          <p>Para planificar el arranque, apóyate en la guía de <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo llegar a la plaza</a> y en el <a href="/mapa-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">mapa de la zona</a>.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/medio-dia-en-centro-de-piura/" class="btn border border-[#cab49a]">Plan de medio día</a>
+          <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Relación con lo oficial</span>
+      <h2 class="section-title">Cómo se conecta con la ruta municipal</h2>
+      <p class="section-copy mt-6">
+        Las paradas de esta página coinciden con los cuatro puntos que la Municipalidad Provincial de {cityName} reunió en la ruta <strong>«Piura Ciudad con Historia»</strong>: plaza de Armas, Iglesia San Francisco de Asís, Iglesia Nuestra Señora del Carmen y Casa Museo Miguel Grau Seminario. Sobre ese esqueleto oficial, esta guía añade el hilo temático del personaje.
+      </p>
+      <p class="section-copy mt-4">
+        Conviene no confundir las dos cosas: <strong>«Piura Ciudad con Historia» se anunció como actividad, no como un servicio permanente con horarios fijos ni guías garantizados</strong>. Esta guía no afirma que ese recorrido siga operando hoy de forma continua; lo toma como referencia de qué puntos prioriza el municipio.
+      </p>
+      <ul class="mt-8 space-y-3 text-lg leading-8 text-[#6e655b]">
+        <li>Si quieres seguir el guion municipal, haz los cuatro puntos de la lista, del más cercano al más lejano.</li>
+        <li>Si quieres el guion temático de esta página, quédate con la plaza y la Casa Museo Grau como núcleo biográfico.</li>
+        <li>Si esperas un tour acompañado, consulta antes a la municipalidad: no damos por hecho que exista un servicio con horario.</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Para contrastar este recorrido con la versión general del centro, revisa la <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">ruta a pie por el centro histórico</a> y, para el hito biográfico, la ficha de la <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Casa Museo Miguel Grau</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la ruta Grau</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — «Piura Ciudad con Historia» (16-12-2023)</p>
+        <p class="text-sm text-[#6e655b]">Confirma los cuatro puntos de la ruta municipal y que se anunció como actividad con guías, no como servicio permanente.</p>
+        <a href={muniRoute} target="_blank" rel="noopener noreferrer">{muniRoute}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — ficha 362 (Casa Museo Almirante Miguel Grau)</p>
+        <p class="text-sm text-[#6e655b]">Ubicación en calle Tacna N.º 662, distancia de referencia a 50 m de la plaza y descripción de las piezas ligadas a la figura de Grau.</p>
+        <a href={minceturGrau} target="_blank" rel="noopener noreferrer">{minceturGrau}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Punto de partida, ingreso libre y distancias de referencia hacia los edificios del recorrido.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

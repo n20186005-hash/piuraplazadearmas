@@ -1,0 +1,256 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Fotografía en la Plaza de Armas Piura: luz, sombra y encuadres';
+const description = `Fotografiar la ${attractionShortName}: cómo usar la luz, la sombra de los árboles y el monumento central, y qué evitar al retratar a las personas.`;
+const dateModified = '2026-11-04';
+
+const light = [
+  {
+    title: 'Luz de mañana y de tarde, no de mediodía',
+    text: 'El mediodía concentra la luz más dura y el calor más alto. Al inicio o al final del día la luz es más suave y las sombras más largas, lo que favorece cualquier encuadre. Revisa el pronóstico antes de salir.',
+  },
+  {
+    title: 'La sombra de los árboles como recurso',
+    text: 'El inventario describe tamarindos centenarios y otros árboles, y los señala como fuente de frescura. Para fotografiar, esa arbolada también crea fondo y textura, y protege la escena del sol directo.',
+  },
+  {
+    title: 'Cuidado con las zonas de alto contraste',
+    text: 'Una plaza con vegetación y sol fuerte genera contrastes muy marcados entre la sombra y las áreas iluminadas. Decide si quieres conservar la sombra (y dejar el cielo quemado) o el cielo (y perder detalle en la sombra).',
+  },
+];
+
+const frames = [
+  {
+    title: 'El monumento central, «La Pola»',
+    text: 'El centro de la plaza está ocupado por el monumento a la libertad, conocido como «La Pola». Funciona como punto de referencia del encuadre: úsalo como sujeto o como ancla de una composición con la plaza alrededor.',
+  },
+  {
+    title: 'La vista hacia la catedral',
+    text: 'La catedral (Iglesia Matriz) es el edificio que el inventario señala como principal del entorno, a unos 20 m. Es un fondo natural para una toma amplia de la plaza.',
+  },
+  {
+    title: 'Jardines y bancas como primer plano',
+    text: 'Los jardines y las bancas dan escala humana y primer plano. Una composición que incluya vegetación en la base suele ordenar mejor la escena que una foto solo de edificios.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Se puede fotografiar libremente en la Plaza de Armas de Piura?',
+    a: 'El inventario turístico registra la toma de fotografías como una de las actividades habituales del lugar. Eso no te exime de respetar ceremonias cívicas o religiosas ni el derecho de imagen de las personas.',
+  },
+  {
+    q: '¿Cuál es la mejor hora para fotografiar la plaza?',
+    a: 'No publicamos una hora exacta porque cambia con la estación. En general, la luz de la mañana temprano y de la tarde es más suave que la del mediodía, que es más dura y calurosa. Revisa el pronóstico ese día.',
+  },
+  {
+    q: '¿Puedo fotografiar a las personas que pasan?',
+    a: 'Pide permiso antes de retratar a personas identificables y evita interrumpir actos cívicos o religiosos. Es una norma de respeto básica, más aún en un espacio tan concurrido.',
+  },
+  {
+    q: '¿Hay mejores «puntos fotográficos» concretos?',
+    a: 'No señalamos rincones exactos porque no hemos verificado un listado de miradores ni de ángulos oficiales. El encuadre funciona con lo que la plaza ofrece: el monumento central, los jardines y las bancas, y los edificios del perímetro como fondo.',
+  },
+  {
+    q: '¿Y para fotografía de noche?',
+    a: 'La plaza cambia de ambiente con la luz artificial. Revisa la guía de la plaza de noche para hacerte una idea, y comprueba las condiciones reales al llegar, porque no publicamos horarios de iluminación.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/fotografia-plaza-de-armas-piura/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Fotografía' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Fotografía"
+  h1={`Fotografía en la ${attractionShortName}`}
+  lead="Cómo aprovechar la luz y la sombra en un espacio con monumento central, jardines y bancas, sin inventar miradores que no se pueden confirmar."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Monumento a la libertad, «La Pola», en el centro de la ${attractionShortName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Punto de partida</span>
+      <h2 class="section-title">Fotografiar es una actividad registrada</h2>
+      <p class="section-copy mt-6">
+        El inventario turístico de la {attractionShortName} registra la toma de fotografías como una de las actividades habituales del lugar. Eso la convierte en un uso esperado del espacio, no en una excepción. Lo que no hace la ficha es indicar «puntos fotográficos» concretos, así que aquí no vamos a inventarlos.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí sabemos de su disposición: es una plaza con jardines y bancas, arbolada con tamarindos centenarios, con el monumento a la libertad —«La Pola»— en el centro y la catedral y otros edificios marcando el perímetro. Con eso se puede trabajar el encuadre sin inventar nada.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Luz</span>
+      <h2 class="section-title">Cómo leer la luz del día</h2>
+      <p class="section-lead">Condiciones generales del espacio, no un horario de sesión garantizado.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {light.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">Encuadres</span>
+        <h2 class="section-title">Qué tienes delante</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          {frames.map((frame) => (
+            <p><strong class="text-[#1d2a24]">{frame.title}:</strong> {frame.text}</p>
+          ))}
+        </div>
+        <p class="section-copy mt-8">
+          Si quieres comparar resultados o ver la plaza en distintos momentos, revisa la galería de <a href="/fotos-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">fotos de la plaza</a> y el detalle del <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">monumento «La Pola»</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Etiqueta</span>
+        <h2 class="section-title">Fotografiar con respeto</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Evita interrumpir ceremonias cívicas o religiosas, que ocurren en el espacio y en los templos del entorno. Baja la cámara si estás en medio de un acto.</p>
+          <p>Pide permiso antes de retratar a personas identificables y no publiques imágenes de menores sin consentimiento.</p>
+          <p>Cuida el equipo con el calor: el sol directo y las superficies calientes afectan baterías y cámaras. Lleva agua y busca sombra entre tomas.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/plaza-de-armas-piura-de-noche/" class="btn border border-[#cab49a]">Ver la plaza de noche</a>
+          <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Tabla de luz</span>
+      <h2 class="section-title">La luz según el momento del día</h2>
+      <p class="section-lead">Cómo cambia la luz en un espacio abierto. Son tendencias generales, no un horario garantizado: lo definitivo lo dice el día concreto y el pronóstico.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[44rem] border-collapse text-left text-[#6e655b]">
+          <thead>
+            <tr class="border-b border-[#d9c6ad]">
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Momento</th>
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">La luz</th>
+              <th class="py-3 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Qué suele favorecer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Mañana temprano</td>
+              <td class="py-4 pr-4">Suave y rasante; sombras largas.</td>
+              <td class="py-4">Detalle en las fachadas orientadas al este, vegetación con volumen y contraste controlado.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Mediodía</td>
+              <td class="py-4 pr-4">Dura y vertical; contraste muy alto.</td>
+              <td class="py-4">Escenas con sombra bien elegida; evita retratos a pleno sol por el riesgo de perder detalle.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Media tarde</td>
+              <td class="py-4 pr-4">Baja gradualmente; tono más cálido.</td>
+              <td class="py-4">Composiciones amplias de la plaza y de las fachadas del perímetro.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Atardecer y anochecer</td>
+              <td class="py-4 pr-4">Luz muy tenue y cambiante; mezcla con la iluminación artificial.</td>
+              <td class="py-4">Siluetas y ambiente nocturno de la plaza, con apoyos para sujetar la cámara y cuidado del ruido.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La vegetación y las bancas dan primer plano en cualquier franja, y el <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">monumento «La Pola»</a> sirve de ancla del encuadre. Para comparar resultados en distintos momentos, revisa el ambiente de la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas de fotografía</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Registra la fotografía como actividad habitual y describe el monumento central, los jardines, las bancas y el arbolado: base de los encuadres.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) y contexto del entorno para planificar la visita fotográfica.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">SENAMHI — pronóstico de Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente oficial para revisar el cielo y el calor previsto antes de una sesión al aire libre.</p>
+        <a href="https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003" target="_blank" rel="noopener noreferrer">https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

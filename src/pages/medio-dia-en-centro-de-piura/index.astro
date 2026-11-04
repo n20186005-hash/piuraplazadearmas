@@ -1,0 +1,262 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const minceturGrau = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=362';
+const minceturVicus = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=1011';
+
+const title = 'Medio día en el centro de Piura desde la Plaza de Armas Piura';
+const description = `Plan de medio día en ${cityName}: la ${attractionShortName}, un museo y una comida, con un orden realista de paradas y tiempos estimados de esta guía.`;
+const dateModified = '2026-11-04';
+
+const blocks = [
+  {
+    moment: 'Primera hora',
+    title: 'Plaza y catedral, sin prisa',
+    text: 'Llegada a la plaza (Plus Code R93F+58) y vuelta completa al perímetro. Después, la catedral (Iglesia Matriz), a unos 20 m: es la parada más cercana y no exige desplazamiento.',
+  },
+  {
+    moment: 'Segunda hora',
+    title: 'Casa Museo Miguel Grau',
+    text: 'A unos 50 m de la plaza, en la calle Tacna N.º 662. Aquí el recorrido se vuelve temático: es la casa donde nació Miguel Grau Seminario. Comprueba antes si está abierta ese día.',
+  },
+  {
+    moment: 'Antes del almuerzo',
+    title: 'Un museo, a elegir uno solo',
+    text: 'Dos opciones realistas: el Museo Municipal Vicús, a 1 km (3 min en taxi según la ficha), o el Museo de Arte Religioso en la iglesia del Carmen, en la Plazuela Merino, a unos 600 m a pie. Elegir uno es lo que hace posible el medio día.',
+  },
+  {
+    moment: 'A mediodía',
+    title: 'Comida en el entorno del centro',
+    text: 'Reserva tiempo para comer en la zona. Esta guía no publica restaurantes ni precios concretos porque no los ha verificado: elige por cercanía y comprueba la oferta al llegar.',
+  },
+];
+
+const order = [
+  'Plaza de Armas de Piura',
+  'Catedral (Iglesia Matriz)',
+  'Casa Museo Miguel Grau',
+  'Museo Municipal Vicús o Museo de Arte Religioso (uno)',
+  'Comida en el entorno del centro',
+];
+
+const faqs = [
+  {
+    q: '¿Qué se puede ver en medio día en el centro de Piura?',
+    a: 'Da tiempo a la plaza, la catedral, la Casa Museo Grau y un museo, más una comida. Lo que no cabe es sumar las dos opciones de museo y las iglesias alejadas: obliga a elegir.',
+  },
+  {
+    q: '¿Los tiempos de este plan son exactos?',
+    a: 'No. Son estimaciones de esta guía. Los horarios reales de los museos y templos mandan sobre el plan: si uno está cerrado a tu paso, reordena las paradas.',
+  },
+  {
+    q: '¿Conviene empezar por la plaza o por el museo?',
+    a: 'Depende del horario del museo que elijas. Si abre solo por la mañana, empieza por él y deja la plaza como pausa; si abre por la tarde, haz plaza y catedral primero.',
+  },
+  {
+    q: '¿El Museo Municipal Vicús está lejos de la plaza?',
+    a: 'El inventario lo registra a 1 km, con unos 3 minutos en taxi. No es una parada de caminata corta, así que decide si vale el desplazamiento según el tiempo que tengas.',
+  },
+  {
+    q: '¿Esta guía recomienda restaurantes?',
+    a: 'No publicamos una lista de restaurantes ni precios porque no los hemos verificado. Sí podemos orientarte sobre dónde comer por zona en la guía de comida del centro.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/medio-dia-en-centro-de-piura/#trip`,
+  name: `Medio día en el centro de ${cityName} desde la ${attractionShortName}`,
+  description,
+  touristType: ['Turismo cultural', 'Museos', 'Medio día'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Catedral (Iglesia Matriz) de Piura' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau' } },
+      { '@type': 'ListItem', position: 4, item: { '@type': 'Place', name: 'Museo Municipal Vicús' } },
+      { '@type': 'ListItem', position: 5, item: { '@type': 'Place', name: 'Plazuela Ignacio Merino' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Medio día' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Medio día"
+  h1={`Medio día en el centro desde la ${attractionShortName}`}
+  lead="Un plan realista para cuatro o cinco horas: la plaza, un edificio contiguo, un solo museo y una comida. La clave no es ver más, sino ordenar bien las paradas."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Monumento a la libertad, «La Pola», en el centro de la ${attractionShortName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">La idea</span>
+      <h2 class="section-title">Medio día bien ordenado vale más que un día apurado</h2>
+      <p class="section-copy mt-6">
+        Con medio día en el centro de {cityName} puedes cubrir lo esencial sin correr: la {attractionShortName}, un edificio a pasos, un museo y una comida. El orden importa más que la cantidad, porque los museos y templos tienen horarios propios y son ellos los que marcan el reloj.
+      </p>
+      <p class="section-copy mt-4">
+        Arranca en el Plus Code {plusCode}. Si dudas del punto exacto, el mapa de la zona te ubica el acceso en segundos.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/mapa-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver el mapa de la zona</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Bloques del día</span>
+      <h2 class="section-title">Cuatro bloques, en este orden</h2>
+      <p class="section-lead">Un orden de referencia que puedes ajustar al horario real de cada lugar.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {blocks.map((block) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{block.moment}</p>
+            <h3 class="serif mt-3 text-2xl">{block.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{block.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Secuencia sugerida: {order.join(' → ')}. Cambia el orden si un museo abre solo en una franja concreta: ese dato manda sobre cualquier plan escrito.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">En la práctica</span>
+        <h2 class="section-title">Lo que hay que comprobar</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Los museos del centro no comparten horario. Antes de fijar el plan, confirma la franja del que hayas elegido: Museo Municipal Vicús o Museo de Arte Religioso en la iglesia del Carmen.</p>
+          <p>La Casa Museo Grau es una casona patrimonial: puede tener condiciones de acceso propias. No des por hecho que estará abierta solo porque aparece en el inventario.</p>
+          <p>El calor manda en el reparto del día. Reserva los tramos largos para cuando el sol apriete menos y usa la plaza como punto de descanso entre bloques.</p>
+        </div>
+        <p class="mt-8 text-base">
+          Para el cierre del día, revisa las opciones de <a href="/almorzar-centro-historico-piura/" class="font-bold text-[#b9633e] underline">almuerzo en el centro</a> y las alternativas de <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías</a>. Y si quieres convertir esto en una ruta temática, prueba la ruta de <a href="/ruta-cultural-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Miguel Grau</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Cuándo acortar</span>
+        <h2 class="section-title">Señales de que medio día sobra</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>Si llegas muy cansado o el calor es intenso, elimina el desplazamiento al museo y quédate en el núcleo de la plaza: sigue siendo una visita completa.</p>
+          <p>Si vas con niños o personas mayores, la guía específica reparte el mismo medio día con más pausas y menos distancia.</p>
+        </div>
+        <p class="mt-8 text-base">
+          Empieza por <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a> y por el detalle de la <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">Casa Museo Miguel Grau</a>.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/piura-con-ninos-centro-historico/" class="btn border border-[#cab49a]">Versión con niños</a>
+          <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Encaje del día</span>
+      <h2 class="section-title">Cómo encajar el almuerzo y el museo</h2>
+      <p class="section-lead">Dos ordenaciones posibles según la franja en que abra el museo que elijas. No cambia lo que ves, solo cuándo comes.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        <article class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Opción A</p>
+          <h3 class="serif mt-3 text-2xl">Museo antes, almuerzo después</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Si el museo abre por la mañana, hazlo en el bloque previo al mediodía y come al salir, cuando el sol aprieta. Encaja bien con el Vicús (1 km, unos 3 min en taxi) porque el desplazamiento se hace a la ida, con el día aún fresco.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Opción B</p>
+          <h3 class="serif mt-3 text-2xl">Almuerzo antes, museo después</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Si el museo abre solo por la tarde, come primero cerca del centro y deja el museo para la franja posterior. Conviene con el Museo de Arte Religioso, en la iglesia del Carmen (600 m), porque el tramo se camina con el calor ya pasado.</p>
+        </article>
+      </div>
+      <ul class="mt-10 space-y-3 text-lg leading-8 text-[#6e655b]">
+        <li>Confirma la franja del museo elegido el mismo día: es lo único que puede forzar la opción A o la B.</li>
+        <li>No reserves el almuerzo antes de saber el horario del museo, o tendrás que comer corriendo.</li>
+        <li>Si el museo queda lejos, deja la plaza como última parada: es el punto de descanso natural antes de volver.</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Para elegir dónde comer por zona, revisa <a href="/almorzar-centro-historico-piura/" class="font-bold text-[#b9633e] underline">dónde almorzar en el centro</a>; y para comparar la opción de museo más lejana, la guía del <a href="/museo-municipal-vicus-piura/" class="font-bold text-[#b9633e] underline">Museo Municipal Vicús</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el medio día</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Descripción de la plaza, ingreso libre y distancias de referencia dentro del centro histórico, base del orden de paradas.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — ficha 362 (Casa Museo Miguel Grau)</p>
+        <p class="text-sm text-[#6e655b]">Ubicación en calle Tacna N.º 662 y distancia de referencia a 50 m de la plaza.</p>
+        <a href={minceturGrau} target="_blank" rel="noopener noreferrer">{minceturGrau}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — ficha 1011 (Museo Municipal Vicús)</p>
+        <p class="text-sm text-[#6e655b]">Registra el museo a 1 km de la plaza con unos 3 minutos en taxi, dato para decidir si vale el desplazamiento.</p>
+        <a href={minceturVicus} target="_blank" rel="noopener noreferrer">{minceturVicus}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

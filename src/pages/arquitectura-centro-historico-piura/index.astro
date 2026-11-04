@@ -1,0 +1,272 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const minceturCatedral = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=361';
+const minceturGrau = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=362';
+
+const title = 'Arquitectura del centro histórico de la Plaza de Armas Piura';
+const description = 'Los estilos y materiales del centro histórico de Piura, alrededor de la Plaza de Armas: adobe y quincha, barroco, neorrenacentista, plateresco y neoclásico, con ejemplos.';
+const dateModified = '2026-11-04';
+
+const estilos = [
+  {
+    title: 'Colonial: adobe y quincha',
+    text: 'La arquitectura doméstica del centro se levantó con muros de adobe y quincha. La Casa Museo Miguel Grau conserva ese sistema, con unos 4 metros de altura, y el terremoto de 1912 derribó su segundo piso.',
+  },
+  {
+    title: 'Barroco en el interior',
+    text: 'El mejor ejemplo religioso es el altar mayor de la iglesia Nuestra Señora del Carmen, un retablo barroco cubierto con pan de oro, considerado el más representativo del norte del país.',
+  },
+  {
+    title: 'Neorrenacentista y plateresco',
+    text: 'La fachada de la Basílica Catedral se describe como neorrenacentista, con referencia a veinte columnas dóricas. Su altar mayor, rehecho tras el sismo de 1912, se atribuye al estilo plateresco.',
+  },
+  {
+    title: 'Neoclásico civil',
+    text: 'Fuera de los templos, el monumento central de la plaza, la «Alegoría a la Libertad», es una pieza de mármol de gusto neoclásico: el mismo lenguaje clásico aplicado a la escultura pública.',
+  },
+];
+
+const claves = [
+  {
+    title: 'Un damero que ordena el conjunto',
+    text: 'El trazado en cuadrícula con la plaza en el centro explica por qué los edificios principales se concentran a pocas cuadras: catedral, iglesias y casonas responden al mismo esquema urbano.',
+  },
+  {
+    title: 'El sismo que marcó el estilo',
+    text: 'El terremoto de 1912 obligó a reconstruir buena parte del centro. Por eso conviven lo colonial superviviente y las intervenciones de la primera mitad del siglo XX.',
+  },
+  {
+    title: 'Un patrimonio en tensión',
+    text: 'En 1987 se declararon alrededor de un centenar de casonas como patrimonio. Con los años, varias se deterioraron o desaparecieron: lo que se conserva hoy es una parte de lo declarado.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Qué estilos arquitectónicos se ven en el centro histórico de Piura?',
+    a: 'Conviven la arquitectura colonial de adobe y quincha, el barroco religioso, la fachada neorrenacentista y el altar plateresco de la catedral, y el neoclasicismo de la escultura pública. La reconstrucción posterior al sismo de 1912 añade capas republicanas.',
+  },
+  {
+    q: '¿Qué materiales son característicos?',
+    a: 'Los muros de adobe y quincha, los balcones tallados en madera y los patios interiores son los rasgos más citados de la arquitectura doméstica del centro, como se aprecia en la Casa Museo Miguel Grau.',
+  },
+  {
+    q: '¿Por qué se mezclan estilos tan distintos?',
+    a: 'En parte por el terremoto de 1912, que obligó a reconstruir, y en parte por la evolución de la ciudad: un mismo frente urbano puede reunir un muro colonial, un añadido republicano y una restauración del siglo XX.',
+  },
+  {
+    q: '¿Se conservan las casonas declaradas en 1987?',
+    a: 'No todas. Las resoluciones ministeriales de 1987 declararon alrededor de un centenar de casonas, pero con el tiempo varias se deterioraron o se perdieron. Esta guía no hace un inventario del estado actual de cada inmueble.',
+  },
+  {
+    q: '¿Se puede ver esta arquitectura en un paseo corto?',
+    a: 'Sí, el casco central es compacto y se recorre a pie. Esta guía no ha verificado un circuito arquitectónico señalizado con tiempos fijos; organiza el paseo según los edificios que quieras ver, empezando por la propia plaza.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/arquitectura-centro-historico-piura/#article`,
+  headline: 'Arquitectura del centro histórico de Piura',
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  datePublished: '2026-11-04',
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Arquitectura' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Estilos y materiales"
+  h1="Arquitectura del centro histórico de Piura"
+  lead={`Los lenguajes que se cruzan en el casco central de ${cityName}, alrededor de la ${attractionShortName}: adobe y quincha, barroco, neorrenacentista, plateresco y neoclásico.`}
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo leer el centro</span>
+      <h2 class="section-title">Una ciudad de capas, no de un solo estilo</h2>
+      <p class="section-copy mt-6">
+        El centro histórico de {cityName} no se explica por un estilo único. Se entiende como una superposición: una base colonial de muros pesados y patios, una reconstrucción posterior al terremoto de 1912 y restauraciones más recientes. Reconocer esas capas es la mejor forma de mirar los frentes que rodean la {attractionShortName}.
+      </p>
+      <p class="section-copy mt-4">
+        Esta página describe los estilos y materiales del conjunto. Para el marco legal y los límites del área protegida, revisa <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Estilos</span>
+      <h2 class="section-title">Cuatro lenguajes que conviven</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {estilos.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">Claves</span>
+        <h2 class="section-title">Tres ideas para mirar mejor</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          {claves.map((item) => (
+            <p><strong class="text-[#1d2a24]">{item.title}.</strong> {item.text}</p>
+          ))}
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/catedral-de-piura/" class="btn btn-primary">Ver la catedral</a>
+          <a href="/plazas-historicas-de-piura/" class="btn border border-[#cab49a]">Comparar las plazas</a>
+        </div>
+      </div>
+      <figure class="overflow-hidden rounded-[2rem]">
+        <img src="/images/catedral-de-piura.jpg" alt={`Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`} width="960" height="1280" loading="lazy" class="h-full w-full object-cover" />
+        <figcaption class="mt-3 text-xs text-[#6e655b]">
+          <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Continuar</span>
+      <h2 class="section-title">Dónde ver cada estilo</h2>
+      <p class="section-copy mt-6">
+        El barroco se concentra en <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">la iglesia Nuestra Señora del Carmen</a>; el neorrenacentista y el plateresco, en <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a>; la casa colonial, en <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la Casa Museo Miguel Grau</a>. Y el punto de partida de todo el conjunto sigue siendo <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">En la calle</span>
+      <h2 class="section-title">Cómo distinguir los estilos en la calle</h2>
+      <p class="section-lead">Una tabla para reconocer, frente a frente, qué estás mirando y dónde encontrarlo.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[840px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Estilo</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Rasgos que se ven</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Ejemplo en Piura</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Cómo reconocerlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Colonial: adobe y quincha</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Muros de adobe y quincha, balcones tallados en madera y patios interiores.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Casa Museo Miguel Grau.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Muros gruesos, planta baja y patio interior; el segundo piso puede faltar tras el sismo de 1912.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Barroco</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Retablos con pan de oro y decoración interior.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Altar mayor de la iglesia Nuestra Señora del Carmen.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Hay que entrar: el estilo está dentro del templo, no en la fachada.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Neorrenacentista y plateresco</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Fachada con columnas dóricas; altar con decoración menuda.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Basílica Catedral y su altar mayor.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Frente porticado junto a la plaza; el plateresco aparece al entrar en el altar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Neoclásico civil</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Mármol y lenguaje clásico aplicado a la escultura pública.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La «Alegoría a la Libertad» de la plaza.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Pieza exenta sobre pedestal, no una fachada: se mira en el centro del espacio.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La clave está en no esperar un solo estilo en cada frente. En una misma caminata puedes pasar del muro colonial de <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la Casa Museo Miguel Grau</a> a la fachada clásica de la catedral y terminar mirando de cerca <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">el monumento de mármol de la plaza</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la arquitectura</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 361 (Catedral)</p>
+        <p class="text-sm text-[#6e655b]">Descripción de la fachada neorrenacentista, referencia a las veinte columnas dóricas y altar mayor atribuido al estilo plateresco.</p>
+        <a href={minceturCatedral} target="_blank" rel="noopener noreferrer">{minceturCatedral}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 362 (Casa Museo Miguel Grau)</p>
+        <p class="text-sm text-[#6e655b]">Muros de adobe y quincha, altura estimada, balcón tallado en madera y el efecto del terremoto de 1912 en la arquitectura doméstica del centro.</p>
+        <a href={minceturGrau} target="_blank" rel="noopener noreferrer">{minceturGrau}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">El Comercio — Reportaje sobre las casonas históricas de Piura</p>
+        <p class="text-sm text-[#6e655b]">Referencia al número de casonas declaradas patrimonio en 1987 y a su estado de conservación; se usa solo como contexto, no como dato oficial.</p>
+        <a href="https://elcomercio.pe/peru/piura/las-casonas-historicas-de-piura-donde-vivieron-ilustres-peruanos-estan-en-ruinas-patrimonio-cultural-de-la-nacion-noticia/" target="_blank" rel="noopener noreferrer">elcomercio.pe</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

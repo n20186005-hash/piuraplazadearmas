@@ -1,0 +1,259 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Historia de La Pola y la Plaza de Armas Piura: nombre y símbolo';
+const description = 'Por qué el monumento de la Plaza de Armas de Piura se llama La Pola: el apelativo de Policarpa Salavarrieta, la estatua de madera anterior y el significado del nombre.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Personaje', value: 'Policarpa Salavarrieta, «La Pola»' },
+  { label: 'Origen', value: 'Heroína de la independencia de Colombia' },
+  { label: 'Cómo llegó el nombre', value: 'Una estatua de madera colocada por ciudadanos colombianos residentes en Piura' },
+  { label: 'Qué la reemplazó', value: 'La escultura de mármol de la Alegoría a la Libertad, en la segunda mitad del siglo XIX' },
+  { label: 'Qué significa hoy', value: 'Símbolo local de la libertad y nombre popular del centro de la plaza' },
+];
+
+const hilos = [
+  {
+    title: 'Quién era «La Pola»',
+    text: 'Policarpa Salavarrieta, conocida como «La Pola», es una heroína de la independencia de Colombia. Su apelativo quedó tan unido a su figura que pasó a nombrar el lugar donde se la recordaba.',
+  },
+  {
+    title: 'Cómo el nombre llegó a la plaza',
+    text: 'En la plaza de Piura se colocó una estatua de madera dedicada a ella, ligada a los ciudadanos colombianos residentes en la ciudad. Con el tiempo, fue ese nombre —y no el oficial— el que se impuso en el habla cotidiana, hasta nombrar la parte central del espacio.',
+  },
+  {
+    title: 'La confusión que sobrevive',
+    text: 'Cuando el mármol reemplazó a la madera, el nuevo monumento no representaba a Policarpa: era una alegoría de la libertad. Aun así, el apelativo continuó y todavía hoy se llama «La Pola» a una pieza que no es un retrato de la heroína.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Quién fue «La Pola»?',
+    a: '«La Pola» es el apelativo de Policarpa Salavarrieta, heroína de la independencia de Colombia. Su nombre quedó asociado al lugar de la plaza de Piura donde se la recordaba con una estatua.',
+  },
+  {
+    q: '¿Por qué la plaza de Piura lleva ese apelativo?',
+    a: 'Por la estatua de madera que ciudadanos colombianos residentes en la ciudad colocaron en la plaza en homenaje a la heroína. El nombre del punto donde estaba se mantuvo incluso cuando la figura de madera desapareció.',
+  },
+  {
+    q: '¿La escultura actual representa a Policarpa Salavarrieta?',
+    a: 'No. La pieza actual es una Alegoría a la Libertad, una figura femenina simbólica, no un retrato. La confusión se mantiene desde que reemplazó a la estatua de madera.',
+  },
+  {
+    q: '¿Qué simboliza hoy el nombre?',
+    a: 'Se ha convertido en un símbolo local de la libertad y en la forma popular de llamar al centro de la plaza. La ficha turística describe la pieza como símbolo de la libertad.',
+  },
+  {
+    q: '¿Cuándo llegó el nombre a Piura?',
+    a: 'La estatua de madera es anterior a la de mármol de la segunda mitad del siglo XIX, pero esta guía no ha confirmado una fecha exacta para su colocación. Por eso lo presentamos como parte de la memoria local, sin una fecha precisa.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/historia-de-la-pola-piura/#article`,
+  headline: 'Historia de La Pola en Piura: el nombre y su símbolo',
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  datePublished: '2026-11-04',
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Historia de La Pola' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="El nombre y el símbolo"
+  h1="Historia de «La Pola»: el nombre de la plaza"
+  lead={`Por qué el monumento de la ${attractionShortName} lleva el apelativo de Policarpa Salavarrieta, cómo llegó ese nombre a ${cityName} y qué significa hoy.`}
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">El nombre, en datos</h2>
+      <p class="section-lead">De dónde viene el apelativo y por qué sigue en uso.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        Esta página trata del personaje y del nombre. Si lo que buscas son las características físicas de la pieza —material, estilo, fecha—, revisa <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">el monumento La Pola</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">El nombre</span>
+      <h2 class="section-title">Cómo una heroína colombiana nombró la plaza</h2>
+      <div class="mt-12 grid gap-10">
+        {hilos.map((item, index) => (
+          <div class="grid gap-6 border-l border-[#c9b18e]/50 pl-7 sm:grid-cols-[70px_1fr] sm:pl-10">
+            <div class="number text-[#a85737]">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 class="serif text-3xl">{item.title}</h3>
+              <p class="mt-4 max-w-3xl leading-8 text-[#6e655b]">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Significado</span>
+      <h2 class="section-title">Un símbolo que sobrevive al cambio de escultura</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Lo interesante del caso no es solo la fecha, sino cómo un nombre sobrevive a la desaparición del objeto que lo originó. La estatua de madera ya no está, pero «La Pola» sigue nombrando el centro de la plaza. Es un ejemplo de memoria popular que se impone al nombre oficial.</p>
+        <p>La ficha turística describe la pieza como símbolo de la libertad, así que el apelativo popular y el significado oficial acaban convergiendo: en ambos casos, la plaza recuerda una idea de libertad más que una persona concreta.</p>
+        <p>Esta guía no ha confirmado una fecha exacta para la colocación de la estatua de madera. Lo presentamos como memoria local, no como dato documentado.</p>
+      </div>
+      <p class="mt-8 text-base">
+        Continúa con <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la {attractionShortName}</a>, con <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">el monumento La Pola</a> y con <a href="/fotos-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">las fotografías reales de la plaza</a>. Vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a> o repasa <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/fotos-plaza-de-armas-piura/" class="btn btn-primary">Ver fotografías reales</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Dato o lectura</span>
+      <h2 class="section-title">Qué es dato y qué es interpretación</h2>
+      <p class="section-lead">La historia de «La Pola» mezcla hechos registrados y lecturas simbólicas. Conviene no confundirlos.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Afirmación</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Estatus</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">En qué se apoya</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">«La Pola» es el apelativo de Policarpa Salavarrieta, heroína de la independencia de Colombia.</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">Dato</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Identificación del personaje que da origen al nombre.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">En la plaza se colocó una estatua de madera dedicada a la heroína, ligada a ciudadanos colombianos residentes.</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">Dato</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Relato registrado por la fuente de divulgación; es la base del nombre.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">La escultura actual es una Alegoría a la Libertad, no un retrato de Policarpa.</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">Dato</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La ficha 3163 la describe como símbolo de la libertad y la fuente de divulgación lo explica igual.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">La fecha exacta de colocación de la estatua de madera.</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">No confirmado</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Esta guía no la ha verificado; se presenta como memoria local.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Que el monumento de mármol represente directamente a Policarpa.</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">Interpretación</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Confusión popular: la pieza es alegórica, pero el nombre la asocia a la heroína.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Que la plaza recuerde «una idea de libertad más que a una persona concreta».</td>
+              <td class="py-4 pr-4 font-black text-[#a85737]">Interpretación</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Lectura de esta guía, no un dato de ficha.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Separar el dato de la lectura ayuda a no repetir la confusión que da nombre al lugar. Para ampliar, sitúa la pieza en <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a> y compárala con otros espacios en <a href="/plazas-historicas-de-piura/" class="font-bold text-[#b9633e] underline">las plazas históricas de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el nombre</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">UDEP Hoy — «¿Conoces el origen de las esculturas públicas de Piura?» (2012)</p>
+        <p class="text-sm text-[#6e655b]">Explica que la «Alegoría de la libertad», mal llamada «Pola», reemplazó a una escultura de madera erigida en honor a Policarpa Salavarrieta.</p>
+        <a href="https://www.udep.edu.pe/hoy/2012/10/conoces-origen-las-esculturas-publicas-piura/" target="_blank" rel="noopener noreferrer">udep.edu.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Describe el monumento a la libertad, la fecha de colocación de 1870 y su valor como símbolo de la libertad en la plaza.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Club de Escritura Fuentetaja — ensayo «La Pola: una historia entre la memoria de una heroína y la libertad representada en mármol»</p>
+        <p class="text-sm text-[#6e655b]">Artículo de divulgación, no fuente oficial: recoge cómo el apelativo del lugar sobrevivió al cambio de escultura. Se usa solo como contexto.</p>
+        <a href="https://clubdeescritura.com/obra/14888224/la-pola-una-historia-entre-la-memoria-de-una-heroina-y-la-libertad-representada-en-marmolor/" target="_blank" rel="noopener noreferrer">clubdeescritura.com</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

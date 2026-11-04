@@ -1,0 +1,247 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Plaza de Armas Piura para adultos mayores: visita tranquila';
+const description = `Visitar la ${attractionShortName} con adultos mayores: carga de caminata, sombra y bancas, ritmo lento y qué conviene comprobar antes de salir.`;
+const dateModified = '2026-11-04';
+
+const keys = [
+  {
+    title: 'La carga de caminata es corta, no nula',
+    text: 'La plaza no exige grandes distancias: es un espacio público llano y pequeño. Pero «corta» no es «ninguna»: una vuelta al perímetro y el traslado hasta el acceso ya es caminata, y con calor pesa más de lo que parece.',
+  },
+  {
+    title: 'La sombra es tu principal aliada',
+    text: 'El inventario describe tamarindos centenarios y otros árboles, y señala el arbolado como fuente de frescura. No cita sombra continua en todo el recorrido, así que alterna tramos al sol con tramos a la sombra.',
+  },
+  {
+    title: 'Las bancas permiten parar sin salir',
+    text: 'Las bancas entre los jardines son lo que hace viable una visita lenta: puedes sentarte en cualquier momento sin abandonar la plaza. Úsalas como reloj, no como excepción.',
+  },
+  {
+    title: 'El ritmo se decide antes, no en la calle',
+    text: 'Define cuánto tiempo quiere estar la persona y fija ahí el final. Decidir el ritmo sobre la marcha suele terminar en una caminata más larga de la prevista o en un regreso apurado con calor.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿La Plaza de Armas de Piura es apta para adultos mayores?',
+    a: 'Puede serlo, con previsión. La distancia es corta y el espacio es llano, con bancas para descansar, pero el calor y la ausencia de sombra continua son el factor real. Compruébalo según la movilidad de la persona.',
+  },
+  {
+    q: '¿Cuánto se camina en una visita tranquila?',
+    a: 'Depende de la vuelta y de si añades un edificio. Una estancia solo en la plaza ronda unos pocos cientos de metros con paradas; sumar la catedral o la Casa Museo Grau apenas añade distancia por estar a 20 y 50 m respectivamente.',
+  },
+  {
+    q: '¿Hay dónde sentarse?',
+    a: 'El inventario menciona bancas junto a los jardines. Eso no garantiza que estén libres ni en buen estado el día de tu visita: compruébalo al llegar y reserva con tiempo un punto de descanso.',
+  },
+  {
+    q: '¿Cómo llego si la persona tiene movilidad reducida?',
+    a: 'Resuelve el acceso con un vehículo hasta un punto cercano que no bloquee cruces ni accesos, y camina el tramo mínimo. Para el detalle de rampas y cruces, revisa la guía de accesibilidad, que no certifica todo el centro histórico.',
+  },
+  {
+    q: '¿Cuál es el mejor momento del día?',
+    a: 'La franja de menor calor, que cambia con la estación. No publicamos una hora fija porque depende del día y de la tolerancia de cada persona; revisa el pronóstico antes de salir.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/plaza-de-armas-piura-adultos-mayores/#trip`,
+  name: `Visita tranquila a la ${attractionShortName} para adultos mayores`,
+  description,
+  touristType: ['Ritmo lento', 'Movilidad ligera', 'Centro histórico'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Catedral (Iglesia Matriz) de Piura' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Adultos mayores' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Ritmo lento"
+  h1={`${attractionShortName} para adultos mayores`}
+  lead="Una visita pensada para movilidad ligera: cuanto menos recorrido, mejor; la sombra y las bancas se planifican de antemano, y el calor se convierte en el factor a vigilar."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Punto de partida</span>
+      <h2 class="section-title">Una visita corta que hay que medir</h2>
+      <p class="section-copy mt-6">
+        La {attractionShortName} es un espacio público llano y de tamaño reducido, y eso ayuda. Pero conviene ser honesto con la carga real: llegar hasta el acceso, dar la vuelta al perímetro y, si se quiere, entrar a un edificio contiguo suma caminata y tiempo de pie. Con el calor de {cityName}, eso puede ser más de lo previsto.
+      </p>
+      <p class="section-copy mt-4">
+        Fija el comienzo en el Plus Code {plusCode}. Cuanto más precisa sea la ubicación, menos tramos de búsqueda y menos vueltas innecesarias tendrá el grupo.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/ubicacion-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver ubicación y accesos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Claves</span>
+      <h2 class="section-title">Cuatro cosas que lo cambian todo</h2>
+      <p class="section-lead">Lo que el inventario sí describe: espacio llano, jardines, bancas y arbolado.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {keys.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Qué comprobar</span>
+      <h2 class="section-title">Verifica el terreno real, no la ficha</h2>
+      <p class="section-copy mt-6">
+        La ficha turística describe la plaza como un espacio con jardines y bancas, y cita rampas entre sus servicios. Eso orienta, pero no acredita que el trayecto desde tu punto de bajada tenga cruces cómodos, aceras en buen estado o sombra continua.
+      </p>
+      <p class="section-copy mt-4">
+        La recomendación es sencilla: resuelve el último tramo con un vehículo hasta el punto más cercano posible, entra por el lado que veas más despejado y decide el recorrido mirando el terreno. Si la persona necesita una ruta sin desniveles ni bordillos, no la des por garantizada sin comprobarla.
+      </p>
+      <p class="section-copy mt-4">
+        Para el detalle de rampas y cruces, revisa la guía de <a href="/accesibilidad-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">accesibilidad</a>; para el reparto del tiempo, los <a href="/horarios-visita-plaza-de-armas/" class="font-bold text-[#b9633e] underline">horarios de visita</a> y los <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#b9633e] underline">consejos prácticos</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/piura-con-ninos-centro-historico/" class="btn border border-[#cab49a]">Versión en familia</a>
+        <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Tramos</span>
+      <h2 class="section-title">Trayecto por tramos y puntos de descanso</h2>
+      <p class="section-lead">El recorrido se puede partir en tramos cortos con la plaza como base. Las distancias son referencias del inventario.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[44rem] border-collapse text-left text-[#6e655b]">
+          <thead>
+            <tr class="border-b border-[#d9c6ad]">
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Tramo</th>
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Distancia de referencia</th>
+              <th class="py-3 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Dónde descansar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Plaza → catedral</td>
+              <td class="py-4 pr-4">20 m · 2 min</td>
+              <td class="py-4">Bancas de la plaza, en el mismo perímetro.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Plaza → Casa Museo Grau</td>
+              <td class="py-4 pr-4">50 m · 1 min</td>
+              <td class="py-4">Vuelve a la plaza para sentarte: el museo está a una cuadra.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Plaza → San Francisco</td>
+              <td class="py-4 pr-4">300 m · 3 min</td>
+              <td class="py-4">Tramo a decidir según el día; reserva una banca a la vuelta.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Plaza → Plazuela Merino</td>
+              <td class="py-4 pr-4">600 m · 6 min</td>
+              <td class="py-4">El tramo más largo; el descanso natural está en la propia Plazuela Merino.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Honestidad sobre la carga: la plaza es llana y corta, pero el cansancio aparece por el tiempo de pie y el calor, no por los kilómetros. Con movilidad reducida o mucho calor, <strong>el tramo de 600 m hacia la Plazuela Merino es el primero que conviene descartar</strong>. Para el detalle de rampas y cruces, revisa la guía de <a href="/accesibilidad-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">accesibilidad</a>; para ordenar los tramos en el día, la <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas de movilidad</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Espacio llano, jardines, bancas, arbolado y mención de rampas; carácter cálido de la ciudad.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para reducir el último tramo de búsqueda.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">SENAMHI — pronóstico de Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente oficial para elegir la franja de menor calor el día de la visita.</p>
+        <a href="https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003" target="_blank" rel="noopener noreferrer">https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

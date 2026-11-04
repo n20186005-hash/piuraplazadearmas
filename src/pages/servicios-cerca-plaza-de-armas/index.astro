@@ -1,0 +1,234 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Servicios cerca de la Plaza de Armas Piura: baños y cajeros';
+const description = 'Baños, cajeros, farmacias y puntos de descanso alrededor de la Plaza de Armas de Piura: qué está verificado, qué no, y cómo resolverlo al llegar.';
+const dateModified = '2026-11-04';
+
+const services = [
+  {
+    title: 'Baños públicos',
+    text: 'No hemos verificado un inventario de baños públicos junto a la plaza, así que no lo afirmamos. Lo habitual es resolverlo como cliente de un local: si vas a consumir en una cafetería o un restaurante, pregunta si el baño es de uso para clientes.',
+  },
+  {
+    title: 'Bancos y cajeros',
+    text: 'El inventario turístico de MINCETUR menciona bancos entre las edificaciones del entorno de la plaza. Eso orienta la búsqueda, pero no confirma cajeros ni horarios: comprueba la disponibilidad y las comisiones antes de operar.',
+  },
+  {
+    title: 'Farmacias',
+    text: `No publicamos una lista de farmacias porque no la hemos verificado. En el centro de ${cityName} conviene fijarse en el rótulo y en el horario visible antes de contar con un establecimiento abierto.`,
+  },
+  {
+    title: 'Puntos de descanso y sombra',
+    text: 'La plaza es un espacio público y abierto con arbolado, descrito por la ficha turística como fuente de frescura. Es un buen punto para descansar, aunque la sombra no cubre necesariamente todo el recorrido.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Hay baños públicos cerca de la Plaza de Armas?',
+    a: 'No hemos verificado un inventario de baños públicos, así que no lo afirmamos. La forma más fiable de resolverlo es como cliente de un local: si consumes en una cafetería o un restaurante, pregunta antes si el baño es de uso para clientes.',
+  },
+  {
+    q: '¿Dónde puedo sacar dinero cerca de la plaza?',
+    a: 'El inventario turístico de MINCETUR menciona bancos en el entorno inmediato de la plaza. No confirma cajeros ni horarios, así que verifica la disponibilidad y las comisiones al llegar, y prevé efectivo si lo necesitas.',
+  },
+  {
+    q: '¿Hay farmacias en el centro histórico?',
+    a: 'No publicamos una lista de farmacias porque no la hemos verificado. Comprueba el rótulo y el horario visible del establecimiento antes de contar con él, sobre todo fuera del horario comercial.',
+  },
+  {
+    q: '¿Dónde puedo descansar y protegerme del calor?',
+    a: 'La plaza es un espacio público de acceso libre con arbolado, y la ficha turística lo señala como fuente de frescura. Es un buen punto de pausa; para pausas más largas y frescas, valora un local con interior, comprobándolo al entrar.',
+  },
+  {
+    q: '¿Cómo verifico si un servicio está disponible antes de contar con él?',
+    a: 'Comprueba en el propio lugar: el rótulo y el horario visible de una farmacia, la disponibilidad y las comisiones de un cajero, o si el baño de un local es para clientes. No publicamos un inventario porque no lo hemos verificado y podría estar desactualizado.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/servicios-cerca-plaza-de-armas/#place`,
+  name: `${attractionShortName} — servicios del entorno`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Servicios' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Servicios"
+  h1={`Servicios cerca de la ${attractionShortName}`}
+  lead="No publicamos un inventario de servicios que no hemos verificado. Explicamos qué está documentado del entorno de la plaza y cómo resolver baños, cajeros, farmacias y descansos al llegar."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines y bancas de la ${attractionFullName}, ${cityName}, ${countryName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Qué está verificado y qué no</h2>
+      <p class="section-copy mt-6">
+        Esta guía no publica un inventario de servicios que no ha verificado. No hay una lista confirmada de baños públicos, cajeros ni farmacias en el entorno de la plaza, y publicar una desactualizada haría perder tiempo justo cuando más lo necesitas. El inventario turístico de MINCETUR describe el entorno con la municipalidad, bancos, hoteles, restaurantes y boutiques, pero no publica nombres, precios ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para resolver estos servicios al llegar, dentro de un espacio público de acceso libre. Para el contexto general, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo resolver cada servicio</h2>
+      <p class="section-lead">Cuatro necesidades frecuentes y cómo abordarlas sin una lista previa.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {services.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si llegaste en vehículo, revisa antes <a href="/estacionamiento-centro-piura/" class="font-bold text-[#b9633e] underline">qué comprobar para estacionar en el centro</a>. Si viajas con necesidades de movilidad, mira <a href="/accesibilidad-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la guía de accesibilidad de la plaza</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/centro-historico-de-piura/" class="btn btn-primary">Ver el centro histórico</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Verificación</span>
+      <h2 class="section-title">Tabla: servicio, dónde buscarlo y cómo verificarlo</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        En vez de un inventario que envejece, una tabla con el criterio para cada necesidad. La última columna es la que importa: cómo confirmar que el servicio existe antes de contar con él.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Servicio</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Dónde buscarlo</th>
+              <th class="py-3 font-black text-[#a85737]">Cómo verificarlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Baño</td>
+              <td class="py-4 pr-4 text-[#6e655b]">En un local donde consumas, como una cafetería o un restaurante.</td>
+              <td class="py-4 text-[#6e655b]">Pregunta si el baño es de uso para clientes antes de contar con él.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Efectivo (cajeros)</td>
+              <td class="py-4 pr-4 text-[#6e655b]">En las cuadras con bancos que menciona el inventario turístico del entorno.</td>
+              <td class="py-4 text-[#6e655b]">Comprueba disponibilidad, horario y comisiones antes de operar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Farmacia</td>
+              <td class="py-4 pr-4 text-[#6e655b]">En el centro, según el rótulo visible de cada establecimiento.</td>
+              <td class="py-4 text-[#6e655b]">Mira el rótulo y el horario expuesto antes de contar con el establecimiento.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Descanso y sombra</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La plaza, un espacio público de acceso libre con arbolado.</td>
+              <td class="py-4 text-[#6e655b]">Es de acceso libre; para pausas largas, valora un local con interior.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Los servicios del entorno se reparten entre las cuadras de <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>, que puedes usar como referencia de recorrido.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre los servicios</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Menciona la municipalidad, bancos, hoteles, restaurantes y boutiques en el entorno, y el arbolado como fuente de frescura. No publica nombres ni horarios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa y avisos sobre el uso del espacio público y los servicios del centro.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para orientar la búsqueda de servicios en las cuadras cercanas.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,232 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Desayunar cerca de la Plaza de Armas Piura: horarios y calor';
+const description = 'Dónde desayunar cerca de la Plaza de Armas de Piura: sin listas sin verificar, con criterios prácticos y el mejor momento de la mañana antes del calor.';
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Empieza temprano',
+    text: `${cityName} es una ciudad cálida y la mañana es la franja más fresca del día. Si desayunas pronto aprovechas mejor el recorrido y evitas la radiación más intensa del mediodía.`,
+  },
+  {
+    title: 'Confirma el horario de apertura',
+    text: 'No todos los locales abren a la misma hora, y algunos concentran su actividad en la mañana. Comprueba si está abierto al pasar, en lugar de dar por hecho un horario que no está publicado.',
+  },
+  {
+    title: 'Pregunta por el desayuno del día',
+    text: 'Muchos locales ofrecen una combinación fija de desayuno. Pregunta qué incluye y su precio antes de pedir; así ajustas el tiempo de la mañana a tus planes de visita.',
+  },
+  {
+    title: 'Elige cerca de tu primer destino',
+    text: 'Si vas a visitar un templo o un museo del entorno, desayuna cerca de ese primer punto. Ahorras el desplazamiento y llegas antes de que aumente el calor y la afluencia.',
+  },
+  {
+    title: 'Lleva agua para el resto de la mañana',
+    text: 'El desayuno no cubre la hidratación del paseo. La ficha turística señala el arbolado como fuente de frescura, pero la sombra no cubre todo el recorrido, así que lleva agua contigo.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Hay un sitio recomendado para desayunar cerca de la plaza?',
+    a: 'No. Esta guía no publica una lista de locales que no ha verificado. En su lugar damos el criterio para elegir al llegar: revisar el horario de apertura, preguntar qué incluye el desayuno y ajustar la parada a tu primer destino.',
+  },
+  {
+    q: '¿A qué hora conviene desayunar en Piura?',
+    a: 'No fijamos una hora exacta porque depende de la estación y de cada negocio. Como la ciudad es cálida, la mañana temprano es más fresca, y conviene desayunar antes de las horas de mayor radiación. Confirma la apertura del local.',
+  },
+  {
+    q: '¿Los locales del centro abren temprano?',
+    a: 'No lo hemos verificado y varía según el negocio. Algunos priorizan la mañana y otros abren más tarde. Conviene comprobar al pasar si el local está abierto antes de contar con él.',
+  },
+  {
+    q: '¿El desayuno piurano es distinto del de otras ciudades?',
+    a: 'No describimos un desayuno típico piurano concreto porque no lo hemos confirmado con una fuente oficial. Lo que sí está documentado son ciertos platos y dulces de la región, que explicamos en otras guías.',
+  },
+  {
+    q: '¿Es mejor desayunar antes o después de visitar la plaza?',
+    a: 'Depende de la hora a la que abra el punto que quieres visitar y de cuánto calor haga. Si madrugas, desayunar primero te permite aprovechar la franja más fresca; si empiezas paseando, desayunar después te deja comer con más calma. En ambos casos confirma que el local esté abierto y sirviendo desayunos.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/desayunar-cerca-plaza-de-armas/#place`,
+  name: `${attractionShortName} — desayuno`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Desayuno' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Mañana"
+  h1={`Desayunar cerca de la ${attractionShortName}`}
+  lead="No publicamos una lista de locales que no hemos verificado. Publicamos cómo planear el desayuno de una mañana en una ciudad cálida, antes de que apriete el calor."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Catedral de ${cityName} junto a la ${attractionFullName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de desayunos</h2>
+      <p class="section-copy mt-6">
+        Esta guía no publica una lista de locales para desayunar que no ha verificado. Los horarios de apertura y las cartas cambian, y en el centro de {cityName} no todos los negocios abren a la misma hora. El inventario turístico de MINCETUR describe el entorno de la plaza con bancos, hoteles, restaurantes y boutiques, pero no publica nombres, precios ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es un criterio para resolver la primera comida del día, pensando en el calor y en el resto del recorrido. Para situarte antes de salir, revisa <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo organizar el desayuno</h2>
+      <p class="section-lead">Cinco puntos que ordenan una mañana en el centro.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si buscas solo una pausa corta con café y no una comida completa, mira la guía de <a href="/cafeterias-centro-piura/" class="font-bold text-[#b9633e] underline">cafeterías en el centro</a>. Y si la mañana ya te lleva al mediodía, prepara la siguiente comida en <a href="/almorzar-centro-historico-piura/" class="font-bold text-[#b9633e] underline">almorzar en el centro histórico</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/catedral-de-piura/" class="btn btn-primary">Ver la catedral de Piura</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Plan de mañana</span>
+      <h2 class="section-title">Plan de mañana: antes o después de la plaza</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        Aquí lo que ordena la mañana es el horario del primer punto que quieres visitar y la subida de temperatura. Coloca el desayuno alrededor de ese punto y no al revés. No publicamos horarios de apertura porque cambian: confírmalos al llegar.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[680px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Escenario</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué ganas</th>
+              <th class="py-3 font-black text-[#a85737]">Qué comprobar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Desayunar antes de la primera visita</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Aprovechas la franja más fresca y llegas temprano al punto que quieres ver.</td>
+              <td class="py-4 text-[#6e655b]">Si el local abre cuando piensas desayunar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Desayunar después de un primer paseo</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ya llevas parte del recorrido hecho y comes con más calma.</td>
+              <td class="py-4 text-[#6e655b]">Si a esa hora el local sigue sirviendo desayunos.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Tomar el desayuno como pausa larga</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Descansas antes de que apriete el calor del mediodía.</td>
+              <td class="py-4 text-[#6e655b]">Si hay mesas libres y si el interior es fresco.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si tu primer destino de la mañana es el templo frente a la plaza, mira antes <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a> para saber qué quieres ver.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la mañana</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Ciudad cálida, arbolado como fuente de frescura y comercios del entorno. No publica nombres, precios ni horarios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa, licencias y avisos sobre el comercio y el uso del espacio público.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para planear una parada cercana a tu primer destino de la mañana.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

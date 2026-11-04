@@ -1,0 +1,242 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Visitar la Plaza de Armas Piura en verano: calor y sombra';
+const description = `Cómo visitar la ${attractionShortName} en verano: mejores franjas, hidratación y uso de la sombra, sin publicar temperaturas que no podamos verificar.`;
+const dateModified = '2026-11-04';
+
+const rules = [
+  {
+    title: 'Elige la franja, no la hora fija',
+    text: `El verano en ${cityName} es la época de más calor. SENAMHI registra los meses de febrero y marzo como los más calurosos del año. En vez de una hora exacta, elige el principio de la mañana o el final de la tarde y evita el mediodía.`,
+  },
+  {
+    title: 'La sombra es un plan, no un extra',
+    text: 'El inventario describe la ciudad como cálida y el arbolado como fuente de frescura. Concentra el recorrido en los tramos arbolados y usa los jardines y las bancas de la plaza como puntos de descanso.',
+  },
+  {
+    title: 'Hidratación desde antes de salir',
+    text: 'No esperes a tener sed en el centro. Lleva agua desde el inicio, bebe de forma constante y evita las bebidas muy azucaradas. La plaza es de acceso libre, sin un punto de venta garantizado.',
+  },
+  {
+    title: 'Reduce la exposición directa',
+    text: 'Gorra o sombrero, gafas y protección solar. Ropa ligera y calzado cómodo. Si el recorrido incluye tramos largos hasta San Francisco o la Plazuela Merino, valóralos para la franja más fresca o déjalos para otra visita.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuándo hace más calor en Piura?',
+    a: 'El verano es la época de mayor calor. SENAMHI identifica febrero y marzo como los meses más calurosos del año. No publicamos cifras exactas porque varían entre años y estaciones; consulta el pronóstico del día.',
+  },
+  {
+    q: '¿Cuál es la mejor hora para visitar la plaza en verano?',
+    a: 'La de menor radiación, es decir, temprano por la mañana o al final de la tarde. No damos una hora fija porque depende de la fecha y del día concreto: revisa el pronóstico antes de salir.',
+  },
+  {
+    q: '¿La plaza tiene sombra suficiente?',
+    a: 'El inventario menciona tamarindos centenarios y arbolado como fuente de frescura, pero no describe sombra continua en todo el recorrido. Cuenta con la sombra como alivio, no como cobertura total.',
+  },
+  {
+    q: '¿Es recomendable visitarla con niños o personas mayores en verano?',
+    a: 'Con más cuidado. Acorta el recorrido, multiplica las pausas y busca sombra con frecuencia. Si el calor es intenso, una visita corta al núcleo de la plaza es preferible a una ruta larga.',
+  },
+  {
+    q: '¿Y si el verano trae lluvia?',
+    a: 'En el norte peruano el verano puede coincidir con episodios de lluvia, especialmente en años de El Niño. Si amenaza agua, cambia el plan con la guía de qué hacer en Piura si llueve.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/visitar-piura-en-verano/#article`,
+  headline: title,
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Verano' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Calor"
+  h1={`Visitar la ${attractionShortName} en verano`}
+  lead="El verano en Piura se juega contra el calor, no contra la distancia. Aquí no hay temperaturas inventadas: hay franjas, sombra e hidratación para que la visita no se convierta en una carrera."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Contexto</span>
+      <h2 class="section-title">Piura es una ciudad cálida</h2>
+      <p class="section-copy mt-6">
+        El inventario turístico describe {cityName} como una ciudad calurosa y señala el arbolado como fuente de frescura. En verano esa característica se acentúa: SENAMHI identifica los meses de febrero y marzo como los más calurosos del año en la zona. Por eso el verano no es «la temporada de visitar la plaza», sino la temporada de visitarla <strong>con una estrategia contra el calor</strong>.
+      </p>
+      <p class="section-copy mt-4">
+        No publicamos grados ni récords concretos porque varían entre años y no queremos fijar una cifra que envejezca mal. Lo que sí puedes hacer es revisar el pronóstico el mismo día y ajustar el plan en consecuencia. Empieza en el Plus Code {plusCode} para minimizar el tiempo expuesto buscando el acceso.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Estrategia</span>
+      <h2 class="section-title">Cuatro reglas para el verano</h2>
+      <p class="section-lead">Franja, sombra, hidratación y protección. Nada más elaborado hace falta.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {rules.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de salir</span>
+      <h2 class="section-title">Una lista de tres minutos</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Revisa el pronóstico oficial: si el calor es extremo, acorta a una vuelta breve por la plaza y una parada a la sombra.</p>
+        <p>Prepara agua y protección solar desde casa. En el centro, la plaza no garantiza puntos de venta ni fuentes.</p>
+        <p>Fija el horario en función del sol, no de la agenda. Si el grupo incluye niños o adultos mayores, prioriza la franja más fresca.</p>
+      </div>
+      <p class="section-copy mt-8">
+        Refuerza el plan con los <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#b9633e] underline">consejos prácticos</a> y los <a href="/horarios-visita-plaza-de-armas/" class="font-bold text-[#b9633e] underline">horarios de visita</a>. Si el calor te obliga a cambiar de plan, la alternativa nocturna está en la guía de la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/que-hacer-en-piura-si-llueve/" class="btn btn-primary">Ver el plan para días de lluvia</a>
+        <a href="/" class="btn border border-[#cab49a]">Guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Horarios</span>
+      <h2 class="section-title">Plan de horarios para evitar el sol</h2>
+      <p class="section-lead">Un reparto orientativo del día según el sol, no una hora fija. Ajústalo con el pronóstico de esa jornada.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[44rem] border-collapse text-left text-[#6e655b]">
+          <thead>
+            <tr class="border-b border-[#d9c6ad]">
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Franja del día</th>
+              <th class="py-3 pr-4 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Radiación esperada</th>
+              <th class="py-3 text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Qué conviene hacer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Primera hora de la mañana</td>
+              <td class="py-4 pr-4">La menor del día.</td>
+              <td class="py-4">Reserva este hueco para el recorrido completo o para los tramos largos: San Francisco (300 m) y Plazuela Merino (600 m).</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Media mañana</td>
+              <td class="py-4 pr-4">Sube rápido.</td>
+              <td class="py-4">Quédate en el núcleo de la plaza, con un edificio contiguo y pausas frecuentes a la sombra.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Mediodía</td>
+              <td class="py-4 pr-4">Máxima.</td>
+              <td class="py-4">Evita el espacio abierto: es la franja de un interior confirmado, como la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral</a>, o de la comida.</td>
+            </tr>
+            <tr class="border-b border-[#e7d8c2] align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Media tarde</td>
+              <td class="py-4 pr-4">Baja poco a poco.</td>
+              <td class="py-4">Retoma un paseo corto por la plaza, siempre con hidratación a mano.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-black text-[#1d2a24]">Final de la tarde</td>
+              <td class="py-4 pr-4">La más suave del día.</td>
+              <td class="py-4">Última vuelta y fotografías: mejor luz y menos calor. Si se alarga, mira la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La idea es sencilla: concentra lo que exige caminar en las franjas extremas y reserva el mediodía para interiores o para comer. No es un horario fijo, sino un marco para decidir con el pronóstico en la mano.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas del verano</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">SENAMHI — pronóstico y valores normales de Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente oficial que identifica los meses más calurosos del año y permite revisar el pronóstico del día. Base de las franjas recomendadas.</p>
+        <a href="https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003" target="_blank" rel="noopener noreferrer">https://www.senamhi.gob.pe/main.php?p=pronostico-detalle&dp=piura&localidad=0003</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Describe Piura como ciudad cálida y el arbolado como fuente de frescura; ingreso libre a la plaza.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para reducir el tiempo expuesto al buscar el acceso.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

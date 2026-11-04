@@ -1,0 +1,229 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Plaza de Armas Piura de noche: qué saber antes de ir';
+const description = `Visitar la ${attractionShortName} de noche: qué permite confirmar el horario listado, qué no está verificado sobre el alumbrado y cómo organizar la vuelta con criterio.`;
+const dateModified = '2026-11-04';
+
+const known = [
+  {
+    label: 'Horario de la lista',
+    value: '24 horas, siete días (Google Maps, 26/10/2026)',
+  },
+  {
+    label: 'Tipo de espacio',
+    value: 'Plaza pública de acceso libre (ficha MINCETUR)',
+  },
+  {
+    label: 'Alumbrado nocturno',
+    value: 'No verificado en esta guía',
+  },
+  {
+    label: 'Museos e iglesia matriz',
+    value: 'Horario propio, distinto del espacio público',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Se puede entrar de noche a la Plaza de Armas de Piura?',
+    a: 'Es un espacio público de acceso libre y la lista de Google Maps mostraba 24 horas los siete días el 26 de octubre de 2026. Esa lista es de un tercero y no equivale a una garantía municipal de acceso, seguridad o servicios. No hemos verificado restricciones nocturnas puntuales.',
+  },
+  {
+    q: '¿Está iluminada la plaza por la noche?',
+    a: 'No hemos verificado el alumbrado nocturno ni su estado actual. No afirmamos que esté iluminada ni que esté a oscuras. Si tu visita depende de la luz, resuélvelo al llegar o pregunta a un referente local antes de planear la noche.',
+  },
+  {
+    q: '¿Puedo visitar la catedral o un museo por la noche?',
+    a: 'No des por hecho que estarán abiertos. La iglesia matriz y los museos tienen horarios propios y suelen ser diurnos; confirma cada apertura con la institución, sin aplicar el horario de la plaza.',
+  },
+  {
+    q: '¿Qué conviene prever para volver de noche?',
+    a: 'Define de antemano cómo regresarás, avisa a alguien de tu recorrido y mantén lo esencial a la vista. Esta guía no publica valoraciones de seguridad porque no las hemos medido; aplica las mismas precauciones que en cualquier centro urbano que no conoces.',
+  },
+  {
+    q: '¿Qué debería llevar para visitar la plaza de noche?',
+    a: 'El teléfono cargado y, si quieres, una linterna pequeña; calzado cómodo; un medio de pago y algo de efectivo. No verificamos el alumbrado ni qué comercios abren, así que la previsión básica depende de ti.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/plaza-de-armas-piura-de-noche/#place`,
+  name: `${attractionShortName} — visita nocturna`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: { '@id': `${siteUrl}/#attraction` },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'De noche' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Después del atardecer"
+  h1={`La ${attractionShortName} de noche`}
+  lead="Qué permite confirmar el horario listado, qué no hemos verificado sobre el alumbrado y cómo preparar la vuelta con criterio."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Punto de partida</span>
+      <h2 class="section-title">Qué sabemos y qué no</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        Preferimos decirlo con claridad: no contamos con una fuente que describa el aspecto nocturno de la plaza. Lo que sí podemos separar es lo verificado de lo que queda por comprobar.
+      </p>
+      <dl class="fact-list mt-10">
+        {known.map((item) => (
+          <div class="fact">
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La lista de Google Maps —fuente de terceros consultada el 26 de octubre de 2026— mostraba el lugar abierto 24 horas los siete días, con advertencias sobre posibles diferencias durante los feriados del 31 de octubre y el 1 de noviembre. Eso describe una ficha, no una política municipal verificada.
+      </p>
+    </div>
+  </section>
+
+  <section class="pattern bg-[#172a20] py-20 text-[#f8f0e4] md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow text-[#eaa464]">Cómo planear</span>
+      <h2 class="section-title text-[#fff7e8]">Tres reglas antes de ir de noche</h2>
+      <div class="mt-10 space-y-8 text-lg leading-8 text-[#ddd8cd]">
+        <p><strong class="text-white">No supongas el alumbrado.</strong> Si la razón de tu visita es ver la plaza iluminada, confírmalo al llegar o pregúntalo a alguien del entorno. No publicamos imágenes nocturnas ni descripciones de luz que no podemos respaldar.</p>
+        <p><strong class="text-white">Separa la plaza de las visitas culturales.</strong> La iglesia matriz y los museos del centro tienen horarios propios; el hecho de que el espacio público esté accesible no abre esas puertas.</p>
+        <p><strong class="text-white">Resuelve la vuelta primero.</strong> Define cómo regresarás y avisa a alguien de tu recorrido. El centro de {cityName} es una ciudad activa, pero no hemos medido condiciones de seguridad nocturna, así que aplica el criterio que usarías en cualquier centro urbano desconocido.</p>
+      </div>
+      <p class="mt-10 text-lg leading-8 text-[#ddd8cd]">
+        Para el resto de la logística, consulta <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#f4c38d] underline">cómo llegar</a>, <a href="/horarios-visita-plaza-de-armas/" class="font-bold text-[#f4c38d] underline">horarios de visita</a> y <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#f4c38d] underline">consejos prácticos</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Logística nocturna</span>
+      <h2 class="section-title">De noche en el centro: qué llevar y cómo moverte</h2>
+      <p class="section-lead">Sin datos verificados sobre el alumbrado ni sobre qué locales abren, la preparación se apoya en criterios generales. Estos son los puntos que conviene resolver antes de salir.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Aspecto</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué conviene prever</th>
+              <th class="py-3 font-black text-[#a85737]">Por qué / estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Luz propia</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Lleva el teléfono cargado y, si quieres, una linterna pequeña.</td>
+              <td class="py-4 text-[#6e655b]">El alumbrado nocturno de la plaza no está verificado en esta guía.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Calzado</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Calzado cómodo: el centro se recorre a pie sobre pavimento urbano.</td>
+              <td class="py-4 text-[#6e655b]">Recomendación general; no publicamos condiciones del piso verificadas noche a noche.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Pago</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Lleva un medio de pago y algo de efectivo para imprevistos.</td>
+              <td class="py-4 text-[#6e655b]">No verificamos qué comercios abren de noche ni qué medios aceptan.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Movilidad</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Define cómo irás y, sobre todo, cómo volverás, antes de salir.</td>
+              <td class="py-4 text-[#6e655b]">El espacio público está accesible según la lista; el transporte de regreso es decisión tuya.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Punto de encuentro</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Si vas en grupo, acuerda un lugar visible para reuniros.</td>
+              <td class="py-4 text-[#6e655b]">Facilita moverte y evita perderos en un entorno que no conoces.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Toma como referencia el edificio más reconocible del borde para ubicarte: <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a>. Con la ruta resuelta, la visita nocturna depende menos de la improvisación.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la visita nocturna</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Horario listado de 24 horas y advertencias de feriados observadas el 26 de octubre de 2026. Fuente de terceros, no una garantía de acceso.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Tipo de ingreso libre y época propicia «todo el año». No describe alumbrado ni condiciones nocturnas.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

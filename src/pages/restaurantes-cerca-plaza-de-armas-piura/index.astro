@@ -1,0 +1,263 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Restaurantes cerca de la Plaza de Armas Piura: cómo elegir';
+const description = 'Dónde comer cerca de la Plaza de Armas de Piura: por qué no publicamos una lista sin verificar y qué comprobar antes de sentarte a la mesa.';
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Camina unas cuadras antes de decidir',
+    text: 'El entorno inmediato de la plaza mezcla oficinas, bancos y comercios. A pocas cuadras la oferta cambia por completo, así que date una vuelta y compara antes de entrar al primer local que veas.',
+  },
+  {
+    title: 'Lee la carta en la puerta',
+    text: 'Muchos locales colocan su carta o su menú del día junto a la entrada. Léela antes de sentarte y confirma el precio; si no está visible, pregúntalo antes de ocupar la mesa.',
+  },
+  {
+    title: 'Pregunta qué incluye el menú',
+    text: 'Un menú del día puede incluir entrada, segundo y refresco, o solo el plato principal. Pregunta qué entra y si el precio lleva servicio antes de pedir, y evita sorpresas en la cuenta.',
+  },
+  {
+    title: 'Observa la afluencia local',
+    text: 'Un local con vecinos a la hora del almuerzo suele ser mejor señal que un cartel vistoso. Tómalo como indicio, nunca como garantía: comprueba igualmente la carta y el aseo del lugar.',
+  },
+  {
+    title: 'Ten un plan B',
+    text: 'El centro tiene varias cuadras con oferta de comida. Identifica dos o tres opciones separadas antes de elegir, para no quedarte sin alternativa si la primera está llena.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Tienen una lista de restaurantes recomendados cerca de la plaza?',
+    a: 'No. Esta guía no publica una lista de restaurantes que no ha verificado. Los locales cambian de carta, de horario y de propietario, y una lista desactualizada perjudica más de lo que ayuda; por eso publicamos el criterio para resolverlo al llegar.',
+  },
+  {
+    q: '¿Qué dice el inventario turístico sobre los restaurantes?',
+    a: 'La ficha 3163 de MINCETUR menciona restaurantes entre las edificaciones del entorno inmediato de la plaza, junto con la municipalidad, bancos, hoteles y boutiques. No publica nombres, precios ni horarios, así que no sirve como directorio.',
+  },
+  {
+    q: '¿Dónde se come más barato?',
+    a: 'No publicamos precios porque no los hemos confirmado. El menú del día suele ser la opción más económica en el centro, pero el costo depende del local y de lo que incluya. Pregunta el precio antes de pedir.',
+  },
+  {
+    q: '¿A qué hora conviene comer?',
+    a: 'En Perú el almuerzo es la comida principal y suele servirse al mediodía. Si quieres evitar el calor y la mayor afluencia, llega al inicio o al final de esa franja. Lo explicamos con más detalle en la guía del almuerzo en el centro histórico.',
+  },
+  {
+    q: '¿Cambia la oferta según el momento del día?',
+    a: 'En general sí: hay locales que concentran su actividad en la mañana, otros en el almuerzo y otros por la noche. No publicamos horarios porque no los hemos verificado, así que fíjate en la franja que buscas y comprueba en la puerta si el local está abierto y sirviendo.',
+  },
+  {
+    q: '¿Qué conviene preguntar antes de sentarse?',
+    a: 'Pregunta qué incluye el menú del día, si el precio lleva servicio, si puedes ver la carta completa y si algún plato puede prepararse sin picante. Son preguntas que aclaran lo que la carta no siempre resuelve y evitan sorpresas en la cuenta.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/restaurantes-cerca-plaza-de-armas-piura/#place`,
+  name: `${attractionShortName} — dónde comer`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Restaurantes' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Dónde comer"
+  h1={`Restaurantes cerca de la ${attractionShortName}`}
+  lead="No publicamos una lista de restaurantes que no hemos verificado. Publicamos el criterio para elegir bien al llegar, en el entorno de una plaza que el inventario turístico describe rodeada de comercios."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de restaurantes</h2>
+      <p class="section-copy mt-6">
+        Esta guía no publica una lista de restaurantes que no ha verificado. Los locales del centro abren, cierran, cambian de carta y de horario, y una lista desactualizada te hace caminar de más o sentarte donde no querías. El inventario turístico de MINCETUR describe el entorno de la plaza e incluye restaurantes entre las edificaciones cercanas, pero no publica nombres, precios ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para resolverlo al llegar y el punto exacto de la plaza para buscar desde ahí. Si quieres el contexto completo, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo elegir al llegar</h2>
+      <p class="section-lead">Cinco comprobaciones que reducen el riesgo de una mala elección.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        El contexto ayuda: la ficha turística sitúa la plaza en una ciudad cálida y rodeada de bancos, hoteles y comercios. Si vienes por la cocina local, revisa primero <a href="/comida-tipica-piurana-centro/" class="font-bold text-[#b9633e] underline">qué platos piuranos están documentados</a> y cómo se llaman, para reconocerlos en cualquier carta.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/almorzar-centro-historico-piura/" class="btn btn-primary">Organizar el almuerzo</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Según la hora</span>
+      <h2 class="section-title">Cómo elegir según el momento del día</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        El centro se mueve distinto a cada hora, y lo que encaja al mediodía no funciona igual por la noche. Mira primero tu franja y ajusta la elección; sigue siendo tu decisión, no una recomendación de local.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[640px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Momento</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué suele encajar</th>
+              <th class="py-3 font-black text-[#a85737]">Qué comprobar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Mañana temprano</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Una comida breve antes de empezar el recorrido, con la temperatura todavía baja.</td>
+              <td class="py-4 text-[#6e655b]">Si el local ya está abierto y qué incluye su desayuno.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Mediodía</td>
+              <td class="py-4 pr-4 text-[#6e655b]">El almuerzo como comida principal, en la franja de mayor afluencia.</td>
+              <td class="py-4 text-[#6e655b]">Qué entra en el menú del día y si el precio incluye servicio.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Media tarde</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Una pausa ligera antes que una comida completa, para descansar del calor.</td>
+              <td class="py-4 text-[#6e655b]">Si hay mesas libres y si el servicio sigue activo.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Noche</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Una cena tranquila, con menos calor y menos movimiento en las calles.</td>
+              <td class="py-4 text-[#6e655b]">Hasta qué hora atienden y por dónde piensas volver después.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La hora también cambia cómo aprovechas el barrio: si tu plan es caminar, encaja mejor con <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de sentarte</span>
+      <h2 class="section-title">Qué preguntar antes de sentarte</h2>
+      <p class="section-copy mt-6">
+        Una lista de preguntas que puedes hacer en la puerta o a quien te atienda. No son de cortesía: son la forma de no llevarte sorpresas ni en la cuenta ni en el plato.
+      </p>
+      <ul class="mt-8 list-disc space-y-3 pl-6 text-lg leading-8 text-[#6e655b]">
+        <li>¿Qué incluye el menú del día: entrada, segundo y refresco, o solo el plato principal?</li>
+        <li>¿El precio lleva servicio o algún recargo?</li>
+        <li>¿Puedo ver la carta completa antes de decidir?</li>
+        <li>¿Qué platos no llevan ají o pueden prepararse sin picante?</li>
+        <li>¿El baño es de uso para clientes?</li>
+        <li>¿Cuánto suele tardar la atención si tengo una visita después?</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Para ampliar tu recorrido por el entorno, mira <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas antes de comer</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Menciona restaurantes, bancos, hoteles y boutiques en el entorno inmediato de la plaza. No publica nombres, precios ni horarios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa, licencias y avisos municipales sobre el comercio y la vía pública en el centro.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para situar el entorno y calcular una ruta a pie entre cuadras.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

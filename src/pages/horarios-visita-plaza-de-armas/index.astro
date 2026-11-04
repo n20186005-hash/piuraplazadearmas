@@ -1,0 +1,239 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Horario de la Plaza de Armas Piura: qué saber antes de ir';
+const description = `Horario de la ${attractionShortName} según la ficha oficial y la lista de Google Maps, y por qué no debes confundirlo con el de la iglesia matriz, los museos o los comercios.`;
+const dateModified = '2026-11-04';
+
+const rows = [
+  {
+    place: 'Plaza de Armas de Piura',
+    listing: '24 horas, siete días (Google Maps, 26/10/2026)',
+    official: 'Ingreso libre; época propicia «todo el año», lunes a domingo (MINCETUR)',
+    note: 'Espacio público. La ficha oficial no publica horas de apertura.',
+  },
+  {
+    place: 'Ceremonia de izamiento',
+    listing: 'No figura como servicio con horario',
+    official: 'Tradición dominical registrada (MINCETUR)',
+    note: 'Tradición, no agenda confirmada: consulta avisos municipales si quieres asistir.',
+  },
+  {
+    place: 'Iglesia matriz del entorno',
+    listing: 'Ficha propia del templo',
+    official: 'No cubierta por la ficha 3163',
+    note: 'Horario y condiciones de visita se consultan con la institución.',
+  },
+  {
+    place: 'Museos y comercios del centro',
+    listing: 'Ficha propia de cada local',
+    official: 'No cubiertos por la ficha 3163',
+    note: 'El acceso a la plaza no implica que estén abiertos.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuál es el horario de la Plaza de Armas de Piura?',
+    a: 'La ficha oficial registra ingreso libre y época propicia «todo el año, lunes a domingo», sin publicar horas de apertura. Google Maps mostraba 24 horas los siete días el 26 de octubre de 2026, con advertencias de posibles diferencias durante los feriados. Es una lista de terceros, no una garantía municipal.',
+  },
+  {
+    q: '¿La plaza cierra de noche?',
+    a: 'La información de la que disponemos no registra un cierre nocturno: tanto la ficha oficial como la lista de Google Maps describen acceso continuo. No hemos verificado restricciones puntuales ni operativos especiales, así que confirma en el lugar si tu visita depende de eso.',
+  },
+  {
+    q: '¿La iglesia matriz tiene el mismo horario que la plaza?',
+    a: 'No. Es una confusión frecuente: el templo forma parte del entorno de la plaza, pero tiene su propio horario y sus propias condiciones. Consúltalos con la institución antes de contar con entrar.',
+  },
+  {
+    q: '¿El domingo hay ceremonia de izamiento?',
+    a: 'La ficha turística registra la ceremonia dominical de izamiento de la bandera y desfiles cívicos como tradición del lugar. Es una referencia cultural, no una agenda confirmada para cada domingo: consulta los avisos de la Municipalidad Provincial de Piura.',
+  },
+  {
+    q: '¿Cómo puedo confirmar el horario antes de ir?',
+    a: 'Ninguna fuente consultada publica horas oficiales de apertura. Revisa los avisos de la Municipalidad Provincial de Piura para restricciones o ceremonias, contrasta la lista del mapa como pista y confirma por separado el horario de la iglesia matriz o los museos con cada institución.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/horarios-visita-plaza-de-armas/#place`,
+  name: attractionFullName,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Horarios' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Antes de ir"
+  h1={`Horario de visita de la ${attractionShortName}`}
+  lead="El espacio público, la ceremonia dominical y las visitas culturales no funcionan con el mismo reloj. Aquí los separamos."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Comparación</span>
+      <h2 class="section-title">Cuatro relojes distintos</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        La plaza es un espacio abierto y accesible; los templos, museos y comercios que la rodean tienen horarios propios. Mezclarlos lleva a esperas inútiles. Esta tabla separa lo que dice cada fuente.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Lugar</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Lista de mapas</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Ficha oficial</th>
+              <th class="py-3 font-black text-[#a85737]">Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr class="border-b border-[#e5d6bf] align-top">
+                <td class="py-4 pr-4 font-bold text-[#1d2a24]">{row.place}</td>
+                <td class="py-4 pr-4 text-[#6e655b]">{row.listing}</td>
+                <td class="py-4 pr-4 text-[#6e655b]">{row.official}</td>
+                <td class="py-4 text-[#6e655b]">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-sm leading-7 text-[#6e655b]">
+        Las referencias de mapas son datos de terceros observados el 26 de octubre de 2026 y pueden variar. No las presentamos como horario oficial de la Municipalidad Provincial de {cityName}.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo decidir la hora</span>
+      <h2 class="section-title">Elige según el calor y tus visitas</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>{cityName} es una ciudad cálida y la sombra del arbolado no cubre necesariamente todo el recorrido. Si vas con niños o personas mayores, plantéate las primeras horas o el final de la tarde.</p>
+        <p>Si tu plan incluye un museo o el templo, ancla la salida a ese horario y usa la plaza como antesala o cierre, no al revés. Y si viajas en feriados, revisa los avisos municipales: la propia lista de Google Maps advertía diferencias por el 31 de octubre y el 1 de noviembre.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/consejos-visitar-plaza-de-armas/" class="btn btn-primary">Consejos prácticos</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Ver la plaza en el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Verificación</span>
+      <h2 class="section-title">Cómo confirmar el horario vigente</h2>
+      <p class="section-lead">Ninguna fuente que hayamos consultado publica horas de apertura oficiales para la plaza. Si tu plan depende de ellas, confírmalas con estos canales antes de salir.</p>
+      <ol class="mt-10 space-y-6">
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">01</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Revisa los avisos municipales</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La Municipalidad Provincial de {cityName} es el canal idóneo para ceremonias, restricciones temporales y operativos especiales en el espacio público.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">02</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Contrasta la lista del mapa</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La lista muestra 24 horas, pero es un dato de terceros observado en una fecha concreta: sirve como pista, no como confirmación.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">03</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Pregunta por las visitas culturales</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La iglesia matriz y los museos llevan su propio reloj: consúltalos aparte si quieres entrar.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">04</p>
+          <h3 class="mt-2 font-black text-[#1d2a24]">Comprueba al llegar</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Un cartel o un referente local en el lugar resuelve lo que las fuentes remotas no garantizan.</p>
+        </li>
+      </ol>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si vas a combinar la visita con otras paradas, reúne antes las referencias de <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">cómo llegar</a> y de la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre horarios</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Ingreso libre, época propicia «todo el año» de lunes a domingo y ceremonia dominical de izamiento. No publica horas de apertura.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Horario listado de 24 horas y advertencias de feriados. Fuente de terceros.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — avisos</p>
+        <p class="text-sm text-[#6e655b]">Canal para confirmar ceremonias, restricciones temporales y operativos especiales.</p>
+        <a href="https://www.gob.pe/munipiura" target="_blank" rel="noopener noreferrer">https://www.gob.pe/munipiura</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

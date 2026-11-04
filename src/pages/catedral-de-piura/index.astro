@@ -1,0 +1,252 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=361';
+
+const title = 'Catedral de Piura: la basílica junto a la Plaza de Armas Piura';
+const description = 'La Basílica Catedral San Miguel Arcángel frente a la Plaza de Armas de Piura: origen de 1588, altar plateresco, bautizos ilustres y qué revisar antes de entrar.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Nombre oficial', value: 'Basílica Catedral San Miguel Arcángel' },
+  { label: 'Dirección registrada', value: `Huancavelica N.º 362, frente a la ${attractionShortName}` },
+  { label: 'Origen', value: '1588, fundada como Iglesia Matriz' },
+  { label: 'Advocación', value: 'Virgen de la Asunción y San Miguel Arcángel' },
+  { label: 'Declaratoria', value: 'Monumento Histórico Colonial · Ley N.º 9694 (18-12-1942)' },
+  { label: 'Distancia desde la plaza', value: 'Unos 20 m · 2 min a pie (ficha 361)' },
+];
+
+const interior = [
+  {
+    title: 'Fachada neorrenacentista',
+    text: 'La información registrada describe la fachada en estilo neorrenacentista y menciona una referencia a veinte columnas dóricas. Es una descripción de catálogo: la forma más simple de leerla es mirando el frente del templo desde el lado de la plaza.',
+  },
+  {
+    title: 'Altar mayor plateresco',
+    text: 'El altar mayor, de grandes proporciones, fue rehecho tras el terremoto de 1912 y se describe en estilo plateresco, ejecutado en 1960 por Julián Alangna según la ficha. Otras referencias escriben el apellido del autor como «Alagua»; se conservan ambas grafías.',
+  },
+  {
+    title: 'Retablo de la Virgen de Fátima',
+    text: 'En el interior se conserva un retablo de la Virgen de Fátima tallado en cedro de Nicaragua, con una antigüedad estimada de unos 330 a 350 años según la ficha. El templo mantiene además un Vía Crucis.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿La catedral está frente a la Plaza de Armas de Piura?',
+    a: 'Sí. La ficha turística la registra en la calle Huancavelica N.º 362, frente a la plaza, a unos 20 metros y 2 minutos a pie desde el centro del espacio cívico.',
+  },
+  {
+    q: '¿Cuándo se construyó la catedral de Piura?',
+    a: 'La información registrada sitúa su construcción en 1588, bajo la advocación de la Virgen de la Asunción y de San Miguel Arcángel. Por sus dos torres se le dio aspecto de basílica antes de adoptar el nombre de catedral, y antes se la conoció como Iglesia Matriz.',
+  },
+  {
+    q: '¿Qué personajes fueron bautizados en este templo?',
+    a: 'La ficha 361 menciona los bautizos de Miguel Grau, Ignacio Merino y Carlos Augusto Salaverry, cuando el edificio se conocía como Iglesia Matriz.',
+  },
+  {
+    q: '¿El ingreso es gratuito y en qué horario?',
+    a: 'La información registrada indica ingreso gratuito y una atención diaria aproximada de 6:00 a 21:00. Esta guía no ha verificado el horario vigente: conviene comprobarlo con la propia iglesia antes de la visita.',
+  },
+  {
+    q: '¿Se puede fotografiar el interior?',
+    a: 'La ficha sugiere coordinar con la sacristía para las tomas en el interior. Esta guía no ha verificado si ese sigue siendo el procedimiento: pregunta en el templo antes de usar la cámara y evita interrumpir actos religiosos.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/catedral-de-piura/#place`,
+  name: 'Basílica Catedral San Miguel Arcángel de Piura',
+  alternateName: 'Iglesia Matriz de Piura',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Huancavelica N.º 362',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Catedral' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Templo matriz"
+  h1="La Catedral de Piura, junto a la plaza"
+  lead={`La Basílica Catedral San Miguel Arcángel, el edificio religioso que enmarca la ${attractionShortName}: su origen de 1588, el altar rehecho tras el terremoto de 1912 y qué comprobar antes de entrar.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La catedral, en datos</h2>
+      <p class="section-lead">Lo que la ficha turística oficial permite confirmar antes de la visita.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La Basílica Catedral San Miguel Arcángel es el edificio religioso que la ficha turística de la {attractionShortName} señala como parte central de su entorno. Está registrada en la calle Huancavelica N.º 362, frente a la plaza, y su origen se sitúa en 1588.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.15fr_.85fr]">
+      <div>
+        <span class="eyebrow">Historia</span>
+        <h2 class="section-title">Una iglesia matriz con cuatro siglos</h2>
+        <p class="section-copy mt-6">
+          La ficha 361 describe un templo construido en 1588 y fundado bajo la advocación de la Virgen de la Asunción y de San Miguel Arcángel. Consta de dos torres que le dan aspecto de basílica, antes de adoptar el nombre de catedral, y durante buena parte de su historia se la conoció como Iglesia Matriz.
+        </p>
+        <p class="section-copy mt-4">
+          En este templo fueron bautizados Miguel Grau, Ignacio Merino y Carlos Augusto Salaverry, según el mismo registro. Su valor patrimonial está reconocido como monumento histórico colonial por la Ley N.º 9694 del 18 de diciembre de 1942, y el edificio integra el centro histórico declarado por la Resolución Ministerial N.º 303-87-ED del 26 de junio de 1987.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/centro-historico-de-piura/" class="btn btn-primary">Recorrer el centro histórico</a>
+          <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+        </div>
+      </div>
+      <figure class="overflow-hidden rounded-[2rem]">
+        <img src="/images/catedral-de-piura.jpg" alt={`Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`} width="960" height="1280" loading="lazy" class="h-full w-full object-cover" />
+        <figcaption class="mt-3 text-xs text-[#6e655b]">
+          <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué mirar</span>
+      <h2 class="section-title">Tres elementos que la ficha destaca</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {interior.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Si buscas la lectura completa del conjunto, empieza por <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a> y continúa con la <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">historia de la {attractionShortName}</a>. La iglesia de San Francisco, a pocos metros, forma parte del mismo recorrido: <a href="/iglesia-san-francisco-piura/" class="font-bold text-[#b9633e] underline">iglesia San Francisco de Piura</a>. Para orientarte en la ciudad, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Cómo visitarla</span>
+      <h2 class="section-title">Visitar la catedral con respeto</h2>
+      <p class="section-copy mt-6">
+        La Basílica Catedral San Miguel Arcángel no es solo un monumento: es la iglesia matriz de {cityName} y un templo en uso. Por eso la visita se organiza alrededor del acto religioso y no en competencia con él.
+      </p>
+      <p class="section-copy mt-4">
+        Como en cualquier templo, hay una diferencia clara entre una visita y una misa. En la visita se recorre el edificio, se miran la fachada, el altar mayor y los retablos, y se sale; en la misa se ocupa un banco, se participa o se espera, y no se circula por el recinto.
+      </p>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        <li class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-xl">Entra en silencio</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Teléfono en silencio y sin conversaciones que se oigan. Es la norma básica de un templo en uso.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-xl">Vestimenta discreta</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Ropa recatada y sin estridencias, como corresponde a un espacio de culto.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-xl">No interrumpas el culto</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">Si hay una celebración en curso, espera, entra con discreción o vuelve después. No cruces por delante del altar.</p>
+        </li>
+        <li class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-xl">Fotos, con permiso</h3>
+          <p class="mt-2 leading-7 text-[#6e655b]">La ficha sugiere coordinar con la sacristía las tomas del interior. Pregunta antes de usar la cámara y evita el flash.</p>
+        </li>
+      </ul>
+      <p class="mt-8 text-base">
+        Esta guía no publica horarios de misa ni de apertura porque no los ha verificado: consúltalos en la propia parroquia. La misma pauta vale para <a href="/iglesia-san-francisco-piura/" class="font-bold text-[#b9633e] underline">la iglesia San Francisco de Piura</a> y para los demás templos del <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la catedral</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 361</p>
+        <p class="text-sm text-[#6e655b]">Construcción en 1588, advocación, dos torres, bautizos ilustres, altar mayor, descripción de fachada, declaratoria, ruta de acceso y horario registrado.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — gob.pe</p>
+        <p class="text-sm text-[#6e655b]">Fuente institucional para contrastar la declaratoria del centro histórico y los avisos oficiales sobre el entorno de la plaza.</p>
+        <a href="https://www.gob.pe/munipiura" target="_blank" rel="noopener noreferrer">https://www.gob.pe/munipiura</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo «Catedral de Piura»</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que ilustra esta página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

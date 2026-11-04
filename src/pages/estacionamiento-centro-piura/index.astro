@@ -1,0 +1,234 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Estacionamiento cerca de la Plaza de Armas Piura: qué revisar';
+const description = `Cómo resolver el estacionamiento en el centro de ${cityName} antes de visitar la ${attractionShortName}: qué no está verificado, qué comprobar y cómo acordar la bajada.`;
+const dateModified = '2026-11-04';
+
+const checklist = [
+  {
+    title: 'Lee las señales antes de pagar',
+    text: 'Las condiciones de estacionamiento en vía pública del centro pueden variar por normativa municipal y por operativos puntuales. Comprueba la señalización del tramo donde piensas dejar el vehículo.',
+  },
+  {
+    title: 'No bloquees cruces ni accesos',
+    text: 'La plaza es un espacio de circulación constante, con veredas, rampas y accesos a edificios. Evita detenerte sobre cruces peatonales, rampas o entradas de cochera, aunque sea por pocos minutos.',
+  },
+  {
+    title: 'Acuerda la bajada antes de subir',
+    text: 'Si viajas en taxi o aplicación, define con el conductor un punto de bajada que no obstaculice el tráfico y confirma el precio antes del viaje. La ficha turística no identifica una zona de bajada oficial.',
+  },
+  {
+    title: 'Valora aparcar fuera del núcleo',
+    text: 'Una opción habitual es dejar el vehículo a unas cuadras y caminar el tramo final. Reduce el tiempo buscando lugar y evita dar vueltas por calles estrechas del centro histórico.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde puedo estacionar cerca de la Plaza de Armas de Piura?',
+    a: 'Esta guía no ha verificado la existencia, disponibilidad ni tarifas de un estacionamiento específico junto a la plaza. Es una decisión que conviene resolver con las señales del lugar y con el propio establecimiento, no con una lista que podría estar desactualizada.',
+  },
+  {
+    q: '¿Hay estacionamiento gratuito en el centro?',
+    a: 'No publicamos esa información porque no la hemos confirmado. Las condiciones de estacionamiento en vía pública dependen de la normativa municipal y pueden cambiar; verifica la señalización del tramo antes de dejar el vehículo.',
+  },
+  {
+    q: '¿Es mejor ir en taxi que en auto propio?',
+    a: 'Depende de tu origen y de tu tolerancia al tráfico del centro. En taxi evitas buscar lugar y el tiempo de búsqueda; en auto propio conservas flexibilidad. Si eliges auto, prevé más tiempo del que sugiere la distancia.',
+  },
+  {
+    q: '¿La plaza tiene zona para dejar pasajeros?',
+    a: 'No hemos verificado un punto de bajada oficial. Acuerda con el conductor una parada que no bloquee cruces ni accesos peatonales y baja del vehículo hacia la vereda.',
+  },
+  {
+    q: '¿Qué hago si no encuentro sitio para estacionar?',
+    a: 'Aparca a varias cuadras y camina el tramo final, o deja bajar a los pasajeros y busca lugar un poco más lejos. Si vas en taxi o aplicación, fija un punto de bajada que no bloquee el tráfico. Evita dar vueltas por el núcleo en hora punta.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/estacionamiento-centro-piura/#place`,
+  name: `${attractionShortName} — acceso y estacionamiento`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Estacionamiento' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Llegar en vehículo"
+  h1={`Estacionamiento cerca de la ${attractionShortName}`}
+  lead="No publicamos una lista de estacionamientos que no hemos verificado. Publicamos lo que sí ayuda: qué comprobar, qué evitar y cómo organizar la bajada."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de estacionamientos</h2>
+      <p class="section-copy mt-6">
+        Los estacionamientos del centro cambian de condiciones, tarifas y horarios, y los comercios pueden abrir o cerrar. Una lista sin actualización produce más problemas que ayuda. Por eso aquí no afirmamos que exista un aparcamiento concreto junto a la plaza.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para resolverlo al llegar, y el enlace al punto exacto para que tu aplicación calcule la ruta desde tu origen.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Checklist</span>
+      <h2 class="section-title">Cuatro comprobaciones útiles</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {checklist.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Ten en cuenta el contexto: la ficha turística describe el entorno inmediato con bancos, hoteles, restaurantes y comercios, y el centro tiene calles estrechas con circulación constante. Buscar lugar cerca suele costar más tiempo del que parece desde fuera.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/como-llegar-plaza-de-armas-piura/" class="btn btn-primary">Ver rutas y accesos</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Alternativas</span>
+      <h2 class="section-title">Plan B si no encuentras sitio</h2>
+      <p class="section-lead">No publicamos direcciones de estacionamientos porque no las hemos verificado. Sí podemos ordenar las salidas razonables cuando las cuadras cercanas están ocupadas.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Situación</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Plan B</th>
+              <th class="py-3 font-black text-[#a85737]">Qué tener en cuenta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Las cuadras cercanas están ocupadas</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Aparca a varias cuadras y camina el tramo final.</td>
+              <td class="py-4 text-[#6e655b]">Reduce el tiempo buscando lugar; calcula también la caminata de vuelta.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Vas con acompañantes</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Deja bajar al grupo y busca sitio un poco más lejos.</td>
+              <td class="py-4 text-[#6e655b]">Acuerda un punto de reencuentro visible y, si puedes, con sombra.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Vas en taxi o aplicación</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Fija un punto de bajada que no bloquee el tráfico.</td>
+              <td class="py-4 text-[#6e655b]">Confirma el precio antes; no hay zona de bajada oficial verificada.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">El centro está congestionado</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Reinicia desde una vía principal y deja el auto fuera del núcleo.</td>
+              <td class="py-4 text-[#6e655b]">El centro tiene calles estrechas con circulación constante.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Dejas el auto de todas formas</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Comprueba la señalización del tramo antes de pagar.</td>
+              <td class="py-4 text-[#6e655b]">No bloquees cruces, rampas ni entradas de cochera, ni por pocos minutos.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Antes de decidir dónde bajar, ubica el punto exacto en el <a href="/mapa-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">mapa de la plaza</a> y elige un edificio de referencia, como <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la catedral de Piura</a>, para acordar el reencuentro.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre estacionar</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Descripción del entorno urbano y rutas de acceso. No registra estacionamientos ni zonas de bajada.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) y trazado vial para calcular la ruta y decidir dónde aproximarte.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Fuente para consultar normativa y avisos sobre circulación y estacionamiento en vía pública.</p>
+        <a href="https://www.gob.pe/munipiura" target="_blank" rel="noopener noreferrer">https://www.gob.pe/munipiura</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

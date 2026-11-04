@@ -1,0 +1,242 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3165';
+
+const title = 'Plazuela Ignacio Merino cerca de la Plaza de Armas Piura';
+const description = 'La Plazuela Ignacio Merino, a varias cuadras de la Plaza de Armas de Piura: la estatua de bronce del pintor, sus algarrobos, la fecha de 1903 y qué comprobar al visitarla.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Homenajeado', value: 'El pintor piurano Ignacio Merino Muñoz' },
+  { label: 'Estatua', value: 'Bronce de cuerpo entero, con paleta y pincel' },
+  { label: 'Autor atribuido en la ficha', value: 'Sr. A. Marazzani' },
+  { label: 'Inauguración', value: 'Agosto de 1903' },
+  { label: 'Ubicación', value: 'Al norte de la ciudad, entre Jr. Libertad y Av. Sánchez Cerro' },
+  { label: 'Distancia desde la plaza', value: 'Unos 600 m · 6 min a pie o 3 min en auto (ficha 3165)' },
+  { label: 'Ingreso', value: 'Gratuito, todo el año' },
+];
+
+const rasgos = [
+  {
+    title: 'La estatua del pintor',
+    text: 'La ficha describe una estatua de bronce de tamaño natural, en actitud de pintar: sostiene una paleta en la mano derecha y un pincel en la izquierda. Está dedicada a Ignacio Merino Muñoz, uno de los artistas plásticos más reconocidos nacidos en la ciudad.',
+  },
+  {
+    title: 'Jardines y algarrobos centenarios',
+    text: 'La plazuela tiene cuatro jardines y está rodeada de árboles antiguos, entre ellos algarrobos de inicios del siglo XX, que dan sombra a las bancas de madera. Buena parte de su atractivo es el propio arbolado.',
+  },
+  {
+    title: 'Un terreno donado',
+    text: 'Según la ficha, la plazuela ocupa un terreno donado por un ciudadano alemán. Es un dato del inventario; no hemos encontrado el documento original que lo detalle.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está la Plazuela Ignacio Merino?',
+    a: 'Está al norte de la ciudad, entre el jirón Libertad y la avenida Sánchez Cerro, a varias cuadras de la Plaza de Armas de Piura. La ficha registra unos 600 metros de distancia: 6 minutos a pie o 3 minutos en auto.',
+  },
+  {
+    q: '¿Quién fue Ignacio Merino?',
+    a: 'Ignacio Merino Muñoz fue un pintor piurano, uno de los artistas plásticos más destacados de la ciudad. La plazuela lleva su nombre en homenaje, y una universidad nacional de arte con sede en Piura también lo recuerda.',
+  },
+  {
+    q: '¿Quién hizo la estatua?',
+    a: 'La ficha turística atribuye la obra al Sr. A. Marazzani. Otras referencias mencionan al escultor italiano Lodovico Marazzani y sitúan la inauguración en 1903. Conservamos ambas atribuciones sin fusionarlas.',
+  },
+  {
+    q: '¿Cuándo se inauguró la plazuela?',
+    a: 'La información registrada indica agosto de 1903. Es la fecha que usamos; no hemos hallado un acta municipal que la precise.',
+  },
+  {
+    q: '¿Hay que pagar para entrar?',
+    a: 'No. Es un espacio público con ingreso gratuito todo el año, según la ficha. Al ser un espacio abierto, su estado y su mobiliario pueden cambiar; no afirmamos condiciones de conservación actual.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/plazuela-ignacio-merino/#place`,
+  name: 'Plazuela Ignacio Merino',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jr. Libertad con Av. Sánchez Cerro',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Plazuela Merino' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Otra plaza del centro"
+  h1="La Plazuela Ignacio Merino"
+  lead={`La plazuela del pintor, a varias cuadras de la ${attractionShortName}: una estatua de bronce de 1903, jardines con algarrobos antiguos y el carácter de un espacio de barrio.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La plazuela, en datos</h2>
+      <p class="section-lead">Lo que registra la ficha 3165, sin añadidos.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La Plazuela Ignacio Merino no compite con la {attractionShortName}: es otra escala de espacio público, más de barrio, con jardines y sombra. Enfrente se encuentra la iglesia Nuestra Señora del Carmen, así que ambas visitas se combinan bien en una misma caminata.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué encontrarás</span>
+      <h2 class="section-title">Tres rasgos de la plazuela</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {rasgos.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="btn btn-primary">Ver la iglesia del Carmen</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de ir</span>
+      <h2 class="section-title">Qué conviene comprobar</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Esta guía no ha verificado el estado actual del mobiliario, la iluminación ni la conservación de la estatua. La plazuela es un espacio abierto y su aspecto puede cambiar con el tiempo y con las intervenciones municipales.</p>
+        <p>Si vas a fotografiarla, hazlo con luz de día y respeta a las personas que usan el espacio. Para más ideas de recorrido, revisa <a href="/plazas-historicas-de-piura/" class="font-bold text-[#b9633e] underline">las plazas históricas de Piura</a> y el <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">centro histórico de Piura</a>. Y si prefieres empezar por el conjunto, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.05fr_.95fr]">
+      <div>
+        <span class="eyebrow">Cómo llegar</span>
+        <h2 class="section-title">Ir a pie desde la plaza y qué hay alrededor</h2>
+        <p class="section-copy mt-6">
+          La plazuela queda al norte del centro y es accesible a pie. La ficha registra unos 600 metros desde la plaza principal: 6 minutos caminando o 3 minutos en auto. La referencia es sencilla: la plazuela se ubica entre el jirón Libertad y la avenida Sánchez Cerro.
+        </p>
+        <p class="section-copy mt-4">
+          Esta guía no ha verificado un itinerario señalizado paso a paso, así que lo más práctico es orientarse por esas dos vías y por el templo del Carmen, que está justo enfrente.
+        </p>
+        <p class="section-copy mt-4">
+          Para la caminata vale la misma recomendación que para el resto del centro: hacerla con luz de día y dejar la plazuela para el final, ya que es un espacio de descanso con sombra.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Alrededor</span>
+        <h2 class="section-title">Qué hay en el entorno</h2>
+        <ul class="mt-6 space-y-4">
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">La iglesia del Carmen</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Está frente a la plazuela y forma conjunto con ella, así que las dos visitas se hacen seguidas.</p>
+          </li>
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">Jardines y algarrobos</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Cuatro jardines y árboles antiguos, entre ellos algarrobos de inicios del siglo XX que dan sombra a las bancas.</p>
+          </li>
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">La estatua del pintor</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">El bronce de cuerpo entero de Ignacio Merino preside el espacio, en el corazón de la plazuela.</p>
+          </li>
+        </ul>
+        <p class="mt-8 text-base">
+          Sigue con <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">la iglesia Nuestra Señora del Carmen</a> y compara este espacio con la plaza principal en <a href="/plazas-historicas-de-piura/" class="font-bold text-[#b9633e] underline">las plazas históricas de Piura</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la plazuela</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3165</p>
+        <p class="text-sm text-[#6e655b]">Ubicación, estatua de bronce, atribución al Sr. A. Marazzani, jardines, algarrobos, ingreso gratuito y ruta de acceso.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">UDEP Hoy — «¿Conoces el origen de las esculturas públicas de Piura?» (2012)</p>
+        <p class="text-sm text-[#6e655b]">Atribución al escultor italiano Ludovico Marazzani y fecha de inauguración de 1903, que se conserva junto a la atribución de la ficha.</p>
+        <a href="https://www.udep.edu.pe/hoy/2012/10/conoces-origen-las-esculturas-publicas-piura/" target="_blank" rel="noopener noreferrer">udep.edu.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo «Plaza de Armas de Piura»</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que ilustra esta página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

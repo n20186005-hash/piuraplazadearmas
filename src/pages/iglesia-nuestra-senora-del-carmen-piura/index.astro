@@ -1,0 +1,253 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+
+const title = 'Iglesia Nuestra Señora del Carmen y la Plaza de Armas Piura';
+const description = 'La iglesia Nuestra Señora del Carmen, a cinco cuadras de la Plaza de Armas de Piura: su altar barroco en pan de oro, el Museo de Arte Religioso y qué comprobar al visitarla.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Origen', value: 'Templo del siglo XVIII autorizado por el obispo Jaime Trujillo' },
+  { label: 'Uso actual', value: 'Desde 1996 funciona allí el Museo de Arte Religioso de Piura' },
+  { label: 'Altar mayor', value: 'Barroco, cubierto con pan de oro' },
+  { label: 'Imagen', value: 'Virgen Agua Santa, que llegó a Piura en 1588' },
+  { label: 'Declaratoria', value: 'Monumento Histórico (1974)' },
+  { label: 'Ubicación', value: 'En la Plazuela Merino, a unas cinco cuadras de la Plaza de Armas' },
+];
+
+const mirar = [
+  {
+    title: 'El altar mayor en pan de oro',
+    text: 'El retablo barroco cubierto con pan de oro se describe como el más representativo del norte del país. Es la razón principal por la que mucha gente entra al templo.',
+  },
+  {
+    title: 'La Virgen Agua Santa',
+    text: 'El templo custodia la imagen de la Virgen Agua Santa, que según la tradición llegó a Piura en 1588. Es una de las devociones más antiguas de la ciudad.',
+  },
+  {
+    title: 'Los lienzos de la escuela cusqueña',
+    text: 'En su interior se conservan cuatro lienzos de la escuela cusqueña, parte del patrimonio artístico religioso que dio origen al museo instalado en el mismo edificio.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está la iglesia Nuestra Señora del Carmen?',
+    a: 'Se ubica en la Plazuela Merino, a unas cinco cuadras de la Plaza de Armas de Piura y frente a la plazuela del pintor Ignacio Merino. Es una de las estaciones que la Municipalidad incluyó en su ruta «Piura Ciudad con Historia».',
+  },
+  {
+    q: '¿Qué es el Museo de Arte Religioso de Piura?',
+    a: 'Es un museo que funciona desde 1996 en el mismo templo. Reúne arte religioso vinculado al edificio y a la devoción local. Esta guía no ha verificado su horario ni su tarifa vigentes.',
+  },
+  {
+    q: '¿Qué destaca en el interior?',
+    a: 'El altar mayor barroco cubierto con pan de oro, considerado el más representativo del norte del país; la imagen de la Virgen Agua Santa, llegada a Piura en 1588; y cuatro lienzos de la escuela cusqueña.',
+  },
+  {
+    q: '¿De qué siglo es el templo?',
+    a: 'La información más difundida lo sitúa en el siglo XVIII, con autorización del obispo Jaime Trujillo. Algunas fichas indican el siglo XVII. Conservamos ambas atribuciones sin fusionarlas.',
+  },
+  {
+    q: '¿Hay que pagar para entrar?',
+    a: 'No hemos verificado si el acceso al templo o al museo tiene tarifa ni en qué horarios atienden. Conviene comprobarlo con la propia institución antes de la visita.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/iglesia-nuestra-senora-del-carmen-piura/#place`,
+  name: 'Iglesia Nuestra Señora del Carmen de Piura',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Plazuela Ignacio Merino',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Iglesia del Carmen' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Barroco en pan de oro"
+  h1="La iglesia Nuestra Señora del Carmen"
+  lead={`El templo barroco de la Plazuela Merino, a cinco cuadras de la ${attractionShortName}: su altar en pan de oro, el Museo de Arte Religioso y qué conviene comprobar.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La iglesia, en datos</h2>
+      <p class="section-lead">Los rasgos confirmados por las fuentes consultadas, sin añadidos.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La iglesia forma conjunto con la Plazuela Ignacio Merino, así que una visita a la plaza del pintor puede completarse con la del templo. Ambas quedan a unas cinco cuadras de la {attractionShortName}.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué mirar</span>
+      <h2 class="section-title">Tres elementos de la iglesia</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {mirar.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/plazuela-ignacio-merino/" class="btn btn-primary">Ver la Plazuela Merino</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de ir</span>
+      <h2 class="section-title">Qué no está verificado</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>Esta guía no ha confirmado el horario de apertura del templo ni del Museo de Arte Religioso, ni si se cobra entrada. Tampoco puede asegurar qué piezas están expuestas en este momento.</p>
+        <p>Como es un lugar de culto en uso, conviene entrar en silencio y evitar las ceremonias. La mejor referencia sigue siendo la propia institución: consulta antes de organizar una visita con tiempo limitado. Si quieres seguir armando el recorrido, revisa <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a> y <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>. Para empezar por el conjunto, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Dentro del templo</span>
+      <h2 class="section-title">El Museo de Arte Religioso en su interior</h2>
+      <p class="section-lead">Desde 1996 el museo comparte edificio con la iglesia: buena parte de lo que se mira en el templo es también el hilo de la visita.</p>
+      <p class="section-copy mt-6 max-w-3xl">
+        El museo no es una sala ajena al templo, sino una manera de leer lo que ya está en él. Estos son los elementos que la guía puede vincular con seguridad al edificio, sin añadir piezas ni fechas que no estén registradas.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Elemento</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué es</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Relación con el museo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Retablo mayor en pan de oro</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Altar barroco cubierto con pan de oro, descrito como el más representativo del norte del país.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Pieza central del templo y referencia del patrimonio religioso que da sentido al museo.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Virgen Agua Santa</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Imagen que, según la tradición, llegó a Piura en 1588.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Una de las devociones más antiguas de la ciudad; explica el carácter devocional del conjunto.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Lienzos de la escuela cusqueña</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Cuatro lienzos conservados en el interior del templo.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Parte del patrimonio artístico religioso que dio origen al museo instalado en el mismo edificio.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Inmueble declarado Monumento Histórico</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Declaratoria de 1974.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">El propio edificio es parte de la visita: el museo se lee dentro de un templo protegido.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Qué comprobar</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Horario, tarifa y qué piezas están expuestas hoy.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Esta guía no ha verificado ninguno de esos tres puntos: se consultan con la propia institución.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        El museo se ubica en la Plazuela Merino, así que la visita encaja en un paseo por <a href="/plazuela-ignacio-merino/" class="font-bold text-[#b9633e] underline">la Plazuela Ignacio Merino</a> y en el circuito religioso del centro, que también pasa por <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">la Basílica Catedral</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la iglesia del Carmen</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — Nota de prensa «Piuranos conocen nuestra identidad cultural con ruta turística “Piura Ciudad con Historia”» (16-12-2023)</p>
+        <p class="text-sm text-[#6e655b]">Incluye la iglesia Nuestra Señora del Carmen como una de las cuatro estaciones de la ruta y menciona su joya barroca.</p>
+        <a href="https://www.gob.pe/institucion/munipiura/noticias/883026" target="_blank" rel="noopener noreferrer">gob.pe/institucion/munipiura/noticias/883026</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Arzobispado de Piura — Templos de Piura y Tumbes, iglesia del Carmen</p>
+        <p class="text-sm text-[#6e655b]">Fuente eclesiástica para el uso religioso del templo y su condición de sede de devoción; referencia institucional para confirmar horarios.</p>
+        <a href="https://www.arzobispadodepiura.org/templos-de-piura-y-tumbes/iglesia-del-carmen/" target="_blank" rel="noopener noreferrer">arzobispadodepiura.org</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo «Plaza de Armas de Piura»</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que ilustra esta página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

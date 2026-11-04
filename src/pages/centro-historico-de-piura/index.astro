@@ -1,0 +1,279 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+
+const title = 'Centro Histórico de Piura: guía desde la Plaza de Armas Piura';
+const description = 'Qué es el Centro Histórico de Piura alrededor de la Plaza de Armas: su declaratoria, la zona monumental, las calles del damero y los recorridos oficiales anunciados.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Declaratoria', value: 'Patrimonio Cultural de la Nación · R.M. N.º 303-87-ED (26-06-1987)' },
+  { label: 'Zona Monumental', value: 'Delimitada por R.M. N.º 774-87-ED (09-11-1987)' },
+  { label: 'Núcleo', value: `La ${attractionShortName} y su trazado en damero` },
+  { label: 'Inmuebles históricos', value: 'Alrededor de 100 casonas declaradas en 1987' },
+  { label: 'Sismo decisivo', value: 'Terremoto de 1912, que destruyó edificios del entorno' },
+];
+
+const claves = [
+  {
+    title: 'Un trazado en damero',
+    text: 'La ciudad colonial se organizó según el modelo español: calles dispuestas en cuadrícula con la Plaza de Armas en el centro y los edificios principales en torno a ella. Ese orden es el que aún se reconoce al caminar por el casco central.',
+  },
+  {
+    title: 'Una declaratoria de 1987',
+    text: 'El centro histórico fue declarado Patrimonio Cultural de la Nación por la Resolución Ministerial N.º 303-87-ED del 26 de junio de 1987, y su Zona Monumental quedó delimitada por la R.M. 774-87-ED del 9 de noviembre de 1987.',
+  },
+  {
+    title: 'Casonas y una pérdida',
+    text: 'En 1987 se declararon alrededor de un centenar de casonas históricas. Con los años, varias se deterioraron o se perdieron: es un patrimonio en tensión, no un conjunto intacto.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cuándo se declaró Patrimonio Cultural el centro histórico de Piura?',
+    a: 'Mediante la Resolución Ministerial N.º 303-87-ED del 26 de junio de 1987, el centro histórico fue declarado Patrimonio Cultural de la Nación. Su Zona Monumental se delimitó con la R.M. 774-87-ED del 9 de noviembre de 1987.',
+  },
+  {
+    q: '¿Qué edificios forman parte del centro histórico?',
+    a: 'Su núcleo es la Plaza de Armas, con la Basílica Catedral, las iglesias cercanas y las casonas del entorno. Los límites precisos constan en las resoluciones; esta guía no los reproduce porque no los ha verificado directamente en el documento original.',
+  },
+  {
+    q: '¿Existe una ruta oficial del centro histórico?',
+    a: 'La Municipalidad Provincial de Piura anunció en diciembre de 2023 la ruta «Piura Ciudad con Historia», con cuatro estaciones: la Plaza de Armas, la iglesia San Francisco de Asís, la iglesia Nuestra Señora del Carmen y la Casa Museo Miguel Grau. Es un anuncio institucional: no implica que el recorrido funcione hoy con horarios fijos.',
+  },
+  {
+    q: '¿Qué pasó con los edificios del entorno tras el sismo de 1912?',
+    a: 'El terremoto de 1912 destruyó construcciones virreinales y republicanas del centro, entre ellas el Cabildo, la iglesia Matriz, la casa de López Albújar y el hotel de Turistas. En 2024 se presentó un recorrido en códigos QR sobre esos cuatro edificios; conviene comprobar en el lugar si los códigos siguen instalados.',
+  },
+  {
+    q: '¿Se puede recorrer a pie?',
+    a: 'Sí. El centro es compacto y la Plaza de Armas funciona como punto de partida natural. Esta guía no ha verificado un circuito peatonal señalizado con tiempos fijos; organiza el recorrido según tus intereses.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/centro-historico-de-piura/#place`,
+  name: 'Centro Histórico de Piura',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Centro histórico' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="El conjunto urbano"
+  h1="El Centro Histórico de Piura"
+  lead={`La ciudad declarada alrededor de la ${attractionShortName}: su trazado en damero, su declaratoria como patrimonio, las casonas que quedan y los recorridos que la Municipalidad ha anunciado.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">El centro histórico, en datos</h2>
+      <p class="section-lead">Los instrumentos que lo protegen y el hecho que lo marcó.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        El centro histórico se entiende mejor caminando: la {attractionShortName} es su núcleo, y a pocas cuadras se concentran la catedral, las iglesias y las casonas. Esta guía describe el conjunto; el detalle de los estilos está en <a href="/arquitectura-centro-historico-piura/" class="font-bold text-[#b9633e] underline">arquitectura del centro histórico de Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Cómo leerlo</span>
+      <h2 class="section-title">Tres claves del conjunto</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {claves.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/ruta-a-pie-centro-historico-piura/" class="btn btn-primary">Organizar la ruta a pie</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Recorridos anunciados</span>
+      <h2 class="section-title">Dos iniciativas municipales, con matices</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>En diciembre de 2023, la Municipalidad Provincial de Piura, con la Facultad de Humanidades de la UDEP, anunció la ruta <strong class="text-[#1d2a24]">«Piura Ciudad con Historia»</strong>, con cuatro estaciones: la Plaza de Armas, la iglesia San Francisco de Asís, la iglesia Nuestra Señora del Carmen y la Casa Museo Miguel Grau Seminario. Se trata de un anuncio institucional; esta guía no puede confirmar que el recorrido se siga ofreciendo con horarios fijos.</p>
+        <p>En agosto de 2024, con motivo del 492.º aniversario de San Miguel de Piura, se presentó el recorrido <strong class="text-[#1d2a24]">«Piura, un viaje al pasado»</strong>, con códigos QR sobre cuatro edificios desaparecidos en el terremoto de 1912: el Cabildo, la iglesia Matriz, la casa de López Albújar y el hotel de Turistas. Si vas a buscarlos en la plaza, comprueba en el lugar si los códigos siguen instalados.</p>
+      </div>
+      <p class="mt-8 text-base">
+        Continúa con <a href="/plazas-historicas-de-piura/" class="font-bold text-[#b9633e] underline">las plazas históricas de Piura</a>, con la <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">historia de la {attractionShortName}</a>, o vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Mapa mental</span>
+      <h2 class="section-title">Cómo ordenar el casco histórico en la cabeza</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        La forma más simple de no perderse en el centro es pensar en anillos alrededor de la plaza. En lugar de memorizar un plano, conviene recordar qué cae frente a ella, qué queda a pocas cuadras y qué exige desplazarse.
+      </p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Lugar</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Calle registrada</th>
+              <th class="py-3 font-black text-[#a85737]">Relación con la plaza</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Basílica Catedral</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Huancavelica N.º 362</td>
+              <td class="py-4 text-[#6e655b]">Frente a la plaza, a unos 20 m.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Casa Museo Miguel Grau</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Tacna N.º 662</td>
+              <td class="py-4 text-[#6e655b]">A decenas de metros: unos 50 m.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia San Francisco</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Jirón Lima, cuadra 5</td>
+              <td class="py-4 text-[#6e655b]">A unos 300 m, ya dentro del casco.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia San Sebastián</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Calle Moquegua, entre Tacna y Libertad</td>
+              <td class="py-4 text-[#6e655b]">A pocas cuadras de la plaza.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia del Carmen</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Plazuela Ignacio Merino</td>
+              <td class="py-4 text-[#6e655b]">A unas cinco cuadras, en la zona norte.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Plazuela Ignacio Merino</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Jr. Libertad con Av. Sánchez Cerro</td>
+              <td class="py-4 text-[#6e655b]">A unos 600 m al norte de la plaza.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Museo Municipal Vicús</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Av. Sullana esquina Jr. Huánuco</td>
+              <td class="py-4 text-[#6e655b]">A unos 1 km: ya fuera del núcleo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Núcleo</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">La plaza y su frente inmediato, con la catedral. Es donde se concentra la vida cívica de la ciudad.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Primer anillo</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Lo que se recorre en pocas cuadras: San Francisco, San Sebastián y la Casa Museo Grau.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Fuera del núcleo</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">La Plazuela Merino, con la iglesia del Carmen, y el Museo Vicús, ya a un kilómetro de la plaza.</p>
+        </article>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Con ese esquema el recorrido se arma solo: empieza en la plaza, añade el primer anillo y decide si subes a la Plazuela Merino. Para el detalle de calles y distancias, sigue la <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">ruta a pie por el centro histórico</a>; la casa del héroe se detalla en <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la Casa Museo Miguel Grau</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el centro histórico</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — Nota de prensa «Piuranos conocen nuestra identidad cultural con ruta turística “Piura Ciudad con Historia”» (16-12-2023)</p>
+        <p class="text-sm text-[#6e655b]">Las cuatro estaciones de la ruta y el trabajo conjunto con la Facultad de Humanidades de la UDEP.</p>
+        <a href="https://www.gob.pe/institucion/munipiura/noticias/883026" target="_blank" rel="noopener noreferrer">gob.pe/institucion/munipiura/noticias/883026</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — Nota de prensa del recorrido en código QR «Piura, un viaje al pasado» (17-08-2024)</p>
+        <p class="text-sm text-[#6e655b]">Los cuatro edificios desaparecidos en el terremoto de 1912 y el auspicio de Caja Piura con CLÍO Cultura y Ciudadanía.</p>
+        <a href="https://www.gob.pe/institucion/munipiura/noticias/1005399" target="_blank" rel="noopener noreferrer">gob.pe/institucion/munipiura/noticias/1005399</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Plan de Desarrollo Metropolitano de Piura 2020-2040 (gob.pe)</p>
+        <p class="text-sm text-[#6e655b]">Documento municipal que recoge la fundación de la ciudad en 1588, sobre el asentamiento de El Chilcal, y el marco de la Zona Monumental.</p>
+        <a href="https://cdn.www.gob.pe/uploads/document/file/9845007/8043537-rehabilitacion-y-mejoramiento-del-casco-central-de-la-ciudad-plan-de-desarrollo-metropolitano-de-piura-2020-2040.pdf" target="_blank" rel="noopener noreferrer">cdn.www.gob.pe — Plan de Desarrollo Metropolitano de Piura</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

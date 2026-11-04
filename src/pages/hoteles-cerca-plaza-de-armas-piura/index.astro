@@ -1,0 +1,230 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const municipalityUrl = 'https://www.gob.pe/munipiura';
+
+const title = 'Hoteles cerca de la Plaza de Armas Piura: criterios para elegir';
+const description = 'Cómo elegir alojamiento cerca de la Plaza de Armas de Piura sin listas sin verificar: qué comprobar, qué preguntar y cómo separar guía editorial de publicidad.';
+const dateModified = '2026-11-04';
+
+const criteria = [
+  {
+    title: 'Mide la distancia a pie, no en línea recta',
+    text: 'El centro tiene calles estrechas y tráfico constante. Comprueba cuánto tarda realmente caminar del alojamiento a la plaza antes de reservar, en lugar de fiarte solo de la distancia del mapa.',
+  },
+  {
+    title: 'Confirma disponibilidad y precio con el alojamiento',
+    text: 'No publicamos precios ni disponibilidad porque no los hemos verificado. Toda la información de tarifas y habitaciones debe confirmarse directamente con el establecimiento o con la plataforma de reserva que uses.',
+  },
+  {
+    title: 'Pregunta por los servicios que necesitas',
+    text: `No des por hecho servicios como aire acondicionado, desayuno o estacionamiento, algo relevante en una ciudad cálida como ${cityName}. Pregunta qué incluye exactamente la tarifa antes de reservar.`,
+  },
+  {
+    title: 'Revisa las condiciones de cancelación',
+    text: 'Las políticas de cancelación cambian según el alojamiento y la tarifa. Léelas antes de pagar y guarda la confirmación, por si tu plan de viaje cambia.',
+  },
+  {
+    title: 'Valora el entorno, no solo la habitación',
+    text: 'La cercanía a la plaza también significa cercanía a la circulación y al movimiento del centro. Si el descanso es prioritario, pregúntalo y contrasta opiniones de otros viajeros.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Recomiendan algún hotel concreto cerca de la plaza?',
+    a: 'No. Esta guía no recomienda ni ha verificado ningún hotel cerca de la plaza. Publicamos criterios editoriales para elegir, no una lista de alojamientos, porque las tarifas, los servicios y la disponibilidad cambian constantemente.',
+  },
+  {
+    q: '¿Los alojamientos del entorno tienen aire acondicionado?',
+    a: 'No lo hemos verificado y varía de un establecimiento a otro. En una ciudad cálida como Piura el aire acondicionado puede ser decisivo, así que pregúntalo directamente antes de reservar y no lo des por supuesto.',
+  },
+  {
+    q: '¿Esta página incluye enlaces de afiliación o publicidad?',
+    a: 'No. Este contenido es una guía editorial independiente y actualmente no contiene enlaces comerciales ni de afiliación. Si en el futuro se incorporara algún enlace de ese tipo, se señalará de forma explícita y separada del contenido informativo.',
+  },
+  {
+    q: '¿Puedo reservar a través de esta guía?',
+    a: 'No. Esta guía no gestiona reservas ni intermediación. Cualquier reserva debes hacerla directamente con el alojamiento o con la plataforma que elijas, y confirmar allí las condiciones y el precio.',
+  },
+  {
+    q: '¿Cómo comparo alojamientos por la distancia real a pie?',
+    a: 'Mide el tiempo caminando del alojamiento a la plaza y no solo la distancia del mapa, que es en línea recta. Ten en cuenta la sombra del trayecto, las calles estrechas y el tráfico del centro, y pregunta al establecimiento cuánto se tarda realmente a pie. No recomendamos ningún alojamiento en concreto.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/hoteles-cerca-plaza-de-armas-piura/#place`,
+  name: `${attractionShortName} — alojamiento en el entorno`,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Alojamiento' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Alojamiento"
+  h1={`Hoteles cerca de la ${attractionShortName}`}
+  lead="No recomendamos ni hemos verificado ningún hotel. Publicamos criterios editoriales para elegir alojamiento, separados de cualquier futura publicidad o enlace comercial."
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Aclaración</span>
+      <h2 class="section-title">Por qué no hay una lista de hoteles</h2>
+      <p class="section-copy mt-6">
+        Esta guía no recomienda ni ha verificado ningún hotel cerca de la plaza. Las tarifas, los servicios y la disponibilidad cambian con frecuencia, y una lista sin actualización sería engañosa. El inventario turístico de MINCETUR menciona hoteles entre las edificaciones del entorno de la plaza, junto con bancos, restaurantes y boutiques, pero no publica nombres, precios ni horarios.
+      </p>
+      <p class="section-copy mt-4">
+        Lo que sí podemos darte es el criterio para elegir alojamiento al llegar, y el punto exacto de la plaza para medir distancias reales. Para situarte primero, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la {attractionFullName}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Independencia editorial</span>
+      <h2 class="section-title">Guía editorial, no publicidad</h2>
+      <p class="section-copy mt-6">
+        Este contenido es informativo y editorial. No contiene enlaces de afiliación ni acuerdos comerciales con alojamientos, y ninguna recomendación de pago influye en lo que aquí se explica. Si en el futuro se incorporara un enlace comercial, se etiquetaría de forma explícita y separada del texto informativo.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Criterio</span>
+      <h2 class="section-title">Cómo elegir alojamiento</h2>
+      <p class="section-lead">Cinco puntos para decidir con información, no con suposiciones.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {criteria.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Antes de reservar, revisa también <a href="/ubicacion-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">dónde está exactamente la plaza</a> y qué servicios necesitarás tener cerca en <a href="/servicios-cerca-plaza-de-armas/" class="font-bold text-[#b9633e] underline">la guía de servicios del entorno</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/estacionamiento-centro-piura/" class="btn btn-primary">Cómo resolver el estacionamiento</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el punto exacto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Comparar</span>
+      <h2 class="section-title">Cómo comparar alojamientos por distancia real a pie</h2>
+      <p class="section-copy mt-6">
+        El mapa da distancia en línea recta; el pie da la distancia real. Compara los alojamientos por el tiempo que tardarás caminando con tu equipaje, no por el número que muestra el plano.
+      </p>
+      <ul class="mt-8 list-disc space-y-3 pl-6 text-lg leading-8 text-[#6e655b]">
+        <li>Mide el tiempo a pie del alojamiento a la plaza, y no solo la distancia del mapa.</li>
+        <li>Comprueba si el trayecto tiene sombra o se hace a pleno sol, algo que pesa en una ciudad cálida.</li>
+        <li>Ten en cuenta las calles estrechas y el tráfico del centro, que hacen el recorrido más lento de lo que parece.</li>
+        <li>Piensa en el tramo con equipaje: veredas, cruces y escaleras cambian mucho la experiencia.</li>
+        <li>Ubica en el mapa los servicios que necesitarás tener cerca.</li>
+      </ul>
+      <p class="section-copy mt-8">Pregunta al alojamiento, antes de reservar:</p>
+      <ul class="mt-4 list-disc space-y-3 pl-6 text-lg leading-8 text-[#6e655b]">
+        <li>¿Cuánto se tarda caminando hasta la plaza?</li>
+        <li>¿Qué servicios incluye la tarifa y cuáles se cobran aparte?</li>
+        <li>¿Hay aire acondicionado o cómo se mantiene fresca la habitación?</li>
+        <li>¿Hay estacionamiento y con qué condiciones?</li>
+        <li>¿Cuál es la política de cancelación y hasta cuándo puedo anular sin costo?</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Para calcular el tramo a pie, apóyate en <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a> como referencia de recorrido.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre alojamiento</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Menciona hoteles, bancos, restaurantes y boutiques en el entorno de la plaza. No publica nombres, precios ni horarios.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura</p>
+        <p class="text-sm text-[#6e655b]">Canal para consultar normativa y avisos municipales aplicables a los establecimientos de hospedaje del centro.</p>
+        <a href={municipalityUrl} target="_blank" rel="noopener noreferrer">{municipalityUrl}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para medir distancias a pie entre la plaza y una posible zona de alojamiento.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

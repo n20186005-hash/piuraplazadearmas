@@ -1,0 +1,254 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=1011';
+
+const title = 'Museo Municipal Vicús y la Plaza de Armas Piura: qué ver';
+const description = 'El Museo Municipal Vicús, a un kilómetro de la Plaza de Armas de Piura: la cultura Vicús, la Sala de Oro, los precios de referencia y qué confirmar antes de ir.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Nombre', value: 'Museo Municipal Vicús' },
+  { label: 'Origen del nombre', value: 'Del cerro Vicús, a unos 50 km al este' },
+  { label: 'Inauguración', value: '18 de mayo de 2001' },
+  { label: 'Colección', value: 'Más de 2700 piezas, sobre todo de la cultura Vicús' },
+  { label: 'Piezas destacadas', value: 'Colección Oro de Frías (61 piezas de oro) y la llamada Diosa o Venus de Frías' },
+  { label: 'Ubicación', value: 'Esquina de Av. Sullana y Jr. Huánuco s/n' },
+  { label: 'Distancia desde la plaza', value: 'Unos 1 km · 3 min en taxi (ficha 1011)' },
+];
+
+const salas = [
+  {
+    title: 'La Sala de Oro',
+    text: 'Reúne objetos de orfebrería y explica las técnicas metalúrgicas del antiguo Perú. La ficha registra un horario propio para ella: de martes a sábado, de 9:00 a 15:00, y domingo de 9:00 a 13:00.',
+  },
+  {
+    title: 'Colección Oro de Frías',
+    text: 'Está formada por 61 piezas de oro e incluye la llamada Diosa o Venus de Frías. Es uno de los conjuntos más citados del museo.',
+  },
+  {
+    title: 'Otras tradiciones',
+    text: 'El museo también exhibe materiales de las tradiciones Chusis, Olleros y Tallán, además de las piezas de la cultura Vicús que le dan nombre.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está el Museo Municipal Vicús?',
+    a: 'En la esquina de la avenida Sullana con el jirón Huánuco s/n. La ficha registra una distancia de unos 1 km desde la Plaza de Armas de Piura, es decir, unos 3 minutos en taxi.',
+  },
+  {
+    q: '¿Por qué se llama Vicús?',
+    a: 'El nombre proviene del cerro Vicús, situado a unos 50 km al este, en la zona donde se hallaron los materiales que dieron notoriedad a esta cultura arqueológica.',
+  },
+  {
+    q: '¿Cuánto cuesta la entrada?',
+    a: 'El museo cobra entrada. La referencia que consta en el inventario oficial es de S/. 5.00 para adultos, S/. 2.00 para educación superior y S/. 1.00 para escolares. Esta guía no ha verificado la tarifa vigente: conviene pedirla en el propio museo.',
+  },
+  {
+    q: '¿Qué se puede ver dentro?',
+    a: 'Más de 2700 piezas, sobre todo de la cultura Vicús, con salas permanentes. Destacan la Colección Oro de Frías, con 61 piezas de oro, y la llamada Diosa o Venus de Frías, además de materiales de las tradiciones Chusis, Olleros y Tallán.',
+  },
+  {
+    q: '¿En qué horario abre la Sala de Oro?',
+    a: 'La información registrada indica, para la Sala de Oro, de martes a sábado de 9:00 a 15:00 y domingo de 9:00 a 13:00. Esta guía no ha verificado ese horario: compruébalo con el museo antes de la visita.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/museo-municipal-vicus-piura/#place`,
+  name: 'Museo Municipal Vicús',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Av. Sullana esquina Jr. Huánuco s/n',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Museo Vicús' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Museo arqueológico"
+  h1="El Museo Municipal Vicús"
+  lead={`El museo arqueológico de la ciudad, a un kilómetro de la ${attractionShortName}: la cultura Vicús, la Sala de Oro, la Colección de Frías y lo que conviene confirmar antes de ir.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">El museo, en datos</h2>
+      <p class="section-lead">Lo que registra la ficha 1011, incluida la tarifa de referencia.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        El museo está fuera del núcleo de la plaza, pero es la mejor manera de entender el pasado prehispánico de la región antes de regresar al casco histórico. La ficha registra una distancia de unos 1 km y un trayecto de 3 minutos en taxi.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué ver</span>
+      <h2 class="section-title">Tres bloques de la colección</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {salas.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/que-ver-plaza-de-armas-piura/" class="btn btn-primary">Volver a qué ver en la plaza</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de ir</span>
+      <h2 class="section-title">Qué no está verificado</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>La tarifa que reproducimos es la que consta en el inventario oficial; no confirmamos que siga siendo la vigente. Tampoco hemos verificado si hay visitas guiadas, ni si todas las salas están abiertas al mismo tiempo.</p>
+        <p>Las condiciones de acceso y los horarios de los museos pueden cambiar; consulta directamente con el museo antes de desplazarte. Para complementar la salida, revisa <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la Casa Museo Miguel Grau</a> y <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a>. Y para el conjunto de la guía, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Dentro de la sala</span>
+      <h2 class="section-title">Qué ver en la sala</h2>
+      <p class="section-lead">La colección se lee mejor si sabes de antemano qué mirar: orfebrería, cerámica y las piezas que dan nombre al museo.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Bloque</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué es</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">En qué fijarse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">La orfebrería</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Objetos de metal de la Sala de Oro, pensada para explicar las técnicas metalúrgicas del antiguo Perú.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Cómo se trabajaba el metal: la sala está montada para mostrar el proceso, no solo la pieza.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Colección Oro de Frías</td>
+              <td class="py-4 pr-4 text-[#6e655b]">61 piezas de oro, entre ellas la llamada Diosa o Venus de Frías.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">La figura femenina es el conjunto más citado del museo y el que da fama a la colección.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Cerámica Vicús</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Materiales de la cultura que da nombre al museo, mayoritarios entre las más de 2700 piezas.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Las formas y acabados que caracterizan a esta tradición arqueológica del norte.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Otras tradiciones</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Piezas de las tradiciones Chusis, Olleros y Tallán.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Sirven de contraste: muestran que la región tuvo varios desarrollos, no uno solo.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Qué comprobar</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Qué salas están abiertas y si hay visitas guiadas.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Esta guía no ha verificado esos puntos, ni la tarifa vigente.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        El museo se entiende mejor como complemento del recorrido: tras ver las piezas, puede tener sentido volver al punto de partida y leer <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la Plaza de Armas Piura</a>, o comparar este museo arqueológico con <a href="/casa-museo-miguel-grau-piura/" class="font-bold text-[#b9633e] underline">la Casa Museo Miguel Grau</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el museo</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 1011</p>
+        <p class="text-sm text-[#6e655b]">Inauguración, número de piezas, Colección Oro de Frías, materiales asociados, dirección, distancia y tarifas de referencia.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Ministerio de Cultura — museos.cultura.pe, Sala de Oro del Museo Municipal Vicús</p>
+        <p class="text-sm text-[#6e655b]">Confirma la creación de la Sala de Oro en mayo de 2001 y su organización en cuatro ambientes dedicados a la metalurgia prehispánica y a la colección Frías.</p>
+        <a href="https://museos.cultura.pe/museos/sala-de-oro-del-museo-municipal-vic%C3%BAs" target="_blank" rel="noopener noreferrer">museos.cultura.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo de la Plaza de Armas de Piura</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que abre la página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,263 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Monumento La Pola y la Plaza de Armas Piura: mármol y fecha';
+const description = 'Qué es el monumento La Pola de la Plaza de Armas de Piura: su nombre oficial, el material, el estilo neoclásico, la fecha de colocación y por qué es la escultura más antigua.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Nombre oficial', value: 'Alegoría a la Libertad' },
+  { label: 'Apelativo popular', value: '«La Pola»' },
+  { label: 'Material', value: 'Mármol; referencias mencionan mármol de Carrara' },
+  { label: 'Estilo', value: 'Neoclásico, figura femenina' },
+  { label: 'Ubicación', value: `Centro de la ${attractionShortName}` },
+  { label: 'Fecha registrada', value: '1870, durante el gobierno de José Balta (otras referencias: 1871 y 1874)' },
+];
+
+const lectura = [
+  {
+    title: 'Material y estilo',
+    text: 'Se describe como una escultura de mármol de estilo neoclásico que representa a una figura femenina: una alegoría de la libertad, no un retrato. Diversas referencias mencionan mármol de Carrara; conviene leerlo como dato de divulgación, no como análisis petrográfico.',
+  },
+  {
+    title: 'Una fecha con tres atribuciones',
+    text: 'La ficha turística sitúa la colocación en 1870, durante el gobierno de Balta. Otras referencias indican 1871 y 1874. Esta guía muestra las tres sin elegir una: la discrepancia es parte de lo que se sabe del monumento.',
+  },
+  {
+    title: 'El autor no está identificado',
+    text: 'La ficha no nombra al escultor del mármol. No atribuimos la obra a ningún autor porque no hemos encontrado una fuente oficial que lo confirme; es una pregunta que conviene plantear a la institución competente.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿«La Pola» es una persona retratada en la plaza?',
+    a: 'No. La pieza es una alegoría de la libertad, no un retrato. «La Pola» es el apelativo popular del monumento, heredado de una escultura anterior de madera dedicada a la heroína Policarpa Salavarrieta.',
+  },
+  {
+    q: '¿De qué material y de qué estilo es el monumento?',
+    a: 'Se describe como una escultura de mármol de estilo neoclásico, con una figura femenina que simboliza la libertad. Varias referencias mencionan mármol de Carrara, aunque se trata de un dato de divulgación.',
+  },
+  {
+    q: '¿Cuándo se colocó el monumento?',
+    a: 'La ficha turística indica 1870, durante el gobierno de José Balta. Otras referencias señalan 1871 y 1874. Esta guía conserva las tres atribuciones en lugar de presentar una sola como definitiva.',
+  },
+  {
+    q: '¿Quién fue el escultor?',
+    a: 'No lo hemos podido confirmar con una fuente oficial: la ficha no identifica al autor. Esta guía no atribuye la obra a ningún escultor sin respaldo documental.',
+  },
+  {
+    q: '¿Por qué se dice que es el monumento más antiguo de Piura?',
+    a: 'La ficha turística la considera el monumento más antiguo de la ciudad. La pieza reemplazó a una escultura de madera anterior, por lo que el conjunto de la memoria pública del lugar es aún más antiguo que el mármol.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const monumentJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  '@id': `${siteUrl}/monumento-la-pola-piura/#monument`,
+  name: 'Alegoría a la Libertad («La Pola»)',
+  alternateName: 'La Pola',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `Ayacucho, ${attractionShortName}`,
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -5.1970998, longitude: -80.62668 },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Monumento La Pola' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="La escultura"
+  h1="El monumento La Pola, en el centro de la plaza"
+  lead={`La pieza física que ocupa el centro de la ${attractionShortName}: qué material tiene, qué estilo, qué fechas se le atribuyen y por qué se la considera la escultura pública más antigua de ${cityName}.`}
+  {crumbs}
+  jsonLd={[monumentJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">El monumento, en datos</h2>
+      <p class="section-lead">Ficha técnica de la pieza, con las atribuciones que se conservan sin fusionar.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        La escultura ocupa el centro de la {attractionShortName} y es el punto alrededor del cual se organizan los jardines, las bancas y el arbolado centenario. Su nombre oficial es «Alegoría a la Libertad»; «La Pola» es el apelativo que le dio la ciudad, que se explica en <a href="/historia-de-la-pola-piura/" class="font-bold text-[#b9633e] underline">la historia del nombre de La Pola</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Lectura de la pieza</span>
+      <h2 class="section-title">Qué se sabe y qué queda abierto</h2>
+      <div class="mt-12 grid gap-10">
+        {lectura.map((item, index) => (
+          <div class="grid gap-6 border-l border-[#c9b18e]/50 pl-7 sm:grid-cols-[70px_1fr] sm:pl-10">
+            <div class="number text-[#a85737]">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 class="serif text-3xl">{item.title}</h3>
+              <p class="mt-4 max-w-3xl leading-8 text-[#6e655b]">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">Por qué importa</span>
+        <h2 class="section-title">El monumento más antiguo de la ciudad</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>La ficha turística describe la pieza como el monumento más antiguo de {cityName}. Esa antigüedad se refiere al conjunto: antes del mármol hubo en el mismo lugar una escultura de madera, de modo que el centro de la plaza es un punto conmemorativo con más historia que la estatua que hoy se ve.</p>
+          <p>La pieza de mármol reemplazó a la de madera en la segunda mitad del siglo XIX. Ese relevo explica la mezcla de nombres con la que se la conoce hasta hoy.</p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/que-ver-plaza-de-armas-piura/" class="btn btn-primary">Qué ver en la plaza</a>
+          <a href="/fotos-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver fotografías reales</a>
+        </div>
+      </div>
+      <figure class="overflow-hidden rounded-[2rem]">
+        <img src="/images/alegoria-a-la-libertad.jpg" alt={`Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`} width="780" height="1040" loading="lazy" class="h-full w-full object-cover" />
+        <figcaption class="mt-3 text-xs text-[#6e655b]">
+          <a href="https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">Ccotlear · 2021-10-24 · CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.05fr_.95fr]">
+      <div>
+        <span class="eyebrow">Mirarlo de cerca</span>
+        <h2 class="section-title">Cómo leer la pieza en el centro de la plaza</h2>
+        <p class="section-copy mt-6">
+          El monumento ocupa el centro de la plaza, rodeado por los jardines, las bancas y el arbolado. Al acercarse, la lectura útil es doble: qué materiales y formas tiene, y qué papel cumple en el espacio.
+        </p>
+        <ul class="mt-8 grid gap-4">
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">Material</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Se describe como mármol, y varias referencias mencionan mármol de Carrara. Es un dato de divulgación, no un análisis de la piedra.</p>
+          </li>
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">Estilo y figura</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Escultura de gusto neoclásico con una figura femenina: una alegoría de la libertad, no un retrato de persona.</p>
+          </li>
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">Posición</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Se levanta en el punto central del conjunto, y es el eje alrededor del cual se disponen los jardines y los paseos.</p>
+          </li>
+          <li class="card rounded-[1.6rem] p-6">
+            <h3 class="serif text-xl">Cómo cambia con la luz</h3>
+            <p class="mt-2 leading-7 text-[#6e655b]">Al ser mármol claro, el brillo y las sombras varían según la hora: verla de mañana y de tarde da dos lecturas de la misma figura.</p>
+          </li>
+        </ul>
+        <p class="mt-8 text-base">
+          Para la lectura simbólica del nombre, revisa <a href="/historia-de-la-pola-piura/" class="font-bold text-[#b9633e] underline">la historia de La Pola</a>; para situar la pieza en el conjunto, <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a>.
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Lo no confirmado</span>
+        <h2 class="section-title">Qué no se ha verificado</h2>
+        <p class="section-copy mt-6">
+          Antes de atribuir la obra o de fijar una fecha, conviene separar lo documentado de lo que sigue abierto.
+        </p>
+        <ul class="mt-6 space-y-4 text-base leading-7 text-[#6e655b]">
+          <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">El autor:</strong> la ficha no identifica al escultor y no hemos hallado una fuente oficial que lo confirme.</li>
+          <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">El año exacto:</strong> se conservan tres atribuciones —1870, 1871 y 1874— sin fusionarlas.</li>
+          <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">La procedencia del mármol:</strong> la mención a Carrara es divulgativa, no está verificada.</li>
+          <li class="border-l border-[#c9b18e]/60 pl-4"><strong class="text-[#1d2a24]">Inscripciones o placas:</strong> esta guía no ha verificado qué leyenda, si alguna, acompaña hoy al monumento.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el monumento</h2>
+        <p class="section-lead mt-6">Si lo que te interesa es la persona y el nombre, revisa <a href="/historia-de-la-pola-piura/" class="font-bold text-[#b9633e] underline">la historia de La Pola</a>. Vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a> o repasa <a href="/historia-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">la historia de la plaza</a>.</p>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Descripción del monumento a la libertad, fecha registrada de 1870 durante el gobierno de Balta y consideración como el monumento más antiguo de Piura.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">UDEP Hoy — «¿Conoces el origen de las esculturas públicas de Piura?» (2012)</p>
+        <p class="text-sm text-[#6e655b]">Atribuye la escultura a un gesto del presidente José Balta en 1870, de gusto neoclásico, y explica que reemplazó a una estatua de madera anterior.</p>
+        <a href="https://www.udep.edu.pe/hoy/2012/10/conoces-origen-las-esculturas-publicas-piura/" target="_blank" rel="noopener noreferrer">udep.edu.pe</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo «Alegoría a la Libertad»</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia de la fotografía, además de una atribución alterna (1871) que se conserva sin fusionar con las demás.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -1,0 +1,239 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const minceturCatedral = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=361';
+
+const title = 'Qué hacer en Piura en una hora desde la Plaza de Armas Piura';
+const description = `Plan de una hora en el centro de ${cityName}: qué ver en la ${attractionShortName}, a qué edificio entrar y qué dejar fuera para no perder tiempo.`;
+const dateModified = '2026-11-04';
+
+const plan = [
+  {
+    step: '01',
+    label: '15 min',
+    title: 'Recorre la plaza una sola vuelta',
+    text: 'Entra por el frente de la catedral y da una vuelta completa al perímetro. Verás los jardines, las bancas y los tamarindos centenarios, y al centro el monumento a la libertad, «La Pola». Una vuelta basta para orientarte.',
+  },
+  {
+    step: '02',
+    label: '15 min',
+    title: 'Entra a la catedral o a la Casa Museo Grau',
+    text: 'Elige un solo edificio. La catedral (Iglesia Matriz) está a unos 20 m y la Casa Museo Grau a unos 50 m según el inventario: ambas caben en el tiempo de una parada. No intentes las dos.',
+  },
+  {
+    step: '03',
+    label: '20 min',
+    title: 'Siéntate a ver pasar la ciudad',
+    text: 'Usa las bancas de la plaza para una pausa corta con sombra. Aquí no hay algo que «hacer»: el valor de la plaza es observar el movimiento del centro. Cierra el reloj y vuelve.',
+  },
+];
+
+const skips = [
+  { problem: 'Iglesia San Francisco', reason: 'A unos 300 m (3 min según la ficha). Parece cerca, pero sumar el tramo, la visita y la vuelta consume la hora completa.' },
+  { problem: 'Plazuela Merino e Iglesia del Carmen', reason: 'A unos 600 m (6 min a pie). Es una salida de ida y vuelta que no cabe en una hora sin renunciar a lo esencial.' },
+  { problem: 'Museo Municipal Vicús', reason: 'El inventario lo sitúa a 1 km con 3 min en taxi. No es una parada de paso: déjalo para una visita de medio día.' },
+];
+
+const faqs = [
+  {
+    q: '¿Alcanza una hora para ver la Plaza de Armas de Piura?',
+    a: 'Sí. La plaza es un espacio abierto pequeño y de acceso libre: una vuelta por el perímetro, un edificio adyacente y una pausa breve caben en unos 50 a 60 minutos. Lo que no cabe es añadir iglesias alejadas.',
+  },
+  {
+    q: '¿Los 15 o 20 minutos son tiempos fijos?',
+    a: 'No. Son estimaciones de esta guía para dar una idea del reparto. El calor, tus paradas para fotografías y si el edificio está abierto cambian el resultado.',
+  },
+  {
+    q: '¿A qué edificio conviene entrar?',
+    a: 'Al más cercano y el que más te interese. La catedral está a unos 20 m y la Casa Museo Grau a unos 50 m según el inventario: cualquiera de las dos funciona como única parada. Confirma antes si está abierta.',
+  },
+  {
+    q: '¿Se puede hacer esta hora con mucho calor?',
+    a: 'Sí, pero con agua y protección solar. A media mañana o al final de la tarde el esfuerzo es menor; si el sol aprieta, reduce la vuelta al perímetro y usa las bancas para descansar.',
+  },
+  {
+    q: '¿Qué me pierdo por hacer solo una hora?',
+    a: 'Pierdes la ruta larga hacia San Francisco y la Plazuela Merino, y el museo Vicús. Si tienes más tiempo, cambia a la guía de medio día o a la ruta a pie completa.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/que-hacer-piura-en-una-hora/#trip`,
+  name: `Una hora en el centro de ${cityName} desde la ${attractionShortName}`,
+  description,
+  touristType: ['Visita corta', 'Centro histórico', 'A pie'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Catedral (Iglesia Matriz) de Piura' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Casa Museo Miguel Grau' } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Una hora' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Visita exprés"
+  h1={`Una hora en la ${attractionShortName}`}
+  lead="Si solo tienes una hora, este es el reparto: una vuelta a la plaza, un solo edificio adyacente y una pausa. Y, sobre todo, lo que conviene descartar para no salir corriendo."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">La idea</span>
+      <h2 class="section-title">Una hora exige renunciar a algo</h2>
+      <p class="section-copy mt-6">
+        En el centro de {cityName} casi todo parece estar a la vuelta de la esquina, y por eso la tentación de encadenar iglesias es alta. Con solo una hora, esa tentación tiene un costo: cada tramo adicional recorta el tiempo del edificio en el que sí querías entrar. La regla de esta guía es simple: <strong>una vuelta, un edificio, una pausa</strong>.
+      </p>
+      <p class="section-copy mt-4">
+        Empieza en el Plus Code {plusCode} para no perder minutos buscando el acceso. La plaza es de ingreso libre y abierta, así que el reloj arranca en cuanto llegas.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir la plaza en el mapa ↗</a>
+        <a href="/horarios-visita-plaza-de-armas/" class="btn border border-[#cab49a]">Ver horarios de visita</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">El plan</span>
+      <h2 class="section-title">Tres bloques de tiempo</h2>
+      <p class="section-lead">Estimaciones de esta guía para repartir la hora; no son un cronómetro.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {plan.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <div class="flex items-baseline justify-between">
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Paso {item.step}</p>
+              <p class="font-black text-[#244433]">{item.label}</p>
+            </div>
+            <h3 class="serif mt-3 text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Lo que dejarás fuera</span>
+      <h2 class="section-title">Qué saltarse con una hora</h2>
+      <p class="section-copy mt-6">
+        No es que estos lugares no valgan: es que no caben. Reconocerlo de antemano evita el error clásico de llegar a la última parada sin tiempo para verla.
+      </p>
+      <div class="mt-10 space-y-6">
+        {skips.map((item) => (
+          <div class="card rounded-[1.4rem] p-6">
+            <p class="font-black text-[#1d2a24]">{item.problem}</p>
+            <p class="mt-2 leading-7 text-[#6e655b]">{item.reason}</p>
+          </div>
+        ))}
+      </div>
+      <p class="section-copy mt-8">
+        Si la hora te queda corta, la salida natural es ampliar a una visita de medio día. Y si quieres entender cada parada antes de elegir, empieza por la guía de <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a> o por el detalle de la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral</a>.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/medio-dia-en-centro-de-piura/" class="btn btn-primary">Cambiar al plan de medio día</a>
+        <a href="/" class="btn border border-[#cab49a]">Volver a la guía principal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Versión mínima</span>
+      <h2 class="section-title">Si solo tienes 30 minutos</h2>
+      <p class="section-copy mt-6">
+        Media hora no da para el plan completo de la hora: obliga a elegir un único gesto. La plaza es de acceso libre y el reloj arranca en cuanto llegas, así que la regla es <strong>una vuelta, un edificio y nada más</strong>.
+      </p>
+      <ul class="mt-8 space-y-4 text-lg leading-8 text-[#6e655b]">
+        <li><strong class="text-[#1d2a24]">0–15 min:</strong> una sola vuelta al perímetro de la plaza, sin paradas largas ni tramos hacia las calles laterales.</li>
+        <li><strong class="text-[#1d2a24]">15–28 min:</strong> una única entrada, la más cercana: la catedral, a unos 20 m, o la Casa Museo Grau, a unos 50 m según el inventario. Nunca las dos.</li>
+        <li><strong class="text-[#1d2a24]">28–30 min:</strong> una foto y salida. Siéntate solo si te sobra tiempo real: en media hora, la pausa es un lujo.</li>
+      </ul>
+      <p class="section-copy mt-8">
+        Bajo este umbral casi todo queda fuera: San Francisco (300 m), la Plazuela Merino (600 m) y el museo Vicús (1 km, unos 3 min en taxi) no caben. Si al final dispones de más tiempo, pasa al plan de <a href="/medio-dia-en-centro-de-piura/" class="font-bold text-[#b9633e] underline">medio día</a> y profundiza en la <a href="/catedral-de-piura/" class="font-bold text-[#b9633e] underline">catedral</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la hora</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Ingreso libre, descripción de la plaza y distancias de referencia hacia los edificios del entorno.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — ficha 361 (Catedral / Iglesia Matriz)</p>
+        <p class="text-sm text-[#6e655b]">Registra la catedral como el edificio a unos 20 m de la plaza, base para elegirla como única parada corta.</p>
+        <a href={minceturCatedral} target="_blank" rel="noopener noreferrer">{minceturCatedral}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto (Plus Code {plusCode}) para iniciar la hora sin tiempo perdido.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

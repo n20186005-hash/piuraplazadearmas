@@ -23,14 +23,14 @@ const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/
 const mucenUrl = 'https://mucen.bcrp.gob.pe/mucen/museos/mucen-piura';
 const casaMuseoUrl = 'https://museos.cultura.pe/museos/casa-museo-gran-almirante-grau-de-piura';
 
-const title = 'Plaza de Armas Piura: ubicación, historia y visita';
-const description = 'Ubica la Plaza de Armas Piura en Ayacucho: mapa, historia de La Pola, acceso según fuentes y visitas separadas a la catedral y museos.';
+const title = 'Plaza de Armas de Piura: Ubicación, Historia, Fotos y Qué Ver';
+const description = 'Descubre la Plaza de Armas de Piura: ubicación exacta, cómo llegar, historia, fotos, monumentos y lugares que puedes visitar a pie en el centro histórico.';
 const ogImage = `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`;
 const ogImageAlt = `${attractionFullName} - vista principal en ${cityName}, ${countryName}`;
 const ogImageWidth = 1280;
 const ogImageHeight = 866;
 
-const dateModified = '2026-10-26';
+const dateModified = '2026-11-04';
 
 const photos = {
   hero: {
@@ -98,6 +98,69 @@ const nearby = [
   { distance: 'entorno de la plaza', name: 'Catedral de Piura · Iglesia Matriz', text: 'El inventario turístico sitúa la Iglesia Matriz en el entorno de la plaza. La fachada aparece en nuestra foto de 2019; el acceso al templo, sus celebraciones y la fotografía interior se consultan por separado.', url: minceturFicha },
   { distance: 'visita cultural independiente', name: 'MUCEN Piura', text: 'El museo del Banco Central de Reserva presenta piezas vicús, numismática y arte regional. Su página describe las salas y las opciones para grupos; revisa allí la visita al museo, sin aplicar el horario de la plaza.', url: mucenUrl },
   { distance: 'Jr. Tacna 662', name: 'Casa Museo Gran Almirante Grau', text: 'El directorio del Ministerio de Cultura identifica la casa museo en Jr. Tacna 662, administrada por la Marina de Guerra del Perú. Publica un horario propio con jornadas partidas; compruébalo para la fecha elegida.', url: casaMuseoUrl },
+];
+
+const guideGroups = [
+  {
+    label: 'La visita esencial',
+    items: [
+      { href: '/ubicacion-plaza-de-armas-piura/', title: 'Ubicación exacta', text: 'Dirección Ayacucho, Piura 20001, Plus Code R93F+58, coordenadas y entorno urbano.' },
+      { href: '/como-llegar-plaza-de-armas-piura/', title: 'Cómo llegar', text: 'Rutas de referencia desde Óvalo Grau, Plazuela Merino y San Sebastián.' },
+      { href: '/historia-plaza-de-armas-piura/', title: 'Historia', text: 'Origen del nombre, La Pola (1870), tamarindos centenarios y declaratoria de patrimonio.' },
+      { href: '/fotos-plaza-de-armas-piura/', title: 'Fotos reales', text: 'Cuatro fotografías con autoría, año y licencia CC BY-SA 4.0.' },
+      { href: '/plaza-de-armas-piura-de-noche/', title: 'De noche', text: 'Qué permite confirmar el horario y qué no está verificado sobre el alumbrado.' },
+      { href: '/que-ver-plaza-de-armas-piura/', title: 'Qué ver', text: 'Monumento central, arbolado, iglesia matriz, borde institucional y escultura de 2025.' },
+      { href: '/horarios-visita-plaza-de-armas/', title: 'Horarios', text: 'Los cuatro relojes distintos: plaza, ceremonia, templo y museos.' },
+      { href: '/estacionamiento-centro-piura/', title: 'Estacionamiento', text: 'Qué comprobar antes de aparcar y cómo acordar la bajada en el centro.' },
+      { href: '/mapa-plaza-de-armas-piura/', title: 'Mapa y orientación', text: 'Coordenadas, Plus Code y puntos de referencia para empezar a caminar.' },
+      { href: '/consejos-visitar-plaza-de-armas/', title: 'Consejos prácticos', text: 'Calor, hidratación, mejor momento, presupuesto y fotografías.' },
+    ],
+  },
+  {
+    label: 'Historia, cultura y edificios del centro',
+    items: [
+      { href: '/catedral-de-piura/', title: 'Catedral de Piura', text: 'La iglesia matriz frente a la plaza: historia, arquitectura y qué comprobar antes de entrar.' },
+      { href: '/casa-museo-miguel-grau-piura/', title: 'Casa Museo Miguel Grau', text: 'La casa natal del héroe en Tacna 662: colección, horario registrado y relación con la plaza.' },
+      { href: '/monumento-la-pola-piura/', title: 'Monumento a la libertad', text: 'La escultura de mármol de 1870: material, autoría sin confirmar y por qué es la más antigua.' },
+      { href: '/historia-de-la-pola-piura/', title: '¿Quién fue La Pola?', text: 'El nombre, la figura de Policarpa Salavarrieta y el símbolo de la libertad en la plaza.' },
+      { href: '/centro-historico-de-piura/', title: 'Centro histórico', text: 'Cómo se organiza el casco histórico declarado patrimonio y qué rodea la plaza.' },
+      { href: '/arquitectura-centro-historico-piura/', title: 'Arquitectura del centro', text: 'Adobe y quincha, barroco, neorrenacentista y neoclásico en los edificios del entorno.' },
+      { href: '/plazas-historicas-de-piura/', title: 'Plazas históricas', text: 'Comparación entre la Plaza de Armas, la Plazuela Merino y otros espacios cívicos.' },
+      { href: '/plazuela-ignacio-merino/', title: 'Plazuela Ignacio Merino', text: 'La plaza de 1903 al norte, con la estatua del pintor y su conexión a pie.' },
+      { href: '/iglesia-san-francisco-piura/', title: 'Iglesia San Francisco', text: 'Templo de los siglos XVII-XVIII y escenario del grito de libertad de 1821.' },
+      { href: '/iglesia-nuestra-senora-del-carmen-piura/', title: 'Iglesia del Carmen', text: 'El templo del siglo XVIII en la Plazuela Merino y su museo de arte religioso.' },
+      { href: '/iglesia-san-sebastian-piura/', title: 'Iglesia San Sebastián', text: 'Antigua capilla de Santa Lucía, sus vitrales y su cripta, en la calle Moquegua.' },
+      { href: '/museo-municipal-vicus-piura/', title: 'Museo Municipal Vicús', text: 'Sala arqueológica con más de 2700 piezas, la Colección Oro de Frías y su tarifa registrada.' },
+    ],
+  },
+  {
+    label: 'Comer, descansar y servicios',
+    items: [
+      { href: '/restaurantes-cerca-plaza-de-armas-piura/', title: 'Restaurantes cerca', text: 'Cómo elegir dónde comer sin una lista no verificada: qué comprobar antes de sentarte.' },
+      { href: '/cafeterias-centro-piura/', title: 'Cafeterías del centro', text: 'Pausas para el café y el calor: criterios de elección y qué no publicamos.' },
+      { href: '/desayunar-cerca-plaza-de-armas/', title: 'Desayunar cerca', text: 'Opciones de mañana para quien visita temprano, con el criterio antes que una lista.' },
+      { href: '/almorzar-centro-historico-piura/', title: 'Almorzar en el centro', text: 'Cómo resolver el almuerzo y encajarlo con los horarios de tu visita.' },
+      { href: '/comida-tipica-piurana-centro/', title: 'Comida típica piurana', text: 'El seco de chabelo, la malarrabia, el ceviche y los chifles, sin recomendar un local concreto.' },
+      { href: '/postres-bebidas-tipicas-piura/', title: 'Postres y bebidas', text: 'Dulces y bebidas documentados de Piura y del norte, sin inventar recetas.' },
+      { href: '/servicios-cerca-plaza-de-armas/', title: 'Servicios cerca', text: 'Baños, cajeros y puntos de descanso: qué está verificado y qué conviene comprobar.' },
+      { href: '/hoteles-cerca-plaza-de-armas-piura/', title: 'Hoteles cerca', text: 'Cómo elegir alojamiento por distancia y necesidad, separando guía editorial de enlaces comerciales.' },
+    ],
+  },
+  {
+    label: 'Recorridos y necesidades del viajero',
+    items: [
+      { href: '/ruta-a-pie-centro-historico-piura/', title: 'Ruta a pie', text: 'El recorrido cultural que enlaza la plaza, la catedral, la Casa Grau y San Francisco.' },
+      { href: '/que-hacer-piura-en-una-hora/', title: 'Qué hacer en una hora', text: 'La visita más corta: una vuelta, un edificio y una pausa, con lo que conviene saltarse.' },
+      { href: '/medio-dia-en-centro-de-piura/', title: 'Medio día en el centro', text: 'Media jornada con un museo y una comida, en un orden realista.' },
+      { href: '/ruta-cultural-miguel-grau-piura/', title: 'Ruta cultural Miguel Grau', text: 'Un recorrido temático sobre Grau y la ruta oficial «Piura Ciudad con Historia».' },
+      { href: '/piura-con-ninos-centro-historico/', title: 'Piura con niños', text: 'Un recorrido corto con calor, descansos e hidratación como prioridad.' },
+      { href: '/plaza-de-armas-piura-adultos-mayores/', title: 'Para adultos mayores', text: 'Un plan de poco esfuerzo: sombra, bancas y carga de caminata explicada con franqueza.' },
+      { href: '/accesibilidad-plaza-de-armas-piura/', title: 'Accesibilidad', text: 'Qué no está verificado sobre rampas y accesos, y qué comprobar antes de ir.' },
+      { href: '/fotografia-plaza-de-armas-piura/', title: 'Fotografía en la plaza', text: 'Luz, sombra y encuadres a partir de la disposición real del espacio.' },
+      { href: '/visitar-piura-en-verano/', title: 'Visitar Piura en verano', text: 'Cómo gestionar el calor: horarios, hidratación y sombra.' },
+      { href: '/que-hacer-en-piura-si-llueve/', title: 'Qué hacer si llueve', text: 'Un plan de lluvia flexible y por qué no publicamos qué locales abren esos días.' },
+    ],
+  },
 ];
 
 const sources = [
@@ -320,6 +383,7 @@ const jsonLdGraph = {
           <a href="#historia" class="hover:text-[#f4c38d]">Historia</a>
           <a href="#visita" class="hover:text-[#f4c38d]">Visita</a>
           <a href="#alrededores" class="hover:text-[#f4c38d]">Alrededores</a>
+          <a href="#guias" class="hover:text-[#f4c38d]">Guías</a>
           <a href="#mapa" class="hover:text-[#f4c38d]">Mapa</a>
           <a href="#faq" class="hover:text-[#f4c38d]">FAQ</a>
           <a href="#fuentes" class="hover:text-[#f4c38d]">Fuentes</a>
@@ -342,7 +406,7 @@ const jsonLdGraph = {
             </div>
             <p class="mb-4 text-sm font-black uppercase tracking-[.22em] text-[#f2c38f]">El corazón cívico de {cityName}</p>
             <h1 class="serif max-w-[13ch] text-[clamp(3.2rem,8.4vw,7.2rem)] leading-[.82] tracking-[-.05em]">
-              Plaza de Armas <em class="font-normal text-[#efb26c]">Piura</em>
+              Plaza de Armas <em class="font-normal text-[#efb26c]">de Piura</em>
               <span class="h1-city">({cityName}, {countryName})</span>
             </h1>
             <p class="mb-4 mt-6 max-w-2xl text-base font-medium leading-7 text-white/85 md:text-lg">
@@ -510,6 +574,7 @@ const jsonLdGraph = {
                 <div class="border-t border-white/15 pt-5"><strong class="text-white">Accesibilidad:</strong> MINCETUR enumera rampas en la plaza. Esto no acredita una ruta continua desde tu alojamiento ni el estado actual de cada cruce; confirma lo que necesite tu grupo.</div>
               </div>
               <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn mt-8 bg-[#f6ead6] text-[#244433]">Ver ruta en Google Maps ↗</a>
+              <p class="mt-6 text-sm leading-7 text-white/70">Detalle de cada tramo en <a href="/como-llegar-plaza-de-armas-piura/" class="font-bold text-[#f4c38d] underline">cómo llegar</a> y criterios para aparcar en <a href="/estacionamiento-centro-piura/" class="font-bold text-[#f4c38d] underline">estacionamiento en el centro</a>.</p>
             </article>
             <article class="rounded-[2rem] border border-[#d8c4ad] bg-[#f5ead9] p-8 md:p-10">
               <p class="text-xs font-black uppercase tracking-[.18em] text-[#a85737]">Dirección</p>
@@ -558,6 +623,33 @@ const jsonLdGraph = {
         </div>
       </section>
 
+      <section id="guias" class="bg-[#fffaf1] py-24 md:py-32">
+        <div class="shell">
+          <div class="max-w-3xl">
+            <span class="eyebrow">Guías de la plaza</span>
+            <h2 class="section-title">Guías detalladas de la {attractionFullName}</h2>
+            <p class="section-lead">Cuarenta páginas para resolver antes, durante y después de la visita, agrupadas por tema.</p>
+            <p class="section-copy mt-6">Cada guía responde una pregunta concreta y cita su fuente. Ninguna repite esta página: si buscas dónde está, empieza por ubicación; si buscas cómo orientarte, abre el mapa.</p>
+          </div>
+          <div class="mt-12 space-y-14">
+            {guideGroups.map((group) => (
+              <div>
+                <h3 class="serif text-3xl">{group.label}</h3>
+                <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {group.items.map((guide) => (
+                    <a href={guide.href} class="card rounded-[1.6rem] p-7 transition hover:border-[#b9633e]">
+                      <h4 class="serif text-2xl">{guide.title}</h4>
+                      <p class="mt-3 leading-7 text-[#6e655b]">{guide.text}</p>
+                      <span class="mt-5 inline-block text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Leer la guía →</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="mapa" class="bg-[#fffaf1] py-24 md:py-32">
         <div class="shell">
           <div class="mb-10 flex flex-wrap items-end justify-between gap-8">
@@ -588,6 +680,9 @@ const jsonLdGraph = {
           </div>
           <p class="mt-6 text-sm leading-6 text-[#6e655b]">
             Para información oficial y actualizaciones regionales, consulta el <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">Gob.pe de la Municipalidad Provincial de {cityName}</a> y la <a href={minceturFicha} target="_blank" rel="noopener noreferrer" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">ficha oficial de recursos turísticos del MINCETUR</a>.
+          </p>
+          <p class="mt-4 text-sm leading-7 text-[#6e655b]">
+            Si necesitas los datos administrativos, revisa la <a href="/ubicacion-plaza-de-armas-piura/" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">ubicación exacta</a>; y si buscas cómo orientarte al llegar, el <a href="/mapa-plaza-de-armas-piura/" class="font-bold text-[#244433] underline decoration-[#244433]/30 underline-offset-4">mapa y la orientación del entorno</a>.
           </p>
         </div>
       </section>
@@ -647,7 +742,7 @@ const jsonLdGraph = {
           <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#fff8ec] text-[#7f3e2b]">Planear ruta ↗</a>
         </div>
       </section>
-      <section id="privacidad" class="bg-[#fffaf1] py-20"><div class="shell max-w-3xl"><span class="eyebrow">Privacidad y uso</span><h2 class="section-title">Tu elección de analítica</h2><p class="section-copy mt-6">Este sitio conserva la elección de analítica en el almacenamiento local del navegador. Solo un permiso leído o guardado correctamente permite cargar Google Analytics. Al rechazar o retirar se desactiva la medición adicional de esta página antes de intentar guardar; si la escritura falla, se intenta retirar la clave y mantener un veto en la sesión de esta pestaña. El mensaje indica si no pudo confirmarse la persistencia y si una autorización de este intento o anterior puede seguir activa en otras pestañas o sesiones. No se puede recuperar lo ya enviado.</p><p class="section-copy mt-4">El iframe del mapa solicita contenido a Google, con independencia de la elección de Analytics. Google puede recibir datos de la solicitud según su propia política. Las fotos y los iconos se sirven desde este sitio, y los enlaces a fuentes o licencias llevan a otros proveedores. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Política de Google</a>.</p><p class="section-copy mt-4">Cloudflare aloja el sitio y puede mantener registros del servicio o incluir un beacon de rendimiento/RUM separado. El ajuste de Google Analytics no controla ese beacon; observar un script no acredita por sí solo una transmisión concreta. <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer" class="underline">Información del proveedor</a>. El modo PWA guarda páginas y recursos exitosos para uso sin conexión, por lo que puede conservar una versión anterior; vuelve a las fuentes actuales antes de viajar.</p><h3 class="serif mt-8 text-2xl">Alcance de esta guía</h3><p class="section-copy mt-4">Ofrecemos información educativa, sin representar al municipio, los museos ni los establecimientos. No vendemos entradas ni reservamos servicios. Los horarios y condiciones de cada lugar se consultan con su responsable. La finalidad sin fines de lucro no supone una declaración de registro como entidad benéfica. Las fotografías conservan las condiciones de sus autores y licencias enlazadas.</p><p class="section-copy mt-4">Revisión: 26 de octubre de 2026.</p></div></section>
+      <section id="privacidad" class="bg-[#fffaf1] py-20"><div class="shell max-w-3xl"><span class="eyebrow">Privacidad y uso</span><h2 class="section-title">Tu elección de analítica</h2><p class="section-copy mt-6">Este sitio conserva la elección de analítica en el almacenamiento local del navegador. Solo un permiso leído o guardado correctamente permite cargar Google Analytics. Al rechazar o retirar se desactiva la medición adicional de esta página antes de intentar guardar; si la escritura falla, se intenta retirar la clave y mantener un veto en la sesión de esta pestaña. El mensaje indica si no pudo confirmarse la persistencia y si una autorización de este intento o anterior puede seguir activa en otras pestañas o sesiones. No se puede recuperar lo ya enviado.</p><p class="section-copy mt-4">El iframe del mapa solicita contenido a Google, con independencia de la elección de Analytics. Google puede recibir datos de la solicitud según su propia política. Las fotos y los iconos se sirven desde este sitio, y los enlaces a fuentes o licencias llevan a otros proveedores. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Política de Google</a>.</p><p class="section-copy mt-4">Cloudflare aloja el sitio y puede mantener registros del servicio o incluir un beacon de rendimiento/RUM separado. El ajuste de Google Analytics no controla ese beacon; observar un script no acredita por sí solo una transmisión concreta. <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer" class="underline">Información del proveedor</a>. El modo PWA guarda páginas y recursos exitosos para uso sin conexión, por lo que puede conservar una versión anterior; vuelve a las fuentes actuales antes de viajar.</p><h3 class="serif mt-8 text-2xl">Alcance de esta guía</h3><p class="section-copy mt-4">Ofrecemos información educativa, sin representar al municipio, los museos ni los establecimientos. No vendemos entradas ni reservamos servicios. Los horarios y condiciones de cada lugar se consultan con su responsable. La finalidad sin fines de lucro no supone una declaración de registro como entidad benéfica. Las fotografías conservan las condiciones de sus autores y licencias enlazadas.</p><p class="section-copy mt-4">Revisión: 4 de noviembre de 2026.</p></div></section>
     </main>
 
     <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">

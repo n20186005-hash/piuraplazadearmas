@@ -1,0 +1,235 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=11770';
+
+const title = 'Iglesia San Sebastián de Piura y la Plaza de Armas Piura';
+const description = 'La iglesia San Sebastián de Piura, a pocas cuadras de la Plaza de Armas: su origen en la capilla de Santa Lucía, los vitrales, la cripta y qué comprobar al visitarla.';
+const dateModified = '2026-11-04';
+
+const facts = [
+  { label: 'Antecedente', value: 'Antigua capilla de Santa Lucía' },
+  { label: 'Nombre antiguo', value: 'Hacia 1620 se la llamaba San Sebastián de Los Indios' },
+  { label: 'Entrega a los Redentoristas', value: '8 de julio de 1911' },
+  { label: 'Vitrales', value: 'San Sebastián, San Gerardo, Santa Rosa, Sagrado Corazón y San José' },
+  { label: 'Cripta', value: 'Cuenta con una cripta subterránea' },
+  { label: 'Ubicación', value: 'Calle Moquegua, entre Tacna y Libertad' },
+  { label: 'Uso actual', value: 'Santuario de la Virgen del Perpetuo Socorro' },
+];
+
+const mirar = [
+  {
+    title: 'Los vitrales',
+    text: 'La ficha menciona vitrales con San Sebastián, San Gerardo, Santa Rosa, el Sagrado Corazón y San José. Son uno de los elementos que más se reconocen en el interior.',
+  },
+  {
+    title: 'La cripta subterránea',
+    text: 'El templo cuenta con una cripta subterránea. Esta guía no ha verificado si está abierta a los visitantes ni si se permite bajar; pregúntalo en la propia parroquia.',
+  },
+  {
+    title: 'Un nombre de cuatro siglos',
+    text: 'El templo sustituyó a la antigua capilla de Santa Lucía. Hacia 1620 se le llamaba San Sebastián de Los Indios, por la población que atendía, y hoy es santuario de la Virgen del Perpetuo Socorro.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Dónde está la iglesia San Sebastián?',
+    a: 'La ficha la ubica en la calle Moquegua, entre Tacna y Libertad, a pocas cuadras de la Plaza de Armas de Piura, dentro del casco central.',
+  },
+  {
+    q: '¿Por qué se llama San Sebastián?',
+    a: 'El templo sustituyó a la antigua capilla de Santa Lucía, que estaba en lo que hoy es la residencia de los misioneros redentoristas. Hacia 1620 aproximadamente ya se la llamaba San Sebastián de Los Indios.',
+  },
+  {
+    q: '¿Qué son los vitrales?',
+    a: 'Son las vidrieras decoradas del templo. La ficha menciona representaciones de San Sebastián, San Gerardo, Santa Rosa, el Sagrado Corazón y San José.',
+  },
+  {
+    q: '¿Se puede visitar la cripta?',
+    a: 'El templo cuenta con una cripta subterránea, según la ficha. Esta guía no ha verificado si está abierta al público ni en qué condiciones: conviene preguntar en la propia parroquia antes de contar con esa visita.',
+  },
+  {
+    q: '¿Cobra entrada?',
+    a: 'No hemos confirmado el horario de apertura ni si hay alguna condición de acceso. Es un lugar de culto en uso: procura no interrumpir las ceremonias y confirma los datos con la institución.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const placeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  '@id': `${siteUrl}/iglesia-san-sebastian-piura/#place`,
+  name: 'Iglesia San Sebastián de Piura',
+  alternateName: 'Santuario de la Virgen del Perpetuo Socorro',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle Moquegua, entre Tacna y Libertad',
+    addressLocality: cityName,
+    addressRegion: cityName,
+    postalCode: '20001',
+    addressCountry: 'PE',
+  },
+  hasMap: mapShortUrl,
+  sameAs: [minceturFicha],
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Iglesia San Sebastián' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="De capilla a santuario"
+  h1="La iglesia San Sebastián de Piura"
+  lead={`Un templo con cuatro siglos de historia, a pocas cuadras de la ${attractionShortName}: la antigua capilla de Santa Lucía, sus vitrales y la cripta subterránea.`}
+  {crumbs}
+  jsonLd={[placeJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Respuesta rápida</span>
+      <h2 class="section-title">La iglesia, en datos</h2>
+      <p class="section-lead">Lo que registra la ficha 11770 sobre el templo y su historia.</p>
+      <dl class="fact-list mt-10">
+        {facts.map((fact) => (
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="section-copy mt-8 max-w-3xl">
+        San Sebastián es un templo de barrio dentro del casco central: no está sobre la plaza, pero queda lo bastante cerca para incluirla en una caminata por el centro. Su historia arranca en la antigua capilla de Santa Lucía.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Qué mirar</span>
+      <h2 class="section-title">Tres elementos del templo</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {mirar.map((item) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <h3 class="serif text-2xl">{item.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/iglesia-san-francisco-piura/" class="btn btn-primary">Ver la iglesia San Francisco</a>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-[#cab49a]">Abrir el mapa ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de ir</span>
+      <h2 class="section-title">Qué no está verificado</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>La ficha no publica horario de apertura ni condiciones de acceso, y esta guía no las ha comprobado. Tampoco podemos confirmar qué partes del templo —incluida la cripta— se pueden visitar hoy.</p>
+        <p>Es un lugar de culto en uso: entra en silencio y evita las horas de ceremonias. Para completar el recorrido religioso del centro, revisa <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">la iglesia Nuestra Señora del Carmen</a> y <a href="/centro-historico-de-piura/" class="font-bold text-[#b9633e] underline">el centro histórico de Piura</a>. Y para empezar por el conjunto, vuelve a <a href="/" class="font-bold text-[#b9633e] underline">la guía principal de la Plaza de Armas Piura</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">En la calle</span>
+      <h2 class="section-title">Cómo reconocerla</h2>
+      <p class="section-lead">San Sebastián no está sobre la plaza: hay que entrar al casco central para encontrarla. Estas son las señales que la identifican.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Dónde está</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">En la calle Moquegua, entre Tacna y Libertad. Es un templo de barrio dentro del casco central, a pocas cuadras de la plaza, y por eso se reconoce más por su calle que por estar frente a un espacio abierto.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">El nombre</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">El templo se llama San Sebastián y hoy es santuario de la Virgen del Perpetuo Socorro. Hacia 1620 se lo conocía como San Sebastián de Los Indios, por la población que atendía, y sustituyó a la antigua capilla de Santa Lucía.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">Los vitrales</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">En el interior, la ficha menciona vitrales con San Sebastián, San Gerardo, Santa Rosa, el Sagrado Corazón y San José. Son las vidrieras decoradas que más se reconocen de la iglesia.</p>
+        </article>
+        <article class="card rounded-[1.6rem] p-7">
+          <h3 class="serif text-2xl">La cripta</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">El templo cuenta con una cripta subterránea. Esta guía no ha verificado si está abierta ni si se permite bajar: es un dato a preguntar en la propia parroquia, no una visita garantizada.</p>
+        </article>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Los redentoristas recibieron el templo el 8 de julio de 1911, y esa presencia explica el nombre actual del santuario. Si vas a recorrer varias iglesias del centro, tiene sentido enlazarla con <a href="/iglesia-nuestra-senora-del-carmen-piura/" class="font-bold text-[#b9633e] underline">la iglesia Nuestra Señora del Carmen</a> y seguir después <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">la ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre San Sebastián</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 11770</p>
+        <p class="text-sm text-[#6e655b]">Antigua capilla de Santa Lucía, nombre de San Sebastián de Los Indios hacia 1620, entrega a los redentoristas en 1911, vitrales, cripta y ubicación.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Municipalidad Provincial de Piura — Nota de prensa «Acompañar a Cristo, conocer nuestra ciudad»</p>
+        <p class="text-sm text-[#6e655b]">Fuente institucional sobre los templos del centro y su uso actual en recorridos urbanos.</p>
+        <a href="https://www.gob.pe/institucion/munipiura/noticias/1144297-acompanar-a-cristo-conocer-nuestra-ciudad" target="_blank" rel="noopener noreferrer">gob.pe/institucion/munipiura/noticias/1144297</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo de la Plaza de Armas de Piura</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de la fotografía que abre la página.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

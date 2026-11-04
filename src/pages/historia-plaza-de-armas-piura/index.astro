@@ -1,0 +1,274 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Historia de la Plaza de Armas Piura: La Pola y tamarindos';
+const description = `Historia de la ${attractionShortName}: por qué se llama plaza de armas, el monumento a la libertad de 1870, los tamarindos centenarios y su declaratoria como patrimonio.`;
+const dateModified = '2026-11-04';
+
+const timeline = [
+  {
+    number: '01',
+    title: 'Una plaza de corte español en el centro',
+    text: 'La ficha turística la describe como una de las plazas más antiguas de corte español, ubicada en el centro de la ciudad, con el trazado abierto y arbolado característico de las plazas mayores.',
+  },
+  {
+    number: '02',
+    title: 'Por qué se llama «Plaza de Armas»',
+    text: 'El nombre proviene de los desfiles cívicos y militares que se realizaban en el espacio. Esa tradición continúa: la ficha registra la ceremonia dominical de izamiento de la bandera nacional y los desfiles cívicos.',
+  },
+  {
+    number: '03',
+    title: 'La Pola, el monumento más antiguo',
+    text: 'En el centro se encuentra el monumento a la libertad, conocido como «La Pola», una estatua de mármol colocada en 1870 durante el gobierno de Balta. La ficha la considera el monumento más antiguo de Piura. El archivo fotográfico de Ccotlear, en cambio, indica 1871: se conservan ambas atribuciones sin presentarlas como una única fecha confirmada.',
+  },
+  {
+    number: '04',
+    title: 'Tamarindos centenarios y una leyenda oral',
+    text: 'La plaza está rodeada de árboles plantados hace más de un siglo: tamarindos, ficus, crotos, cucardas, poncianas y papelillos. La tradición cuenta que 24 tamarindos fueron donados por el ciudadano alemán Fernando Reuche y que Manuel Saldarriaga los fecundó con sangre de toro para que no se marchitaran. Es tradición oral, no un dato documental.',
+  },
+  {
+    number: '05',
+    title: 'Patrimonio Cultural de la Nación',
+    text: 'El Ministerio de Cultura declaró el espacio patrimonio cultural de la nación mediante la Resolución Ministerial N.º 303-1987-ED, reconocimiento que subraya su valor histórico y urbano.',
+  },
+  {
+    number: '06',
+    title: 'Una plaza que sigue sumando memoria',
+    text: 'El 21 de agosto de 2025, en el marco del 493.º aniversario de la fundación de San Miguel de Piura, la Municipalidad Provincial de Piura develó una escultura en homenaje al escritor y poeta Enrique López Albújar, autor de «Matalaché». La obra es del artista Hugo Chanta Guevara.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Quién fue «La Pola» y por qué está en la plaza?',
+    a: '«La Pola» es el nombre popular del monumento a la libertad: una estatua de mármol colocada en 1870, durante el gobierno de Balta, y considerada el monumento más antiguo de Piura. El apelativo se asocia localmente a la figura de Policarpa Salavarrieta; la ficha turística describe la pieza como símbolo de la libertad.',
+  },
+  {
+    q: '¿Cuándo se plantaron los tamarindos de la plaza?',
+    a: 'La ficha turística indica que rodean la plaza árboles plantados hace más de un siglo. No publica una fecha exacta de plantación; la donación de 24 tamarindos por Fernando Reuche y el riego con sangre de toro forman parte de la tradición oral de la ciudad.',
+  },
+  {
+    q: '¿La ceremonia de izamiento es todos los domingos?',
+    a: 'Es una tradición registrada por el inventario turístico, no una agenda confirmada para cada domingo. Si quieres asistir a una ceremonia, consulta los avisos de la Municipalidad Provincial de Piura.',
+  },
+  {
+    q: '¿La plaza es patrimonio cultural?',
+    a: 'Sí. Fue declarada patrimonio cultural de la nación mediante la Resolución Ministerial N.º 303-1987-ED, según el registro de reconocimientos de la ficha 3163.',
+  },
+  {
+    q: '¿Qué datos de la historia están documentados y cuáles no?',
+    a: 'Están documentados la declaratoria de patrimonio cultural (R.M. N.º 303-1987-ED) y la escultura de 2025. La ficha registra el monumento de 1870 y el arbolado centenario, aunque la fecha exacta del monumento se comparte con la atribución de 1871 de un archivo fotográfico y no se publica la fecha de plantación. La donación de 24 tamarindos y el riego con sangre de toro son tradición oral, no dato documental.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${siteUrl}/historia-plaza-de-armas-piura/#article`,
+  headline: 'Historia de la Plaza de Armas de Piura',
+  description,
+  inLanguage: 'es-PE',
+  about: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  datePublished: '2026-11-04',
+  dateModified,
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Historia' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Memoria de la ciudad"
+  h1={`Historia de la ${attractionShortName}`}
+  lead="Del nombre heredado de los desfiles cívicos al monumento a la libertad de 1870, los tamarindos centenarios y la declaratoria de patrimonio cultural."
+  {crumbs}
+  jsonLd={[articleJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Resumen</span>
+      <h2 class="section-title">Una plaza que sigue siendo el centro cívico</h2>
+      <p class="section-copy mt-6">
+        La {attractionShortName} reúne en un solo espacio varias capas de la historia de {cityName}: el trazado de corte español, el monumento a la libertad de 1870, el arbolado centenario y el uso cívico que le dio su nombre. Su valor está reconocido como patrimonio cultural de la nación, pero el espacio sigue funcionando como plaza viva, no como pieza de museo.
+      </p>
+      <p class="section-copy mt-4">
+        Esta página reúne lo que la ficha turística oficial permite confirmar y distingue, donde corresponde, lo que pertenece a la tradición oral.
+      </p>
+    </div>
+  </section>
+
+  <section class="pattern bg-[#172a20] py-20 text-[#f8f0e4] md:py-28">
+    <div class="shell">
+      <span class="eyebrow text-[#eaa464]">Línea de tiempo</span>
+      <h2 class="section-title text-[#fff7e8]">Seis momentos de la {attractionFullName}</h2>
+      <div class="mt-12 grid gap-10">
+        {timeline.map((item) => (
+          <div class="grid gap-6 border-l border-[#8ba087]/35 pl-7 sm:grid-cols-[110px_1fr] sm:pl-10">
+            <div class="number text-[#eaa464]">{item.number}</div>
+            <div>
+              <h3 class="serif text-3xl text-[#fff7e8]">{item.title}</h3>
+              <p class="mt-4 max-w-3xl leading-8 text-[#ddd8cd]">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">Lectura del espacio</span>
+        <h2 class="section-title">Qué mirar y qué no dar por sentado</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p>El monumento central concentra la lectura histórica, pero el arbolado es parte de la misma historia urbana: los tamarindos de más de un siglo sostienen la sombra que hace habitable la plaza en el clima cálido de {cityName}.</p>
+          <p>Conviene separar tres cosas: los datos documentados (declaratoria, fecha de instalación del monumento, escultura de 2025), las estimaciones de una ficha turística (rutas de acceso, número de visitantes) y la tradición oral (el riego con sangre de toro). Las tres aparecen en este sitio, siempre indicando a cuál pertenecen.</p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/que-ver-plaza-de-armas-piura/" class="btn btn-primary">Qué ver en la plaza</a>
+          <a href="/fotos-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver fotografías reales</a>
+        </div>
+      </div>
+      <figure class="overflow-hidden rounded-[2rem]">
+        <img src="/images/catedral-de-piura.jpg" alt={`Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`} width="960" height="1280" loading="lazy" class="h-full w-full object-cover" />
+        <figcaption class="mt-3 text-xs text-[#6e655b]">
+          <a href="https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Estado de la información</span>
+      <h2 class="section-title">Qué está documentado y qué no</h2>
+      <p class="section-lead">Cada dato de esta página tiene un respaldo distinto. Esta tabla lo ordena para que sepas qué puedes citar y qué conviene comprobar.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Dato</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Qué se sabe</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Respaldo</th>
+              <th class="py-3 font-black text-[#a85737]">Por confirmar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Nombre «Plaza de Armas»</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Proviene de los desfiles cívicos y militares celebrados en el espacio.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ficha 3163.</td>
+              <td class="py-4 text-[#6e655b]">—</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">«La Pola»</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Estatua de mármol instalada en 1870, durante el gobierno de Balta.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ficha 3163.</td>
+              <td class="py-4 text-[#6e655b]">El archivo de Ccotlear indica 1871; se conservan ambas fechas.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Autoría del monumento</td>
+              <td class="py-4 pr-4 text-[#6e655b]">No consta el nombre del escultor en la información disponible.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">—</td>
+              <td class="py-4 text-[#6e655b]">Por confirmar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Arbolado centenario</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Árboles plantados hace más de un siglo: tamarindos, ficus, crotos, cucardas, poncianas y papelillos.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Ficha 3163.</td>
+              <td class="py-4 text-[#6e655b]">La fecha exacta de plantación no está publicada.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Donación de los tamarindos</td>
+              <td class="py-4 pr-4 text-[#6e655b]">24 tamarindos donados por Fernando Reuche y fecundados con sangre de toro por Manuel Saldarriaga.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Tradición oral, recogida por la ficha 3163.</td>
+              <td class="py-4 text-[#6e655b]">No es un dato documental.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Declaratoria</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Patrimonio cultural de la nación.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">R.M. N.º 303-1987-ED.</td>
+              <td class="py-4 text-[#6e655b]">Confirmado.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Escultura a López Albújar</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Develada el 21-08-2025, obra de Hugo Chanta Guevara.</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Acto de la Municipalidad Provincial.</td>
+              <td class="py-4 text-[#6e655b]">Confirmado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La regla es simple: lo que proviene de una ficha o una resolución se marca como documentado, y lo que pertenece a la memoria oral se presenta como tradición. Para seguir el hilo del monumento central, revisa el <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">monumento a La Pola</a> y su <a href="/historia-de-la-pola-piura/" class="font-bold text-[#b9633e] underline">historia de La Pola</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre la historia</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Descripción histórica, origen del nombre, «La Pola» (1870), arbolado, tradición oral, ceremonia dominical, declaratoria y escultura de 2025.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivo fotográfico «Alegoría a la Libertad»</p>
+        <p class="text-sm text-[#6e655b]">Atribución de fecha 1871 usada como referencia alterna para el monumento; se conserva sin fusionar con la de la ficha turística.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

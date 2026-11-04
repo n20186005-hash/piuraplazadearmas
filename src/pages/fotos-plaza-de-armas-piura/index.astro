@@ -1,0 +1,263 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+
+const title = 'Fotos de la Plaza de Armas Piura: imágenes reales y autoría';
+const description = `Fotografías reales de la ${attractionShortName} con autoría, licencia y año: vista general, jardines, monumento a La Pola y la catedral junto a la plaza.`;
+const dateModified = '2026-11-04';
+
+const photos = [
+  {
+    src: '/images/plaza-de-armas-piura-hero.jpg',
+    alt: `${attractionFullName} - vista principal en ${cityName}, ${countryName}`,
+    title: 'Vista principal de la plaza',
+    text: 'Plano amplio del espacio cívico con el arbolado y los edificios que lo enmarcan. Es la imagen que abre la guía principal.',
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:PLAZA_DE_ARMAS_DE_PIURA_-_PIURA.jpg',
+    width: 1280,
+    height: 866,
+  },
+  {
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    title: 'Jardines, bancas y vida cotidiana',
+    text: 'Detalle de los jardines y el mobiliario de descanso: ayuda a imaginar la escala real del lugar antes de llegar.',
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+    width: 1280,
+    height: 960,
+  },
+  {
+    src: '/images/alegoria-a-la-libertad.jpg',
+    alt: `Alegoría a la Libertad, monumento central de la ${attractionShortName}, ${cityName}, ${countryName}`,
+    title: 'El monumento a la libertad, «La Pola»',
+    text: 'Estatua de mármol del centro de la plaza, colocada en 1870 y considerada el monumento más antiguo de la ciudad.',
+    credit: 'Ccotlear · 2021-10-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:ALEGORIA_A_LA_LIBERTAD.jpg',
+    width: 780,
+    height: 1040,
+  },
+  {
+    src: '/images/catedral-de-piura.jpg',
+    alt: `Catedral de San Miguel Arcángel junto a la ${attractionShortName}, ${cityName}, ${countryName}`,
+    title: 'La catedral en el entorno de la plaza',
+    text: 'Fachada de la iglesia matriz, uno de los edificios que la ficha turística señala como parte del entorno inmediato.',
+    credit: 'Edward Josué Quevedo Macalupú · 2019-02-04 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:CATEDRAL_DE_PIURA_-_PIURA.jpg',
+    width: 960,
+    height: 1280,
+  },
+];
+
+const galleryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  '@id': `${siteUrl}/fotos-plaza-de-armas-piura/#galeria`,
+  name: `Fotografías de la ${attractionShortName}`,
+  description,
+  about: { '@id': `${siteUrl}/#attraction` },
+  image: photos.map((photo) => ({
+    '@type': 'ImageObject',
+    contentUrl: `${siteUrl}${photo.src}`,
+    name: photo.title,
+    description: photo.text,
+    creditText: photo.credit,
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    acquireLicensePage: photo.page,
+  })),
+};
+
+const faqs = [
+  {
+    q: '¿Puedo usar estas fotos en mi web o en un proyecto comercial?',
+    a: 'Sí. La licencia CC BY-SA 4.0 permite reutilizar las imágenes, incluso con fines comerciales, siempre que atribuyas la autoría y compartas las obras derivadas bajo la misma licencia.',
+  },
+  {
+    q: '¿Cómo debo dar la atribución?',
+    a: 'Indica la autoría, el título de la obra, la mención «CC BY-SA 4.0» y un enlace a la licencia. Cada pie de foto de esta galería enlaza al archivo original, que sirve como fuente de la atribución.',
+  },
+  {
+    q: '¿Puedo recortar o editar las imágenes?',
+    a: 'La licencia permite adaptarlas, pero con dos condiciones: señalar que la imagen fue modificada y publicar la obra derivada bajo la misma licencia CC BY-SA 4.0.',
+  },
+  {
+    q: '¿Estas fotos muestran cómo está hoy la plaza?',
+    a: 'No. Son fotografías tomadas en 2017, 2019 y 2021. El arbolado, el mobiliario y el entorno pueden haber cambiado, así que no sirven para confirmar el estado actual del espacio.',
+  },
+  {
+    q: '¿Puedo publicarlas sin enlazar la fuente original?',
+    a: 'No. La licencia exige atribución y enlace. Escribir «todos los derechos reservados» o usar la imagen sin crédito no equivale a tener autorización de uso.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Fotos' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Imágenes reales"
+  h1={`Fotos de la ${attractionShortName}`}
+  lead="Cuatro fotografías reales con su autoría, año y licencia, más una advertencia clara: son imágenes históricas, no una comprobación del estado actual."
+  {crumbs}
+  jsonLd={[galleryJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Antes de mirar</span>
+      <h2 class="section-title">Qué son y qué no son estas fotos</h2>
+      <p class="section-copy mt-6">
+        Todas las imágenes de esta página son fotografías reales del lugar, tomadas en 2017, 2019 y 2021 y publicadas con licencia <strong>CC BY-SA 4.0</strong>. No son imágenes generadas ni recreaciones.
+      </p>
+      <p class="section-copy mt-4">
+        Tampoco son una comprobación del estado actual: el arbolado, el mobiliario, los comercios del entorno y las condiciones del espacio pueden haber cambiado desde la fecha de cada toma. Úsalas para reconocer el lugar, no para confirmar un detalle operativo de hoy.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-8 md:grid-cols-2">
+      {photos.map((photo) => (
+        <figure class="card overflow-hidden rounded-[2rem]">
+          <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" class="h-72 w-full object-cover md:h-80" />
+          <figcaption class="p-7">
+            <h3 class="serif text-2xl">{photo.title}</h3>
+            <p class="mt-3 leading-7 text-[#6e655b]">{photo.text}</p>
+            <p class="mt-4 text-xs text-[#6e655b]">
+              <a href={photo.page} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">{photo.credit}</a>
+            </p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell max-w-3xl">
+      <span class="eyebrow">Buenas prácticas</span>
+      <h2 class="section-title">Si vas a fotografiar la plaza</h2>
+      <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+        <p>La ficha turística registra la toma de fotografías y filmaciones como una actividad habitual dentro del espacio. Ten en cuenta que es un lugar público con actividades cívicas y religiosas en el entorno: evita interrumpir ceremonias y pide permiso antes de fotografiar a personas identificables.</p>
+        <p>Si publicas tus propias imágenes, añade autoría y fecha. Y si reutilizas fotografías de terceros —como las de esta página—, respeta la licencia indicada: escribir «todos los derechos reservados» no equivale a tener autorización de uso.</p>
+      </div>
+      <p class="mt-8 text-base">
+        Complementa esta galería con <a href="/que-ver-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">qué ver en la plaza</a> y con la <a href="/ubicacion-plaza-de-armas-piura/" class="font-bold text-[#b9633e] underline">ubicación exacta</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Licencias</span>
+      <h2 class="section-title">Cómo usar estas fotos y sus licencias</h2>
+      <p class="section-lead">Las cuatro imágenes se publican bajo licencia CC BY-SA 4.0. Eso permite reutilizarlas —incluso con fines comerciales— siempre que cumplas dos condiciones: atribuir correctamente y compartir las obras derivadas con la misma licencia.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Fotografía</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Autoría y fecha</th>
+              <th class="py-3 font-black text-[#a85737]">Cómo citarla</th>
+            </tr>
+          </thead>
+          <tbody>
+            {photos.map((photo) => (
+              <tr class="border-b border-[#e5d6bf] align-top">
+                <td class="py-4 pr-4 font-bold text-[#1d2a24]">{photo.title}</td>
+                <td class="py-4 pr-4 text-[#6e655b]">{photo.credit}</td>
+                <td class="py-4 text-[#6e655b]">Autoría y título, la mención «CC BY-SA 4.0» y el <a href={photo.page} target="_blank" rel="noopener noreferrer" class="font-bold text-[#b9633e] underline">enlace al archivo original</a>.</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="card rounded-[1.6rem] p-7">
+          <h3 class="font-black text-[#1d2a24]">Atribuir siempre</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Sin autoría, título, licencia y enlace, el uso queda fuera de la licencia. «Todos los derechos reservados» no sustituye esa atribución.</p>
+        </div>
+        <div class="card rounded-[1.6rem] p-7">
+          <h3 class="font-black text-[#1d2a24]">Indicar los cambios</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Si recortas, ajustas el color o compones una obra nueva a partir de la imagen, señala que fue modificada.</p>
+        </div>
+        <div class="card rounded-[1.6rem] p-7">
+          <h3 class="font-black text-[#1d2a24]">Compartir igual</h3>
+          <p class="mt-3 leading-7 text-[#6e655b]">Las adaptaciones deben publicarse bajo la misma licencia CC BY-SA 4.0, no bajo una más restrictiva.</p>
+        </div>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Estas tomas retratan el monumento central y la iglesia matriz. Para conocer mejor la escultura, consulta el <a href="/monumento-la-pola-piura/" class="font-bold text-[#b9633e] underline">monumento a La Pola</a>; si buscas imágenes con otra luz, revisa la <a href="/plaza-de-armas-piura-de-noche/" class="font-bold text-[#b9633e] underline">plaza de noche</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre las fotos y su uso</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Wikimedia Commons — archivos originales</p>
+        <p class="text-sm text-[#6e655b]">Autoría, fecha y licencia CC BY-SA 4.0 de cada fotografía. Cada pie de foto enlaza a su archivo original.</p>
+        <a href="https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg" target="_blank" rel="noopener noreferrer">commons.wikimedia.org</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Registro de la toma de fotografías y filmaciones como actividad dentro del recurso, además de la descripción del arbolado y el monumento.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">03</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto de referencia para ubicar las tomas y planear tu propia visita.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

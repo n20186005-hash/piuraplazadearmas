@@ -1,0 +1,263 @@
+---
+import '../styles/global.css';
+
+export interface Crumb {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  h1: string;
+  lead: string;
+  crumbs: Crumb[];
+  jsonLd: Record<string, unknown>[];
+  dateModified: string;
+  hero?: { src: string; alt: string; credit: string; page: string };
+}
+
+const { title, description, eyebrow, h1, lead, crumbs, jsonLd, dateModified, hero } = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL('https://piuraplazadearmas.com');
+const siteUrl = siteOrigin.href.replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, siteOrigin).href;
+
+const attractionFullName = 'Plaza de Armas Piura';
+const cityName = 'Piura';
+const countryName = 'Perú';
+const postalCode = '20001';
+const plusCode = 'R93F+58';
+const latitude = -5.1970998;
+const longitude = -80.62668;
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+
+const ogImage = hero ? `${siteUrl}${hero.src}` : `${siteUrl}/images/plaza-de-armas-piura-hero.jpg`;
+const ogImageAlt = hero ? hero.alt : `${attractionFullName} - vista principal en ${cityName}, ${countryName}`;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: `${attractionFullName} — Guía del visitante`,
+  description: 'Guía turística educativa independiente, no oficial y sin fines de lucro.',
+  url: siteUrl,
+  logo: { '@type': 'ImageObject', url: `${siteUrl}/icons/icon-512.png` },
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: attractionFullName,
+  url: siteUrl,
+  publisher: { '@id': `${siteUrl}/#organization` },
+};
+
+const webpageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: title,
+  description,
+  inLanguage: 'es-PE',
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#attraction` },
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: ogImage,
+    caption: ogImageAlt,
+    creditText: hero?.credit ?? 'Edward Josué Quevedo Macalupú',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  },
+  dateModified,
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${canonical}#breadcrumb`,
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.name,
+    ...(crumb.href ? { item: crumb.href.startsWith('http') ? crumb.href : `${siteUrl}${crumb.href}` } : {}),
+  })),
+};
+
+const jsonLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationJsonLd, websiteJsonLd, webpageJsonLd, breadcrumbJsonLd, ...jsonLd],
+};
+
+const navItems = [
+  { href: '/', label: 'Inicio' },
+  { href: '/#historia', label: 'Historia' },
+  { href: '/#visita', label: 'Visita' },
+  { href: '/#guias', label: 'Guías' },
+  { href: '/#mapa', label: 'Mapa' },
+  { href: '/#faq', label: 'FAQ' },
+];
+---
+
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#244433" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="geo.position" content={`${latitude};${longitude}`} />
+    <meta name="geo.placename" content={`${attractionFullName}, ${cityName}, ${countryName}`} />
+    <meta name="ICBM" content={`${latitude}, ${longitude}`} />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es-PE" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content={attractionFullName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content={attractionFullName} />
+    <meta name="msapplication-TileColor" content="#244433" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)}></script>
+  </head>
+  <body>
+    <header class="absolute inset-x-0 top-0 z-30 bg-[#14241d]/95 text-white backdrop-blur-md">
+      <div class="shell flex h-20 items-center justify-between gap-6">
+        <a href="/" aria-label={`${attractionFullName}, inicio`} class="block rounded-md bg-[#fffaf1] px-3 py-2 shadow-sm">
+          <img src="/logo.svg" alt={attractionFullName} width="210" height="54" class="h-11 w-auto" />
+        </a>
+        <nav aria-label="Navegación principal" class="hidden items-center gap-5 text-sm font-bold lg:flex xl:gap-7">
+          {navItems.map((item) => (
+            <a href={item.href} class="hover:text-[#f4c38d]">{item.label}</a>
+          ))}
+        </nav>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 bg-white/10 text-sm text-white hover:bg-white hover:text-[#1d2a24]">Cómo llegar ↗</a>
+      </div>
+    </header>
+
+    <main class="pt-28">
+      <section class="bg-[#172a20] pb-20 pt-12 text-white md:pb-24">
+        <div class="shell">
+          <nav aria-label="Breadcrumb" class="breadcrumb mb-8 text-white/70">
+            {crumbs.map((crumb, index) => (
+              <>
+                {index > 0 && <span aria-hidden="true">›</span>}
+                {crumb.href ? <a href={crumb.href}>{crumb.name}</a> : <span aria-current="page" class="text-white">{crumb.name}</span>}
+              </>
+            ))}
+          </nav>
+          <span class="eyebrow text-[#eaa464]">{eyebrow}</span>
+          <h1 class="serif mt-4 max-w-[20ch] text-[clamp(2.4rem,6.4vw,5.4rem)] leading-[.92] tracking-[-.045em]">{h1}</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-white/82">{lead}</p>
+        </div>
+      </section>
+
+      <slot />
+
+      <section class="sources bg-[#fffaf1] py-20 md:py-28">
+        <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <span class="eyebrow">Fuentes oficiales</span>
+            <h2 class="section-title">Fuentes y verificación</h2>
+            <p class="section-lead">Fuentes concretas y lo que cada una permite confirmar.</p>
+            <p class="mt-6 text-sm font-bold text-[#6e655b]">Última actualización: {new Date(dateModified + 'T12:00:00Z').toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</p>
+          </div>
+          <div>
+            <slot name="sources" />
+            <p class="photo-credit">
+              <strong>Créditos de imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a sus licencias originales (CC BY-SA 4.0). Los créditos individuales aparecen junto a cada imagen. Se muestran redimensionadas y pueden recortarse en pantalla.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-[#f5ead9] py-16">
+        <div class="shell">
+          <h2 class="section-title max-w-none text-3xl md:text-4xl">Sigue con la guía de la {attractionFullName}</h2>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="/" class="card rounded-[1.4rem] p-6 hover:border-[#b9633e]">
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Guía principal</p>
+              <p class="serif mt-2 text-2xl">Inicio: ubicación, historia y qué ver</p>
+            </a>
+            <a href="/#guias" class="card rounded-[1.4rem] p-6 hover:border-[#b9633e]">
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Todas las guías</p>
+              <p class="serif mt-2 text-2xl">Índice de guías de la plaza</p>
+            </a>
+            <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="card rounded-[1.4rem] p-6 hover:border-[#b9633e]">
+              <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">Navegación</p>
+              <p class="serif mt-2 text-2xl">Abrir la plaza en Google Maps ↗</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#172a20] py-12 text-[#d5ddd4]">
+      <div class="shell grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <img src="/logo.svg" alt={attractionFullName} width="210" height="54" class="h-12 w-auto rounded bg-[#fffaf1] p-1" />
+          <p class="mt-5 max-w-2xl text-sm leading-6 text-white/60">
+            Guía turística educativa independiente, no oficial y sin fines de lucro para orientar una visita al centro histórico de {cityName}. Verifica horarios, condiciones de acceso y servicios directamente con cada establecimiento antes de tu visita.
+          </p>
+          <address class="mt-4 not-italic text-sm leading-6 text-white/70">
+            <strong class="text-white">{attractionFullName}</strong><br />
+            Ayacucho, {cityName} {postalCode}, {countryName} · Plus Code {plusCode}<br />
+            <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">Ver en Google Maps ↗</a>
+          </address>
+          <p class="mt-4 text-xs leading-5 text-white/45">Este sitio no es oficial y no representa a la Municipalidad Provincial de {cityName}, al Ministerio de Cultura del {countryName} ni a Google.</p>
+          <p class="mt-3 text-xs leading-5 text-white/45">
+            <strong>Imágenes:</strong> los derechos de propiedad y los derechos de autor (copyright) de todas las fotografías mostradas en este sitio web pertenecen a sus respectivos fotógrafos originales y se usan conforme a sus licencias originales.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+          <button id="open-cookie-settings" type="button" class="underline decoration-white/30 underline-offset-4 hover:text-white">Cookies</button>
+          <a href="/#privacidad" class="underline decoration-white/30 underline-offset-4 hover:text-white">Privacidad y uso</a>
+          <a href="/#fuentes" class="underline decoration-white/30 underline-offset-4 hover:text-white">Créditos y fuentes</a>
+          <a href="/" class="underline decoration-white/30 underline-offset-4 hover:text-white">Volver al inicio ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <aside id="cookie-banner" aria-live="polite" class="cookie-banner fixed bottom-4 left-1/2 z-50 hidden w-[min(720px,calc(100%_-_1rem))] -translate-x-1/2 rounded-[1.5rem] border border-[#d8c4ad] bg-[#fffaf1] p-6">
+      <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[.14em] text-[#a85737]">Privacidad y medición</p>
+          <p class="mt-2 text-sm leading-6 text-[#5f584f]">Google Analytics puede cargarse inmediatamente después de guardar tu permiso. Rechazar o retirar detiene la medición adicional de esta página; no recupera información ya enviada. <a href="/#privacidad" class="underline">Más información</a>.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <p id="consent-status" role="status" class="text-sm leading-6 basis-full"></p>
+          <button id="reject-cookies" type="button" class="btn border border-[#cab49a] bg-white text-sm">Rechazar / retirar</button>
+          <button id="accept-cookies" type="button" class="btn btn-primary text-sm">Aceptar analítica</button>
+          <button id="close-cookie-settings" type="button" class="btn border border-[#cab49a] text-sm">Cerrar</button>
+        </div>
+      </div>
+    </aside>
+
+    <script is:inline src="/analytics.js" defer></script>
+  </body>
+</html>

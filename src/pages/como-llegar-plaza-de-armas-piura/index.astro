@@ -1,0 +1,281 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const siteUrl = 'https://piuraplazadearmas.com';
+
+const attractionFullName = 'Plaza de Armas Piura';
+const attractionShortName = 'Plaza de Armas de Piura';
+const cityName = 'Piura';
+const plusCode = 'R93F+58';
+
+const mapShortUrl = 'https://maps.app.goo.gl/WAjRRUEwGccZYiKd9';
+const minceturFicha = 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=3163';
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7067.300021221717!2d-80.62668!3d-5.1970998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107ddd0efae7%3A0xaeb976088d0ea599!2sPlaza%20de%20Armas%20Piura!5e1!3m2!1ses!2spe!4v1789026773647!5m2!1ses!2spe';
+
+const title = 'Cómo llegar a la Plaza de Armas Piura: rutas y accesos';
+const description = `Referencias de acceso a la ${attractionShortName} desde Óvalo Grau, Plazuela Merino e Iglesia San Sebastián, con qué conviene comprobar antes de salir y el mapa del punto exacto.`;
+const dateModified = '2026-11-04';
+
+const routes = [
+  {
+    from: 'Óvalo Grau',
+    mode: 'A pie',
+    distance: '800 m · 6 min',
+    detail: 'Tramo asfaltado según el inventario turístico. Es la referencia de caminata más citada para acercarse al centro.',
+  },
+  {
+    from: 'Plazuela Merino',
+    mode: 'Taxi',
+    distance: '1 km · 5 min',
+    detail: 'La ficha lo registra como recorrido en taxi sobre vía asfaltada. El tiempo depende del tráfico del centro.',
+  },
+  {
+    from: 'Iglesia San Sebastián',
+    mode: 'Bus turístico',
+    distance: '200 m · 3 min',
+    detail: 'El tramo más corto de la ficha, asociado a un servicio de bus turístico, no a una línea urbana regular confirmada.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Se puede llegar caminando a la Plaza de Armas de Piura?',
+    a: 'Sí. El inventario turístico registra un tramo de 800 metros (unos 6 minutos) entre Óvalo Grau y la plaza, sobre vía asfaltada. Es una referencia de distancia, no una ruta inspeccionada: comprueba cruces y estado de las calles con el mapa actual.',
+  },
+  {
+    q: '¿Los tiempos de la ficha turística son exactos?',
+    a: 'No funcionan como horario garantizado. Los minutos de la ficha 3163 son estimaciones de referencia y no incluyen tráfico, semáforos, calor ni la movilidad de cada persona. Úsalos solo para hacerte una idea.',
+  },
+  {
+    q: '¿Cómo llego si vengo desde fuera de la ciudad?',
+    a: 'Escribe tu origen real en Google Maps y elige el medio disponible. Esta guía no publica tarifas, líneas ni paraderos verificados, porque cambian con frecuencia y no los hemos confirmado.',
+  },
+  {
+    q: '¿Dónde me bajo si voy en taxi o en auto?',
+    a: 'Acuerda un punto de bajada que no bloquee cruces ni accesos, y confirma el precio antes del viaje. La ficha turística no identifica una zona de bajada oficial.',
+  },
+  {
+    q: '¿Qué acceso conviene elegir según mi punto de partida?',
+    a: 'Desde Óvalo Grau la referencia de la ficha es a pie (800 m · 6 min); desde Plazuela Merino, en taxi (1 km · 5 min); y desde la iglesia San Sebastián, el tramo más corto (200 m · 3 min), asociado a un bus turístico. Son comparaciones de referencia, no distancias garantizadas: calcula con tu origen real en el mapa.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tripJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${siteUrl}/como-llegar-plaza-de-armas-piura/#trip`,
+  name: `Cómo llegar a la ${attractionShortName}`,
+  description,
+  touristType: ['Turismo urbano', 'Centro histórico'],
+  itinerary: {
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@type': 'Place', name: 'Óvalo Grau' } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Place', name: 'Plazuela Merino' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'Place', name: 'Iglesia San Sebastián' } },
+      { '@type': 'ListItem', position: 4, item: { '@id': `${siteUrl}/#attraction`, name: attractionFullName } },
+    ],
+  },
+};
+
+const crumbs = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Guías', href: '/#guias' },
+  { name: 'Cómo llegar' },
+];
+---
+
+<GuideLayout
+  {title}
+  {description}
+  eyebrow="Accesos"
+  h1={`Cómo llegar a la ${attractionShortName}`}
+  lead="Rutas de referencia registradas por el inventario turístico, qué conviene comprobar antes de salir y cuál es el punto exacto que debes abrir en tu mapa."
+  {crumbs}
+  jsonLd={[tripJsonLd, faqJsonLd]}
+  {dateModified}
+  hero={{
+    src: '/images/plaza-de-armas-piura-vista.jpg',
+    alt: `Jardines, bancas y entorno urbano de la ${attractionShortName} en ${cityName}`,
+    credit: 'Pitxiquin · 2017-01-24 · CC BY-SA 4.0',
+    page: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Armas_de_Piura.jpg',
+  }}
+>
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Antes de salir</span>
+      <h2 class="section-title">Abre tu origen, no solo el destino</h2>
+      <p class="section-copy mt-6 max-w-3xl">
+        La plaza está en el centro histórico de {cityName}. Para calcular el recorrido, abre Google Maps con <strong>tu punto de partida real</strong> hacia el Plus Code <strong>{plusCode}</strong>: la distancia y el tiempo cambian según desde dónde salgas, la hora y el tráfico del centro.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir ruta en Google Maps ↗</a>
+        <a href="/mapa-plaza-de-armas-piura/" class="btn border border-[#cab49a]">Ver el mapa de la zona</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Referencias oficiales</span>
+      <h2 class="section-title">Rutas registradas en la ficha turística</h2>
+      <p class="section-lead">Distancias del inventario MINCETUR, no rutas inspeccionadas.</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {routes.map((route) => (
+          <article class="card rounded-[1.6rem] p-7">
+            <p class="text-xs font-black uppercase tracking-[.14em] text-[#a85737]">{route.mode}</p>
+            <h3 class="serif mt-3 text-2xl">{route.from}</h3>
+            <p class="mt-2 font-black text-[#244433]">{route.distance}</p>
+            <p class="mt-3 leading-7 text-[#6e655b]">{route.detail}</p>
+          </article>
+        ))}
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        La ficha turística describe los tres tramos sobre vía asfaltada. Son <strong>estimaciones de referencia</strong> del inventario y no incorporan tráfico, obras ni movilidad reducida. Elige el trayecto con el mapa actual y no des por comprobado cada cruce.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell grid gap-14 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <span class="eyebrow">En la práctica</span>
+        <h2 class="section-title">Caminando, en taxi o con tu vehículo</h2>
+        <div class="mt-8 space-y-6 text-lg leading-8 text-[#6e655b]">
+          <p><strong class="text-[#1d2a24]">A pie:</strong> el centro se recorre a distancia corta, pero el calor de {cityName} pesa. Lleva agua, protección solar y calzado cómodo, y evita las horas de mayor radiación si vas con niños o personas mayores.</p>
+          <p><strong class="text-[#1d2a24]">En taxi o aplicación:</strong> acuerda el punto de bajada antes de subir y confirma el precio. Pide que te deje en una vía que no bloquee cruces ni accesos, y camina el último tramo.</p>
+          <p><strong class="text-[#1d2a24]">En vehículo propio:</strong> esta guía no ha verificado plazas ni tarifas de estacionamiento específicas. Revisa las señales y las zonas permitidas, y consulta las condiciones antes de pagar.</p>
+          <p><strong class="text-[#1d2a24]">Accesibilidad:</strong> MINCETUR enumera rampas en la plaza. Eso no acredita una ruta continua desde tu alojamiento ni el estado actual de cada cruce: confirma lo que necesite tu grupo.</p>
+        </div>
+        <p class="mt-8 text-base">
+          Para nivelar expectativas sobre esperas y servicios, revisa también <a href="/horarios-visita-plaza-de-armas/" class="font-bold text-[#b9633e] underline">los horarios de visita</a> y <a href="/consejos-visitar-plaza-de-armas/" class="font-bold text-[#b9633e] underline">los consejos prácticos</a>.
+        </p>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border border-[#d8c4ad] bg-[#e8d5bc] shadow-[0_30px_90px_rgba(67,44,28,.12)]">
+        <iframe src={mapEmbed} width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title={`Mapa de acceso a ${attractionFullName} en Google Maps`}></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Comparativa</span>
+      <h2 class="section-title">Comparativa de accesos de referencia</h2>
+      <p class="section-lead">Los tres puntos de partida que registra la ficha, comparados por perfil de viajero y por lo que conviene comprobar.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Punto de partida</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Para quién encaja</th>
+              <th class="py-3 font-black text-[#a85737]">Qué conviene comprobar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Óvalo Grau</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Quien llega caminando y quiere una referencia de caminata clara.</td>
+              <td class="py-4 text-[#6e655b]">La ficha registra 800 m · 6 min sobre vía asfaltada. Es una estimación de referencia: no incluye tráfico, semáforos ni calor. Comprueba los cruces en el mapa (referencia, por confirmar en el terreno).</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Plazuela Merino</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Quien prefiere un tramo corto en taxi.</td>
+              <td class="py-4 text-[#6e655b]">La ficha lo registra como recorrido en taxi de 1 km · 5 min. El tiempo depende del tráfico del centro y no es una ruta inspeccionada.</td>
+            </tr>
+            <tr class="align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia San Sebastián</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Quien se aloja o está en el entorno de San Sebastián.</td>
+              <td class="py-4 text-[#6e655b]">Es el tramo más corto de la ficha (200 m · 3 min), asociado a un servicio de bus turístico, no a una línea urbana regular confirmada.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Ninguno de los tres tramos está verificado como ruta inspeccionada: son referencias del inventario. Si vienes desde el entorno de San Sebastián, revisa antes la <a href="/iglesia-san-sebastian-piura/" class="font-bold text-[#b9633e] underline">iglesia San Sebastián de Piura</a>; y si prefieres caminar el centro, apóyate en la <a href="/ruta-a-pie-centro-historico-piura/" class="font-bold text-[#b9633e] underline">ruta a pie por el centro histórico</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#fffaf1] py-20 md:py-28">
+    <div class="shell">
+      <span class="eyebrow">Comparativa</span>
+      <h2 class="section-title">Comparativa de accesos de referencia</h2>
+      <p class="section-lead">Los tres puntos de partida que recoge la ficha 3163, comparados por lo que aporta cada uno.</p>
+      <div class="mt-10 overflow-x-auto">
+        <table class="mt-8 w-full min-w-[720px] border-collapse text-left text-base">
+          <thead>
+            <tr class="border-b border-[#d8c4ad]">
+              <th class="py-3 pr-4 font-black text-[#a85737]">Punto de partida</th>
+              <th class="py-3 pr-4 font-black text-[#a85737]">Para quién encaja</th>
+              <th class="py-3 font-black text-[#a85737]">Qué tener en cuenta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Óvalo Grau</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Para quien busca entrar caminando por vía asfaltada.</td>
+              <td class="py-4 text-[#6e655b]">800 m · 6 min de referencia, el tramo de caminata más citado. No incluye calor, cruces ni carga: referencia, por confirmar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Plazuela Merino</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Para quien prefiere un trayecto corto en taxi.</td>
+              <td class="py-4 text-[#6e655b]">1 km · 5 min de referencia; el tiempo real depende del tráfico del centro: referencia, por confirmar.</td>
+            </tr>
+            <tr class="border-b border-[#e5d6bf] align-top">
+              <td class="py-4 pr-4 font-bold text-[#1d2a24]">Iglesia San Sebastián</td>
+              <td class="py-4 pr-4 text-[#6e655b]">Para quien ya se mueve en el circuito turístico del centro.</td>
+              <td class="py-4 text-[#6e655b]">200 m · 3 min, el tramo más corto de la ficha, ligado a un bus turístico, no a una línea urbana regular confirmada: referencia, por confirmar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-copy mt-8 max-w-3xl">
+        Los tres tramos se registran sobre vía asfaltada, pero ninguno equivale a una ruta inspeccionada. Si sales desde la plazuela, encaja con la <a href="/plazuela-ignacio-merino/" class="font-bold text-[#b9633e] underline">plazuela Ignacio Merino</a>, y elige el trayecto final con el mapa actual.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f5ead9] py-20 md:py-28">
+    <div class="shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Dudas sobre el acceso</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="sources">
+    <ol class="sources-list">
+      <li>
+        <span class="text-xs font-black text-[#a85737]">01</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">MINCETUR — Inventario Nacional de Recursos Turísticos, ficha 3163</p>
+        <p class="text-sm text-[#6e655b]">Rutas de acceso registradas, medio de transporte, tipo de vía, distancia y tiempo estimado, además de la mención de rampas.</p>
+        <a href={minceturFicha} target="_blank" rel="noopener noreferrer">{minceturFicha}</a>
+      </li>
+      <li>
+        <span class="text-xs font-black text-[#a85737]">02</span>
+        <p class="mt-1 font-bold text-[#1d2a24]">Google Maps — lista del lugar</p>
+        <p class="text-sm text-[#6e655b]">Punto exacto, Plus Code {plusCode} y trazado vial vigente para calcular el recorrido desde tu origen.</p>
+        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer">{mapShortUrl}</a>
+      </li>
+    </ol>
+  </Fragment>
+</GuideLayout>

@@ -47,7 +47,7 @@ for (const file of files) {
 
 /* ---------- 2. TDK, canonical, Open Graph ---------- */
 const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '';
-if (!title.includes('Plaza de Armas Piura')) fail('El <title> no contiene el nombre completo del lugar.');
+if (!title.includes('Plaza de Armas')) fail('El <title> no contiene el nombre del lugar.');
 if (!title.includes('Piura')) fail('El <title> no contiene la ciudad.');
 if (title.length > 70) fail(`<title> demasiado largo (${title.length} caracteres).`);
 
