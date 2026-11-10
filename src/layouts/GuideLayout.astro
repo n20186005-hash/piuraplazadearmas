@@ -15,10 +15,11 @@ interface Props {
   crumbs: Crumb[];
   jsonLd: Record<string, unknown>[];
   dateModified: string;
+  mapUrl?: string;
   hero?: { src: string; alt: string; credit: string; page: string };
 }
 
-const { title, description, eyebrow, h1, lead, crumbs, jsonLd, dateModified, hero } = Astro.props;
+const { title, description, eyebrow, h1, lead, crumbs, jsonLd, dateModified, hero, mapUrl } = Astro.props;
 
 const siteOrigin = Astro.site ?? new URL('https://piuraplazadearmas.com');
 const siteUrl = siteOrigin.href.replace(/\/$/, '');
@@ -156,7 +157,7 @@ const navItems = [
             <a href={item.href} class="hover:text-[#f4c38d]">{item.label}</a>
           ))}
         </nav>
-        <a href={mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 bg-white/10 text-sm text-white hover:bg-white hover:text-[#1d2a24]">Cómo llegar ↗</a>
+        <a href={mapUrl ?? mapShortUrl} target="_blank" rel="noopener noreferrer" class="btn border border-white/35 bg-white/10 text-sm text-white hover:bg-white hover:text-[#1d2a24]">Cómo llegar ↗</a>
       </div>
     </header>
 
